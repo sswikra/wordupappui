@@ -1,6 +1,6 @@
 {
-  "name": "WordUp - Vocabulary Learning",
-  "description": "Smart English & Turkish vocabulary learning app with interactive mini games, word lists, streak tracking, audio pronunciations, and comprehensive progress analytics.",
+  "name": "WordMem - Vocabulary Learning",
+  "description": "Word + Memory: Smart English & Turkish vocabulary learning app with interactive mini games, word lists, streak tracking, audio pronunciations, and comprehensive progress analytics.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

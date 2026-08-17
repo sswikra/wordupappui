@@ -33,7 +33,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenSidebar, onOpenSearch, dar
           className="text-[32px] font-extrabold tracking-tight text-[#345c43] dark:text-[#7ba983] select-none"
           style={{ fontFamily: "'Outfit', 'Plus Jakarta Sans', sans-serif" }}
         >
-          WordUp
+          WordMem
         </span>
       </div>
 

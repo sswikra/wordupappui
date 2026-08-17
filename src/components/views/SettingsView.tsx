@@ -305,7 +305,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
               <div className="w-12 h-12 rounded-full bg-rose-100 dark:bg-rose-950/60 text-rose-500 mx-auto flex items-center justify-center mb-3">
                 <LogOut className="w-6 h-6" />
               </div>
-              <h3 className="font-bold text-base mb-1">WordUp'tan Çıkış Yapılsın mı?</h3>
+              <h3 className="font-bold text-base mb-1">WordMem'den Çıkış Yapılsın mı?</h3>
               <p className="text-xs text-slate-500 mb-5">
                 Çevrimdışı seriniz ve öğrenme ilerlemeniz bu cihazda kayıtlı kalmaya devam edecektir.
               </p>

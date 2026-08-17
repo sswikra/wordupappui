@@ -53,7 +53,7 @@ export const SidebarDrawer: React.FC<SidebarDrawerProps> = ({
                 className="text-2xl font-extrabold text-[#345c43] dark:text-[#7ba983]"
                 style={{ fontFamily: "'Outfit', sans-serif" }}
               >
-                WordUp
+                WordMem
               </span>
               <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
                 v2.1
@@ -186,7 +186,7 @@ export const SidebarDrawer: React.FC<SidebarDrawerProps> = ({
           {/* Footer Info */}
           <div className="p-5 border-t border-slate-100 dark:border-slate-800 text-center">
             <p className="text-[11px] text-slate-400">
-              WordUp İngilizce - Türkçe Kelime Öğrenme
+              WordMem İngilizce - Türkçe Kelime & Hafıza Öğrenme
             </p>
             <p className="text-[10px] text-slate-400/80 mt-0.5">
               Uygulama Sürümü 2.1.0
