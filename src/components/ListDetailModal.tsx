@@ -34,7 +34,17 @@ export const ListDetailModal: React.FC<ListDetailModalProps> = ({
 
   if (!isOpen || !list) return null;
 
-  const words = list.words || [];
+  const words = React.useMemo(() => {
+    const raw = list.words || [];
+    const seen = new Set<string>();
+    return raw.filter((w) => {
+      if (!w || !w.id) return false;
+      if (seen.has(w.id)) return false;
+      seen.add(w.id);
+      return true;
+    });
+  }, [list.words]);
+
   const filteredWords = words.filter(
     (w) =>
       w.word.toLowerCase().includes(searchQuery.toLowerCase()) ||

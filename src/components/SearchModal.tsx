@@ -25,7 +25,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   const [levelFilter, setLevelFilter] = useState<string>('ALL');
 
   const filteredWords = useMemo(() => {
+    const seen = new Set<string>();
     return words.filter((w) => {
+      if (!w || !w.id || seen.has(w.id)) return false;
+
       const q = query.toLowerCase().trim();
       const matchesText =
         !q ||
@@ -37,7 +40,11 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         levelFilter === 'ALL' ||
         (levelFilter === 'FAVORITES' ? w.isFavorite : w.level === levelFilter);
 
-      return matchesText && matchesLevel;
+      if (matchesText && matchesLevel) {
+        seen.add(w.id);
+        return true;
+      }
+      return false;
     });
   }, [words, query, levelFilter]);
 

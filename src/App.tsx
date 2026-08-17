@@ -23,6 +23,16 @@ import { ListsView } from './components/views/ListsView';
 import { ProfileView } from './components/views/ProfileView';
 import { SettingsView } from './components/views/SettingsView';
 
+const deduplicateWords = (wordsList: Word[] = []): Word[] => {
+  const seen = new Set<string>();
+  return wordsList.filter((w) => {
+    if (!w || !w.id) return false;
+    if (seen.has(w.id)) return false;
+    seen.add(w.id);
+    return true;
+  });
+};
+
 export default function App() {
   // Navigation
   const [currentTab, setCurrentTab] = useState<TabType>('home');
@@ -30,11 +40,20 @@ export default function App() {
   // Application Data States
   const [words, setWords] = useState<Word[]>(() => {
     const saved = localStorage.getItem('wordup_words');
-    return saved ? JSON.parse(saved) : VOCABULARY_DATABASE;
+    if (saved) {
+      try {
+        return deduplicateWords(JSON.parse(saved));
+      } catch {
+        return VOCABULARY_DATABASE;
+      }
+    }
+    return VOCABULARY_DATABASE;
   });
 
   const [wordOfTheDay] = useState<Word>(INITIAL_WORD_OF_THE_DAY);
-  const [suggestedWords, setSuggestedWords] = useState<Word[]>(INITIAL_SUGGESTED_WORDS);
+  const [suggestedWords, setSuggestedWords] = useState<Word[]>(() =>
+    deduplicateWords(INITIAL_SUGGESTED_WORDS)
+  );
 
   const [userLists, setUserLists] = useState<WordList[]>(() => {
     const saved = localStorage.getItem('wordup_user_lists');
@@ -44,16 +63,23 @@ export default function App() {
         return parsed
           .filter((l) => l.id !== 'daily-commute')
           .map((l) => {
+            const cleanWords = deduplicateWords(l.words || []);
+            let title = l.title;
             if (l.id === 'favorites' && l.title === 'Favorites') {
-              return { ...l, title: 'Favoriler' };
+              title = 'Favoriler';
             }
             if (l.id === 'review' && l.title === 'Review') {
-              return { ...l, title: 'Tekrar Gözden Geçir' };
+              title = 'Tekrar Gözden Geçir';
             }
             if (l.id === 'struggle' && l.title === 'Words I Struggle With') {
-              return { ...l, title: 'Zorlandığım Kelimeler' };
+              title = 'Zorlandığım Kelimeler';
             }
-            return l;
+            return {
+              ...l,
+              title,
+              words: cleanWords,
+              count: cleanWords.length,
+            };
           });
       } catch {
         return INITIAL_USER_LISTS;
@@ -118,19 +144,26 @@ export default function App() {
       setSelectedWord((prev) => (prev ? { ...prev, isFavorite: !prev.isFavorite } : null));
     }
 
-    // Update Favorites List count
+    // Update Favorites List count and items safely without duplicates
     setUserLists((prevLists) =>
       prevLists.map((l) => {
         if (l.id === 'favorites') {
           const targetWord = words.find((w) => w.id === wordId);
           const willBeFavorite = targetWord ? !targetWord.isFavorite : true;
+          const cleanRemaining = (l.words || []).filter((w) => w.id !== wordId);
+          const updatedWordObj = targetWord
+            ? { ...targetWord, isFavorite: willBeFavorite }
+            : ({ id: wordId, isFavorite: willBeFavorite } as Word);
+
           const updatedWords = willBeFavorite
-            ? [...(l.words || []), targetWord || ({ id: wordId } as Word)]
-            : (l.words || []).filter((w) => w.id !== wordId);
+            ? [updatedWordObj, ...cleanRemaining]
+            : cleanRemaining;
+
+          const deduplicated = deduplicateWords(updatedWords);
           return {
             ...l,
-            count: updatedWords.length,
-            words: updatedWords,
+            count: deduplicated.length,
+            words: deduplicated,
           };
         }
         return l;
@@ -139,14 +172,15 @@ export default function App() {
   };
 
   const handleAddWord = (newWord: Word, targetListId?: string) => {
-    setWords((prev) => [newWord, ...prev]);
-    setSuggestedWords((prev) => [newWord, ...prev.slice(0, 3)]);
+    setWords((prev) => deduplicateWords([newWord, ...prev]));
+    setSuggestedWords((prev) => deduplicateWords([newWord, ...prev.slice(0, 3)]));
 
     if (targetListId) {
       setUserLists((prev) =>
         prev.map((list) => {
           if (list.id === targetListId) {
-            const updatedWords = [newWord, ...(list.words || [])];
+            const filteredOld = (list.words || []).filter((w) => w.id !== newWord.id);
+            const updatedWords = [newWord, ...filteredOld];
             return {
               ...list,
               count: updatedWords.length,

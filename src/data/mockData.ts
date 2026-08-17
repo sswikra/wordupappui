@@ -90,7 +90,7 @@ export const INITIAL_SUGGESTED_WORDS: Word[] = [
     synonyms: ['Toughness', 'Endurance', 'Flexibility'],
     isFavorite: false,
     mastery: 85,
-    lists: ['favorites', 'daily-commute'],
+    lists: ['daily-commute'],
   },
   {
     id: 'w-ephemeral',
