@@ -32,10 +32,8 @@ export const ListDetailModal: React.FC<ListDetailModalProps> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [sessionScore, setSessionScore] = useState({ mastered: 0, review: 0 });
 
-  if (!isOpen || !list) return null;
-
   const words = React.useMemo(() => {
-    const raw = list.words || [];
+    const raw = list?.words || [];
     const seen = new Set<string>();
     return raw.filter((w) => {
       if (!w || !w.id) return false;
@@ -43,7 +41,9 @@ export const ListDetailModal: React.FC<ListDetailModalProps> = ({
       seen.add(w.id);
       return true;
     });
-  }, [list.words]);
+  }, [list?.words]);
+
+  if (!isOpen || !list) return null;
 
   const filteredWords = words.filter(
     (w) =>
