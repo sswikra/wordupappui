@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "WordMem - İngilizce Türkçe Sözlük & Kelime",
+    "slug": "wordmem-vocabulary",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#345c43"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.wordmem.vocabulary"
+    },
+    "android": {
+      "package": "com.wordmem.vocabulary",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#345c43"
+      },
+      "permissions": [
+        "VIBRATE",
+        "INTERNET"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
