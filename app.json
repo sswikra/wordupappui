@@ -18,7 +18,6 @@
     },
     "android": {
       "package": "com.wordmem.vocabulary",
-      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#345c43"
