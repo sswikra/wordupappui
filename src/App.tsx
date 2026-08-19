@@ -1,14 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { testFirebaseConnection } from './src/firebaseTest';
-import {
-  View,
-  StyleSheet,
-  BackHandler,
-  ActivityIndicator,
-} from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
-import { TabType, Word, WordList, UserProfile, AppSettings } from './src/types';
+import React, { useState, useEffect } from 'react';
+import { TabType, Word, WordList, UserProfile, AppSettings } from './types';
 import {
   INITIAL_WORD_OF_THE_DAY,
   INITIAL_SUGGESTED_WORDS,
@@ -17,28 +8,20 @@ import {
   OTHER_CURATED_LISTS,
   INITIAL_USER_PROFILE,
   INITIAL_APP_SETTINGS,
-} from './src/data/mockData';
-import { StorageService } from './src/utils/storage';
-import { Colors, getTheme } from './src/theme/colors';
-
-// Common Components
-import { Header } from './src/components/common/Header';
-import { BottomNav } from './src/components/common/BottomNav';
-
-// Views
-import { HomeView } from './src/components/views/HomeView';
-import { GamesView } from './src/components/views/GamesView';
-import { ListsView } from './src/components/views/ListsView';
-import { ProfileView } from './src/components/views/ProfileView';
-import { SettingsView } from './src/components/views/SettingsView';
-
-// Modals
-import { SidebarDrawer } from './src/components/modals/SidebarDrawer';
-import { SearchModal } from './src/components/modals/SearchModal';
-import { WordDetailModal } from './src/components/modals/WordDetailModal';
-import { AddWordModal } from './src/components/modals/AddWordModal';
-import { CreateListModal } from './src/components/modals/CreateListModal';
-import { ListDetailModal } from './src/components/modals/ListDetailModal';
+} from './data/mockData';
+import { Navbar } from './components/Navbar';
+import { BottomNav } from './components/BottomNav';
+import { SidebarDrawer } from './components/SidebarDrawer';
+import { SearchModal } from './components/SearchModal';
+import { WordDetailModal } from './components/WordDetailModal';
+import { AddWordModal } from './components/AddWordModal';
+import { CreateListModal } from './components/CreateListModal';
+import { ListDetailModal } from './components/ListDetailModal';
+import { HomeView } from './components/views/HomeView';
+import { GamesView } from './components/views/GamesView';
+import { ListsView } from './components/views/ListsView';
+import { ProfileView } from './components/views/ProfileView';
+import { SettingsView } from './components/views/SettingsView';
 
 const deduplicateWords = (wordsList: Word[] = []): Word[] => {
   const seen = new Set<string>();
@@ -51,22 +34,73 @@ const deduplicateWords = (wordsList: Word[] = []): Word[] => {
 };
 
 export default function App() {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  // Navigation State
+  // Navigation
   const [currentTab, setCurrentTab] = useState<TabType>('home');
-  const [isGameActive, setIsGameActive] = useState(false);
 
   // Application Data States
-  const [words, setWords] = useState<Word[]>(VOCABULARY_DATABASE);
-  const [wordOfTheDay] = useState<Word>(INITIAL_WORD_OF_THE_DAY);
-  const [suggestedWords, setSuggestedWords] = useState<Word[]>(INITIAL_SUGGESTED_WORDS);
-  const [userLists, setUserLists] = useState<WordList[]>(INITIAL_USER_LISTS);
-  const [otherLists, setOtherLists] = useState<WordList[]>(OTHER_CURATED_LISTS);
-  const [profile, setProfile] = useState<UserProfile>(INITIAL_USER_PROFILE);
-  const [settings, setSettings] = useState<AppSettings>(INITIAL_APP_SETTINGS);
+  const [words, setWords] = useState<Word[]>(() => {
+    const saved = localStorage.getItem('wordup_words');
+    if (saved) {
+      try {
+        return deduplicateWords(JSON.parse(saved));
+      } catch {
+        return VOCABULARY_DATABASE;
+      }
+    }
+    return VOCABULARY_DATABASE;
+  });
 
-  // Modals & Drawers States
+  const [wordOfTheDay] = useState<Word>(INITIAL_WORD_OF_THE_DAY);
+  const [suggestedWords, setSuggestedWords] = useState<Word[]>(() =>
+    deduplicateWords(INITIAL_SUGGESTED_WORDS)
+  );
+
+  const [userLists, setUserLists] = useState<WordList[]>(() => {
+    const saved = localStorage.getItem('wordup_user_lists');
+    if (saved) {
+      try {
+        const parsed: WordList[] = JSON.parse(saved);
+        return parsed
+          .filter((l) => l.id !== 'daily-commute')
+          .map((l) => {
+            const cleanWords = deduplicateWords(l.words || []);
+            let title = l.title;
+            if (l.id === 'favorites' && l.title === 'Favorites') {
+              title = 'Favoriler';
+            }
+            if (l.id === 'review' && l.title === 'Review') {
+              title = 'Tekrar Gözden Geçir';
+            }
+            if (l.id === 'struggle' && l.title === 'Words I Struggle With') {
+              title = 'Zorlandığım Kelimeler';
+            }
+            return {
+              ...l,
+              title,
+              words: cleanWords,
+              count: cleanWords.length,
+            };
+          });
+      } catch {
+        return INITIAL_USER_LISTS;
+      }
+    }
+    return INITIAL_USER_LISTS;
+  });
+
+  const [otherLists, setOtherLists] = useState<WordList[]>(OTHER_CURATED_LISTS);
+
+  const [profile, setProfile] = useState<UserProfile>(() => {
+    const saved = localStorage.getItem('wordup_profile');
+    return saved ? JSON.parse(saved) : INITIAL_USER_PROFILE;
+  });
+
+  const [settings, setSettings] = useState<AppSettings>(() => {
+    const saved = localStorage.getItem('wordup_settings');
+    return saved ? JSON.parse(saved) : INITIAL_APP_SETTINGS;
+  });
+
+  // Modal States
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [selectedWord, setSelectedWord] = useState<Word | null>(null);
@@ -74,108 +108,27 @@ export default function App() {
   const [isCreateListOpen, setIsCreateListOpen] = useState(false);
   const [selectedList, setSelectedList] = useState<WordList | null>(null);
 
-  // Load persistent data on initial mount
+  // Sync to LocalStorage
   useEffect(() => {
-    async function loadData() {
-      try {
-        const savedWords = await StorageService.getWords();
-        const savedLists = await StorageService.getUserLists();
-        const savedProfile = await StorageService.getProfile();
-        const savedSettings = await StorageService.getSettings();
+    localStorage.setItem('wordup_words', JSON.stringify(words));
+  }, [words]);
 
-        if (savedWords) setWords(deduplicateWords(savedWords));
-        if (savedLists) setUserLists(savedLists);
-        if (savedProfile) setProfile(savedProfile);
-        if (savedSettings) setSettings(savedSettings);
-      } catch (e) {
-        console.warn('Initial storage load failed', e);
-      } finally {
-        setIsLoaded(true);
-      }
+  useEffect(() => {
+    localStorage.setItem('wordup_user_lists', JSON.stringify(userLists));
+  }, [userLists]);
+
+  useEffect(() => {
+    localStorage.setItem('wordup_profile', JSON.stringify(profile));
+  }, [profile]);
+
+  useEffect(() => {
+    localStorage.setItem('wordup_settings', JSON.stringify(settings));
+    if (settings.darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
     }
-    loadData();
-  }, []);
-
-  // deneme
-  useEffect(() => {
-    testFirebaseConnection();
-  }, []);
-
-  // Sync to AsyncStorage on updates
-  useEffect(() => {
-    if (isLoaded) {
-      StorageService.saveWords(words);
-    }
-  }, [words, isLoaded]);
-
-  useEffect(() => {
-    if (isLoaded) {
-      StorageService.saveUserLists(userLists);
-    }
-  }, [userLists, isLoaded]);
-
-  useEffect(() => {
-    if (isLoaded) {
-      StorageService.saveProfile(profile);
-    }
-  }, [profile, isLoaded]);
-
-  useEffect(() => {
-    if (isLoaded) {
-      StorageService.saveSettings(settings);
-    }
-  }, [settings, isLoaded]);
-
-  // Android Hardware Back Button Handling
-  useEffect(() => {
-    const onBackPress = () => {
-      if (selectedWord) {
-        setSelectedWord(null);
-        return true;
-      }
-      if (selectedList) {
-        setSelectedList(null);
-        return true;
-      }
-      if (isSearchOpen) {
-        setIsSearchOpen(false);
-        return true;
-      }
-      if (isAddWordOpen) {
-        setIsAddWordOpen(false);
-        return true;
-      }
-      if (isCreateListOpen) {
-        setIsCreateListOpen(false);
-        return true;
-      }
-      if (isSidebarOpen) {
-        setIsSidebarOpen(false);
-        return true;
-      }
-      if (isGameActive) {
-        setIsGameActive(false);
-        return true;
-      }
-      if (currentTab !== 'home') {
-        setCurrentTab('home');
-        return true;
-      }
-      return false; // Exit app
-    };
-
-    const subscription = BackHandler.addEventListener('hardwareBackPress', onBackPress);
-    return () => subscription.remove();
-  }, [
-    selectedWord,
-    selectedList,
-    isSearchOpen,
-    isAddWordOpen,
-    isCreateListOpen,
-    isSidebarOpen,
-    isGameActive,
-    currentTab,
-  ]);
+  }, [settings]);
 
   // Handlers
   const handleToggleFavorite = (wordId: string) => {
@@ -191,6 +144,7 @@ export default function App() {
       setSelectedWord((prev) => (prev ? { ...prev, isFavorite: !prev.isFavorite } : null));
     }
 
+    // Update Favorites List count and items safely without duplicates
     setUserLists((prevLists) =>
       prevLists.map((l) => {
         if (l.id === 'favorites') {
@@ -238,6 +192,7 @@ export default function App() {
       );
     }
 
+    // Increment daily words learned
     setSettings((prev) => ({
       ...prev,
       currentDayWordsCount: Math.min(prev.dailyGoal, prev.currentDayWordsCount + 1),
@@ -303,53 +258,28 @@ export default function App() {
     }));
   };
 
-  const handleDeleteWord = (wordId: string) => {
-    setWords((prev) => prev.filter((w) => w.id !== wordId));
-    setSuggestedWords((prev) => prev.filter((w) => w.id !== wordId));
-    setUserLists((prevLists) =>
-      prevLists.map((l) => {
-        const cleanWords = (l.words || []).filter((w) => w.id !== wordId);
-        return {
-          ...l,
-          count: cleanWords.length,
-          words: cleanWords,
-        };
-      })
-    );
-    if (selectedWord && selectedWord.id === wordId) {
-      setSelectedWord(null);
-    }
-  };
-
   const handleUpdateSettings = (newSettings: Partial<AppSettings>) => {
     setSettings((prev) => ({ ...prev, ...newSettings }));
   };
 
-  const theme = getTheme(settings.darkMode);
-
-  if (!isLoaded) {
-    return (
-      <View style={[styles.loadingContainer, { backgroundColor: settings.darkMode ? '#0f172a' : '#f3f7fa' }]}>
-        <ActivityIndicator size="large" color={Colors.primary} />
-      </View>
-    );
-  }
-
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={[styles.safeArea, { backgroundColor: theme.background }]}>
-        <StatusBar style={settings.darkMode ? 'light' : 'dark'} />
-
-        {/* Top Header */}
-        <Header
+    <div className={`min-h-screen transition-colors duration-200 ${
+      settings.darkMode ? 'bg-[#0b1320] text-slate-100' : 'bg-[#e9f1f5] text-slate-800'
+    } flex justify-center py-0 sm:py-6`}>
+      {/* Mobile container wrapper matching the exact phone dimensions & screenshots */}
+      <div className={`w-full max-w-[430px] min-h-screen sm:min-h-[880px] sm:max-h-[92vh] flex flex-col transition-colors duration-200 sm:rounded-[36px] sm:shadow-2xl overflow-hidden relative ${
+        settings.darkMode ? 'bg-[#0f172a] text-slate-100' : 'bg-[#f3f7fa] text-slate-800'
+      }`}>
+        {/* Top Navbar */}
+        <Navbar
           onOpenSidebar={() => setIsSidebarOpen(true)}
           onOpenSearch={() => setIsSearchOpen(true)}
           currentTab={currentTab}
           darkMode={settings.darkMode}
         />
 
-        {/* Main View Area */}
-        <View style={styles.viewContainer}>
+        {/* Scrollable View Content */}
+        <main className="flex-1 overflow-y-auto px-5 pt-2">
           {currentTab === 'home' && (
             <HomeView
               wordOfTheDay={wordOfTheDay}
@@ -367,7 +297,6 @@ export default function App() {
             <GamesView
               darkMode={settings.darkMode}
               onIncrementGamesPlayed={handleIncrementGamesPlayed}
-              onActiveGameChange={setIsGameActive}
             />
           )}
 
@@ -396,23 +325,16 @@ export default function App() {
               darkMode={settings.darkMode}
             />
           )}
-        </View>
+        </main>
 
-        {/* Bottom Navigation Bar */}
-        {!isGameActive && (
-          <BottomNav
-            currentTab={currentTab}
-            onChangeTab={(tab) => {
-              setCurrentTab(tab);
-              if (tab !== 'games') {
-                setIsGameActive(false);
-              }
-            }}
-            darkMode={settings.darkMode}
-          />
-        )}
+        {/* Bottom Navigation */}
+        <BottomNav
+          currentTab={currentTab}
+          onChangeTab={(tab) => setCurrentTab(tab)}
+          darkMode={settings.darkMode}
+        />
 
-        {/* Modals & Drawer */}
+        {/* Modals and Drawers */}
         <SidebarDrawer
           isOpen={isSidebarOpen}
           onClose={() => setIsSidebarOpen(false)}
@@ -443,7 +365,6 @@ export default function App() {
           isOpen={!!selectedWord}
           onClose={() => setSelectedWord(null)}
           onToggleFavorite={handleToggleFavorite}
-          onDeleteWord={handleDeleteWord}
           userLists={userLists}
           onAddWordToList={handleAddWordToList}
           darkMode={settings.darkMode}
@@ -474,21 +395,7 @@ export default function App() {
           onDeleteList={handleDeleteList}
           darkMode={settings.darkMode}
         />
-      </SafeAreaView>
-    </SafeAreaProvider>
+      </div>
+    </div>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
-  viewContainer: {
-    flex: 1,
-  },
-  loadingContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
