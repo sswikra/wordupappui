@@ -183,4 +183,74 @@ export const FirebaseService = {
         }
         return null;
     },
+
+    // 6. Genel Kelime Veritabanını Firestore'a Yükleme (Global Vocabulary Seeding)
+    async seedGlobalVocabulary(words: Word[]): Promise<{ success: boolean; count: number; error?: string }> {
+        try {
+            const cleanWords = sanitize(words);
+            const now = new Date().toISOString();
+
+            // A) Ana genel kelime dökümanına toplu yaz
+            const globalRef = doc(db, 'system', 'vocabulary');
+            await setDoc(globalRef, {
+                words: cleanWords,
+                count: cleanWords.length,
+                updatedAt: now,
+                version: '1.0.0',
+            });
+
+            console.log(`🔥 [Firestore] ${cleanWords.length} adet genel kelime Firestore 'system/vocabulary' altına başarıyla yüklendi!`);
+            return { success: true, count: cleanWords.length };
+        } catch (error: any) {
+            console.error('❌ [Firestore] seedGlobalVocabulary hatası:', error);
+            return { success: false, count: 0, error: error?.message || 'Bilinmeyen hata' };
+        }
+    },
+
+    // 7. Genel Kelime Veritabanını Firestore'dan Çekme
+    async getGlobalVocabulary(): Promise<Word[] | null> {
+        try {
+            const globalRef = doc(db, 'system', 'vocabulary');
+            const snap = await getDoc(globalRef);
+            if (snap.exists() && snap.data()?.words && Array.isArray(snap.data().words)) {
+                console.log(`🔥 [Firestore] ${snap.data().words.length} adet genel kelime Firestore'dan çekildi.`);
+                return snap.data().words as Word[];
+            }
+        } catch (error) {
+            console.error('❌ [Firestore] getGlobalVocabulary hatası:', error);
+        }
+        return null;
+    },
+
+    // 8. Küratörlü Hazır Listeleri Firestore'a Yükleme
+    async seedGlobalCuratedLists(lists: WordList[]): Promise<{ success: boolean; count: number }> {
+        try {
+            const cleanLists = sanitize(lists);
+            const globalRef = doc(db, 'system', 'curated_lists');
+            await setDoc(globalRef, {
+                lists: cleanLists,
+                count: cleanLists.length,
+                updatedAt: new Date().toISOString(),
+            });
+            console.log(`🔥 [Firestore] ${cleanLists.length} adet küratörlü liste yüklendi.`);
+            return { success: true, count: cleanLists.length };
+        } catch (error) {
+            console.error('❌ [Firestore] seedGlobalCuratedLists hatası:', error);
+            return { success: false, count: 0 };
+        }
+    },
+
+    // 9. Küratörlü Hazır Listeleri Firestore'dan Çekme
+    async getGlobalCuratedLists(): Promise<WordList[] | null> {
+        try {
+            const globalRef = doc(db, 'system', 'curated_lists');
+            const snap = await getDoc(globalRef);
+            if (snap.exists() && snap.data()?.lists && Array.isArray(snap.data().lists)) {
+                return snap.data().lists as WordList[];
+            }
+        } catch (error) {
+            console.error('❌ [Firestore] getGlobalCuratedLists hatası:', error);
+        }
+        return null;
+    },
 };

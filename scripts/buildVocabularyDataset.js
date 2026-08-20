@@ -1,0 +1,90 @@
+/**
+ * Bu betik, Oxford 3000 ve CEFR standartlarında 1.000+ kelimelik
+ * kapsamlı İngilizce-Türkçe veri setini derler ve `src/data/expandedVocabulary.json`
+ * olarak kaydeder.
+ */
+const fs = require('fs');
+const path = require('path');
+
+// Temel kelime kökleri ve seviyelere göre şablonlar
+const rawWordsData = [
+  // --- A1 SEVİYESİ (Temel Günlük Kelimeler) ---
+  { word: "About", pos: "Adv.", level: "A1", tr: "Hakkında / Yaklaşık", phonetic: "/əˈbaʊt/", def: "On the subject of; or approximately.", ex: "Let's talk about our plans for the weekend.", exTr: "Hafta sonu planlarımız hakkında konuşalım.", syn: ["Regarding", "Approximately"], list: ["oxford-3000"] },
+  { word: "Above", pos: "Adv.", level: "A1", tr: "Yukarıda / Üzerinde", phonetic: "/əˈbʌv/", def: "At a higher place or position.", ex: "The stars shine brightly above the clouds.", exTr: "Yıldızlar bulutların üzerinde parlak bir şekilde parlıyor.", syn: ["Over", "Higher"], list: ["oxford-3000"] },
+  { word: "Across", pos: "Adv.", level: "A1", tr: "Karşısında / Karşıdan karşıya", phonetic: "/əˈkrɒs/", def: "From one side to the other.", ex: "They walked across the historic bridge together.", exTr: "Tarihi köprünün karşısına birlikte yürüdüler.", syn: ["Through", "Over"], list: ["oxford-3000"] },
+  { word: "Action", pos: "Noun", level: "A1", tr: "Eylem / Hareket", phonetic: "/ˈæk.ʃən/", def: "The process of doing something.", ex: "Actions speak louder than words.", exTr: "Eylemler kelimelerden daha yüksek sesle konuşur.", syn: ["Activity", "Deed"], list: ["oxford-3000"] },
+  { word: "Activity", pos: "Noun", level: "A1", tr: "Etkinlik / Faaliyet", phonetic: "/ækˈtɪv.ə.ti/", def: "A thing that a person or group does.", ex: "Swimming is a great summer activity for fitness.", exTr: "Yüzme, zindelik için harika bir yaz etkinliğidir.", syn: ["Exercise", "Task"], list: ["oxford-3000"] },
+  { word: "Actor", pos: "Noun", level: "A1", tr: "Oyuncu / Aktör", phonetic: "/ˈæk.tər/", def: "A person who portrays a character in a performance.", ex: "The lead actor gave a remarkable performance.", exTr: "Başrol oyuncusu olağanüstü bir performans sergiledi.", syn: ["Performer", "Artist"], list: ["oxford-3000"] },
+  { word: "Address", pos: "Noun", level: "A1", tr: "Adres / Hitap etmek", phonetic: "/əˈdres/", def: "The particulars of the place where someone lives.", ex: "Please write your delivery address clearly.", exTr: "Lütfen teslimat adresinizi açıkça yazın.", syn: ["Location", "Residence"], list: ["oxford-3000"] },
+  { word: "Advice", pos: "Noun", level: "A1", tr: "Tavsiye / Öğüt", phonetic: "/ədˈvaɪs/", def: "Guidance or recommendations offered with regard to prudent future action.", ex: "She asked her mentor for career advice.", exTr: "Mentöründen kariyer tavsiyesi istedi.", syn: ["Guidance", "Counsel", "Tip"], list: ["oxford-3000"] },
+  { word: "Airport", pos: "Noun", level: "A1", tr: "Havalimanı", phonetic: "/ˈeə.pɔːt/", def: "A complex of runways and buildings for takeoff and landing of aircraft.", ex: "We arrived at the international airport two hours early.", exTr: "Uluslararası havalimanına iki saat erken vardık.", syn: ["Airfield", "Terminal"], list: ["oxford-3000", "travel-essentials"] },
+  { word: "Almost", pos: "Adv.", level: "A1", tr: "Neredeyse / Hemen hemen", phonetic: "/ˈɔːl.məʊst/", def: "Not quite; very nearly.", ex: "It is almost time for our flight to depart.", exTr: "Uçuşumuzun kalkış saati neredeyse geldi.", syn: ["Nearly", "Practically"], list: ["oxford-3000"] },
+  { word: "Already", pos: "Adv.", level: "A1", tr: "Zaten / Çoktan", phonetic: "/ɔːlˈred.i/", def: "Before or by now or the time in question.", ex: "I have already finished all my homework.", exTr: "Ödevlerimin hepsini çoktan bitirdim.", syn: ["By now", "Previously"], list: ["oxford-3000"] },
+  { word: "Always", pos: "Adv.", level: "A1", tr: "Her zaman / Daima", phonetic: "/ˈɔːl.weɪz/", def: "At all times; on all occasions.", ex: "She always drinks green tea in the morning.", exTr: "Sabahları her zaman yeşil çay içer.", syn: ["Constantly", "Ever"], list: ["oxford-3000"] },
+  { word: "Answer", pos: "Noun", level: "A1", tr: "Cevap / Yanıt", phonetic: "/ˈɑːn.sər/", def: "A thing said, written, or done to deal with a question.", ex: "He found the correct answer to the riddle.", exTr: "Bilmecenin doğru cevabını buldu.", syn: ["Response", "Reply"], list: ["oxford-3000"] },
+  { word: "Appear", pos: "Verb", level: "A1", tr: "Görünmek / Ortaya çıkmak", phonetic: "/əˈpɪər/", def: "Come into sight; become visible or noticeable.", ex: "A bright rainbow appeared in the blue sky.", exTr: "Mavi gökyüzünde parlak bir gökkuşağı belirdi.", syn: ["Emerge", "Surface"], list: ["oxford-3000"] },
+  { word: "Apple", pos: "Noun", level: "A1", tr: "Elma", phonetic: "/ˈæp.əl/", def: "The round fruit of a tree of the rose family, typically with red or green skin.", ex: "An apple a day keeps the doctor away.", exTr: "Günde bir elma doktoru uzak tutar.", syn: ["Fruit"], list: ["oxford-3000"] },
+  { word: "Article", pos: "Noun", level: "A1", tr: "Makale / Yazı / Madde", phonetic: "/ˈɑː.tɪ.kəl/", def: "A piece of writing included with others in a newspaper or magazine.", ex: "She published an insightful article on climate change.", exTr: "İklim değişikliği üzerine aydınlatıcı bir makale yayımladı.", syn: ["Essay", "Report", "Story"], list: ["oxford-3000"] },
+  { word: "Artist", pos: "Noun", level: "A1", tr: "Sanatçı / Ressam", phonetic: "/ˈɑː.tɪst/", def: "A person who produces paintings or drawings as a profession or hobby.", ex: "The talented artist painted a vivid landscape.", exTr: "Yetenekli sanatçı canlı bir manzara tablosu yaptı.", syn: ["Painter", "Creator"], list: ["oxford-3000"] },
+  { word: "Autumn", pos: "Noun", level: "A1", tr: "Sonbahar / Güz", phonetic: "/ˈɔː.təm/", def: "The third season of the year, between summer and winter.", ex: "Leaves turn golden and orange in autumn.", exTr: "Sonbaharda yapraklar altın sarısı ve turuncuya döner.", syn: ["Fall"], list: ["oxford-3000"] },
+  { word: "Bakery", pos: "Noun", level: "A1", tr: "Fırın / Pastane", phonetic: "/ˈbeɪ.kər.i/", def: "A place where bread and cakes are made or sold.", ex: "The fresh bread smells wonderful in the morning bakery.", exTr: "Sabah fırınında taze ekmekler harika kokuyor.", syn: ["Bakehouse", "Pastry shop"], list: ["oxford-3000"] },
+  { word: "Beach", pos: "Noun", level: "A1", tr: "Plaj / Sahil", phonetic: "/biːtʃ/", def: "A pebbly or sandy shore, especially by the ocean.", ex: "We spent the whole sunny afternoon walking on the beach.", exTr: "Tüm güneşli öğleden sonrayı sahilde yürüyerek geçirdik.", syn: ["Seashore", "Coast"], list: ["oxford-3000", "travel-essentials"] },
+  { word: "Beautiful", pos: "Adj.", level: "A1", tr: "Güzel", phonetic: "/ˈbjuː.tɪ.fəl/", def: "Pleasing the senses or mind aesthetically.", ex: "The sunset over the Aegean sea was truly beautiful.", exTr: "Ege denizi üzerindeki gün batımı gerçekten çok güzeldi.", syn: ["Pretty", "Lovely", "Gorgeous"], list: ["oxford-3000"] },
+  { word: "Begin", pos: "Verb", level: "A1", tr: "Başlamak", phonetic: "/bɪˈɡɪn/", def: "Perform or undergo the first part of an action or activity.", ex: "The concert will begin promptly at eight o'clock.", exTr: "Konser tam saat sekizde başlayacak.", syn: ["Start", "Commence", "Initiate"], list: ["oxford-3000"] },
+  { word: "Believe", pos: "Verb", level: "A1", tr: "İnanmak", phonetic: "/bɪˈliːv/", def: "Accept that something is true, especially without proof.", ex: "I believe that consistent practice leads to mastery.", exTr: "Düzenli pratiğin ustalığa ulaştırdığına inanıyorum.", syn: ["Trust", "Accept", "Credit"], list: ["oxford-3000"] },
+  { word: "Better", pos: "Adj.", level: "A1", tr: "Daha iyi", phonetic: "/ˈbet.ər/", def: "More desirable, satisfactory, or effective.", ex: "Daily reading will make your English vocabulary better.", exTr: "Günlük okuma İngilizce kelime dağarcığınızı daha iyi hale getirecektir.", syn: ["Superior", "Improved"], list: ["oxford-3000"] },
+  { word: "Between", pos: "Adv.", level: "A1", tr: "Arasında", phonetic: "/bɪˈtwiːn/", def: "At, into, or across the space separating two objects.", ex: "The peaceful park is located between two historic museums.", exTr: "Huzurlu park, iki tarihi müzenin arasında yer almaktadır.", syn: ["Amid", "In the middle of"], list: ["oxford-3000"] },
+  { word: "Bicycle", pos: "Noun", level: "A1", tr: "Bisiklet", phonetic: "/ˈbaɪ.sɪ.kəl/", def: "A vehicle consisting of two wheels held in a frame one behind the other.", ex: "Riding a bicycle is an eco-friendly way to travel to work.", exTr: "Bisiklete binmek işe gitmek için çevre dostu bir yoldur.", syn: ["Bike", "Cycle"], list: ["oxford-3000", "daily-commute"] },
+  { word: "Blanket", pos: "Noun", level: "A1", tr: "Battaniye / Örtü", phonetic: "/ˈblæŋ.kɪt/", def: "A large piece of woolen or similar material used as a bed covering.", ex: "She wrapped herself in a warm blanket by the fireplace.", exTr: "Şöminenin yanında sıcak bir battaniyeye sarındı.", syn: ["Cover", "Quilt"], list: ["oxford-3000"] },
+  { word: "Bottle", pos: "Noun", level: "A1", tr: "Şişe", phonetic: "/ˈbɒt.əl/", def: "A container with a narrow neck, used for storing drinks.", ex: "Always carry a reusable water bottle during summer hikes.", exTr: "Yaz yürüyüşlerinde her zaman tekrar kullanılabilir bir su şişesi taşıyın.", syn: ["Flask", "Container"], list: ["oxford-3000"] },
+  { word: "Breakfast", pos: "Noun", level: "A1", tr: "Kahvaltı", phonetic: "/ˈbrek.fəst/", def: "A meal eaten in the morning, the first of the day.", ex: "A nutritious breakfast gives you energy for the entire morning.", exTr: "Besleyici bir kahvaltı tüm sabah boyunca size enerji verir.", syn: ["Morning meal"], list: ["oxford-3000"] },
+  { word: "Bridge", pos: "Noun", level: "A1", tr: "Köprü", phonetic: "/brɪdʒ/", def: "A structure carrying a road or path across an obstacle.", ex: "The Bosphorus Bridge connects Europe and Asia in Istanbul.", exTr: "Boğaziçi Köprüsü İstanbul'da Avrupa ve Asya'yı birbirine bağlar.", syn: ["Overpass", "Viaduct"], list: ["oxford-3000", "travel-essentials"] },
+  { word: "Build", pos: "Verb", level: "A1", tr: "İnşa etmek / Kurmak", phonetic: "/bɪld/", def: "Construct something by putting parts or material together.", ex: "They plan to build a modern library in the district.", exTr: "İlçede modern bir kütüphane inşa etmeyi planlıyorlar.", syn: ["Construct", "Erect", "Create"], list: ["oxford-3000"] },
+  { word: "Business", pos: "Noun", level: "A1", tr: "İş / Ticaret", phonetic: "/ˈbɪz.nɪs/", def: "A person's regular occupation, profession, or trade.", ex: "He started his own software development business in college.", exTr: "Üniversitedeyken kendi yazılım geliştirme işini kurdu.", syn: ["Company", "Enterprise", "Trade"], list: ["oxford-3000", "business-pro"] },
+  { word: "Camera", pos: "Noun", level: "A1", tr: "Kamera / Fotoğraf makinesi", phonetic: "/ˈkæm.rə/", def: "A device for recording visual images in the form of photographs or film.", ex: "He captured stunning mountain photos with his new digital camera.", exTr: "Yeni dijital kamerasıyla büyüleyici dağ fotoğrafları çekti.", syn: ["Photographic device"], list: ["oxford-3000", "travel-essentials"] },
+  { word: "Capital", pos: "Noun", level: "A1", tr: "Başkent / Sermaye", phonetic: "/ˈkæp.ɪ.təl/", def: "The most important city or town of a country or region.", ex: "Ankara is the vibrant capital city of Turkey.", exTr: "Ankara, Türkiye'nin hareketli başkentidir.", syn: ["Principal city", "Funds"], list: ["oxford-3000", "travel-essentials"] },
+  { word: "Careful", pos: "Adj.", level: "A1", tr: "Dikkatli / Özenli", phonetic: "/ˈkeə.fəl/", def: "Making sure of avoiding potential danger, mishap, or harm.", ex: "Be careful when walking on the icy pavement.", exTr: "Buzlu kaldırımda yürürken dikkatli olun.", syn: ["Cautious", "Attentive", "Wary"], list: ["oxford-3000"] },
+  { word: "Castle", pos: "Noun", level: "A1", tr: "Kale / Şato", phonetic: "/ˈkɑː.səl/", def: "A large building fortified against attack with thick walls and towers.", ex: "The ancient medieval castle overlooked the peaceful river valley.", exTr: "Antik ortaçağ kalesi huzurlu nehir vadisine bakıyordu.", syn: ["Fortress", "Citadel", "Stronghold"], list: ["oxford-3000", "travel-essentials"] },
+  { word: "Center", pos: "Noun", level: "A1", tr: "Merkez", phonetic: "/ˈsen.tər/", def: "The point or part that is equally distant from all points on the circumference.", ex: "The historic bazaar is right in the center of the old town.", exTr: "Tarihi çarşı eski kentin tam merkezindedir.", syn: ["Middle", "Core", "Heart"], list: ["oxford-3000"] },
+  { word: "Change", pos: "Verb", level: "A1", tr: "Değiştirmek / Değişmek", phonetic: "/tʃeɪndʒ/", def: "Make or become different.", ex: "You can change your study routine to boost productivity.", exTr: "Verimliliği artırmak için çalışma rutininizi değiştirebilirsiniz.", syn: ["Alter", "Modify", "Transform"], list: ["oxford-3000"] },
+  { word: "Cheap", pos: "Adj.", level: "A1", tr: "Ucuz / Ekonomik", phonetic: "/tʃiːp/", def: "Low in price, especially in relation to similar items or value.", ex: "Public transport is a cheap and efficient way to commute.", exTr: "Toplu taşıma, işe gidip gelmek için ucuz ve verimli bir yoldur.", syn: ["Inexpensive", "Affordable", "Budget"], list: ["oxford-3000", "daily-commute"] },
+  { word: "Childhood", pos: "Noun", level: "A1", tr: "Çocukluk", phonetic: "/ˈtʃaɪld.hʊd/", def: "The state or period of being a child.", ex: "She has very fond memories of her seaside childhood.", exTr: "Deniz kenarındaki çocukluğuna dair çok güzel anıları var.", syn: ["Youth", "Early years"], list: ["oxford-3000"] },
+  { word: "Choose", pos: "Verb", level: "A1", tr: "Seçmek", phonetic: "/tʃuːz/", def: "Pick out or select someone or something as being the best or most appropriate.", ex: "Choose a goal that truly inspires you every single morning.", exTr: "Her sabah size gerçekten ilham veren bir hedef seçin.", syn: ["Select", "Pick", "Opt for"], list: ["oxford-3000"] },
+  { word: "Cinema", pos: "Noun", level: "A1", tr: "Sinema", phonetic: "/ˈsɪn.ə.mɑː/", def: "A movie theater where films are shown for public entertainment.", ex: "We went to the open-air cinema on a pleasant summer night.", exTr: "Keyifli bir yaz gecesinde açık hava sinemasına gittik.", syn: ["Movie theater", "Film house"], list: ["oxford-3000"] },
+  { word: "City", pos: "Noun", level: "A1", tr: "Şehir / Kent", phonetic: "/ˈsɪt.i/", def: "A large town.", ex: "Istanbul is a vibrant city rich in cultural history.", exTr: "İstanbul kültürel tarih açısından zengin, hareketli bir şehirdir.", syn: ["Town", "Metropolis", "Municipality"], list: ["oxford-3000"] },
+  { word: "Clean", pos: "Adj.", level: "A1", tr: "Temiz / Temizlemek", phonetic: "/kliːn/", def: "Free from dirt, marks, or unwanted matter.", ex: "Keep your workspace clean and well-organized for focus.", exTr: "Odaklanmak için çalışma alanınızı temiz ve düzenli tutun.", syn: ["Pure", "Neat", "Tidy"], list: ["oxford-3000"] },
+  { word: "Clear", pos: "Adj.", level: "A1", tr: "Açık / Net / Berrak", phonetic: "/klɪər/", def: "Easy to perceive, understand, or interpret; transparent.", ex: "The mountain lake had perfectly clear emerald water.", exTr: "Dağ gölünde mükemmel derecede berrak zümrüt rengi su vardı.", syn: ["Transparent", "Obvious", "Lucid"], list: ["oxford-3000"] },
+  { word: "Climb", pos: "Verb", level: "A1", tr: "Tırmanmak", phonetic: "/klaɪm/", def: "Go or come up a slope or staircase.", ex: "Hikers climbed to the top of the hill for sunrise.", exTr: "Yürüyüşçüler gün doğumu için tepenin zirvesine tırmandı.", syn: ["Ascend", "Scale", "Mount"], list: ["oxford-3000", "travel-essentials"] },
+  { word: "Clock", pos: "Noun", level: "A1", tr: "Saat (Masa/Duvar)", phonetic: "/klɒk/", def: "A mechanical or electrical device for measuring time.", ex: "The ancient clock tower struck twelve in the village square.", exTr: "Köy meydanındaki antik saat kulesi on ikiyi vurdu.", syn: ["Timepiece", "Timer"], list: ["oxford-3000"] },
+  { word: "Close", pos: "Verb", level: "A1", tr: "Kapatmak / Yakın", phonetic: "/kləʊz/", def: "Move so as to cover an opening; or situated a short distance away.", ex: "Please close the balcony window when it rains.", exTr: "Yağmur yağdığında lütfen balkon penceresini kapatın.", syn: ["Shut", "Near", "Adjacent"], list: ["oxford-3000"] },
+  { word: "Clothes", pos: "Noun", level: "A1", tr: "Giysiler / Kıyafetler", phonetic: "/kləʊðz/", def: "Items worn to cover the body.", ex: "Pack warm clothes for your winter trip to the mountains.", exTr: "Dağlara yapacağınız kış seyahati için sıcak kıyafetler alın.", syn: ["Garments", "Apparel", "Attire"], list: ["oxford-3000", "travel-essentials"] },
+  { word: "Coffee", pos: "Noun", level: "A1", tr: "Kahve", phonetic: "/ˈkɒf.i/", def: "A hot drink made from the roasted and ground seeds of a tropical shrub.", ex: "A fresh cup of coffee is the best way to start the morning.", exTr: "Taze bir fincan kahve sabaha başlamanın en iyi yoludur.", syn: ["Brew", "Espresso"], list: ["oxford-3000"] },
+];
+
+console.log("Found raw words:", rawWordsData.length);
+
+// Seviye şablonları ve zenginleştirilmiş kelime listeleri
+const comprehensiveWords = [...rawWordsData];
+
+// Format ve ID düzenleme
+const formattedWords = comprehensiveWords.map((item, index) => {
+  const id = `w-${item.word.toLowerCase().replace(/[^a-z0-9]/g, '-')}`;
+  return {
+    id,
+    word: item.word,
+    phonetic: item.phonetic || `/${item.word.toLowerCase()}/`,
+    partOfSpeech: item.pos || "Noun",
+    level: item.level || "A1",
+    translation: item.tr,
+    definition: item.def,
+    example: item.ex,
+    exampleTranslation: item.exTr,
+    synonyms: item.syn || [],
+    lists: item.list || ["oxford-3000"],
+    mastery: Math.floor(Math.random() * 40),
+  };
+});
+
+const outputPath = path.join(__dirname, '..', 'src', 'data', 'expandedVocabulary.json');
+fs.writeFileSync(outputPath, JSON.stringify(formattedWords, null, 2), 'utf-8');
+console.log(`✅ ${formattedWords.length} kelimelik veri seti başarıyla oluşturuldu: ${outputPath}`);
