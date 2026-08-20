@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "612159107867",
+    "project_id": "wordmem-16dd9",
+    "storage_bucket": "wordmem-16dd9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:612159107867:android:22e8433f9e6f9c7fe2d9be",
+        "android_client_info": {
+          "package_name": "com.wordmem.vocabulary"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrt93ey2v4160YHjBVkMW_qWWkeHkWeTs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
