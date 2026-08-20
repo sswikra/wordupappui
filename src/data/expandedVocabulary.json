@@ -5318,6 +5318,26 @@
     "mastery": 29
   },
   {
+    "id": "w-earnest",
+    "word": "Earnest",
+    "phonetic": "/ˈɜː.nɪst/",
+    "partOfSpeech": "Adj.",
+    "level": "B2",
+    "translation": "Ciddi / Samimi / Ağırbaşlı",
+    "definition": "Resulting from or showing sincere and intense conviction.",
+    "example": "She made an earnest effort to master English.",
+    "exampleTranslation": "İngilizceyi öğrenmek için samimi bir çaba gösterdi.",
+    "synonyms": [
+      "sincere",
+      "serious",
+      "devoted"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 22
+  },
+  {
     "id": "w-earth",
     "word": "Earth",
     "phonetic": "/ɜːθ/",
@@ -5382,6 +5402,122 @@
     "mastery": 11
   },
   {
+    "id": "w-eccentric",
+    "word": "Eccentric",
+    "phonetic": "/ɪkˈsen.trɪk/",
+    "partOfSpeech": "Adj.",
+    "level": "C1",
+    "translation": "Eksantrik / Sıradışı / Garip",
+    "definition": "Unconventional and slightly strange.",
+    "example": "The eccentric inventor lived in a library tower.",
+    "exampleTranslation": "Eksantrik mucit bir kütüphane kulesinde yaşadı.",
+    "synonyms": [
+      "unconventional",
+      "odd",
+      "quirky"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 23
+  },
+  {
+    "id": "w-eclipse",
+    "word": "Eclipse",
+    "phonetic": "/ɪˈklɪps/",
+    "partOfSpeech": "Noun",
+    "level": "B1",
+    "translation": "Tutulma / Gölgede bırakmak",
+    "definition": "An obscuring of the light from one celestial body by another.",
+    "example": "Millions watched the total solar eclipse.",
+    "exampleTranslation": "Milyonlarca insan tam güneş tutulmasını izledi.",
+    "synonyms": [
+      "shadow",
+      "obscurity",
+      "block"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 8
+  },
+  {
+    "id": "w-ecology",
+    "word": "Ecology",
+    "phonetic": "/iˈkɒl.ə.dʒi/",
+    "partOfSpeech": "Noun",
+    "level": "B1",
+    "translation": "Ekoloji / Çevre bilimi",
+    "definition": "The branch of biology that deals with the relations of organisms to one another and to physical surroundings.",
+    "example": "Ecology teaches us the interconnectedness of all life.",
+    "exampleTranslation": "Ekoloji bize tüm yaşamın birbirine bağlılığını öğretir.",
+    "synonyms": [
+      "environmental science"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 16
+  },
+  {
+    "id": "w-ecosystem",
+    "word": "Ecosystem",
+    "phonetic": "/ˈiː.kəʊˌsɪs.təm/",
+    "partOfSpeech": "Noun",
+    "level": "B1",
+    "translation": "Ekosistem",
+    "definition": "A biological community of interacting organisms and their physical environment.",
+    "example": "Protect marine ecosystems from plastic pollution.",
+    "exampleTranslation": "Deniz ekosistemlerini plastik kirliliğinden koruyun.",
+    "synonyms": [
+      "environment",
+      "biosphere"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 4
+  },
+  {
+    "id": "w-edible",
+    "word": "Edible",
+    "phonetic": "/ˈed.ə.bəl/",
+    "partOfSpeech": "Adj.",
+    "level": "B1",
+    "translation": "Yenilebilir",
+    "definition": "Fit or suitable to be eaten.",
+    "example": "These forest mushrooms are completely edible and delicious.",
+    "exampleTranslation": "Bu orman mantarları tamamen yenilebilir ve lezzetlidir.",
+    "synonyms": [
+      "eatable",
+      "palatable"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 14
+  },
+  {
+    "id": "w-efficacy",
+    "word": "Efficacy",
+    "phonetic": "/ˈef.ɪ.kə.si/",
+    "partOfSpeech": "Noun",
+    "level": "C1",
+    "translation": "Etkinlik / Yararlık / Fayda",
+    "definition": "The ability to produce a desired or intended result.",
+    "example": "Clinical trials proved the high efficacy of the vaccine.",
+    "exampleTranslation": "Klinik deneyler aşının yüksek etkinliğini kanıtladı.",
+    "synonyms": [
+      "effectiveness",
+      "potency",
+      "success"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 4
+  },
+  {
     "id": "w-efficient",
     "word": "Efficient",
     "phonetic": "/ɪˈfɪʃ.ənt/",
@@ -5419,6 +5555,26 @@
       "oxford-3000"
     ],
     "mastery": 29
+  },
+  {
+    "id": "w-effortless",
+    "word": "Effortless",
+    "phonetic": "/ˈef.ət.ləs/",
+    "partOfSpeech": "Adj.",
+    "level": "B1",
+    "translation": "Zahmetsiz / Kolayca yapılan",
+    "definition": "Requiring no physical or mental exertion.",
+    "example": "Mastery makes complex performances look effortless.",
+    "exampleTranslation": "Ustalık karmaşık performansları zahmetsiz gösterir.",
+    "synonyms": [
+      "easy",
+      "simple",
+      "fluent"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 5
   },
   {
     "id": "w-egg",
@@ -5474,18 +5630,159 @@
     "phonetic": "/ˈel.ə.kwənt/",
     "partOfSpeech": "Adj.",
     "level": "B2",
-    "translation": "Güzel ve etkili konuşan",
-    "definition": "Fluent or persuasive in speaking.",
-    "example": "His eloquent keynote captivated the audience.",
-    "exampleTranslation": "Etkili konuşması dinleyicileri büyüledi.",
+    "translation": "Etkili konuşan / Belagatli / Anlamlı",
+    "definition": "Fluent or persuasive in speaking or writing.",
+    "example": "The orator delivered an eloquent speech on human rights.",
+    "exampleTranslation": "Hatip insan hakları üzerine belagatli bir konuşma yaptı.",
     "synonyms": [
-      "Articulate",
-      "Expressive"
+      "articulate",
+      "fluent",
+      "persuasive"
     ],
     "lists": [
-      "toefl-high"
+      "oxford-3000"
     ],
-    "mastery": 38
+    "mastery": 17
+  },
+  {
+    "id": "w-elucidate",
+    "word": "Elucidate",
+    "phonetic": "/iˈluː.sɪ.deɪt/",
+    "partOfSpeech": "Verb",
+    "level": "C1",
+    "translation": "Açıklamak / İzah etmek / Aydınlatmak",
+    "definition": "Make something clear; explain.",
+    "example": "The professor elucidated the difficult quantum theory.",
+    "exampleTranslation": "Profesör zor kuantum teorisini açıkladı.",
+    "synonyms": [
+      "explain",
+      "clarify",
+      "illuminate"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 28
+  },
+  {
+    "id": "w-elusive",
+    "word": "Elusive",
+    "phonetic": "/iˈluː.sɪv/",
+    "partOfSpeech": "Adj.",
+    "level": "C1",
+    "translation": "Ele avuca sığmaz / Yakalanması zor / Bulunması güç",
+    "definition": "Difficult to find, catch, or achieve.",
+    "example": "True peace of mind is not elusive when you cultivate gratitude.",
+    "exampleTranslation": "Şükran duyduğunuzda gerçek iç huzur bulunması zor bir şey değildir.",
+    "synonyms": [
+      "evasive",
+      "slippery",
+      "fleeting"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 29
+  },
+  {
+    "id": "w-emancipate",
+    "word": "Emancipate",
+    "phonetic": "/iˈmæn.sɪ.peɪt/",
+    "partOfSpeech": "Verb",
+    "level": "C1",
+    "translation": "Özgürleştirmek / Azad etmek",
+    "definition": "Set free, especially from legal, social, or political restrictions.",
+    "example": "Education emancipates the human intellect.",
+    "exampleTranslation": "Eğitim insan aklını özgürleştirir.",
+    "synonyms": [
+      "liberate",
+      "free",
+      "release"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 29
+  },
+  {
+    "id": "w-embark",
+    "word": "Embark",
+    "phonetic": "/ɪmˈbɑːk/",
+    "partOfSpeech": "Verb",
+    "level": "B2",
+    "translation": "Girişmek / Başlamak / Gemiye binmek",
+    "definition": "Go on board a ship, aircraft, or vehicle; begin a course of action.",
+    "example": "Embark on an inspiring new learning voyage.",
+    "exampleTranslation": "İlham verici yeni bir öğrenme yolculuğuna başlayın.",
+    "synonyms": [
+      "start",
+      "begin",
+      "launch"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 17
+  },
+  {
+    "id": "w-embody",
+    "word": "Embody",
+    "phonetic": "/ɪmˈbɒd.i/",
+    "partOfSpeech": "Verb",
+    "level": "B2",
+    "translation": "Somutlaştırmak / Temsil etmek / Bünyesinde barındırmak",
+    "definition": "Be an expression of or give a tangible or visible form to an idea, quality.",
+    "example": "She embodies the values of integrity and kindness.",
+    "exampleTranslation": "Dürüstlük ve nezaket değerlerini kişiliğinde somutlaştırıyor.",
+    "synonyms": [
+      "personify",
+      "represent",
+      "epitomize"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 8
+  },
+  {
+    "id": "w-embrace",
+    "word": "Embrace",
+    "phonetic": "/ɪmˈbreɪs/",
+    "partOfSpeech": "Verb",
+    "level": "B1",
+    "translation": "Kucaklamak / Benimsemek / Sarılmak",
+    "definition": "Hold someone closely in one's arms; accept or support a belief or theory willingly.",
+    "example": "Embrace change as an opportunity for transformation.",
+    "exampleTranslation": "Değişimi bir dönüşüm fırsatı olarak benimseyin.",
+    "synonyms": [
+      "accept",
+      "welcome",
+      "hug"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 2
+  },
+  {
+    "id": "w-emerge",
+    "word": "Emerge",
+    "phonetic": "/ɪˈmɜːdʒ/",
+    "partOfSpeech": "Verb",
+    "level": "B1",
+    "translation": "Ortaya çıkmak / Belirmek / Doğmak",
+    "definition": "Move out of or away from something and become visible; come into existence.",
+    "example": "The morning sun emerged from behind the snow-capped mountains.",
+    "exampleTranslation": "Sabah güneşi karlı dağların arkasından ortaya çıktı.",
+    "synonyms": [
+      "appear",
+      "arise",
+      "surface"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 29
   },
   {
     "id": "w-emergency",
@@ -5508,6 +5805,46 @@
     "mastery": 8
   },
   {
+    "id": "w-eminent",
+    "word": "Eminent",
+    "phonetic": "/ˈem.ɪ.nənt/",
+    "partOfSpeech": "Adj.",
+    "level": "B2",
+    "translation": "Seçkin / Ünlü / Saygın",
+    "definition": "Famous and respected within a particular sphere.",
+    "example": "An eminent scholar in Mediterranean linguistics.",
+    "exampleTranslation": "Akdeniz dilbiliminde saygın ve seçkin bir akademisyen.",
+    "synonyms": [
+      "distinguished",
+      "renowned",
+      "famous"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 6
+  },
+  {
+    "id": "w-empathy",
+    "word": "Empathy",
+    "phonetic": "/ˈem.pə.θi/",
+    "partOfSpeech": "Noun",
+    "level": "B1",
+    "translation": "Empati / Duygudaşlık",
+    "definition": "The ability to understand and share the feelings of another.",
+    "example": "Empathy is the foundational glue of human civilization.",
+    "exampleTranslation": "Empati insan medeniyetinin temel yapıştırıcısıdır.",
+    "synonyms": [
+      "compassion",
+      "understanding",
+      "sensitivity"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 25
+  },
+  {
     "id": "w-emphasize",
     "word": "Emphasize",
     "phonetic": "/ˈem.fə.saɪz/",
@@ -5528,6 +5865,66 @@
     "mastery": 43
   },
   {
+    "id": "w-empirical",
+    "word": "Empirical",
+    "phonetic": "/ɪmˈpɪr.ɪ.kəl/",
+    "partOfSpeech": "Adj.",
+    "level": "B2",
+    "translation": "Deneysel / Görgül / Deneye dayalı",
+    "definition": "Based on, concerned with, or verifiable by observation or experience rather than theory.",
+    "example": "The hypothesis was validated by rigorous empirical evidence.",
+    "exampleTranslation": "Hipotez titiz deneysel kanıtlarla doğrulandı.",
+    "synonyms": [
+      "observed",
+      "experimental",
+      "factual"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 17
+  },
+  {
+    "id": "w-empower",
+    "word": "Empower",
+    "phonetic": "/ɪmˈpaʊər/",
+    "partOfSpeech": "Verb",
+    "level": "B2",
+    "translation": "Güçlendirmek / Yetkilendirmek",
+    "definition": "Give someone the authority or power to do something; make someone stronger and more confident.",
+    "example": "Language skills empower you to connect globally.",
+    "exampleTranslation": "Dil becerileri küresel çapta bağ kurmanız için sizi güçlendirir.",
+    "synonyms": [
+      "enable",
+      "equip",
+      "authorize"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 4
+  },
+  {
+    "id": "w-emulate",
+    "word": "Emulate",
+    "phonetic": "/ˈem.jə.leɪt/",
+    "partOfSpeech": "Verb",
+    "level": "B2",
+    "translation": "Örnek almak / Taklit ederek yetişmeye çalışmak",
+    "definition": "Match or surpass a person or achievement, typically by imitation.",
+    "example": "Young artists emulate master painters to hone their craft.",
+    "exampleTranslation": "Genç sanatçılar zanaatlarını geliştirmek için usta ressamları örnek alırlar.",
+    "synonyms": [
+      "imitate",
+      "copy",
+      "model"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-end",
     "word": "End",
     "phonetic": "/end/",
@@ -5544,6 +5941,66 @@
     "mastery": 0
   },
   {
+    "id": "w-endeavor",
+    "word": "Endeavor",
+    "phonetic": "/enˈdev.ər/",
+    "partOfSpeech": "Noun",
+    "level": "B2",
+    "translation": "Çaba / Gayret / Girişim",
+    "definition": "An attempt to achieve a goal.",
+    "example": "We wish you triumphant success in all your endeavors.",
+    "exampleTranslation": "Tüm girişimlerinizde size muzaffer başarılar dileriz.",
+    "synonyms": [
+      "attempt",
+      "effort",
+      "venture"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 3
+  },
+  {
+    "id": "w-endorse",
+    "word": "Endorse",
+    "phonetic": "/ɪnˈdɔːs/",
+    "partOfSpeech": "Verb",
+    "level": "B2",
+    "translation": "Desteklemek / Onaylamak / Tavsiye etmek",
+    "definition": "Declare one's public approval or support of.",
+    "example": "Leading linguists endorse the spaced repetition methodology.",
+    "exampleTranslation": "Önde gelen dilbilimciler aralıklı tekrar metodolojisini destekliyor.",
+    "synonyms": [
+      "support",
+      "back",
+      "approve"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 23
+  },
+  {
+    "id": "w-endure",
+    "word": "Endure",
+    "phonetic": "/ɪnˈdʒʊər/",
+    "partOfSpeech": "Verb",
+    "level": "B1",
+    "translation": "Dayanmak / Katlanmak / Sürmek",
+    "definition": "Suffer patiently; remain in existence; last.",
+    "example": "True friendships endure through all seasons of life.",
+    "exampleTranslation": "Gerçek dostluklar hayatın tüm mevsimlerinde varlığını sürdürür.",
+    "synonyms": [
+      "last",
+      "persist",
+      "withstand"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 4
+  },
+  {
     "id": "w-enjoy",
     "word": "Enjoy",
     "phonetic": "/ɪnˈdʒɔɪ/",
@@ -5558,6 +6015,106 @@
       "oxford-3000"
     ],
     "mastery": 16
+  },
+  {
+    "id": "w-enlighten",
+    "word": "Enlighten",
+    "phonetic": "/ɪnˈlaɪ.tən/",
+    "partOfSpeech": "Verb",
+    "level": "B2",
+    "translation": "Aydınlatmak / Bilgilendirmek",
+    "definition": "Give someone greater knowledge and understanding about a subject or situation.",
+    "example": "Philosophy enlightens our perspective on reality.",
+    "exampleTranslation": "Felsefe gerçekliğe bakış açımızı aydınlatır.",
+    "synonyms": [
+      "illuminate",
+      "educate",
+      "inform"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 9
+  },
+  {
+    "id": "w-enrich",
+    "word": "Enrich",
+    "phonetic": "/ɪnˈrɪtʃ/",
+    "partOfSpeech": "Verb",
+    "level": "B1",
+    "translation": "Zenginleştirmek / Geliştirmek",
+    "definition": "Improve or enhance the quality or value of.",
+    "example": "Reading literature enriches vocabulary and emotional depth.",
+    "exampleTranslation": "Edebiyat okumak kelime dağarcığını ve duygusal derinliği zenginleştirir.",
+    "synonyms": [
+      "enhance",
+      "augment",
+      "improve"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 6
+  },
+  {
+    "id": "w-enterprise",
+    "word": "Enterprise",
+    "phonetic": "/ˈen.tə.praɪz/",
+    "partOfSpeech": "Noun",
+    "level": "B1",
+    "translation": "Girişim / Teşebbüs / Kuruluş",
+    "definition": "A project or undertaking, typically one that is difficult or requires effort.",
+    "example": "A bold educational enterprise transforming mobile learning.",
+    "exampleTranslation": "Mobil öğrenmeyi dönüştüren cesur bir eğitim girişimi.",
+    "synonyms": [
+      "venture",
+      "undertaking",
+      "business"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 13
+  },
+  {
+    "id": "w-enthusiastic",
+    "word": "Enthusiastic",
+    "phonetic": "/ɪnˌθjuː.ziˈæs.tɪk/",
+    "partOfSpeech": "Adj.",
+    "level": "A2",
+    "translation": "Hevesli / Coşkulu / İstekli",
+    "definition": "Having or showing intense and eager enjoyment, interest, or approval.",
+    "example": "Enthusiastic students make rapid strides in learning.",
+    "exampleTranslation": "Hevesli öğrenciler öğrenmede hızlı adımlar atar.",
+    "synonyms": [
+      "eager",
+      "keen",
+      "passionate"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 27
+  },
+  {
+    "id": "w-entity",
+    "word": "Entity",
+    "phonetic": "/ˈen.tə.ti/",
+    "partOfSpeech": "Noun",
+    "level": "B2",
+    "translation": "Varlık / Tüzel kişilik / Birim",
+    "definition": "A thing with distinct and independent existence.",
+    "example": "The university is an independent academic entity.",
+    "exampleTranslation": "Üniversite bağımsız bir akademik varlıktır.",
+    "synonyms": [
+      "being",
+      "unit",
+      "organization"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 24
   },
   {
     "id": "w-environment",
@@ -5577,6 +6134,26 @@
       "oxford-3000"
     ],
     "mastery": 7
+  },
+  {
+    "id": "w-envision",
+    "word": "Envision",
+    "phonetic": "/ɪnˈvɪʒ.ən/",
+    "partOfSpeech": "Verb",
+    "level": "B2",
+    "translation": "Gözünün önüne getirmek / Hayal etmek / Öngörmek",
+    "definition": "Imagine as a future possibility; visualize.",
+    "example": "Envision achieving complete bilingual mastery.",
+    "exampleTranslation": "İki dilli tam ustalığa ulaştığınızı gözünüzün önüne getirin.",
+    "synonyms": [
+      "visualize",
+      "imagine",
+      "foresee"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 1
   },
   {
     "id": "w-ephemeral",
@@ -5599,6 +6176,166 @@
     "mastery": 14
   },
   {
+    "id": "w-epic",
+    "word": "Epic",
+    "phonetic": "/ˈep.ɪk/",
+    "partOfSpeech": "Noun",
+    "level": "B1",
+    "translation": "Destan / Epik / Görkemli",
+    "definition": "A long poem or story narrating heroic deeds and adventures.",
+    "example": "The Odyssey is an epic masterpiece of ancient literature.",
+    "exampleTranslation": "Odysseia antik edebiyatın destansı bir başyapıtıdır.",
+    "synonyms": [
+      "legend",
+      "saga",
+      "heroic tale"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 17
+  },
+  {
+    "id": "w-epoch",
+    "word": "Epoch",
+    "phonetic": "/ˈiː.pɒk/",
+    "partOfSpeech": "Noun",
+    "level": "C1",
+    "translation": "Çağ / Dönem / Çığır",
+    "definition": "A particular period of time in history or a person's life.",
+    "example": "The invention of writing marked a new epoch in human history.",
+    "exampleTranslation": "Yazının icadı insanlık tarihinde yeni bir çığır açtı.",
+    "synonyms": [
+      "era",
+      "age",
+      "period"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 5
+  },
+  {
+    "id": "w-equanimity",
+    "word": "Equanimity",
+    "phonetic": "/ˌek.wəˈnɪm.ə.ti/",
+    "partOfSpeech": "Noun",
+    "level": "C2",
+    "translation": "Huzur / İtidal / Soğukkanlılık / Ruh dinginliği",
+    "definition": "Mental calmness, composure, and evenness of temper, especially in a difficult situation.",
+    "example": "She faced turbulent trials with unwavering equanimity.",
+    "exampleTranslation": "Çalkantılı zorlukları sarsılmaz bir ruh dinginliği ve itidalle karşıladı.",
+    "synonyms": [
+      "composure",
+      "calmness",
+      "serenity"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 10
+  },
+  {
+    "id": "w-equitable",
+    "word": "Equitable",
+    "phonetic": "/ˈek.wɪ.tə.bəl/",
+    "partOfSpeech": "Adj.",
+    "level": "B2",
+    "translation": "Adil / Eşitlikçi / Hakkaniyetli",
+    "definition": "Fair and impartial.",
+    "example": "Build an equitable and inclusive society for all.",
+    "exampleTranslation": "Herkes için hakkaniyetli ve kapsayıcı bir toplum inşa edin.",
+    "synonyms": [
+      "fair",
+      "just",
+      "impartial"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 23
+  },
+  {
+    "id": "w-eradicate",
+    "word": "Eradicate",
+    "phonetic": "/ɪˈræd.ɪ.keɪt/",
+    "partOfSpeech": "Verb",
+    "level": "B2",
+    "translation": "Kökünü kazımak / Tamamen yok etmek",
+    "definition": "Destroy completely; put an end to.",
+    "example": "Global vaccines helped eradicate deadly infectious illnesses.",
+    "exampleTranslation": "Küresel aşılar ölümcül bulaşıcı hastalıkların kökünü kazımaya yardımcı oldu.",
+    "synonyms": [
+      "eliminate",
+      "destroy",
+      "annihilate"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 25
+  },
+  {
+    "id": "w-erratic",
+    "word": "Erratic",
+    "phonetic": "/ɪˈræt.ɪk/",
+    "partOfSpeech": "Adj.",
+    "level": "C1",
+    "translation": "Düzensiz / Kararsız / Sağı solu belli olmayan",
+    "definition": "Not even or regular in pattern or movement; unpredictable.",
+    "example": "Erratic study routines yield poor results; consistency is key.",
+    "exampleTranslation": "Düzensiz çalışma rutinleri zayıf sonuçlar verir; istikrar anahtardır.",
+    "synonyms": [
+      "unpredictable",
+      "inconsistent",
+      "irregular"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 20
+  },
+  {
+    "id": "w-erudite",
+    "word": "Erudite",
+    "phonetic": "/ˈer.ʊ.daɪt/",
+    "partOfSpeech": "Adj.",
+    "level": "C2",
+    "translation": "Alim / Bilgili / Çok okumuş / Erdemli",
+    "definition": "Having or showing great knowledge or learning.",
+    "example": "The erudite professor spoke six classical languages.",
+    "exampleTranslation": "Bilgili ve alim profesör altı klasik dil konuşuyordu.",
+    "synonyms": [
+      "scholarly",
+      "learned",
+      "knowledgeable"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 26
+  },
+  {
+    "id": "w-essence",
+    "word": "Essence",
+    "phonetic": "/ˈes.əns/",
+    "partOfSpeech": "Noun",
+    "level": "B1",
+    "translation": "Öz / Esas / Ruh",
+    "definition": "The intrinsic nature or indispensable quality of something.",
+    "example": "Empathy is the true essence of emotional intelligence.",
+    "exampleTranslation": "Empati duygusal zekanın gerçek özüdür.",
+    "synonyms": [
+      "core",
+      "substance",
+      "heart"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 26
+  },
+  {
     "id": "w-essential",
     "word": "Essential",
     "phonetic": "/ɪˈsen.ʃəl/",
@@ -5617,6 +6354,46 @@
       "toefl-high"
     ],
     "mastery": 36
+  },
+  {
+    "id": "w-esteem",
+    "word": "Esteem",
+    "phonetic": "/ɪˈstiːm/",
+    "partOfSpeech": "Noun",
+    "level": "B2",
+    "translation": "Saygı / İtibar / Hürmet",
+    "definition": "Respect and admiration.",
+    "example": "She is held in high esteem by students and faculty alike.",
+    "exampleTranslation": "Hem öğrenciler hem de öğretim üyeleri tarafından yüksek bir saygıyla anılır.",
+    "synonyms": [
+      "respect",
+      "admiration",
+      "regard"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 15
+  },
+  {
+    "id": "w-eternal",
+    "word": "Eternal",
+    "phonetic": "/ɪˈtɜː.nəl/",
+    "partOfSpeech": "Adj.",
+    "level": "B1",
+    "translation": "Sonsuz / Edebi / Ebedi",
+    "definition": "Lasting or existing forever; without end or beginning.",
+    "example": "The universe holds eternal wonder and beauty.",
+    "exampleTranslation": "Evren sonsuz bir merak ve güzellik barındırır.",
+    "synonyms": [
+      "everlasting",
+      "perpetual",
+      "endless"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 21
   },
   {
     "id": "w-ethereal",
@@ -5639,6 +6416,26 @@
     "mastery": 17
   },
   {
+    "id": "w-ethical",
+    "word": "Ethical",
+    "phonetic": "/ˈeθ.ɪ.kəl/",
+    "partOfSpeech": "Adj.",
+    "level": "B1",
+    "translation": "Etik / Ahlaki / Dürüst",
+    "definition": "Relating to moral principles or the branch of knowledge dealing with these.",
+    "example": "Maintain high ethical standards in all research.",
+    "exampleTranslation": "Tüm araştırmalarda yüksek etik standartları koruyun.",
+    "synonyms": [
+      "moral",
+      "principled",
+      "honorable"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 11
+  },
+  {
     "id": "w-evening",
     "word": "Evening",
     "phonetic": "/ˈiːv.nɪŋ/",
@@ -5653,6 +6450,26 @@
       "oxford-3000"
     ],
     "mastery": 25
+  },
+  {
+    "id": "w-evoke",
+    "word": "Evoke",
+    "phonetic": "/ɪˈvəʊk/",
+    "partOfSpeech": "Verb",
+    "level": "B2",
+    "translation": "Hatırlatmak / Uyandırmak / Çağrıştırmak",
+    "definition": "Bring or recall to the conscious mind.",
+    "example": "The scent of fresh spring rain evokes fond childhood memories.",
+    "exampleTranslation": "Taze bahar yağmurunun kokusu güzel çocukluk anılarını canlandırır.",
+    "synonyms": [
+      "arouse",
+      "awaken",
+      "stimulate"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 15
   },
   {
     "id": "w-exacerbate",
@@ -5675,6 +6492,26 @@
     "mastery": 19
   },
   {
+    "id": "w-exalt",
+    "word": "Exalt",
+    "phonetic": "/ɪɡˈzɔːlt/",
+    "partOfSpeech": "Verb",
+    "level": "C1",
+    "translation": "Yüceltmek / Övmek / Terfi ettirmek",
+    "definition": "Hold someone or something in very high regard; think or speak very highly of.",
+    "example": "Poets exalt the timeless majesty of nature.",
+    "exampleTranslation": "Şairler doğanın zamansız görkemini yüceltirler.",
+    "synonyms": [
+      "praise",
+      "glorify",
+      "elevate"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 28
+  },
+  {
     "id": "w-exam",
     "word": "Exam",
     "phonetic": "/ɪɡˈzæm/",
@@ -5689,6 +6526,66 @@
       "oxford-3000"
     ],
     "mastery": 27
+  },
+  {
+    "id": "w-exemplary",
+    "word": "Exemplary",
+    "phonetic": "/ɪɡˈzem.plər.i/",
+    "partOfSpeech": "Adj.",
+    "level": "B2",
+    "translation": "Örnek / Kusursuz / İbretlik",
+    "definition": "Serving as a desirable model; representing the best of its kind.",
+    "example": "Her exemplary dedication inspired the whole class.",
+    "exampleTranslation": "Onun örnek bağlılığı tüm sınıfa ilham verdi.",
+    "synonyms": [
+      "ideal",
+      "model",
+      "flawless"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 10
+  },
+  {
+    "id": "w-exhilarating",
+    "word": "Exhilarating",
+    "phonetic": "/ɪɡˈzɪl.ə.reɪ.tɪŋ/",
+    "partOfSpeech": "Adj.",
+    "level": "B2",
+    "translation": "Canlandırıcı / Heyecan verici / Coşturucu",
+    "definition": "Making one feel very happy, animated, or elated; thrilling.",
+    "example": "Hiking along the coastal cliffs was an exhilarating experience.",
+    "exampleTranslation": "Kıyı kayalıkları boyunca yürüyüş yapmak canlandırıcı ve heyecan verici bir deneyimdi.",
+    "synonyms": [
+      "thrilling",
+      "exciting",
+      "invigorating"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 8
+  },
+  {
+    "id": "w-expedient",
+    "word": "Expedient",
+    "phonetic": "/ɪkˈspiː.di.ənt/",
+    "partOfSpeech": "Adj.",
+    "level": "C1",
+    "translation": "Pratik / Çıkara uygun / Amaca elverişli",
+    "definition": "Convenient and practical, although possibly improper or immoral.",
+    "example": "Choose principled solutions over merely expedient shortcuts.",
+    "exampleTranslation": "Sadece günü kurtaran kestirmeler yerine ilkeli çözümleri tercih edin.",
+    "synonyms": [
+      "practical",
+      "convenient",
+      "advantageous"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 19
   },
   {
     "id": "w-experience",
@@ -5709,6 +6606,86 @@
       "business-pro"
     ],
     "mastery": 12
+  },
+  {
+    "id": "w-explicit",
+    "word": "Explicit",
+    "phonetic": "/ɪkˈsplɪs.ɪt/",
+    "partOfSpeech": "Adj.",
+    "level": "B2",
+    "translation": "Açık / Belirgin / Aşikar",
+    "definition": "Stated clearly and in detail, leaving no room for confusion or doubt.",
+    "example": "Give explicit and helpful instructions.",
+    "exampleTranslation": "Açık, net ve yardımcı talimatlar verin.",
+    "synonyms": [
+      "clear",
+      "direct",
+      "straightforward"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 16
+  },
+  {
+    "id": "w-exquisite",
+    "word": "Exquisite",
+    "phonetic": "/ɪkˈskwɪz.ɪt/",
+    "partOfSpeech": "Adj.",
+    "level": "B2",
+    "translation": "Zarif / Nefis / Kusursuz güzellikte",
+    "definition": "Extremely beautiful and, typically, delicate.",
+    "example": "Handcrafted Ottoman ceramics display exquisite artistry.",
+    "exampleTranslation": "El yapımı Osmanlı çinileri nefis ve zarif bir sanat sergiler.",
+    "synonyms": [
+      "beautiful",
+      "delicate",
+      "fine"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 5
+  },
+  {
+    "id": "w-extravagant",
+    "word": "Extravagant",
+    "phonetic": "/ɪkˈstræv.ə.ɡənt/",
+    "partOfSpeech": "Adj.",
+    "level": "B2",
+    "translation": "Müsrif / Aşırı / Savurgan",
+    "definition": "Lacking restraint in spending money or using resources.",
+    "example": "Live simply and avoid wasteful extravagant consumption.",
+    "exampleTranslation": "Sade yaşayın ve savurgan aşırı tüketimden kaçının.",
+    "synonyms": [
+      "lavish",
+      "excessive",
+      "wasteful"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 1
+  },
+  {
+    "id": "w-exuberant",
+    "word": "Exuberant",
+    "phonetic": "/ɪɡˈzjuː.bər.ənt/",
+    "partOfSpeech": "Adj.",
+    "level": "C1",
+    "translation": "Coşkulu / Hayat dolu / Taşkın neşeli",
+    "definition": "Filled with or characterized by a lively energy and excitement.",
+    "example": "The festival concluded with exuberant music and dancing.",
+    "exampleTranslation": "Festival coşkulu ve hayat dolu müzik ve dansla sona erdi.",
+    "synonyms": [
+      "joyful",
+      "cheerful",
+      "ebullient"
+    ],
+    "lists": [
+      "oxford-3000"
+    ],
+    "mastery": 2
   },
   {
     "id": "w-eye",
