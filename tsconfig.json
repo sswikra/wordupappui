@@ -12,5 +12,13 @@
   "include": [
     "**/*.ts",
     "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/components/*.tsx",
+    "src/main.tsx",
+    "src/App.tsx",
+    "vite.config.ts"
   ]
 }

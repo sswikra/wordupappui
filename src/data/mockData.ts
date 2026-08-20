@@ -360,10 +360,16 @@ export const OTHER_CURATED_LISTS: WordList[] = [
   },
 ];
 
+export const AVATAR_OPTIONS = {
+  male: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=250&auto=format&fit=crop&q=80',
+  female: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=250&auto=format&fit=crop&q=80',
+};
+
 export const INITIAL_USER_PROFILE: UserProfile = {
-  name: 'Alex',
-  role: 'Intermediate Learner',
-  avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop',
+  name: 'Misafir Öğrenci',
+  role: 'Misafir Hesap',
+  avatarUrl: AVATAR_OPTIONS.male,
+  gender: 'male',
   wordsThisWeek: 240,
   weeklyActivity: [
     { day: 'M', count: 35, active: true },

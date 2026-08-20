@@ -46,6 +46,7 @@ export interface UserProfile {
   name: string;
   role: string;
   avatarUrl: string;
+  gender?: 'male' | 'female';
   wordsThisWeek: number;
   weeklyActivity: { day: string; count: number; active: boolean }[];
   wordsLearned: number;

@@ -64,19 +64,23 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       ? 'Mevcut: EN -> DE'
       : 'Mevcut: EN -> FR';
 
+  const isGuest = !currentUser || currentUser.isAnonymous;
+
   const handleLogout = () => {
     HapticsService.light();
     Alert.alert(
       "WordMem'den Çıkış Yapılsın mı?",
-      'Çevrimdışı seriniz ve öğrenme ilerlemeniz bu cihazda kayıtlı kalmaya devam edecektir.',
+      'Hesabınızdan çıkış yapılacak ve misafir moduna dönülecektir. Buluttaki verileriniz hesabınızda güvende kalır.',
       [
-        { text: 'İptal', style: 'cancel' },
+        { text: 'Vazgeç', style: 'cancel' },
         {
           text: 'Çıkış Yap',
           style: 'destructive',
           onPress: () => {
             HapticsService.medium();
-            if (onLogout) onLogout();
+            if (onLogout) {
+              onLogout();
+            }
           },
         },
       ]
@@ -98,6 +102,39 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           Uygulama tercihlerinizi ve hesap ayrıntılarınızı yönetin.
         </Text>
       </View>
+
+      {/* Misafir Kullanıcı İçin Kayıt / Giriş Banner'ı */}
+      {isGuest && (
+        <TouchableOpacity
+          onPress={() => {
+            HapticsService.medium();
+            if (onOpenAuth) onOpenAuth();
+          }}
+          activeOpacity={0.85}
+          style={[
+            styles.authBanner,
+            {
+              backgroundColor: darkMode ? '#1e293b' : '#ecfdf5',
+              borderColor: Colors.primary,
+            },
+          ]}
+        >
+          <View style={styles.authBannerLeft}>
+            <View style={[styles.authIconWrap, { backgroundColor: Colors.primary }]}>
+              <UserCheck size={18} color="#ffffff" strokeWidth={2.4} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.authBannerTitle, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
+                Giriş Yap / Ücretsiz Kayıt Ol
+              </Text>
+              <Text style={[styles.authBannerSub, { color: theme.textSecondary }]}>
+                Kelimelerinizi buluta yedekleyin
+              </Text>
+            </View>
+          </View>
+          <ChevronRight size={20} color={darkMode ? Colors.primaryAccent : Colors.primary} />
+        </TouchableOpacity>
+      )}
 
       {/* Main Settings Menu Card */}
       <View style={[styles.menuCard, { backgroundColor: darkMode ? '#1e293b' : '#ffffff', borderColor: theme.cardBorder }]}>
@@ -199,7 +236,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
                 Hesap
               </Text>
               <Text style={[styles.itemSub, { color: theme.textMuted }]}>
-                E-posta, şifre, abonelik
+                {!isGuest ? (currentUser?.email || 'Giriş yapıldı') : 'Misafir Modu • Giriş Yap'}
               </Text>
             </View>
           </View>
@@ -207,23 +244,51 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           <ChevronRight size={20} color={darkMode ? Colors.primaryAccent : Colors.primary} />
         </TouchableOpacity>
 
-        {/* 5. Logout */}
-        <TouchableOpacity
-          onPress={handleLogout}
-          activeOpacity={0.7}
-          style={styles.menuItem}
-        >
-          <View style={styles.itemLeft}>
-            <View style={[styles.iconWrap, { backgroundColor: darkMode ? '#450a0a' : '#ffe4e6' }]}>
-              <LogOut size={18} color="#ef4444" strokeWidth={2.2} />
+        {/* 5. Logout or Login */}
+        {!isGuest ? (
+          <TouchableOpacity
+            onPress={handleLogout}
+            activeOpacity={0.7}
+            style={styles.menuItem}
+          >
+            <View style={styles.itemLeft}>
+              <View style={[styles.iconWrap, { backgroundColor: darkMode ? '#450a0a' : '#ffe4e6' }]}>
+                <LogOut size={18} color="#ef4444" strokeWidth={2.2} />
+              </View>
+              <View>
+                <Text style={[styles.itemTitle, { color: '#ef4444' }]}>
+                  Çıkış Yap
+                </Text>
+                <Text style={[styles.itemSub, { color: theme.textMuted }]}>
+                  Oturumu kapat ve misafir moduna geç
+                </Text>
+              </View>
             </View>
-            <View>
-              <Text style={[styles.itemTitle, { color: '#ef4444' }]}>
-                Çıkış Yap
-              </Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            onPress={() => {
+              HapticsService.medium();
+              if (onOpenAuth) onOpenAuth();
+            }}
+            activeOpacity={0.7}
+            style={styles.menuItem}
+          >
+            <View style={styles.itemLeft}>
+              <View style={[styles.iconWrap, { backgroundColor: darkMode ? '#064e3b' : '#ecfdf5' }]}>
+                <UserCheck size={18} color="#10b981" strokeWidth={2.2} />
+              </View>
+              <View>
+                <Text style={[styles.itemTitle, { color: '#10b981' }]}>
+                  Kayıt Ol / Giriş Yap
+                </Text>
+                <Text style={[styles.itemSub, { color: theme.textMuted }]}>
+                  Kayıt olarak verilerinizi buluta yedekleyin
+                </Text>
+              </View>
             </View>
-          </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
+        )}
       </View>
 
       {/* App Version Info */}
@@ -343,6 +408,42 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: 12,
+    fontWeight: '600',
+    marginTop: 2,
+  },
+  authBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 16,
+    borderRadius: 22,
+    borderWidth: 1.5,
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  authBannerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    flex: 1,
+  },
+  authIconWrap: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  authBannerTitle: {
+    fontSize: 14,
+    fontWeight: '800',
+  },
+  authBannerSub: {
+    fontSize: 11,
     fontWeight: '600',
     marginTop: 2,
   },

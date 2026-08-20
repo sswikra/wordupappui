@@ -21,6 +21,7 @@ import {
   OTHER_CURATED_LISTS,
   INITIAL_USER_PROFILE,
   INITIAL_APP_SETTINGS,
+  AVATAR_OPTIONS,
 } from './src/data/mockData';
 import { StorageService } from './src/utils/storage';
 import { Colors, getTheme } from './src/theme/colors';
@@ -118,22 +119,23 @@ export default function App() {
           const cloudSettings = await FirebaseService.getAppSettings(user.uid);
 
           if (cloudWords && cloudWords.length > 0) {
-            setWords(deduplicateWords(cloudWords));
+            const cleanCloud = deduplicateWords(cloudWords);
+            setWords(cleanCloud);
+            await StorageService.saveWords(cleanCloud);
           } else {
             // İlk kez giriş yapıyorsa mevcut kelimeleri buluta yedekle
-            FirebaseService.saveUserWords(user.uid, words);
+            await FirebaseService.saveUserWords(user.uid, words);
           }
 
           if (cloudLists && cloudLists.length > 0) {
             setUserLists(cloudLists);
+            await StorageService.saveUserLists(cloudLists);
           } else {
-            FirebaseService.saveUserLists(user.uid, userLists);
+            await FirebaseService.saveUserLists(user.uid, userLists);
           }
 
           const isAnon = user.isAnonymous;
-          const defaultAvatar = isAnon
-            ? 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80'
-            : (user.photoURL || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80');
+          const defaultAvatar = AVATAR_OPTIONS.male;
 
           const emailName = user.email ? user.email.split('@')[0] : 'Kelime Öğrencisi';
           const calculatedName = isAnon
@@ -149,28 +151,32 @@ export default function App() {
             ...profileToUse,
             name: currentProfileName,
             role: isAnon ? 'Misafir Hesap' : 'Kelime Kaşifi',
-            avatarUrl: user.photoURL || defaultAvatar,
+            avatarUrl: profileToUse.avatarUrl || user.photoURL || defaultAvatar,
+            gender: profileToUse.gender || 'male',
           };
 
           setProfile(updatedProf);
-          FirebaseService.saveUserProfile(user.uid, updatedProf);
+          await StorageService.saveProfile(updatedProf);
+          await FirebaseService.saveUserProfile(user.uid, updatedProf);
 
           if (cloudSettings) {
             setSettings(cloudSettings);
+            await StorageService.saveSettings(cloudSettings);
           } else {
             const updatedSettings: AppSettings = {
               ...settings,
               email: isAnon ? 'misafir@wordmem.app' : (user.email || settings.email),
             };
             setSettings(updatedSettings);
-            FirebaseService.saveAppSettings(user.uid, updatedSettings);
+            await StorageService.saveSettings(updatedSettings);
+            await FirebaseService.saveAppSettings(user.uid, updatedSettings);
           }
         } catch (e) {
           console.warn('Firestore veri yükleme hatası:', e);
         }
       } else {
-        // Kullanıcı giriş yapmamışsa otomatik olarak giriş penceresini aç
-        setIsAuthOpen(true);
+        // Kullanıcı giriş yapmamışsa
+        console.log('👤 Oturum açık değil (Misafir modu)');
       }
     });
 
@@ -305,48 +311,123 @@ export default function App() {
     );
   };
 
-  const handleAddWord = (newWord: Word, targetListId?: string) => {
-    setWords((prev) => deduplicateWords([newWord, ...prev]));
+  const handleAddWord = async (newWord: Word, targetListId?: string) => {
+    const updatedWords = deduplicateWords([newWord, ...words]);
+    setWords(updatedWords);
     setSuggestedWords((prev) => deduplicateWords([newWord, ...prev.slice(0, 3)]));
 
+    let updatedLists = userLists;
     if (targetListId) {
-      setUserLists((prev) =>
-        prev.map((list) => {
-          if (list.id === targetListId) {
-            const filteredOld = (list.words || []).filter((w) => w.id !== newWord.id);
-            const updatedWords = [newWord, ...filteredOld];
-            return {
-              ...list,
-              count: updatedWords.length,
-              words: updatedWords,
-            };
-          }
-          return list;
-        })
-      );
+      updatedLists = userLists.map((list) => {
+        if (list.id === targetListId) {
+          const filteredOld = (list.words || []).filter((w) => w.id !== newWord.id);
+          const listWords = [newWord, ...filteredOld];
+          return {
+            ...list,
+            count: listWords.length,
+            words: listWords,
+          };
+        }
+        return list;
+      });
+      setUserLists(updatedLists);
     }
 
-    setSettings((prev) => ({
-      ...prev,
-      currentDayWordsCount: Math.min(prev.dailyGoal, prev.currentDayWordsCount + 1),
-    }));
+    const updatedSettings = {
+      ...settings,
+      currentDayWordsCount: Math.min(settings.dailyGoal, settings.currentDayWordsCount + 1),
+    };
+    setSettings(updatedSettings);
 
-    setProfile((prev) => ({
-      ...prev,
-      wordsLearned: prev.wordsLearned + 1,
-      wordsThisWeek: prev.wordsThisWeek + 1,
-    }));
+    const updatedProfile = {
+      ...profile,
+      wordsLearned: profile.wordsLearned + 1,
+      wordsThisWeek: profile.wordsThisWeek + 1,
+    };
+    setProfile(updatedProfile);
+
+    // Yerel depolamaya anında kaydet
+    await StorageService.saveWords(updatedWords);
+    if (targetListId) await StorageService.saveUserLists(updatedLists);
+    await StorageService.saveSettings(updatedSettings);
+    await StorageService.saveProfile(updatedProfile);
+
+    // Firebase'e anında ve güvenli kaydet
+    const activeUser = currentUser || AuthService.getCurrentUser();
+    if (activeUser) {
+      console.log('🔥 [Firebase Sync] Yeni kelime buluta kaydediliyor:', newWord.word, '(UID:', activeUser.uid, ')');
+      await FirebaseService.saveUserWords(activeUser.uid, updatedWords);
+      if (targetListId) await FirebaseService.saveUserLists(activeUser.uid, updatedLists);
+      await FirebaseService.saveUserProfile(activeUser.uid, updatedProfile);
+    }
+  };
+
+  const handleUpdateProfile = async (newProfile: Partial<UserProfile>) => {
+    const updated = { ...profile, ...newProfile };
+    setProfile(updated);
+    await StorageService.saveProfile(updated);
+
+    const activeUser = currentUser || AuthService.getCurrentUser();
+    if (activeUser) {
+      await FirebaseService.saveUserProfile(activeUser.uid, updated);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await AuthService.logout();
+      setCurrentUser(null);
+
+      const guestProfile: UserProfile = {
+        ...INITIAL_USER_PROFILE,
+        name: 'Misafir Öğrenci',
+        role: 'Misafir Hesap',
+        avatarUrl: AVATAR_OPTIONS.male,
+        gender: 'male',
+      };
+
+      const guestSettings: AppSettings = {
+        ...INITIAL_APP_SETTINGS,
+        email: 'misafir@wordmem.app',
+      };
+
+      setProfile(guestProfile);
+      setSettings(guestSettings);
+      setWords(VOCABULARY_DATABASE);
+      setUserLists(INITIAL_USER_LISTS);
+
+      await StorageService.saveProfile(guestProfile);
+      await StorageService.saveSettings(guestSettings);
+      await StorageService.saveWords(VOCABULARY_DATABASE);
+      await StorageService.saveUserLists(INITIAL_USER_LISTS);
+
+      console.log('✅ Çıkış yapıldı ve oturum misafir moduna sıfırlandı.');
+    } catch (e) {
+      console.error('Çıkış hatası:', e);
+    }
   };
 
   const handleCreateList = (newList: WordList) => {
-    setUserLists((prev) => [...prev, newList]);
+    setUserLists((prev) => {
+      const updated = [...prev, newList];
+      StorageService.saveUserLists(updated);
+      const activeUser = currentUser || AuthService.getCurrentUser();
+      if (activeUser) FirebaseService.saveUserLists(activeUser.uid, updated);
+      return updated;
+    });
   };
 
   const handleDeleteList = (listId: string, isOtherTab?: boolean) => {
     if (isOtherTab) {
       setOtherLists((prev) => prev.filter((l) => l.id !== listId));
     } else {
-      setUserLists((prev) => prev.filter((l) => l.id !== listId));
+      setUserLists((prev) => {
+        const updated = prev.filter((l) => l.id !== listId);
+        StorageService.saveUserLists(updated);
+        const activeUser = currentUser || AuthService.getCurrentUser();
+        if (activeUser) FirebaseService.saveUserLists(activeUser.uid, updated);
+        return updated;
+      });
     }
   };
 
@@ -354,8 +435,8 @@ export default function App() {
     const targetWord = words.find((w) => w.id === wordId);
     if (!targetWord) return;
 
-    setUserLists((prev) =>
-      prev.map((list) => {
+    setUserLists((prev) => {
+      const updated = prev.map((list) => {
         if (list.id === listId) {
           const alreadyExists = (list.words || []).some((w) => w.id === wordId);
           if (alreadyExists) return list;
@@ -367,8 +448,12 @@ export default function App() {
           };
         }
         return list;
-      })
-    );
+      });
+      StorageService.saveUserLists(updated);
+      const activeUser = currentUser || AuthService.getCurrentUser();
+      if (activeUser) FirebaseService.saveUserLists(activeUser.uid, updated);
+      return updated;
+    });
   };
 
   const handleUpdateListMastery = (listId: string, delta: number) => {
@@ -384,33 +469,55 @@ export default function App() {
   };
 
   const handleIncrementGamesPlayed = () => {
-    setProfile((prev) => ({
-      ...prev,
-      gamesPlayed: prev.gamesPlayed + 1,
-      wordsThisWeek: prev.wordsThisWeek + 2,
-    }));
+    setProfile((prev) => {
+      const updated = {
+        ...prev,
+        gamesPlayed: prev.gamesPlayed + 1,
+        wordsThisWeek: prev.wordsThisWeek + 2,
+      };
+      StorageService.saveProfile(updated);
+      const activeUser = currentUser || AuthService.getCurrentUser();
+      if (activeUser) FirebaseService.saveUserProfile(activeUser.uid, updated);
+      return updated;
+    });
   };
 
   const handleDeleteWord = (wordId: string) => {
-    setWords((prev) => prev.filter((w) => w.id !== wordId));
+    const updatedWords = words.filter((w) => w.id !== wordId);
+    setWords(updatedWords);
     setSuggestedWords((prev) => prev.filter((w) => w.id !== wordId));
-    setUserLists((prevLists) =>
-      prevLists.map((l) => {
-        const cleanWords = (l.words || []).filter((w) => w.id !== wordId);
-        return {
-          ...l,
-          count: cleanWords.length,
-          words: cleanWords,
-        };
-      })
-    );
+    const updatedLists = userLists.map((l) => {
+      const cleanWords = (l.words || []).filter((w) => w.id !== wordId);
+      return {
+        ...l,
+        count: cleanWords.length,
+        words: cleanWords,
+      };
+    });
+    setUserLists(updatedLists);
+
+    StorageService.saveWords(updatedWords);
+    StorageService.saveUserLists(updatedLists);
+
+    const activeUser = currentUser || AuthService.getCurrentUser();
+    if (activeUser) {
+      FirebaseService.saveUserWords(activeUser.uid, updatedWords);
+      FirebaseService.saveUserLists(activeUser.uid, updatedLists);
+    }
+
     if (selectedWord && selectedWord.id === wordId) {
       setSelectedWord(null);
     }
   };
 
   const handleUpdateSettings = (newSettings: Partial<AppSettings>) => {
-    setSettings((prev) => ({ ...prev, ...newSettings }));
+    setSettings((prev) => {
+      const updated = { ...prev, ...newSettings };
+      StorageService.saveSettings(updated);
+      const activeUser = currentUser || AuthService.getCurrentUser();
+      if (activeUser) FirebaseService.saveAppSettings(activeUser.uid, updated);
+      return updated;
+    });
   };
 
   const theme = getTheme(settings.darkMode);
@@ -476,6 +583,7 @@ export default function App() {
               darkMode={settings.darkMode}
               currentUser={currentUser}
               onOpenAuth={() => setIsAuthOpen(true)}
+              onUpdateProfile={handleUpdateProfile}
             />
           )}
 
@@ -486,7 +594,7 @@ export default function App() {
               darkMode={settings.darkMode}
               currentUser={currentUser}
               onOpenAuth={() => setIsAuthOpen(true)}
-              onLogout={() => AuthService.logout()}
+              onLogout={handleLogout}
             />
           )}
         </View>

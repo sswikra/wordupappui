@@ -119,6 +119,19 @@ export const SidebarDrawer: React.FC<SidebarDrawerProps> = ({
                   {profile.wordsLearned} Kelime
                 </Text>
               </View>
+
+              {(!currentUser || currentUser.isAnonymous) && (
+                <TouchableOpacity
+                  onPress={(e) => {
+                    e.stopPropagation?.();
+                    HapticsService.light();
+                    if (onOpenAuth) onOpenAuth();
+                  }}
+                  style={[styles.drawerAuthBtn, { backgroundColor: Colors.primary }]}
+                >
+                  <Text style={styles.drawerAuthBtnText}>⚡ Giriş Yap / Kayıt Ol</Text>
+                </TouchableOpacity>
+              )}
             </TouchableOpacity>
 
             {/* Nav Links */}
@@ -312,6 +325,19 @@ const styles = StyleSheet.create({
     color: '#d97706',
   },
   wordsLearnedInline: {
+    fontSize: 11,
+    fontWeight: '800',
+  },
+  drawerAuthBtn: {
+    marginTop: 10,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  drawerAuthBtnText: {
+    color: '#ffffff',
     fontSize: 11,
     fontWeight: '800',
   },
