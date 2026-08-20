@@ -59,7 +59,7 @@ export default function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   // Auth State
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(true);
 
   // Navigation State
   const [currentTab, setCurrentTab] = useState<TabType>('home');
@@ -171,12 +171,18 @@ export default function App() {
             await StorageService.saveSettings(updatedSettings);
             await FirebaseService.saveAppSettings(user.uid, updatedSettings);
           }
+
+          // Giriş yapmışsa giriş ekranını kapat
+          if (!isAnon) {
+            setIsAuthOpen(false);
+          }
         } catch (e) {
           console.warn('Firestore veri yükleme hatası:', e);
         }
       } else {
-        // Kullanıcı giriş yapmamışsa
-        console.log('👤 Oturum açık değil (Misafir modu)');
+        // Kullanıcı giriş yapmamışsa başlangıçta giriş ekranını aç
+        setIsAuthOpen(true);
+        console.log('👤 Oturum açık değil (Giriş ekranı gösteriliyor)');
       }
     });
 
