@@ -18,6 +18,8 @@ import {
   ChevronRight,
   Check,
   X,
+  Cloud,
+  RefreshCw,
 } from 'lucide-react-native';
 import { User } from 'firebase/auth';
 import { AppSettings } from '../../types';
@@ -31,6 +33,7 @@ interface SettingsViewProps {
   currentUser?: User | null;
   onOpenAuth?: () => void;
   onLogout?: () => void;
+  onSyncCloud?: () => Promise<void>;
 }
 
 export const SettingsView: React.FC<SettingsViewProps> = ({
@@ -40,10 +43,25 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   currentUser,
   onOpenAuth,
   onLogout,
+  onSyncCloud,
 }) => {
   const theme = getTheme(darkMode);
   const [showLangModal, setShowLangModal] = useState(false);
   const [showAccountModal, setShowAccountModal] = useState(false);
+  const [isSyncing, setIsSyncing] = useState(false);
+
+  const handleSyncCloud = async () => {
+    if (!onSyncCloud) return;
+    try {
+      HapticsService.medium();
+      setIsSyncing(true);
+      await onSyncCloud();
+    } catch (e) {
+      console.warn('Sync failed', e);
+    } finally {
+      setIsSyncing(false);
+    }
+  };
 
   const languageOptions: { id: AppSettings['languageDirection']; label: string }[] = [
     { id: 'EN_TR', label: 'İngilizce → Türkçe (EN -> TR)' },
@@ -218,7 +236,35 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           <ChevronRight size={20} color={darkMode ? Colors.primaryAccent : Colors.primary} />
         </TouchableOpacity>
 
-        {/* 4. Account Details */}
+        {/* 4. Cloud Database Sync */}
+        <TouchableOpacity
+          onPress={handleSyncCloud}
+          disabled={isSyncing}
+          activeOpacity={0.7}
+          style={[styles.menuItem, { borderBottomColor: theme.cardBorder }]}
+        >
+          <View style={styles.itemLeft}>
+            <View style={[styles.iconWrap, { backgroundColor: darkMode ? '#1e3a8a' : '#dbeafe' }]}>
+              <Cloud size={18} color="#3b82f6" strokeWidth={2.2} />
+            </View>
+            <View>
+              <Text style={[styles.itemTitle, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
+                {isSyncing ? 'Buluttan İndiriliyor...' : 'Bulut Veritabanı'}
+              </Text>
+              <Text style={[styles.itemSub, { color: theme.textMuted }]}>
+                Firestore'daki en güncel kelimeleri ve listeleri senkronize et
+              </Text>
+            </View>
+          </View>
+
+          <RefreshCw
+            size={18}
+            color="#3b82f6"
+            style={{ opacity: isSyncing ? 0.5 : 1 }}
+          />
+        </TouchableOpacity>
+
+        {/* 5. Account Details */}
         <TouchableOpacity
           onPress={() => {
             HapticsService.selection();

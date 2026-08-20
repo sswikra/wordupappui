@@ -9,6 +9,7 @@ import {
   StyleSheet,
   BackHandler,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -24,6 +25,7 @@ import {
   AVATAR_OPTIONS,
 } from './src/data/mockData';
 import { StorageService } from './src/utils/storage';
+import { HapticsService } from './src/utils/haptics';
 import { Colors, getTheme } from './src/theme/colors';
 
 // Common Components
@@ -526,6 +528,33 @@ export default function App() {
     });
   };
 
+  const handleSyncGlobalVocabulary = async () => {
+    try {
+      const cloudWords = await FirebaseService.getGlobalVocabulary();
+      const cloudLists = await FirebaseService.getGlobalCuratedLists();
+
+      if (cloudWords && cloudWords.length > 0) {
+        const merged = deduplicateWords([...cloudWords, ...words]);
+        setWords(merged);
+        await StorageService.saveWords(merged);
+        if (cloudLists && cloudLists.length > 0) {
+          setOtherLists(cloudLists);
+        }
+        HapticsService.success();
+        Alert.alert(
+          'Bulut Senkronizasyonu Başarılı 🎉',
+          `Firestore'dan ${cloudWords.length} adet kelime başarıyla indirildi ve cihazınıza kaydedildi.`
+        );
+      } else {
+        HapticsService.selection();
+        Alert.alert('Bilgi', 'Firestore bulutunda yeni kelime bulunamadı.');
+      }
+    } catch (e: any) {
+      HapticsService.error();
+      Alert.alert('Hata', 'Bulut veritabanı senkronizasyonu sırasında bir hata oluştu.');
+    }
+  };
+
   const theme = getTheme(settings.darkMode);
 
   if (!isLoaded) {
@@ -601,6 +630,7 @@ export default function App() {
               currentUser={currentUser}
               onOpenAuth={() => setIsAuthOpen(true)}
               onLogout={handleLogout}
+              onSyncCloud={handleSyncGlobalVocabulary}
             />
           )}
         </View>
