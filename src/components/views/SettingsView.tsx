@@ -19,6 +19,7 @@ import {
   Check,
   X,
 } from 'lucide-react-native';
+import { User } from 'firebase/auth';
 import { AppSettings } from '../../types';
 import { HapticsService } from '../../utils/haptics';
 import { Colors, getTheme } from '../../theme/colors';
@@ -27,12 +28,18 @@ interface SettingsViewProps {
   settings: AppSettings;
   onUpdateSettings: (newSettings: Partial<AppSettings>) => void;
   darkMode?: boolean;
+  currentUser?: User | null;
+  onOpenAuth?: () => void;
+  onLogout?: () => void;
 }
 
 export const SettingsView: React.FC<SettingsViewProps> = ({
   settings,
   onUpdateSettings,
   darkMode = false,
+  currentUser,
+  onOpenAuth,
+  onLogout,
 }) => {
   const theme = getTheme(darkMode);
   const [showLangModal, setShowLangModal] = useState(false);
@@ -67,7 +74,10 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
         {
           text: 'Çıkış Yap',
           style: 'destructive',
-          onPress: () => HapticsService.medium(),
+          onPress: () => {
+            HapticsService.medium();
+            if (onLogout) onLogout();
+          },
         },
       ]
     );

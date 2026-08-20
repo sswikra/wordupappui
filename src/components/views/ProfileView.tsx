@@ -8,12 +8,15 @@ import {
   Dimensions,
 } from 'react-native';
 import { BookOpen, Gamepad2, Flame, Star, TrendingUp, Award, Calendar, GraduationCap, Sun, Lock } from 'lucide-react-native';
+import { User } from 'firebase/auth';
 import { UserProfile } from '../../types';
 import { Colors, getTheme } from '../../theme/colors';
 
 interface ProfileViewProps {
   profile: UserProfile;
   darkMode?: boolean;
+  currentUser?: User | null;
+  onOpenAuth?: () => void;
 }
 
 const { width } = Dimensions.get('window');
@@ -21,6 +24,8 @@ const { width } = Dimensions.get('window');
 export const ProfileView: React.FC<ProfileViewProps> = ({
   profile,
   darkMode = false,
+  currentUser,
+  onOpenAuth,
 }) => {
   const theme = getTheme(darkMode);
 

@@ -1,3 +1,7 @@
+import { User } from 'firebase/auth';
+import { AuthService } from './src/services/authService';
+import { FirebaseService } from './src/services/firebaseService';
+import { AuthModal } from './src/components/modals/AuthModal';
 import React, { useState, useEffect, useCallback } from 'react';
 import { testFirebaseConnection } from './src/firebaseTest';
 import {
@@ -52,6 +56,9 @@ const deduplicateWords = (wordsList: Word[] = []): Word[] => {
 
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(false);
+  // Auth State
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
 
   // Navigation State
   const [currentTab, setCurrentTab] = useState<TabType>('home');
@@ -96,35 +103,100 @@ export default function App() {
     loadData();
   }, []);
 
-  // deneme
+  // Firebase Auth Listener & Firestore Data Sync
   useEffect(() => {
-    testFirebaseConnection();
+    const unsubscribe = AuthService.onAuthStateChanged(async (user) => {
+      setCurrentUser(user);
+
+      if (user) {
+        console.log('👤 Giriş yapan kullanıcı:', user.email || user.uid);
+        try {
+          // Firestore'dan kullanıcının verilerini çek
+          const cloudWords = await FirebaseService.getUserWords(user.uid);
+          const cloudLists = await FirebaseService.getUserLists(user.uid);
+          const cloudProfile = await FirebaseService.getUserProfile(user.uid);
+          const cloudSettings = await FirebaseService.getAppSettings(user.uid);
+
+          if (cloudWords && cloudWords.length > 0) {
+            setWords(deduplicateWords(cloudWords));
+          } else {
+            // İlk kez giriş yapıyorsa mevcut kelimeleri buluta yedekle
+            FirebaseService.saveUserWords(user.uid, words);
+          }
+
+          if (cloudLists && cloudLists.length > 0) {
+            setUserLists(cloudLists);
+          } else {
+            FirebaseService.saveUserLists(user.uid, userLists);
+          }
+
+          if (cloudProfile) {
+            setProfile(cloudProfile);
+          } else {
+            const updatedProf: UserProfile = {
+              ...profile,
+              name: user.displayName || profile.name || 'WordMem Öğrencisi',
+              avatarUrl: user.photoURL || profile.avatarUrl,
+            };
+            setProfile(updatedProf);
+            FirebaseService.saveUserProfile(user.uid, updatedProf);
+          }
+
+          if (cloudSettings) {
+            setSettings(cloudSettings);
+          } else {
+            const updatedSettings: AppSettings = {
+              ...settings,
+              email: user.email || settings.email,
+            };
+            setSettings(updatedSettings);
+            FirebaseService.saveAppSettings(user.uid, updatedSettings);
+          }
+        } catch (e) {
+          console.warn('Firestore veri yükleme hatası:', e);
+        }
+      }
+    });
+
+    return () => unsubscribe();
   }, []);
 
-  // Sync to AsyncStorage on updates
+  // Sync to AsyncStorage & Firestore on updates
   useEffect(() => {
     if (isLoaded) {
       StorageService.saveWords(words);
+      if (currentUser) {
+        FirebaseService.saveUserWords(currentUser.uid, words);
+      }
     }
-  }, [words, isLoaded]);
+  }, [words, isLoaded, currentUser]);
 
   useEffect(() => {
     if (isLoaded) {
       StorageService.saveUserLists(userLists);
+      if (currentUser) {
+        FirebaseService.saveUserLists(currentUser.uid, userLists);
+      }
     }
-  }, [userLists, isLoaded]);
+  }, [userLists, isLoaded, currentUser]);
 
   useEffect(() => {
     if (isLoaded) {
       StorageService.saveProfile(profile);
+      if (currentUser) {
+        FirebaseService.saveUserProfile(currentUser.uid, profile);
+      }
     }
-  }, [profile, isLoaded]);
+  }, [profile, isLoaded, currentUser]);
 
   useEffect(() => {
     if (isLoaded) {
       StorageService.saveSettings(settings);
+      if (currentUser) {
+        FirebaseService.saveAppSettings(currentUser.uid, settings);
+      }
     }
-  }, [settings, isLoaded]);
+  }, [settings, isLoaded, currentUser]);
 
   // Android Hardware Back Button Handling
   useEffect(() => {
@@ -386,6 +458,8 @@ export default function App() {
             <ProfileView
               profile={profile}
               darkMode={settings.darkMode}
+              currentUser={currentUser}
+              onOpenAuth={() => setIsAuthOpen(true)}
             />
           )}
 
@@ -394,6 +468,9 @@ export default function App() {
               settings={settings}
               onUpdateSettings={handleUpdateSettings}
               darkMode={settings.darkMode}
+              currentUser={currentUser}
+              onOpenAuth={() => setIsAuthOpen(true)}
+              onLogout={() => AuthService.logout()}
             />
           )}
         </View>
@@ -426,6 +503,11 @@ export default function App() {
           onOpenSearch={() => {
             setIsSidebarOpen(false);
             setIsSearchOpen(true);
+          }}
+          currentUser={currentUser}
+          onOpenAuth={() => {
+            setIsSidebarOpen(false);
+            setIsAuthOpen(true);
           }}
         />
 
@@ -472,6 +554,12 @@ export default function App() {
           onToggleFavorite={handleToggleFavorite}
           onUpdateListMastery={handleUpdateListMastery}
           onDeleteList={handleDeleteList}
+          darkMode={settings.darkMode}
+        />
+
+        <AuthModal
+          isOpen={isAuthOpen}
+          onClose={() => setIsAuthOpen(false)}
           darkMode={settings.darkMode}
         />
       </SafeAreaView>

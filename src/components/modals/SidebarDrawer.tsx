@@ -19,6 +19,7 @@ import {
   Award,
   Heart,
 } from 'lucide-react-native';
+import { User } from 'firebase/auth';
 import { UserProfile, AppSettings, TabType } from '../../types';
 import { HapticsService } from '../../utils/haptics';
 import { Colors, getTheme } from '../../theme/colors';
@@ -31,6 +32,8 @@ interface SidebarDrawerProps {
   onToggleDarkMode: () => void;
   onNavigateTab: (tab: TabType) => void;
   onOpenSearch: () => void;
+  currentUser?: User | null;
+  onOpenAuth?: () => void;
 }
 
 const { width } = Dimensions.get('window');
@@ -43,6 +46,8 @@ export const SidebarDrawer: React.FC<SidebarDrawerProps> = ({
   onToggleDarkMode,
   onNavigateTab,
   onOpenSearch,
+  currentUser,
+  onOpenAuth,
 }) => {
   const theme = getTheme(settings.darkMode);
 
