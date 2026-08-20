@@ -3,14 +3,19 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { Word, WordList, UserProfile, AppSettings } from '../types';
 
+// Firestore undefined değerleri kabul etmediği için objeyi temizler
+const sanitize = <T>(data: T): T => JSON.parse(JSON.stringify(data));
+
 export const FirebaseService = {
     // 1. Kullanıcı Kelimeleri
     async saveUserWords(userId: string, words: Word[]): Promise<void> {
         try {
+            const cleanWords = sanitize(words);
             const userRef = doc(db, 'users', userId, 'data', 'words');
-            await setDoc(userRef, { words, updatedAt: new Date().toISOString() });
+            await setDoc(userRef, { words: cleanWords, updatedAt: new Date().toISOString() });
+            console.log(`✅ [Firestore] ${cleanWords.length} adet kelime buluta kaydedildi.`);
         } catch (error) {
-            console.warn('Firebase saveUserWords hatası:', error);
+            console.error('❌ [Firestore] saveUserWords hatası:', error);
         }
     },
 
@@ -22,7 +27,7 @@ export const FirebaseService = {
                 return snap.data().words as Word[];
             }
         } catch (error) {
-            console.warn('Firebase getUserWords hatası:', error);
+            console.error('❌ [Firestore] getUserWords hatası:', error);
         }
         return null;
     },
@@ -30,10 +35,12 @@ export const FirebaseService = {
     // 2. Kullanıcı Listeleri
     async saveUserLists(userId: string, lists: WordList[]): Promise<void> {
         try {
+            const cleanLists = sanitize(lists);
             const userRef = doc(db, 'users', userId, 'data', 'lists');
-            await setDoc(userRef, { lists, updatedAt: new Date().toISOString() });
+            await setDoc(userRef, { lists: cleanLists, updatedAt: new Date().toISOString() });
+            console.log(`✅ [Firestore] ${cleanLists.length} adet liste buluta kaydedildi.`);
         } catch (error) {
-            console.warn('Firebase saveUserLists hatası:', error);
+            console.error('❌ [Firestore] saveUserLists hatası:', error);
         }
     },
 
@@ -45,7 +52,7 @@ export const FirebaseService = {
                 return snap.data().lists as WordList[];
             }
         } catch (error) {
-            console.warn('Firebase getUserLists hatası:', error);
+            console.error('❌ [Firestore] getUserLists hatası:', error);
         }
         return null;
     },
@@ -53,10 +60,21 @@ export const FirebaseService = {
     // 3. Kullanıcı Profili
     async saveUserProfile(userId: string, profile: UserProfile): Promise<void> {
         try {
+            const cleanProfile = sanitize(profile);
             const userRef = doc(db, 'users', userId, 'data', 'profile');
-            await setDoc(userRef, { profile, updatedAt: new Date().toISOString() });
+            await setDoc(userRef, { profile: cleanProfile, updatedAt: new Date().toISOString() });
+
+            // Ana kullanıcı dökümanını da güncelle
+            const mainUserRef = doc(db, 'users', userId);
+            await setDoc(mainUserRef, {
+                name: cleanProfile.name,
+                role: cleanProfile.role,
+                updatedAt: new Date().toISOString(),
+            }, { merge: true });
+
+            console.log('✅ [Firestore] Profil buluta kaydedildi:', cleanProfile.name);
         } catch (error) {
-            console.warn('Firebase saveUserProfile hatası:', error);
+            console.error('❌ [Firestore] saveUserProfile hatası:', error);
         }
     },
 
@@ -68,7 +86,7 @@ export const FirebaseService = {
                 return snap.data().profile as UserProfile;
             }
         } catch (error) {
-            console.warn('Firebase getUserProfile hatası:', error);
+            console.error('❌ [Firestore] getUserProfile hatası:', error);
         }
         return null;
     },
@@ -76,10 +94,12 @@ export const FirebaseService = {
     // 4. Uygulama Ayarları
     async saveAppSettings(userId: string, settings: AppSettings): Promise<void> {
         try {
+            const cleanSettings = sanitize(settings);
             const userRef = doc(db, 'users', userId, 'data', 'settings');
-            await setDoc(userRef, { settings, updatedAt: new Date().toISOString() });
+            await setDoc(userRef, { settings: cleanSettings, updatedAt: new Date().toISOString() });
+            console.log('✅ [Firestore] Ayarlar buluta kaydedildi.');
         } catch (error) {
-            console.warn('Firebase saveAppSettings hatası:', error);
+            console.error('❌ [Firestore] saveAppSettings hatası:', error);
         }
     },
 
@@ -91,7 +111,7 @@ export const FirebaseService = {
                 return snap.data().settings as AppSettings;
             }
         } catch (error) {
-            console.warn('Firebase getAppSettings hatası:', error);
+            console.error('❌ [Firestore] getAppSettings hatası:', error);
         }
         return null;
     },
@@ -102,7 +122,7 @@ export const FirebaseService = {
             const userRef = doc(db, 'users', userId, 'data', 'highscores');
             await setDoc(userRef, { [gameId]: score }, { merge: true });
         } catch (error) {
-            console.warn('Firebase saveHighScore hatası:', error);
+            console.error('❌ [Firestore] saveHighScore hatası:', error);
         }
     },
 
@@ -114,7 +134,7 @@ export const FirebaseService = {
                 return snap.data()[gameId] as number;
             }
         } catch (error) {
-            console.warn('Firebase getHighScore hatası:', error);
+            console.error('❌ [Firestore] getHighScore hatası:', error);
         }
         return null;
     },

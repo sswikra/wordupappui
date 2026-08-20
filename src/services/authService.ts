@@ -3,6 +3,8 @@ import {
     GoogleAuthProvider,
     signInWithCredential,
     signInAnonymously,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
     signOut,
     onAuthStateChanged,
     User,
@@ -21,13 +23,35 @@ export const AuthService = {
     },
 
     // Google ID Token ile Firebase'e giriş yapma
-    async loginWithGoogleIdToken(idToken: string) {
+    async loginWithGoogleIdToken(idToken?: string | null, accessToken?: string | null) {
         try {
-            const credential = GoogleAuthProvider.credential(idToken);
+            const credential = GoogleAuthProvider.credential(idToken || undefined, accessToken || undefined);
             const userCredential = await signInWithCredential(auth, credential);
             return userCredential.user;
         } catch (error) {
             console.error('Google Giriş Hatası:', error);
+            throw error;
+        }
+    },
+
+    // E-posta ve Şifre ile Giriş
+    async loginWithEmail(email: string, pass: string) {
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email.trim(), pass);
+            return userCredential.user;
+        } catch (error) {
+            console.error('E-posta Giriş Hatası:', error);
+            throw error;
+        }
+    },
+
+    // E-posta ve Şifre ile Kayıt
+    async registerWithEmail(email: string, pass: string) {
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email.trim(), pass);
+            return userCredential.user;
+        } catch (error) {
+            console.error('E-posta Kayıt Hatası:', error);
             throw error;
         }
     },
@@ -52,4 +76,4 @@ export const AuthService = {
             throw error;
         }
     },
-};
+};

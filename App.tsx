@@ -130,24 +130,37 @@ export default function App() {
             FirebaseService.saveUserLists(user.uid, userLists);
           }
 
-          if (cloudProfile) {
-            setProfile(cloudProfile);
-          } else {
-            const updatedProf: UserProfile = {
-              ...profile,
-              name: user.displayName || profile.name || 'WordMem Öğrencisi',
-              avatarUrl: user.photoURL || profile.avatarUrl,
-            };
-            setProfile(updatedProf);
-            FirebaseService.saveUserProfile(user.uid, updatedProf);
-          }
+          const isAnon = user.isAnonymous;
+          const defaultAvatar = isAnon
+            ? 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80'
+            : (user.photoURL || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80');
+
+          const emailName = user.email ? user.email.split('@')[0] : 'Kelime Öğrencisi';
+          const calculatedName = isAnon
+            ? 'Misafir Öğrenci'
+            : (user.displayName || (emailName.charAt(0).toUpperCase() + emailName.slice(1)));
+
+          const profileToUse = cloudProfile || profile;
+          const currentProfileName = (!cloudProfile || profileToUse.name === 'Alex' || profileToUse.name === 'Alex Morgan')
+            ? calculatedName
+            : profileToUse.name;
+
+          const updatedProf: UserProfile = {
+            ...profileToUse,
+            name: currentProfileName,
+            role: isAnon ? 'Misafir Hesap' : 'Kelime Kaşifi',
+            avatarUrl: user.photoURL || defaultAvatar,
+          };
+
+          setProfile(updatedProf);
+          FirebaseService.saveUserProfile(user.uid, updatedProf);
 
           if (cloudSettings) {
             setSettings(cloudSettings);
           } else {
             const updatedSettings: AppSettings = {
               ...settings,
-              email: user.email || settings.email,
+              email: isAnon ? 'misafir@wordmem.app' : (user.email || settings.email),
             };
             setSettings(updatedSettings);
             FirebaseService.saveAppSettings(user.uid, updatedSettings);
@@ -155,6 +168,9 @@ export default function App() {
         } catch (e) {
           console.warn('Firestore veri yükleme hatası:', e);
         }
+      } else {
+        // Kullanıcı giriş yapmamışsa otomatik olarak giriş penceresini aç
+        setIsAuthOpen(true);
       }
     });
 
