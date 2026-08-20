@@ -1,5 +1,6 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBrt93ey2v4160YHjBVkMW_qWWkeHkWeTs",
@@ -11,6 +12,13 @@ const firebaseConfig = {
   measurementId: 'G-DVK80TMYQY',
 };
 
-// Initialize Firebase (guard against multiple initializations during hot reload)
+// Initialize Firebase App
 export const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+
+// Firestore Database
 export const db = getFirestore(app);
+
+// Firebase Auth
+export const auth = getAuth(app);
+
+
