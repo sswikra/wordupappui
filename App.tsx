@@ -191,42 +191,30 @@ export default function App() {
     return () => unsubscribe();
   }, []);
 
-  // Sync to AsyncStorage & Firestore on updates
+  // Sync to AsyncStorage on updates
   useEffect(() => {
     if (isLoaded) {
       StorageService.saveWords(words);
-      if (currentUser) {
-        FirebaseService.saveUserWords(currentUser.uid, words);
-      }
     }
-  }, [words, isLoaded, currentUser]);
+  }, [words, isLoaded]);
 
   useEffect(() => {
     if (isLoaded) {
       StorageService.saveUserLists(userLists);
-      if (currentUser) {
-        FirebaseService.saveUserLists(currentUser.uid, userLists);
-      }
     }
-  }, [userLists, isLoaded, currentUser]);
+  }, [userLists, isLoaded]);
 
   useEffect(() => {
     if (isLoaded) {
       StorageService.saveProfile(profile);
-      if (currentUser) {
-        FirebaseService.saveUserProfile(currentUser.uid, profile);
-      }
     }
-  }, [profile, isLoaded, currentUser]);
+  }, [profile, isLoaded]);
 
   useEffect(() => {
     if (isLoaded) {
       StorageService.saveSettings(settings);
-      if (currentUser) {
-        FirebaseService.saveAppSettings(currentUser.uid, settings);
-      }
     }
-  }, [settings, isLoaded, currentUser]);
+  }, [settings, isLoaded]);
 
   // Android Hardware Back Button Handling
   useEffect(() => {
@@ -293,11 +281,12 @@ export default function App() {
       setSelectedWord((prev) => (prev ? { ...prev, isFavorite: !prev.isFavorite } : null));
     }
 
+    const targetWord = words.find((w) => w.id === wordId);
+    const willBeFavorite = targetWord ? !targetWord.isFavorite : true;
+
     setUserLists((prevLists) =>
       prevLists.map((l) => {
         if (l.id === 'favorites') {
-          const targetWord = words.find((w) => w.id === wordId);
-          const willBeFavorite = targetWord ? !targetWord.isFavorite : true;
           const cleanRemaining = (l.words || []).filter((w) => w.id !== wordId);
           const updatedWordObj = targetWord
             ? { ...targetWord, isFavorite: willBeFavorite }
@@ -317,6 +306,11 @@ export default function App() {
         return l;
       })
     );
+
+    const activeUser = currentUser || AuthService.getCurrentUser();
+    if (activeUser && targetWord) {
+      FirebaseService.saveUserWord(activeUser.uid, { ...targetWord, isFavorite: willBeFavorite });
+    }
   };
 
   const handleAddWord = async (newWord: Word, targetListId?: string) => {
@@ -433,7 +427,10 @@ export default function App() {
         const updated = prev.filter((l) => l.id !== listId);
         StorageService.saveUserLists(updated);
         const activeUser = currentUser || AuthService.getCurrentUser();
-        if (activeUser) FirebaseService.saveUserLists(activeUser.uid, updated);
+        if (activeUser) {
+          FirebaseService.deleteUserList(activeUser.uid, listId);
+          FirebaseService.saveUserLists(activeUser.uid, updated);
+        }
         return updated;
       });
     }
@@ -509,7 +506,7 @@ export default function App() {
 
     const activeUser = currentUser || AuthService.getCurrentUser();
     if (activeUser) {
-      FirebaseService.saveUserWords(activeUser.uid, updatedWords);
+      FirebaseService.deleteUserWord(activeUser.uid, wordId);
       FirebaseService.saveUserLists(activeUser.uid, updatedLists);
     }
 

@@ -1,6 +1,22 @@
 export type TabType = 'home' | 'games' | 'lists' | 'profile' | 'settings';
 
-export type PartOfSpeech = 'Noun' | 'Verb' | 'Adj.' | 'Adv.' | 'Phrase' | 'Idiom';
+export type PartOfSpeech =
+  | 'Noun'
+  | 'Verb'
+  | 'Adjective'
+  | 'Adj.'
+  | 'Adverb'
+  | 'Adv.'
+  | 'Preposition'
+  | 'Conjunction'
+  | 'Pronoun'
+  | 'Determiner'
+  | 'Article'
+  | 'Number'
+  | 'Interjection'
+  | 'Phrase'
+  | 'Idiom'
+  | string;
 export type CEFRLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
 
 export interface Word {

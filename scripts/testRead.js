@@ -1,12 +1,27 @@
 const fs = require('fs');
 const path = require('path');
 
-// 1. Modüler dosyalardaki tüm kelimeleri al
-const { WORDS_A1 } = require('../src/data/vocabulary/wordsA1');
-const { WORDS_A2 } = require('../src/data/vocabulary/wordsA2');
-const { WORDS_B1 } = require('../src/data/vocabulary/wordsB1');
-const { WORDS_B2 } = require('../src/data/vocabulary/wordsB2');
-const { WORDS_C1_C2 } = require('../src/data/vocabulary/wordsC1C2');
+const jsonPath = path.join(__dirname, '..', 'src', 'data', 'expandedVocabulary.json');
+const words = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 
-console.log("Reading existing datasets...");
-console.log("A1:", WORDS_A1.length, "A2:", WORDS_A2.length, "B1:", WORDS_B1.length, "B2:", WORDS_B2.length, "C1/C2:", WORDS_C1_C2.length);
+console.log("==========================================");
+console.log("📖 WordMem Vocabulary Database Summary:");
+console.log("==========================================");
+console.log("Total Words in Database:", words.length);
+
+const levels = {};
+words.forEach(w => {
+  const lvl = w.level || 'Unknown';
+  levels[lvl] = (levels[lvl] || 0) + 1;
+});
+
+Object.entries(levels).forEach(([lvl, count]) => {
+  console.log(`- Level ${lvl}: ${count} words`);
+});
+
+console.log("\nSample Word (A1):", words.find(w => w.level === 'A1')?.word, `(${words.find(w => w.level === 'A1')?.translation})`);
+console.log("Sample Word (A2):", words.find(w => w.level === 'A2')?.word, `(${words.find(w => w.level === 'A2')?.translation})`);
+console.log("Sample Word (B1):", words.find(w => w.level === 'B1')?.word, `(${words.find(w => w.level === 'B1')?.translation})`);
+console.log("Sample Word (B2):", words.find(w => w.level === 'B2')?.word, `(${words.find(w => w.level === 'B2')?.translation})`);
+console.log("==========================================");
+
