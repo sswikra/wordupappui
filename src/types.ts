@@ -39,7 +39,21 @@ export interface Word {
 export interface WordList {
   id: string;
   title: string;
-  icon: 'heart' | 'refresh' | 'alert' | 'bus' | 'book' | 'briefcase' | 'plane' | 'star' | 'folder';
+  icon:
+    | 'heart'
+    | 'refresh'
+    | 'alert'
+    | 'bus'
+    | 'book'
+    | 'briefcase'
+    | 'plane'
+    | 'star'
+    | 'folder'
+    | 'award'
+    | 'graduation'
+    | 'sparkles'
+    | 'layers'
+    | 'globe';
   count: number;
   mastery: number; // 0 - 100 percentage
   description?: string;

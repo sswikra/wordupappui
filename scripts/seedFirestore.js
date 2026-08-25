@@ -94,44 +94,84 @@ async function runSeeder() {
     console.log('\n--- 2. KÜRATÖRLÜ LİSTELER SUBCOLLECTIONS (/curated_lists/{listId}/words/{wordId}) YÜKLENİYOR ---');
     const curated = [
       {
-        id: 'oxford-3000',
-        title: 'Oxford 3000 Core',
+        id: 'a1',
+        title: 'A1 - Beginner',
         icon: 'book',
-        count: words.filter((w) => w.lists?.includes('oxford-3000') || w.level === 'A1' || w.level === 'A2').length,
-        mastery: 72,
-        description: 'Günlük konuşma ve akıcılık için en önemli kelimeler.',
-        color: '#8b5cf6',
-        words: words.filter((w) => w.lists?.includes('oxford-3000') || w.level === 'A1' || w.level === 'A2'),
+        count: words.filter((w) => w.level === 'A1').length,
+        mastery: 80,
+        description: 'Günlük hayatta en sık kullanılan temel kelimeler ve başlangıç ifadeleri.',
+        color: '#10b981',
+        words: words.filter((w) => w.level === 'A1'),
       },
       {
-        id: 'toefl-high',
-        title: 'TOEFL & IELTS High-Yield',
+        id: 'a2',
+        title: 'A2 - Elementary',
+        icon: 'book',
+        count: words.filter((w) => w.level === 'A2').length,
+        mastery: 65,
+        description: 'Rutin diyaloglar, alışveriş, yön tarifleri ve temel iletişim sözcükleri.',
+        color: '#06b6d4',
+        words: words.filter((w) => w.level === 'A2'),
+      },
+      {
+        id: 'b1',
+        title: 'B1 - Intermediate',
+        icon: 'book',
+        count: words.filter((w) => w.level === 'B1').length,
+        mastery: 50,
+        description: 'İş, okul ve sosyal hayatta rahatça iletişim kurabilmek için gerekli sözcükler.',
+        color: '#3b82f6',
+        words: words.filter((w) => w.level === 'B1'),
+      },
+      {
+        id: 'b2',
+        title: 'B2 - Upper Intermediate',
         icon: 'star',
-        count: words.filter((w) => w.lists?.includes('toefl-high') || w.level === 'C1' || w.level === 'C2' || w.level === 'B2').length,
-        mastery: 45,
-        description: 'Akademik sınavlarda yüksek başarı getiren sözcükler.',
+        count: words.filter((w) => w.level === 'B2').length,
+        mastery: 40,
+        description: 'Karmaşık konuları tartışma, akıcı konuşma ve ileri düzey sözcükler.',
+        color: '#8b5cf6',
+        words: words.filter((w) => w.level === 'B2'),
+      },
+      {
+        id: 'c1',
+        title: 'C1 - Advanced',
+        icon: 'sparkles',
+        count: words.filter((w) => w.level === 'C1').length,
+        mastery: 25,
+        description: 'Akademik makaleler, zengin edebi metinler ve profesyonel yetkinlik kelimeleri.',
         color: '#ec4899',
-        words: words.filter((w) => w.lists?.includes('toefl-high') || w.level === 'C1' || w.level === 'C2' || w.level === 'B2'),
+        words: words.filter((w) => w.level === 'C1'),
       },
       {
-        id: 'business-pro',
-        title: 'Business & Tech English',
-        icon: 'briefcase',
-        count: words.filter((w) => w.lists?.includes('business-pro') || w.level === 'B1' || w.level === 'B2').length,
-        mastery: 60,
-        description: 'Toplantılar ve teknoloji için profesyonel terimler.',
-        color: '#0284c7',
-        words: words.filter((w) => w.lists?.includes('business-pro') || w.level === 'B1' || w.level === 'B2'),
+        id: 'c2',
+        title: 'C2 - Proficiency',
+        icon: 'award',
+        count: words.filter((w) => w.level === 'C2').length,
+        mastery: 15,
+        description: 'Ana dil düzeyinde üstün hakimiyet, incelikli nüanslar ve seçkin kelime haznesi.',
+        color: '#e11d48',
+        words: words.filter((w) => w.level === 'C2'),
       },
       {
-        id: 'travel-essentials',
-        title: 'Travel & Vacations',
-        icon: 'plane',
-        count: words.filter((w) => w.lists?.includes('travel-essentials')).length,
-        mastery: 88,
-        description: 'Havalimanı ve yurt dışı seyahatlerinde temel kelimeler.',
+        id: 'ielts',
+        title: 'IELTS Academic & General',
+        icon: 'graduation',
+        count: words.filter((w) => w.lists?.includes('ielts') || w.level === 'B2' || w.level === 'C1' || w.level === 'C2').length,
+        mastery: 45,
+        description: 'IELTS sınavında Band 7.0+ hedefleyenler için yüksek getirili akademik sözcükler.',
         color: '#f59e0b',
-        words: words.filter((w) => w.lists?.includes('travel-essentials')),
+        words: words.filter((w) => w.lists?.includes('ielts') || w.level === 'B2' || w.level === 'C1' || w.level === 'C2'),
+      },
+      {
+        id: 'toefl',
+        title: 'TOEFL iBT High-Yield',
+        icon: 'graduation',
+        count: words.filter((w) => w.lists?.includes('toefl') || w.lists?.includes('toefl-high') || w.level === 'B2' || w.level === 'C1' || w.level === 'C2').length,
+        mastery: 42,
+        description: 'TOEFL iBT sınavı okuma, dinleme ve yazma bölümlerinde en sık çıkan akademik sözcükler.',
+        color: '#6366f1',
+        words: words.filter((w) => w.lists?.includes('toefl') || w.lists?.includes('toefl-high') || w.level === 'B2' || w.level === 'C1' || w.level === 'C2'),
       },
     ];
 
@@ -165,11 +205,20 @@ async function runSeeder() {
       console.log(`✅ [curated_lists/${list.id}] Liste ve ${listWords.length} alt kelimesi yüklendi!`);
     }
 
-    // 3. ESKİ MONOLİTİK DÖKÜMANLARI TEMİZLE (system/vocabulary, system/curated_lists)
-    console.log('\n--- 3. ESKİ MONOLİTİK DÖKÜMANLARIN TEMİZLENMESİ ---');
+    // 3. ESKİ LİSTELERİ TEMİZLE
+    console.log('\n--- 3. ESKİ LİSTELER VE DÖKÜMANLARIN TEMİZLENMESİ ---');
+    const deprecatedListIds = ['business-pro', 'travel-essentials', 'oxford-3000', 'toefl-high'];
+    for (const dId of deprecatedListIds) {
+      try {
+        await deleteDoc(doc(db, 'curated_lists', dId));
+        console.log(`🗑️  Eski \`curated_lists/${dId}\` dokümanı silindi.`);
+      } catch (e) {
+        console.log(`ℹ️  \`curated_lists/${dId}\` silinemedi veya zaten yok:`, e.message);
+      }
+    }
     try {
       await deleteDoc(doc(db, 'system', 'vocabulary'));
-      console.log('🗑️  Eski `system/vocabulary` (23.000 kelimelik tek döküman) silindi.');
+      console.log('🗑️  Eski `system/vocabulary` silindi.');
     } catch (e) {
       console.log('ℹ️  `system/vocabulary` silinemedi veya zaten yok:', e.message);
     }

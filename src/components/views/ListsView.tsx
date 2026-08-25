@@ -20,6 +20,10 @@ import {
   Sparkles,
   Trash2,
   Folder,
+  GraduationCap,
+  Award,
+  Layers,
+  Globe,
 } from 'lucide-react-native';
 import { WordList } from '../../types';
 import { HapticsService } from '../../utils/haptics';
@@ -45,27 +49,38 @@ export const ListsView: React.FC<ListsViewProps> = ({
   const theme = getTheme(darkMode);
   const [activeTab, setActiveTab] = useState<'my' | 'other'>('my');
 
-  const getListIcon = (iconName: WordList['icon']) => {
+  const getListIcon = (iconName: WordList['icon'], color?: string) => {
+    const iconColor = color || Colors.primary;
     switch (iconName) {
       case 'heart':
-        return <Heart size={20} color="#c85a32" strokeWidth={2.2} />;
+        return <Heart size={20} color={color || '#c85a32'} strokeWidth={2.2} />;
       case 'refresh':
-        return <RotateCw size={20} color="#c89b3c" strokeWidth={2.2} />;
+        return <RotateCw size={20} color={color || '#c89b3c'} strokeWidth={2.2} />;
       case 'alert':
-        return <AlertTriangle size={20} color="#d94a4a" strokeWidth={2.2} />;
+        return <AlertTriangle size={20} color={color || '#d94a4a'} strokeWidth={2.2} />;
       case 'bus':
-        return <Bus size={20} color={Colors.primary} strokeWidth={2.2} />;
+        return <Bus size={20} color={iconColor} strokeWidth={2.2} />;
       case 'book':
-        return <BookOpen size={20} color="#6366f1" strokeWidth={2.2} />;
+        return <BookOpen size={20} color={color || '#3b82f6'} strokeWidth={2.2} />;
       case 'star':
-        return <Star size={20} color="#f59e0b" strokeWidth={2.2} />;
+        return <Star size={20} color={color || '#f59e0b'} strokeWidth={2.2} />;
+      case 'graduation':
+        return <GraduationCap size={20} color={color || '#6366f1'} strokeWidth={2.2} />;
+      case 'award':
+        return <Award size={20} color={color || '#e11d48'} strokeWidth={2.2} />;
+      case 'sparkles':
+        return <Sparkles size={20} color={color || '#ec4899'} strokeWidth={2.2} />;
+      case 'layers':
+        return <Layers size={20} color={color || '#10b981'} strokeWidth={2.2} />;
+      case 'globe':
+        return <Globe size={20} color={color || '#059669'} strokeWidth={2.2} />;
       case 'briefcase':
-        return <Briefcase size={20} color="#0284c7" strokeWidth={2.2} />;
+        return <Briefcase size={20} color={color || '#0284c7'} strokeWidth={2.2} />;
       case 'plane':
-        return <Plane size={20} color="#d97706" strokeWidth={2.2} />;
+        return <Plane size={20} color={color || '#d97706'} strokeWidth={2.2} />;
       case 'folder':
       default:
-        return <Folder size={20} color={Colors.primary} strokeWidth={2.2} />;
+        return <Folder size={20} color={iconColor} strokeWidth={2.2} />;
     }
   };
 
@@ -168,8 +183,8 @@ export const ListsView: React.FC<ListsViewProps> = ({
             {/* Top Row: Icon + Title & Badge + (Percentage & Delete) */}
             <View style={styles.cardTopRow}>
               <View style={styles.titleInfo}>
-                <View style={[styles.iconBox, { backgroundColor: darkMode ? '#0f172a' : '#f8fafc', borderColor: theme.cardBorder }]}>
-                  {getListIcon(list.icon)}
+                <View style={[styles.iconBox, { backgroundColor: darkMode ? '#0f172a' : '#f8fafc', borderColor: list.color ? `${list.color}33` : theme.cardBorder }]}>
+                  {getListIcon(list.icon, list.color)}
                 </View>
 
                 <View style={styles.textColumn}>
