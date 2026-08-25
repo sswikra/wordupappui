@@ -28,6 +28,7 @@ import { WordList, Word } from '../../types';
 import { playPronunciation } from '../../utils/speech';
 import { HapticsService } from '../../utils/haptics';
 import { Colors, getTheme } from '../../theme/colors';
+import { searchWords } from '../../utils/search';
 
 interface ListDetailModalProps {
   list: WordList | null;
@@ -170,13 +171,7 @@ export const ListDetailModal: React.FC<ListDetailModalProps> = ({
   }, [list?.words]);
 
   const filteredWords = useMemo(() => {
-    const q = searchQuery.toLowerCase().trim();
-    if (!q) return words;
-    return words.filter(
-      (w) =>
-        w.word.toLowerCase().includes(q) ||
-        w.translation.toLowerCase().includes(q)
-    );
+    return searchWords(words, searchQuery);
   }, [words, searchQuery]);
 
   const handleSelectWord = useCallback(

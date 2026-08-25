@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Search, X, Volume2, Heart, ArrowRight } from 'lucide-react';
 import { Word } from '../types';
 import { playPronunciation } from '../utils/speech';
+import { searchWords } from '../utils/search';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface SearchModalProps {
@@ -25,27 +26,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   const [levelFilter, setLevelFilter] = useState<string>('ALL');
 
   const filteredWords = useMemo(() => {
-    const seen = new Set<string>();
-    return words.filter((w) => {
-      if (!w || !w.id || seen.has(w.id)) return false;
-
-      const q = query.toLowerCase().trim();
-      const matchesText =
-        !q ||
-        w.word.toLowerCase().includes(q) ||
-        w.translation.toLowerCase().includes(q) ||
-        (w.definition && w.definition.toLowerCase().includes(q));
-
-      const matchesLevel =
-        levelFilter === 'ALL' ||
-        (levelFilter === 'FAVORITES' ? w.isFavorite : w.level === levelFilter);
-
-      if (matchesText && matchesLevel) {
-        seen.add(w.id);
-        return true;
-      }
-      return false;
-    });
+    return searchWords(words, query, { levelFilter });
   }, [words, query, levelFilter]);
 
   if (!isOpen) return null;

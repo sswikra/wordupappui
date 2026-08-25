@@ -13,9 +13,11 @@ import {
 } from '../data/mockData';
 
 const KEYS = {
-  WORDS: '@wordmem_words',
+  WORDS_LEGACY: '@wordmem_words',
+  WORDS_DELTA: '@wordmem_words_delta_v2',
   USER_LISTS: '@wordmem_user_lists',
-  OTHER_LISTS: '@wordmem_other_lists',
+  OTHER_LISTS_LEGACY: '@wordmem_other_lists',
+  OTHER_LISTS_MASTERY: '@wordmem_other_lists_mastery_v2',
   PROFILE: '@wordmem_profile',
   SETTINGS: '@wordmem_settings',
   DATA_CLEAN_VERSION: '@wordmem_data_clean_v3',
@@ -26,26 +28,93 @@ const KEYS = {
   HIGHSCORE_HANGMAN: '@wordmem_highscore_hangman',
 };
 
+// Hızlı arama için yerleşik kelime haritası
+const builtInWordsMap = new Map<string, Word>(
+  VOCABULARY_DATABASE.map((w) => [w.id, w])
+);
+
+interface WordsStoragePayload {
+  customWords: Word[];
+  overrides: Record<string, Partial<Word>>;
+}
+
 export const StorageService = {
   KEYS,
 
-  // Load words
+  // Load words (Hafif delta ve özel kelime formatı ile yükler)
   async getWords(): Promise<Word[]> {
     try {
-      const data = await AsyncStorage.getItem(KEYS.WORDS);
-      if (data) {
-        return JSON.parse(data);
+      // 1. Yeni hafif delta formatını kontrol et
+      const deltaData = await AsyncStorage.getItem(KEYS.WORDS_DELTA);
+      if (deltaData) {
+        const parsed: WordsStoragePayload = JSON.parse(deltaData);
+        const customWords = parsed.customWords || [];
+        const overrides = parsed.overrides || {};
+
+        const mergedBuiltIn = VOCABULARY_DATABASE.map((w) => {
+          const override = overrides[w.id];
+          return override ? { ...w, ...override } : w;
+        });
+
+        return [...customWords, ...mergedBuiltIn];
+      }
+
+      // 2. Eski format varsa (CursorWindow hatası vermeden okunabilirse) yeni formata dönüştür
+      const legacyData = await AsyncStorage.getItem(KEYS.WORDS_LEGACY).catch(() => null);
+      if (legacyData) {
+        const legacyWords = JSON.parse(legacyData);
+        if (Array.isArray(legacyWords) && legacyWords.length > 0) {
+          // Yeni hafif formata kaydet ve eskiyi sil
+          await this.saveWords(legacyWords);
+          await AsyncStorage.removeItem(KEYS.WORDS_LEGACY).catch(() => {});
+          return legacyWords;
+        }
       }
     } catch (e) {
-      console.warn('Failed to load words from storage', e);
+      console.warn('Failed to load words from storage, using default vocabulary database', e);
+      // Hatalı/aşırı büyük legacy kaydı temizle
+      AsyncStorage.removeItem(KEYS.WORDS_LEGACY).catch(() => {});
     }
     return VOCABULARY_DATABASE;
   },
 
-  // Save words
+  // Save words (4600 kelimeyi tekrar yazmak yerine sadece kullanıcının eklediği ve değiştirdiği kısımları kaydeder)
   async saveWords(words: Word[]): Promise<void> {
     try {
-      await AsyncStorage.setItem(KEYS.WORDS, JSON.stringify(words));
+      const customWords: Word[] = [];
+      const overrides: Record<string, Partial<Word>> = {};
+
+      (words || []).forEach((w) => {
+        if (!w || !w.id) return;
+        const orig = builtInWordsMap.get(w.id);
+
+        if (!orig) {
+          // Kullanıcının kendi eklediği yeni kelime
+          customWords.push(w);
+        } else {
+          // Yerleşik kelimede değişiklik var mı?
+          const isFavChanged = w.isFavorite !== orig.isFavorite;
+          const isMasteryChanged = w.mastery !== orig.mastery;
+          const isReviewedChanged = w.lastReviewed !== orig.lastReviewed;
+          const isListsChanged =
+            JSON.stringify(w.lists || []) !== JSON.stringify(orig.lists || []);
+
+          if (isFavChanged || isMasteryChanged || isReviewedChanged || isListsChanged) {
+            overrides[w.id] = {
+              ...(isFavChanged ? { isFavorite: w.isFavorite } : {}),
+              ...(isMasteryChanged ? { mastery: w.mastery } : {}),
+              ...(isReviewedChanged ? { lastReviewed: w.lastReviewed } : {}),
+              ...(isListsChanged ? { lists: w.lists } : {}),
+            };
+          }
+        }
+      });
+
+      const payload: WordsStoragePayload = { customWords, overrides };
+      await AsyncStorage.setItem(KEYS.WORDS_DELTA, JSON.stringify(payload));
+
+      // Eski 2MB+ devasa JSON anahtarını temizle
+      await AsyncStorage.removeItem(KEYS.WORDS_LEGACY).catch(() => {});
     } catch (e) {
       console.warn('Failed to save words to storage', e);
     }
@@ -73,23 +142,43 @@ export const StorageService = {
     }
   },
 
-  // Load other lists
+  // Load other lists (Küratörlü listeler statik olarak bundle içindedir; sadece liste hakimiyet (mastery) oranları yüklenir)
   async getOtherLists(): Promise<WordList[]> {
     try {
-      const data = await AsyncStorage.getItem(KEYS.OTHER_LISTS);
-      if (data) {
-        return JSON.parse(data);
-      }
+      // 1. Android SQLite CursorWindow 2MB sınırını aşan eski 5MB'lık devasa @wordmem_other_lists kaydını temizle
+      AsyncStorage.removeItem(KEYS.OTHER_LISTS_LEGACY).catch(() => {});
+
+      // 2. Hafif mastery haritasını oku
+      const masteryData = await AsyncStorage.getItem(KEYS.OTHER_LISTS_MASTERY);
+      const masteryMap: Record<string, number> = masteryData ? JSON.parse(masteryData) : {};
+
+      // 3. Güncel mastery değerlerini OTHER_CURATED_LISTS üzerine aktar
+      return OTHER_CURATED_LISTS.map((list) => ({
+        ...list,
+        mastery:
+          typeof masteryMap[list.id] === 'number'
+            ? masteryMap[list.id]
+            : (list.mastery || 0),
+      }));
     } catch (e) {
       console.warn('Failed to load other lists from storage', e);
+      return OTHER_CURATED_LISTS;
     }
-    return OTHER_CURATED_LISTS;
   },
 
-  // Save other lists
+  // Save other lists (5MB kelime verisi yerine yalnızca liste ID ve mastery oranlarını kaydeder - <100 byte)
   async saveOtherLists(lists: WordList[]): Promise<void> {
     try {
-      await AsyncStorage.setItem(KEYS.OTHER_LISTS, JSON.stringify(lists));
+      const masteryMap: Record<string, number> = {};
+      (lists || []).forEach((l) => {
+        if (l && l.id) {
+          masteryMap[l.id] = typeof l.mastery === 'number' ? l.mastery : 0;
+        }
+      });
+      await AsyncStorage.setItem(KEYS.OTHER_LISTS_MASTERY, JSON.stringify(masteryMap));
+
+      // Eski devasa anahtarı temizle
+      await AsyncStorage.removeItem(KEYS.OTHER_LISTS_LEGACY).catch(() => {});
     } catch (e) {
       console.warn('Failed to save other lists to storage', e);
     }
@@ -166,8 +255,10 @@ export const StorageService = {
       await this.saveWords(cleanWords);
       await this.saveOtherLists(cleanOtherLists);
 
-      // Clear high scores
+      // Clear legacy keys & high scores
       await AsyncStorage.multiRemove([
+        KEYS.WORDS_LEGACY,
+        KEYS.OTHER_LISTS_LEGACY,
         KEYS.HIGHSCORE_GUESS,
         KEYS.HIGHSCORE_CROSSWORD,
         KEYS.HIGHSCORE_MATCH,

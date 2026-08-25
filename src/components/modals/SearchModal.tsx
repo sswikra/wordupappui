@@ -11,11 +11,12 @@ import {
   Dimensions,
   Platform,
 } from 'react-native';
-import { Search, X, Volume2, Heart, ArrowRight } from 'lucide-react-native';
+import { Search, X, Volume2, Heart, ArrowRight, SearchX } from 'lucide-react-native';
 import { Word } from '../../types';
 import { playPronunciation } from '../../utils/speech';
 import { HapticsService } from '../../utils/haptics';
 import { Colors, getTheme } from '../../theme/colors';
+import { searchWords } from '../../utils/search';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -140,23 +141,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   const [query, setQuery] = useState('');
 
   const filteredWords = useMemo(() => {
-    const seen = new Set<string>();
-    return words.filter((w) => {
-      if (!w || !w.id || seen.has(w.id)) return false;
-
-      const q = query.toLowerCase().trim();
-      const matchesText =
-        !q ||
-        w.word.toLowerCase().includes(q) ||
-        w.translation.toLowerCase().includes(q) ||
-        (w.definition && w.definition.toLowerCase().includes(q));
-
-      if (matchesText) {
-        seen.add(w.id);
-        return true;
-      }
-      return false;
-    });
+    return searchWords(words, query);
   }, [words, query]);
 
   const handleSelectWord = useCallback(
@@ -181,6 +166,40 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   );
 
   const keyExtractor = useCallback((item: Word) => item.id, []);
+
+  const renderEmptyState = useCallback(() => {
+    if (!query.trim()) {
+      return null;
+    }
+    return (
+      <View style={styles.emptyState}>
+        <View
+          style={[
+            styles.emptyIconCircle,
+            { backgroundColor: darkMode ? '#334155' : '#f1f5f9' },
+          ]}
+        >
+          <SearchX size={36} color={darkMode ? '#94a3b8' : '#64748b'} />
+        </View>
+        <Text
+          style={[
+            styles.emptyTitle,
+            { color: darkMode ? '#f8fafc' : '#0f172a' },
+          ]}
+        >
+          Sonuç Bulunamadı
+        </Text>
+        <Text
+          style={[
+            styles.emptySubtitle,
+            { color: darkMode ? '#94a3b8' : '#64748b' },
+          ]}
+        >
+          "{query}" için eşleşen İngilizce veya Türkçe kelime bulunamadı.
+        </Text>
+      </View>
+    );
+  }, [query, darkMode]);
 
   const renderWordItem = useCallback(
     ({ item }: { item: Word }) => (
@@ -252,6 +271,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             data={filteredWords}
             keyExtractor={keyExtractor}
             renderItem={renderWordItem}
+            ListEmptyComponent={renderEmptyState}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.resultsList}
             initialNumToRender={12}
@@ -369,5 +389,31 @@ const styles = StyleSheet.create({
   },
   favBtn: {
     padding: 6,
+  },
+  emptyState: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 48,
+    paddingHorizontal: 24,
+  },
+  emptyIconCircle: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 14,
+  },
+  emptyTitle: {
+    fontSize: 16,
+    fontWeight: '800',
+    marginBottom: 6,
+    textAlign: 'center',
+  },
+  emptySubtitle: {
+    fontSize: 13,
+    fontWeight: '500',
+    textAlign: 'center',
+    lineHeight: 18,
   },
 });

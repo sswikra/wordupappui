@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { X, Volume2, Heart, Play, Sparkles, CheckCircle2, RotateCcw, ArrowLeft, ArrowRight, Trash2 } from 'lucide-react';
 import { WordList, Word } from '../types';
 import { playPronunciation } from '../utils/speech';
+import { searchWords } from '../utils/search';
 import { motion, AnimatePresence } from 'motion/react';
 import confetti from 'canvas-confetti';
 
@@ -43,13 +44,11 @@ export const ListDetailModal: React.FC<ListDetailModalProps> = ({
     });
   }, [list?.words]);
 
-  if (!isOpen || !list) return null;
+  const filteredWords = useMemo(() => {
+    return searchWords(words, searchQuery);
+  }, [words, searchQuery]);
 
-  const filteredWords = words.filter(
-    (w) =>
-      w.word.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      w.translation.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  if (!isOpen || !list) return null;
 
   const startFlashcards = () => {
     if (words.length === 0) return;
