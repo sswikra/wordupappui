@@ -2,7 +2,7 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     
-    // 1. Genel Seviye ve Kelime Hiyerarsisi: /levels/{levelId}/words/{wordId}
+    // 1. Genel Seviye ve Kelime Hiyerarşisi: /levels/{levelId}/words/{wordId}
     match /levels/{levelId} {
       allow read: if true;
       allow write: if request.auth != null;
@@ -13,7 +13,7 @@ service cloud.firestore {
       }
     }
 
-    // 2. Kuratorlu Listeler Hiyerarsisi: /curated_lists/{listId}/words/{wordId}
+    // 2. Küratörlü Listeler Hiyerarşisi: /curated_lists/{listId}/words/{wordId}
     match /curated_lists/{listId} {
       allow read: if true;
       allow write: if request.auth != null;
@@ -24,7 +24,7 @@ service cloud.firestore {
       }
     }
 
-    // 3. Kullanici Dokumanlari ve Alt Koleksiyonlari: /users/{userId}/{document=**}
+    // 3. Kullanıcı Dokümanları ve Alt Koleksiyonları: /users/{userId}/{document=**}
     match /users/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
 
@@ -32,5 +32,16 @@ service cloud.firestore {
         allow read, write: if request.auth != null && request.auth.uid == userId;
       }
     }
+
+    // 4. Eski Sistem Dokümanları (Temizlik ve Geçiş Desteği için)
+    match /system/{document=**} {
+      allow read, write: if request.auth != null;
+    }
+
+    // 5. Test Koleksiyonu
+    match /test/{document=**} {
+      allow read, write: if request.auth != null;
+    }
   }
 }
+

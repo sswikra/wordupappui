@@ -9,7 +9,7 @@
  */
 
 const { initializeApp, getApps } = require('firebase/app');
-const { getFirestore, doc, setDoc, writeBatch } = require('firebase/firestore');
+const { getFirestore, doc, setDoc, deleteDoc, writeBatch, collection, getDocs } = require('firebase/firestore');
 const { getAuth, signInAnonymously } = require('firebase/auth');
 const fs = require('fs');
 const path = require('path');
@@ -46,7 +46,7 @@ async function runSeeder() {
 
     const jsonPath = path.join(__dirname, '..', 'src', 'data', 'expandedVocabulary.json');
     const words = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
-    console.log(`📖 Toplam ${words.length} adet kelime Firestore'a yükleniyor...`);
+    console.log(`📖 Toplam ${words.length} adet kelime Firestore Subcollection hiyerarşisine aktarılacak...`);
 
     const now = new Date().toISOString();
 
@@ -71,7 +71,6 @@ async function runSeeder() {
       }, { merge: true });
 
       // 2. Alt Koleksiyon: /levels/{levelId}/words/{wordId}
-      // Firestore batch limiti maksimum 500'dür. 400'erli paketlerle yazıyoruz.
       const CHUNK_SIZE = 400;
       for (let i = 0; i < levelWords.length; i += CHUNK_SIZE) {
         const chunk = levelWords.slice(i, i + CHUNK_SIZE);
@@ -86,13 +85,13 @@ async function runSeeder() {
         });
 
         await batch.commit();
-        console.log(`  🔹 [levels/${levelId}/words] ${i + chunk.length}/${levelWords.length} kelime yüklendi...`);
+        console.log(`  🔹 [levels/${levelId}/words] ${Math.min(i + CHUNK_SIZE, levelWords.length)}/${levelWords.length} kelime yüklendi...`);
       }
-      console.log(`✅ [levels/${levelId}] Seviye ${levelId} tamamlandı (${levelWords.length} kelime)!`);
+      console.log(`✅ [levels/${levelId}] Seviye ${levelId} tamamlandı (${levelWords.length} kelime subcollection dokümanı)!`);
     }
 
     // 2. KÜRATÖRLÜ LİSTELERİ SUBCOLLECTIONS OLARAK YÜKLE
-    console.log('\n--- 2. KÜRATÖRLÜ LİSTELER SUBCOLLECTIONS (/curated_lists/{listId}/words) YÜKLENİYOR ---');
+    console.log('\n--- 2. KÜRATÖRLÜ LİSTELER SUBCOLLECTIONS (/curated_lists/{listId}/words/{wordId}) YÜKLENİYOR ---');
     const curated = [
       {
         id: 'oxford-3000',
@@ -138,7 +137,7 @@ async function runSeeder() {
 
     for (const list of curated) {
       const { words: listWords, ...listMetadata } = list;
-      // 1. Liste Ana Dokümanı
+      // 1. Liste Ana Dokümanı: /curated_lists/{listId}
       await setDoc(doc(db, 'curated_lists', list.id), {
         ...listMetadata,
         count: listWords.length,
@@ -166,16 +165,44 @@ async function runSeeder() {
       console.log(`✅ [curated_lists/${list.id}] Liste ve ${listWords.length} alt kelimesi yüklendi!`);
     }
 
+    // 3. ESKİ MONOLİTİK DÖKÜMANLARI TEMİZLE (system/vocabulary, system/curated_lists)
+    console.log('\n--- 3. ESKİ MONOLİTİK DÖKÜMANLARIN TEMİZLENMESİ ---');
+    try {
+      await deleteDoc(doc(db, 'system', 'vocabulary'));
+      console.log('🗑️  Eski `system/vocabulary` (23.000 kelimelik tek döküman) silindi.');
+    } catch (e) {
+      console.log('ℹ️  `system/vocabulary` silinemedi veya zaten yok:', e.message);
+    }
+    try {
+      await deleteDoc(doc(db, 'system', 'curated_lists'));
+      console.log('🗑️  Eski `system/curated_lists` silindi.');
+    } catch (e) {
+      console.log('ℹ️  `system/curated_lists` silinemedi veya zaten yok:', e.message);
+    }
+
+    // 4. DOĞRULAMA (VERIFICATION)
+    console.log('\n--- 4. DOĞRULAMA (SUBCOLLECTIONS OKUNUYOR) ---');
+    const a1WordsSnap = await getDocs(collection(db, 'levels', 'A1', 'words'));
+    console.log(`🔍 [levels/A1/words] Doğrulandı! Doküman Sayısı: ${a1WordsSnap.docs.length}`);
+
+    const oxfordSnap = await getDocs(collection(db, 'curated_lists', 'oxford-3000', 'words'));
+    console.log(`🔍 [curated_lists/oxford-3000/words] Doğrulandı! Doküman Sayısı: ${oxfordSnap.docs.length}`);
+
     console.log('\n====================================================');
     console.log(`🎉 TÜM VERİLER HİYERARŞİK SUBCOLLECTION YAPISINDA CLOUD FIRESTORE'A AKTARILDI!`);
-    console.log(`📊 Toplam Seviye Kelimesi: ${words.length} adet doküman`);
+    console.log(`📊 Toplam ${words.length} adet kelime alt dokümanlar halinde kaydedildi.`);
     console.log('====================================================');
     process.exit(0);
   } catch (error) {
-    console.error('❌ Firestore Seeder Hatası:', error);
+    console.error('\n❌ Firestore Seeder Hatası:', error);
+    if (error.code === 'permission-denied' || error.message?.includes('PERMISSION_DENIED')) {
+      console.error('\n⚠️  DİKKAT: Firebase Console Güvenlik Kuralları (Firestore Rules) henüz güncellenmemiş!');
+      console.error('Lütfen Firebase Console -> Firestore Database -> Rules sekmesine giderek kuralları güncelleyip Publish butonuna basınız.');
+    }
     process.exit(1);
   }
 }
 
 runSeeder();
+
 
