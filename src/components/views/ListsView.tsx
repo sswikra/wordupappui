@@ -84,7 +84,7 @@ export const ListsView: React.FC<ListsViewProps> = ({
     }
   };
 
-  const displayedLists = activeTab === 'my' ? userLists : otherLists;
+  const displayedLists = (activeTab === 'my' ? userLists : otherLists) || [];
 
   const confirmDelete = (listId: string, title: string) => {
     HapticsService.light();

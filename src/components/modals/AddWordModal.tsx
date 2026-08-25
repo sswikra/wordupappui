@@ -215,7 +215,7 @@ export const AddWordModal: React.FC<AddWordModalProps> = ({
                 LİSTEYE EKLE
               </Text>
               <View style={styles.chipsRow}>
-                {userLists.map((l) => (
+                {(userLists || []).map((l) => (
                   <TouchableOpacity
                     key={l.id}
                     onPress={() => {

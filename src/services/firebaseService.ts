@@ -465,18 +465,26 @@ export const FirebaseService = {
       await setDoc(
         mainUserRef,
         {
-          name: cleanProfile.name,
-          role: cleanProfile.role,
-          avatarUrl: cleanProfile.avatarUrl,
+          name: cleanProfile.name || 'Öğrenci',
+          role: cleanProfile.role || 'Kelime Kaşifi',
+          avatarUrl: cleanProfile.avatarUrl || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=250&auto=format&fit=crop&q=80',
           gender: cleanProfile.gender || 'male',
-          wordsLearned: cleanProfile.wordsLearned,
-          activeStreak: cleanProfile.activeStreak,
+          wordsLearned: typeof cleanProfile.wordsLearned === 'number' ? cleanProfile.wordsLearned : 0,
+          activeStreak: typeof cleanProfile.activeStreak === 'number' ? cleanProfile.activeStreak : 0,
           lastActiveDate: cleanProfile.lastActiveDate || null,
-          wordsThisWeek: cleanProfile.wordsThisWeek,
-          gamesPlayed: cleanProfile.gamesPlayed,
-          overallAccuracy: cleanProfile.overallAccuracy,
-          weeklyActivity: cleanProfile.weeklyActivity,
-          badges: cleanProfile.badges,
+          wordsThisWeek: typeof cleanProfile.wordsThisWeek === 'number' ? cleanProfile.wordsThisWeek : 0,
+          gamesPlayed: typeof cleanProfile.gamesPlayed === 'number' ? cleanProfile.gamesPlayed : 0,
+          overallAccuracy: typeof cleanProfile.overallAccuracy === 'number' ? cleanProfile.overallAccuracy : 100,
+          weeklyActivity: Array.isArray(cleanProfile.weeklyActivity) ? cleanProfile.weeklyActivity : [
+            { day: 'Pzt', count: 0, active: false },
+            { day: 'Sal', count: 0, active: false },
+            { day: 'Çar', count: 0, active: false },
+            { day: 'Per', count: 0, active: false },
+            { day: 'Cum', count: 0, active: false },
+            { day: 'Cmt', count: 0, active: false },
+            { day: 'Paz', count: 0, active: false },
+          ],
+          badges: Array.isArray(cleanProfile.badges) ? cleanProfile.badges : [],
           updatedAt: now,
         },
         { merge: true }
@@ -494,7 +502,29 @@ export const FirebaseService = {
       const userRef = doc(db, 'users', userId);
       const snap = await getDoc(userRef);
       if (snap.exists() && snap.data()?.name) {
-        return snap.data() as UserProfile;
+        const data = snap.data();
+        return {
+          name: data.name || 'Misafir Öğrenci',
+          role: data.role || 'Misafir Hesap',
+          avatarUrl: data.avatarUrl || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=250&auto=format&fit=crop&q=80',
+          gender: data.gender || 'male',
+          wordsLearned: typeof data.wordsLearned === 'number' ? data.wordsLearned : 0,
+          activeStreak: typeof data.activeStreak === 'number' ? data.activeStreak : 0,
+          lastActiveDate: data.lastActiveDate || null,
+          wordsThisWeek: typeof data.wordsThisWeek === 'number' ? data.wordsThisWeek : 0,
+          gamesPlayed: typeof data.gamesPlayed === 'number' ? data.gamesPlayed : 0,
+          overallAccuracy: typeof data.overallAccuracy === 'number' ? data.overallAccuracy : 100,
+          weeklyActivity: Array.isArray(data.weeklyActivity) && data.weeklyActivity.length === 7 ? data.weeklyActivity : [
+            { day: 'Pzt', count: 0, active: false },
+            { day: 'Sal', count: 0, active: false },
+            { day: 'Çar', count: 0, active: false },
+            { day: 'Per', count: 0, active: false },
+            { day: 'Cum', count: 0, active: false },
+            { day: 'Cmt', count: 0, active: false },
+            { day: 'Paz', count: 0, active: false },
+          ],
+          badges: Array.isArray(data.badges) ? data.badges : [],
+        };
       }
     } catch (error) {
       console.error('❌ [Firestore] getUserProfile hatası:', error);

@@ -29,6 +29,7 @@ import { User } from 'firebase/auth';
 import { UserProfile } from '../../types';
 import { AVATAR_OPTIONS } from '../../data/mockData';
 import { HapticsService } from '../../utils/haptics';
+import { getEmptyWeeklyActivity } from '../../utils/streakManager';
 import { Colors, getTheme } from '../../theme/colors';
 
 interface ProfileViewProps {
@@ -51,7 +52,16 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
   const theme = getTheme(darkMode);
   const isGuest = !currentUser || currentUser.isAnonymous;
 
-  const currentGender = profile.gender || (profile.avatarUrl === AVATAR_OPTIONS.female ? 'female' : 'male');
+  const currentGender = profile?.gender || (profile?.avatarUrl === AVATAR_OPTIONS.female ? 'female' : 'male');
+  const weeklyActivity = Array.isArray(profile?.weeklyActivity) && profile.weeklyActivity.length === 7
+    ? profile.weeklyActivity
+    : getEmptyWeeklyActivity();
+  const badges = Array.isArray(profile?.badges) ? profile.badges : [];
+  const wordsThisWeek = typeof profile?.wordsThisWeek === 'number' ? profile.wordsThisWeek : 0;
+  const wordsLearned = typeof profile?.wordsLearned === 'number' ? profile.wordsLearned : 0;
+  const gamesPlayed = typeof profile?.gamesPlayed === 'number' ? profile.gamesPlayed : 0;
+  const activeStreak = typeof profile?.activeStreak === 'number' ? profile.activeStreak : 0;
+
 
   const handleSelectAvatar = (gender: 'male' | 'female') => {
     HapticsService.selection();
@@ -238,7 +248,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
 
           <View style={styles.streakCountRow}>
             <Text style={[styles.wordsThisWeekText, { color: darkMode ? '#fbbf24' : Colors.accentOrange }]}>
-              {profile.wordsThisWeek}
+              {wordsThisWeek}
             </Text>
             <TrendingUp size={18} color={darkMode ? '#fbbf24' : Colors.accentOrange} />
           </View>
@@ -246,7 +256,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
 
         {/* Weekly Day Activity Chart */}
         <View style={styles.chartRow}>
-          {profile.weeklyActivity.map((day, idx) => {
+          {weeklyActivity.map((day, idx) => {
             const maxCount = 50;
             const barHeight = Math.max(12, Math.round((day.count / maxCount) * 54));
 
@@ -298,7 +308,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
             <BookOpen size={20} color={darkMode ? Colors.primaryAccent : Colors.primary} strokeWidth={2.2} />
           </View>
           <Text style={[styles.statValue, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
-            {profile.wordsLearned.toLocaleString()}
+            {wordsLearned.toLocaleString()}
           </Text>
           <Text style={[styles.statLabel, { color: theme.textSecondary }]}>
             Öğrenilen Kelimeler
@@ -311,7 +321,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
             <Gamepad2 size={20} color={darkMode ? Colors.primaryAccent : Colors.primary} strokeWidth={2.2} />
           </View>
           <Text style={[styles.statValue, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
-            {profile.gamesPlayed}
+            {gamesPlayed}
           </Text>
           <Text style={[styles.statLabel, { color: theme.textSecondary }]}>
             Oynanan Oyunlar
@@ -323,7 +333,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
       <View style={[styles.streakBanner, { backgroundColor: Colors.accentGold }]}>
         <View>
           <Text style={styles.streakBannerDays}>
-            {profile.activeStreak} Gün
+            {activeStreak} Gün
           </Text>
           <Text style={styles.streakBannerSub}>
             Aktif Günlük Seri
@@ -341,7 +351,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
           BAŞARILAR & ROZETLER
         </Text>
         <View style={styles.badgesList}>
-          {profile.badges.map((b) => (
+          {badges.map((b) => (
             <View
               key={b.id}
               style={[

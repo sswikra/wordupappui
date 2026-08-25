@@ -86,35 +86,38 @@ export const OTHER_CURATED_LISTS: WordList[] = [
 ];
 
 // Kullanıcı Özel & Sistem Takip Listeleri
-export const INITIAL_USER_LISTS: WordList[] = [
+export const getCleanUserLists = (): WordList[] => [
   {
     id: 'favorites',
     title: 'Favoriler',
     icon: 'heart',
-    count: VOCABULARY_DATABASE.filter((w) => w.isFavorite || w.lists?.includes('favorites')).length,
-    mastery: 85,
+    count: 0,
+    mastery: 0,
     description: 'Düzenli çalışmak için kalp ile işaretlediğiniz kelimeler.',
     color: '#d97706',
-    words: VOCABULARY_DATABASE.filter((w) => w.isFavorite || w.lists?.includes('favorites')),
+    words: [],
   },
   {
     id: 'review',
     title: 'Tekrar Gözden Geçir',
     icon: 'refresh',
-    count: VOCABULARY_DATABASE.filter((w) => w.lists?.includes('review')).length,
-    mastery: 40,
+    count: 0,
+    mastery: 0,
     description: 'Aralıklı tekrar sistemindeki (Spaced Repetition) kelimeler.',
     color: '#3b82f6',
-    words: VOCABULARY_DATABASE.filter((w) => w.lists?.includes('review')),
+    words: [],
   },
   {
     id: 'struggle',
     title: 'Zorlandığım Kelimeler',
     icon: 'alert',
-    count: VOCABULARY_DATABASE.filter((w) => w.lists?.includes('struggle')).length,
-    mastery: 15,
+    count: 0,
+    mastery: 0,
     description: 'Oyunlarda ve testlerde daha fazla dikkat gerektiren zorlayıcı kelimeler.',
     color: '#ef4444',
-    words: VOCABULARY_DATABASE.filter((w) => w.lists?.includes('struggle')),
+    words: [],
   },
 ];
+
+export const INITIAL_USER_LISTS: WordList[] = getCleanUserLists();
+

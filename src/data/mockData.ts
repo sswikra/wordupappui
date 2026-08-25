@@ -10,7 +10,7 @@ import {
   getWordsByList,
   getWordById,
 } from './vocabulary';
-import { OTHER_CURATED_LISTS, INITIAL_USER_LISTS } from './curatedLists';
+import { OTHER_CURATED_LISTS, INITIAL_USER_LISTS, getCleanUserLists } from './curatedLists';
 import {
   GUESS_WORDS_POOL,
   CROSSWORD_PUZZLES,
@@ -32,6 +32,7 @@ export {
   getWordById,
   OTHER_CURATED_LISTS,
   INITIAL_USER_LISTS,
+  getCleanUserLists,
   GUESS_WORDS_POOL,
   CROSSWORD_PUZZLES,
   MATCH_PAIRS_POOL,
@@ -61,11 +62,11 @@ export const AVATAR_OPTIONS = {
   female: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=250&auto=format&fit=crop&q=80',
 };
 
-// Başlangıç Kullanıcı Profili
-export const INITIAL_USER_PROFILE: UserProfile = {
-  name: 'Misafir Öğrenci',
-  role: 'Misafir Hesap',
-  avatarUrl: AVATAR_OPTIONS.male,
+// Temiz / Sıfır Kullanıcı Profili Üreteci
+export const getCleanUserProfile = (name?: string, role?: string, email?: string, avatarUrl?: string): UserProfile => ({
+  name: name || 'Misafir Öğrenci',
+  role: role || 'Misafir Hesap',
+  avatarUrl: avatarUrl || AVATAR_OPTIONS.male,
   gender: 'male',
   wordsThisWeek: 0,
   weeklyActivity: [
@@ -112,16 +113,31 @@ export const INITIAL_USER_PROFILE: UserProfile = {
       description: 'Büyük Poliglot rozetini açmak için 30 günlük seriye ulaşın.',
     },
   ],
-};
+});
 
-// Başlangıç Uygulama Ayarları
-export const INITIAL_APP_SETTINGS: AppSettings = {
+// Başlangıç Kullanıcı Profili
+export const INITIAL_USER_PROFILE: UserProfile = getCleanUserProfile();
+
+// Temiz / Sıfır Uygulama Ayarları Üreteci
+export const getCleanAppSettings = (email?: string): AppSettings => ({
   darkMode: false,
   notifications: true,
   languageDirection: 'EN_TR',
-  email: '',
+  email: email || '',
   subscription: 'Free',
   soundEnabled: true,
   dailyGoal: 20,
   currentDayWordsCount: 0,
-};
+});
+
+// Başlangıç Uygulama Ayarları
+export const INITIAL_APP_SETTINGS: AppSettings = getCleanAppSettings();
+
+// Temiz Başlangıç Kelime Veritabanı (Favoriler ve özel listeler temizlenmiş)
+export const getCleanVocabularyDatabase = (): Word[] =>
+  VOCABULARY_DATABASE.map((w) => ({
+    ...w,
+    isFavorite: false,
+    lists: (w.lists || []).filter((l) => l !== 'favorites' && l !== 'review' && l !== 'struggle'),
+  }));
+

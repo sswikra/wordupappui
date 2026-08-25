@@ -24,6 +24,10 @@ import {
   INITIAL_USER_PROFILE,
   INITIAL_APP_SETTINGS,
   AVATAR_OPTIONS,
+  getCleanUserLists,
+  getCleanUserProfile,
+  getCleanAppSettings,
+  getCleanVocabularyDatabase,
 } from './src/data/mockData';
 import { StorageService } from './src/utils/storage';
 import { HapticsService } from './src/utils/haptics';
@@ -172,22 +176,6 @@ export default function App() {
           const cloudProfile = await FirebaseService.getUserProfile(user.uid);
           const cloudSettings = await FirebaseService.getAppSettings(user.uid);
 
-          if (cloudWords && cloudWords.length > 0) {
-            const cleanCloud = deduplicateWords(cloudWords);
-            setWords(cleanCloud);
-            await StorageService.saveWords(cleanCloud);
-          } else {
-            // İlk kez giriş yapıyorsa mevcut kelimeleri buluta yedekle
-            await FirebaseService.saveUserWords(user.uid, words);
-          }
-
-          if (cloudLists && cloudLists.length > 0) {
-            setUserLists(cloudLists);
-            await StorageService.saveUserLists(cloudLists);
-          } else {
-            await FirebaseService.saveUserLists(user.uid, userLists);
-          }
-
           const isAnon = user.isAnonymous;
           const defaultAvatar = AVATAR_OPTIONS.male;
 
@@ -196,35 +184,67 @@ export default function App() {
             ? 'Misafir Öğrenci'
             : (user.displayName || (emailName.charAt(0).toUpperCase() + emailName.slice(1)));
 
+          // 1. KELİMELER (Words)
+          let wordsToUse: Word[];
+          if (cloudWords && cloudWords.length > 0) {
+            wordsToUse = deduplicateWords(cloudWords);
+          } else {
+            // Yeni kullanıcı veya yeni misafir: Temiz başlangıç kelimeleri (favoriler ve özel listeler olmadan)
+            wordsToUse = getCleanVocabularyDatabase();
+            await FirebaseService.saveUserWords(user.uid, wordsToUse);
+          }
+          setWords(wordsToUse);
+          await StorageService.saveWords(wordsToUse);
+
+          // 2. LİSTELER (User Lists - Favoriler, Tekrar Gözden Geçir, Zorlandığım Kelimeler)
+          let listsToUse: WordList[];
+          if (cloudLists && cloudLists.length > 0) {
+            listsToUse = cloudLists;
+          } else {
+            // Yeni kullanıcı veya yeni misafir: Sıfırlanmış boş listeler (count: 0, mastery: 0, words: [])
+            listsToUse = getCleanUserLists();
+            await FirebaseService.saveUserLists(user.uid, listsToUse);
+          }
+          setUserLists(listsToUse);
+          await StorageService.saveUserLists(listsToUse);
+
+          // 3. PROFİL (Profile - Aktivite, Öğrenilen Kelimeler, Oynanan Oyunlar, Seri)
           let profileToUse: UserProfile;
           if (cloudProfile) {
             const currentProfileName = (cloudProfile.name === 'Alex' || cloudProfile.name === 'Alex Morgan')
               ? calculatedName
-              : cloudProfile.name;
+              : (cloudProfile.name || calculatedName);
 
             profileToUse = {
+              ...INITIAL_USER_PROFILE,
               ...cloudProfile,
               name: currentProfileName,
               role: isAnon ? 'Misafir Hesap' : 'Kelime Kaşifi',
               avatarUrl: cloudProfile.avatarUrl || user.photoURL || defaultAvatar,
               gender: cloudProfile.gender || 'male',
+              wordsLearned: typeof cloudProfile.wordsLearned === 'number' ? cloudProfile.wordsLearned : 0,
+              wordsThisWeek: typeof cloudProfile.wordsThisWeek === 'number' ? cloudProfile.wordsThisWeek : 0,
+              gamesPlayed: typeof cloudProfile.gamesPlayed === 'number' ? cloudProfile.gamesPlayed : 0,
+              activeStreak: typeof cloudProfile.activeStreak === 'number' ? cloudProfile.activeStreak : 0,
+              overallAccuracy: typeof cloudProfile.overallAccuracy === 'number' ? cloudProfile.overallAccuracy : 100,
+              weeklyActivity: Array.isArray(cloudProfile.weeklyActivity) && cloudProfile.weeklyActivity.length === 7
+                ? cloudProfile.weeklyActivity
+                : getEmptyWeeklyActivity(),
+              badges: Array.isArray(cloudProfile.badges) && cloudProfile.badges.length > 0
+                ? cloudProfile.badges
+                : INITIAL_USER_PROFILE.badges,
             };
           } else {
-            // Yeni kullanıcı kaydı / ilk kez giriş: Tamamen sıfır profil
-            profileToUse = {
-              ...INITIAL_USER_PROFILE,
-              name: calculatedName,
-              role: isAnon ? 'Misafir Hesap' : 'Kelime Kaşifi',
-              avatarUrl: user.photoURL || defaultAvatar,
-              gender: 'male',
-              activeStreak: 0,
-              wordsLearned: 0,
-              wordsThisWeek: 0,
-              gamesPlayed: 0,
-              weeklyActivity: getEmptyWeeklyActivity(),
-            };
+            // Yeni kullanıcı kaydı / ilk kez giriş: Tamamen sıfırlanmış temiz profil
+            profileToUse = getCleanUserProfile(
+              calculatedName,
+              isAnon ? 'Misafir Hesap' : 'Kelime Kaşifi',
+              user.email || undefined,
+              user.photoURL || defaultAvatar
+            );
           }
 
+          // 4. AYARLAR (Settings)
           let settingsToUse: AppSettings;
           if (cloudSettings) {
             settingsToUse = {
@@ -232,11 +252,9 @@ export default function App() {
               email: isAnon ? 'misafir@wordmem.app' : (user.email || cloudSettings.email),
             };
           } else {
-            settingsToUse = {
-              ...INITIAL_APP_SETTINGS,
-              email: isAnon ? 'misafir@wordmem.app' : (user.email || ''),
-              currentDayWordsCount: 0,
-            };
+            settingsToUse = getCleanAppSettings(
+              isAnon ? 'misafir@wordmem.app' : (user.email || '')
+            );
           }
 
           // Gün sıfırlaması & seri doğrulaması yap
@@ -260,9 +278,24 @@ export default function App() {
           console.warn('Firestore veri yükleme hatası:', e);
         }
       } else {
-        // Kullanıcı giriş yapmamışsa başlangıçta giriş ekranını aç
+        // Kullanıcı giriş yapmamışsa / oturum kapalıysa temiz misafir durumuna sıfırla
+        const cleanProf = getCleanUserProfile();
+        const cleanSett = getCleanAppSettings();
+        const cleanLists = getCleanUserLists();
+        const cleanWords = getCleanVocabularyDatabase();
+
+        setProfile(cleanProf);
+        setSettings(cleanSett);
+        setUserLists(cleanLists);
+        setWords(cleanWords);
+
+        StorageService.saveProfile(cleanProf);
+        StorageService.saveSettings(cleanSett);
+        StorageService.saveUserLists(cleanLists);
+        StorageService.saveWords(cleanWords);
+
         setIsAuthOpen(true);
-        console.log('👤 Oturum açık değil (Giriş ekranı gösteriliyor)');
+        console.log('👤 Oturum açık değil (Giriş ekranı gösteriliyor ve veriler sıfırlandı)');
       }
     });
 
@@ -435,7 +468,14 @@ export default function App() {
   };
 
   const handleUpdateProfile = async (newProfile: Partial<UserProfile>) => {
-    const updated = { ...profile, ...newProfile };
+    const updated: UserProfile = {
+      ...profile,
+      ...newProfile,
+      wordsLearned: typeof (newProfile.wordsLearned ?? profile.wordsLearned) === 'number' ? (newProfile.wordsLearned ?? profile.wordsLearned) : 0,
+      wordsThisWeek: typeof (newProfile.wordsThisWeek ?? profile.wordsThisWeek) === 'number' ? (newProfile.wordsThisWeek ?? profile.wordsThisWeek) : 0,
+      gamesPlayed: typeof (newProfile.gamesPlayed ?? profile.gamesPlayed) === 'number' ? (newProfile.gamesPlayed ?? profile.gamesPlayed) : 0,
+      activeStreak: typeof (newProfile.activeStreak ?? profile.activeStreak) === 'number' ? (newProfile.activeStreak ?? profile.activeStreak) : 0,
+    };
     setProfile(updated);
     await StorageService.saveProfile(updated);
 
@@ -450,35 +490,22 @@ export default function App() {
       await AuthService.logout();
       setCurrentUser(null);
 
-      const guestProfile: UserProfile = {
-        ...INITIAL_USER_PROFILE,
-        name: 'Misafir Öğrenci',
-        role: 'Misafir Hesap',
-        avatarUrl: AVATAR_OPTIONS.male,
-        gender: 'male',
-        activeStreak: 0,
-        wordsLearned: 0,
-        wordsThisWeek: 0,
-        gamesPlayed: 0,
-        weeklyActivity: getEmptyWeeklyActivity(),
-      };
-
-      const guestSettings: AppSettings = {
-        ...INITIAL_APP_SETTINGS,
-        email: 'misafir@wordmem.app',
-        currentDayWordsCount: 0,
-      };
+      const guestProfile = getCleanUserProfile();
+      const guestSettings = getCleanAppSettings('misafir@wordmem.app');
+      const cleanWords = getCleanVocabularyDatabase();
+      const cleanLists = getCleanUserLists();
 
       setProfile(guestProfile);
       setSettings(guestSettings);
-      setWords(VOCABULARY_DATABASE);
-      setUserLists(INITIAL_USER_LISTS);
+      setWords(cleanWords);
+      setUserLists(cleanLists);
 
       await StorageService.saveProfile(guestProfile);
       await StorageService.saveSettings(guestSettings);
-      await StorageService.saveWords(VOCABULARY_DATABASE);
-      await StorageService.saveUserLists(INITIAL_USER_LISTS);
+      await StorageService.saveWords(cleanWords);
+      await StorageService.saveUserLists(cleanLists);
 
+      setIsAuthOpen(true);
       console.log('✅ Çıkış yapıldı ve oturum misafir moduna sıfırlandı.');
     } catch (e) {
       console.error('Çıkış hatası:', e);

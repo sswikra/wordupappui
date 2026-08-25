@@ -261,7 +261,7 @@ export const WordDetailModal: React.FC<WordDetailModalProps> = ({
 
               {showAddToListDropdown && (
                 <View style={[styles.listPickerCard, { backgroundColor: darkMode ? '#334155' : '#f8fafc', borderColor: theme.cardBorder }]}>
-                  {userLists.map((l) => (
+                  {(userLists || []).map((l) => (
                     <TouchableOpacity
                       key={l.id}
                       onPress={() => handleListSelect(l.id)}
