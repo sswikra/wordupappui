@@ -35,6 +35,8 @@ interface ListsViewProps {
   onSelectList: (list: WordList) => void;
   onOpenCreateList: () => void;
   onDeleteList: (listId: string, isOtherTab?: boolean) => void;
+  onClearList?: (listId: string) => void;
+  onResetAllLists?: () => void;
   darkMode?: boolean;
 }
 
@@ -44,6 +46,8 @@ export const ListsView: React.FC<ListsViewProps> = ({
   onSelectList,
   onOpenCreateList,
   onDeleteList,
+  onClearList,
+  onResetAllLists,
   darkMode = false,
 }) => {
   const theme = getTheme(darkMode);
@@ -86,19 +90,60 @@ export const ListsView: React.FC<ListsViewProps> = ({
 
   const displayedLists = (activeTab === 'my' ? userLists : otherLists) || [];
 
-  const confirmDelete = (listId: string, title: string) => {
+  const handleListAction = (list: WordList) => {
+    HapticsService.light();
+    const isSystem = list.id === 'favorites' || list.id === 'review' || list.id === 'struggle';
+
+    if (activeTab === 'my' && isSystem) {
+      Alert.alert(
+        'Listeyi Sıfırla',
+        `"${list.title}" listesindeki tüm kelimeler temizlenecek ve hakimiyet %0 yapılacaktır. Emin misiniz?`,
+        [
+          { text: 'Vazgeç', style: 'cancel' },
+          {
+            text: 'Sıfırla',
+            style: 'destructive',
+            onPress: () => {
+              HapticsService.medium();
+              if (onClearList) {
+                onClearList(list.id);
+              }
+            },
+          },
+        ]
+      );
+    } else {
+      Alert.alert(
+        'Listeyi Sil',
+        `"${list.title}" listesini silmek istediğinize emin misiniz?`,
+        [
+          { text: 'İptal', style: 'cancel' },
+          {
+            text: 'Sil',
+            style: 'destructive',
+            onPress: () => {
+              HapticsService.medium();
+              onDeleteList(list.id, activeTab === 'other');
+            },
+          },
+        ]
+      );
+    }
+  };
+
+  const confirmResetAllLists = () => {
     HapticsService.light();
     Alert.alert(
-      'Listeyi Sil',
-      `"${title}" listesini silmek istediğinize emin misiniz?`,
+      'Tüm Listeleri Sıfırla',
+      'Listelerim bölümündeki tüm listelerin kelimeleri temizlenecek ve hakimiyet oranları %0 yapılacaktır. Emin misiniz?',
       [
-        { text: 'İptal', style: 'cancel' },
+        { text: 'Vazgeç', style: 'cancel' },
         {
-          text: 'Sil',
+          text: 'Tümünü Sıfırla',
           style: 'destructive',
           onPress: () => {
             HapticsService.medium();
-            onDeleteList(listId, activeTab === 'other');
+            if (onResetAllLists) onResetAllLists();
           },
         },
       ]
@@ -162,72 +207,94 @@ export const ListsView: React.FC<ListsViewProps> = ({
         </TouchableOpacity>
       </View>
 
+      {/* Sub Header for My Lists with Reset Action */}
+      {activeTab === 'my' && (
+        <View style={styles.myListsHeaderRow}>
+          <Text style={[styles.myListsHeaderTitle, { color: theme.textSecondary }]}>
+            Kişisel Listeleriniz ({userLists.length})
+          </Text>
+          <TouchableOpacity
+            onPress={confirmResetAllLists}
+            activeOpacity={0.75}
+            style={[styles.resetHeaderBtn, { backgroundColor: darkMode ? '#334155' : '#fee2e2' }]}
+          >
+            <RotateCw size={12} color="#ef4444" strokeWidth={2.4} />
+            <Text style={styles.resetHeaderBtnText}>Listeleri Sıfırla</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+
       {/* Word Lists Cards */}
       <View style={styles.listsWrapper}>
-        {displayedLists.map((list) => (
-          <TouchableOpacity
-            key={list.id}
-            onPress={() => {
-              HapticsService.selection();
-              onSelectList(list);
-            }}
-            activeOpacity={0.85}
-            style={[
-              styles.listCard,
-              {
-                backgroundColor: darkMode ? '#1e293b' : '#ffffff',
-                borderColor: theme.cardBorder,
-              },
-            ]}
-          >
-            {/* Top Row: Icon + Title & Badge + (Percentage & Delete) */}
-            <View style={styles.cardTopRow}>
-              <View style={styles.titleInfo}>
-                <View style={[styles.iconBox, { backgroundColor: darkMode ? '#0f172a' : '#f8fafc', borderColor: list.color ? `${list.color}33` : theme.cardBorder }]}>
-                  {getListIcon(list.icon, list.color)}
-                </View>
+        {displayedLists.map((list) => {
+          const isSystem = list.id === 'favorites' || list.id === 'review' || list.id === 'struggle';
+          const wordCount = list.words?.length ?? list.count ?? 0;
 
-                <View style={styles.textColumn}>
-                  <Text style={[styles.listTitle, { color: darkMode ? Colors.primaryAccent : Colors.primary }]} numberOfLines={1}>
-                    {list.title}
-                  </Text>
-                  <View style={[styles.countBadge, { backgroundColor: darkMode ? '#334155' : '#d8ebee' }]}>
-                    <Text style={[styles.countText, { color: darkMode ? Colors.primaryAccent : Colors.primaryDark }]}>
-                      {list.words?.length || list.count || 0} Kelime
+          return (
+            <TouchableOpacity
+              key={list.id}
+              onPress={() => {
+                HapticsService.selection();
+                onSelectList(list);
+              }}
+              activeOpacity={0.85}
+              style={[
+                styles.listCard,
+                {
+                  backgroundColor: darkMode ? '#1e293b' : '#ffffff',
+                  borderColor: theme.cardBorder,
+                },
+              ]}
+            >
+              {/* Top Row: Icon + Title & Badge + (Percentage & Delete/Clear) */}
+              <View style={styles.cardTopRow}>
+                <View style={styles.titleInfo}>
+                  <View style={[styles.iconBox, { backgroundColor: darkMode ? '#0f172a' : '#f8fafc', borderColor: list.color ? `${list.color}33` : theme.cardBorder }]}>
+                    {getListIcon(list.icon, list.color)}
+                  </View>
+
+                  <View style={styles.textColumn}>
+                    <Text style={[styles.listTitle, { color: darkMode ? Colors.primaryAccent : Colors.primary }]} numberOfLines={1}>
+                      {list.title}
                     </Text>
+                    <View style={[styles.countBadge, { backgroundColor: darkMode ? '#334155' : '#d8ebee' }]}>
+                      <Text style={[styles.countText, { color: darkMode ? Colors.primaryAccent : Colors.primaryDark }]}>
+                        {wordCount} Kelime
+                      </Text>
+                    </View>
                   </View>
                 </View>
+
+                {/* Mastery & Delete/Clear action */}
+                <View style={styles.actionRow}>
+                  <Text style={[styles.masteryText, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
+                    %{list.mastery}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => handleListAction(list)}
+                    style={styles.deleteBtn}
+                    hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  >
+                    <Trash2 size={16} color={isSystem && activeTab === 'my' ? '#f59e0b' : '#94a3b8'} />
+                  </TouchableOpacity>
+                </View>
               </View>
 
-              {/* Mastery & Delete action */}
-              <View style={styles.actionRow}>
-                <Text style={[styles.masteryText, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
-                  %{list.mastery}
-                </Text>
-                <TouchableOpacity
-                  onPress={() => confirmDelete(list.id, list.title)}
-                  style={styles.deleteBtn}
-                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                >
-                  <Trash2 size={16} color={darkMode ? '#94a3b8' : '#94a3b8'} />
-                </TouchableOpacity>
+              {/* Progress Track */}
+              <View style={[styles.progressTrack, { backgroundColor: darkMode ? '#334155' : '#e2e8f0' }]}>
+                <View
+                  style={[
+                    styles.progressBar,
+                    {
+                      width: `${list.mastery}%`,
+                      backgroundColor: darkMode ? Colors.primaryAccent : Colors.primary,
+                    },
+                  ]}
+                />
               </View>
-            </View>
-
-            {/* Progress Track */}
-            <View style={[styles.progressTrack, { backgroundColor: darkMode ? '#334155' : '#e2e8f0' }]}>
-              <View
-                style={[
-                  styles.progressBar,
-                  {
-                    width: `${list.mastery}%`,
-                    backgroundColor: darkMode ? Colors.primaryAccent : Colors.primary,
-                  },
-                ]}
-              />
-            </View>
-          </TouchableOpacity>
-        ))}
+            </TouchableOpacity>
+          );
+        })}
 
         {/* "+ Yeni Liste Ekle" Card */}
         {activeTab === 'my' && (
@@ -381,6 +448,30 @@ const styles = StyleSheet.create({
   },
   addListText: {
     fontSize: 13,
+    fontWeight: '800',
+  },
+  myListsHeaderRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 12,
+    paddingHorizontal: 4,
+  },
+  myListsHeaderTitle: {
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  resetHeaderBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 12,
+  },
+  resetHeaderBtnText: {
+    color: '#ef4444',
+    fontSize: 11,
     fontWeight: '800',
   },
 });

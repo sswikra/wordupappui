@@ -3,8 +3,13 @@ import { Word, WordList, UserProfile, AppSettings } from '../types';
 import {
   VOCABULARY_DATABASE,
   INITIAL_USER_LISTS,
+  OTHER_CURATED_LISTS,
   INITIAL_USER_PROFILE,
   INITIAL_APP_SETTINGS,
+  getCleanUserLists,
+  getCleanUserProfile,
+  getCleanAppSettings,
+  getCleanVocabularyDatabase,
 } from '../data/mockData';
 
 const KEYS = {
@@ -13,6 +18,7 @@ const KEYS = {
   OTHER_LISTS: '@wordmem_other_lists',
   PROFILE: '@wordmem_profile',
   SETTINGS: '@wordmem_settings',
+  DATA_CLEAN_VERSION: '@wordmem_data_clean_v3',
   HIGHSCORE_GUESS: '@wordmem_highscore_guess',
   HIGHSCORE_CROSSWORD: '@wordmem_highscore_crossword',
   HIGHSCORE_MATCH: '@wordmem_highscore_match',
@@ -21,6 +27,8 @@ const KEYS = {
 };
 
 export const StorageService = {
+  KEYS,
+
   // Load words
   async getWords(): Promise<Word[]> {
     try {
@@ -65,6 +73,28 @@ export const StorageService = {
     }
   },
 
+  // Load other lists
+  async getOtherLists(): Promise<WordList[]> {
+    try {
+      const data = await AsyncStorage.getItem(KEYS.OTHER_LISTS);
+      if (data) {
+        return JSON.parse(data);
+      }
+    } catch (e) {
+      console.warn('Failed to load other lists from storage', e);
+    }
+    return OTHER_CURATED_LISTS;
+  },
+
+  // Save other lists
+  async saveOtherLists(lists: WordList[]): Promise<void> {
+    try {
+      await AsyncStorage.setItem(KEYS.OTHER_LISTS, JSON.stringify(lists));
+    } catch (e) {
+      console.warn('Failed to save other lists to storage', e);
+    }
+  },
+
   // Load profile
   async getProfile(): Promise<UserProfile> {
     try {
@@ -106,6 +136,46 @@ export const StorageService = {
       await AsyncStorage.setItem(KEYS.SETTINGS, JSON.stringify(settings));
     } catch (e) {
       console.warn('Failed to save settings', e);
+    }
+  },
+
+  // Reset Helpers
+  async resetUserLists(): Promise<WordList[]> {
+    const cleanLists = getCleanUserLists();
+    await this.saveUserLists(cleanLists);
+    return cleanLists;
+  },
+
+  async resetProfile(name?: string, role?: string, email?: string, avatarUrl?: string): Promise<UserProfile> {
+    const cleanProfile = getCleanUserProfile(name, role, email, avatarUrl);
+    await this.saveProfile(cleanProfile);
+    return cleanProfile;
+  },
+
+  async resetAll(): Promise<void> {
+    try {
+      const cleanLists = getCleanUserLists();
+      const cleanProfile = getCleanUserProfile();
+      const cleanSettings = getCleanAppSettings();
+      const cleanWords = getCleanVocabularyDatabase();
+      const cleanOtherLists = OTHER_CURATED_LISTS;
+
+      await this.saveUserLists(cleanLists);
+      await this.saveProfile(cleanProfile);
+      await this.saveSettings(cleanSettings);
+      await this.saveWords(cleanWords);
+      await this.saveOtherLists(cleanOtherLists);
+
+      // Clear high scores
+      await AsyncStorage.multiRemove([
+        KEYS.HIGHSCORE_GUESS,
+        KEYS.HIGHSCORE_CROSSWORD,
+        KEYS.HIGHSCORE_MATCH,
+        KEYS.HIGHSCORE_SCRAMBLE,
+        KEYS.HIGHSCORE_HANGMAN,
+      ]);
+    } catch (e) {
+      console.warn('Failed to reset all data in storage', e);
     }
   },
 

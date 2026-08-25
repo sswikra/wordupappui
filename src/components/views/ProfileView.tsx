@@ -7,6 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Dimensions,
+  Alert,
 } from 'react-native';
 import {
   BookOpen,
@@ -24,6 +25,7 @@ import {
   Check,
   UserCheck,
   LogIn,
+  RotateCw,
 } from 'lucide-react-native';
 import { User } from 'firebase/auth';
 import { UserProfile } from '../../types';
@@ -38,6 +40,7 @@ interface ProfileViewProps {
   currentUser?: User | null;
   onOpenAuth?: () => void;
   onUpdateProfile?: (newProfile: Partial<UserProfile>) => void;
+  onResetProfile?: () => void;
 }
 
 const { width } = Dimensions.get('window');
@@ -48,6 +51,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
   currentUser,
   onOpenAuth,
   onUpdateProfile,
+  onResetProfile,
 }) => {
   const theme = getTheme(darkMode);
   const isGuest = !currentUser || currentUser.isAnonymous;
@@ -86,6 +90,25 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
       default:
         return <Lock size={18} color="#94a3b8" />;
     }
+  };
+
+  const handleResetProfile = () => {
+    HapticsService.light();
+    Alert.alert(
+      'İlerlemeyi Sıfırla',
+      'Öğrenilen kelimeler, haftalık aktivite grafiği, oynanan oyunlar ve aktif günlük seri 0\'a sıfırlanacaktır. Emin misiniz?',
+      [
+        { text: 'Vazgeç', style: 'cancel' },
+        {
+          text: 'Sıfırla',
+          style: 'destructive',
+          onPress: () => {
+            HapticsService.medium();
+            if (onResetProfile) onResetProfile();
+          },
+        },
+      ]
+    );
   };
 
   return (
@@ -246,11 +269,23 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
             </Text>
           </View>
 
-          <View style={styles.streakCountRow}>
-            <Text style={[styles.wordsThisWeekText, { color: darkMode ? '#fbbf24' : Colors.accentOrange }]}>
-              {wordsThisWeek}
-            </Text>
-            <TrendingUp size={18} color={darkMode ? '#fbbf24' : Colors.accentOrange} />
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+            <View style={styles.streakCountRow}>
+              <Text style={[styles.wordsThisWeekText, { color: darkMode ? '#fbbf24' : Colors.accentOrange }]}>
+                {wordsThisWeek}
+              </Text>
+              <TrendingUp size={18} color={darkMode ? '#fbbf24' : Colors.accentOrange} />
+            </View>
+
+            {onResetProfile && (
+              <TouchableOpacity
+                onPress={handleResetProfile}
+                style={[styles.profileResetBtn, { backgroundColor: darkMode ? '#334155' : '#fee2e2' }]}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              >
+                <RotateCw size={14} color="#ef4444" strokeWidth={2.4} />
+              </TouchableOpacity>
+            )}
           </View>
         </View>
 
@@ -726,5 +761,11 @@ const styles = StyleSheet.create({
     fontSize: 11,
     fontWeight: '600',
     marginTop: 2,
+  },
+  profileResetBtn: {
+    padding: 6,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

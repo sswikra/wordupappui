@@ -9,6 +9,7 @@ import {
   ScrollView,
   FlatList,
   Dimensions,
+  Alert,
 } from 'react-native';
 import {
   X,
@@ -16,6 +17,7 @@ import {
   Heart,
   Play,
   RotateCcw,
+  RotateCw,
   CheckCircle2,
   ArrowLeft,
   Trash2,
@@ -34,6 +36,8 @@ interface ListDetailModalProps {
   onToggleFavorite: (wordId: string) => void;
   onUpdateListMastery: (listId: string, delta: number) => void;
   onDeleteList?: (listId: string) => void;
+  onClearList?: (listId: string) => void;
+  onWordMastered?: () => void;
   darkMode?: boolean;
 }
 
@@ -47,6 +51,8 @@ export const ListDetailModal: React.FC<ListDetailModalProps> = ({
   onToggleFavorite,
   onUpdateListMastery,
   onDeleteList,
+  onClearList,
+  onWordMastered,
   darkMode = false,
 }) => {
   const theme = getTheme(darkMode);
@@ -89,6 +95,9 @@ export const ListDetailModal: React.FC<ListDetailModalProps> = ({
       HapticsService.success();
       setSessionScore((prev) => ({ ...prev, mastered: prev.mastered + 1 }));
       onUpdateListMastery(list.id, 2);
+      if (onWordMastered) {
+        onWordMastered();
+      }
     } else {
       HapticsService.light();
       setSessionScore((prev) => ({ ...prev, review: prev.review + 1 }));
@@ -98,6 +107,26 @@ export const ListDetailModal: React.FC<ListDetailModalProps> = ({
       setIsFlipped(false);
       setCurrentCardIndex((prev) => prev + 1);
     }
+  };
+
+  const handleClearList = () => {
+    HapticsService.light();
+    Alert.alert(
+      'Listeyi Temizle / Sıfırla',
+      `"${list.title}" listesindeki tüm kelimeler temizlenecek ve hakimiyet %0 yapılacaktır. Emin misiniz?`,
+      [
+        { text: 'Vazgeç', style: 'cancel' },
+        {
+          text: 'Temizle',
+          style: 'destructive',
+          onPress: () => {
+            HapticsService.medium();
+            if (onClearList) onClearList(list.id);
+            setStudyMode(false);
+          },
+        },
+      ]
+    );
   };
 
   const isSessionComplete =
@@ -132,7 +161,16 @@ export const ListDetailModal: React.FC<ListDetailModalProps> = ({
             </View>
 
             <View style={styles.headerRight}>
-              {onDeleteList && !studyMode && (
+              {words.length > 0 && onClearList && !studyMode && (
+                <TouchableOpacity
+                  onPress={handleClearList}
+                  style={styles.trashBtn}
+                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                >
+                  <RotateCw size={18} color="#f59e0b" />
+                </TouchableOpacity>
+              )}
+              {onDeleteList && !studyMode && list.id !== 'favorites' && list.id !== 'review' && list.id !== 'struggle' && (
                 <TouchableOpacity
                   onPress={() => {
                     onDeleteList(list.id);

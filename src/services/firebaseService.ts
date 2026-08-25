@@ -451,6 +451,48 @@ export const FirebaseService = {
     }
   },
 
+  /**
+   * Kullanıcının listelerini temiz 3 standart listeye sıfırlar ve özel listeleri siler.
+   */
+  async resetUserLists(userId: string, cleanLists: WordList[]): Promise<void> {
+    try {
+      if (!userId || !cleanLists) return;
+      const now = new Date().toISOString();
+
+      // Mevcut listeleri çek
+      const listsColRef = collection(db, 'users', userId, 'lists');
+      const snapshot = await getDocs(listsColRef);
+
+      const batch = writeBatch(db);
+      // Eski tüm özel listeleri sil
+      snapshot.forEach((d) => {
+        batch.delete(d.ref);
+      });
+
+      // Temiz 3 listeyi yeniden yaz
+      cleanLists.forEach((list) => {
+        if (list && list.id) {
+          const listRef = doc(db, 'users', userId, 'lists', list.id);
+          batch.set(listRef, {
+            ...list,
+            count: 0,
+            mastery: 0,
+            words: [],
+            updatedAt: now,
+          });
+        }
+      });
+
+      await batch.commit();
+
+      const userMainRef = doc(db, 'users', userId);
+      await setDoc(userMainRef, { userListsCount: cleanLists.length, lastUpdated: now }, { merge: true });
+      console.log(`🔥 [Firestore] Kullanıcı (${userId}) listeleri sıfırlandı.`);
+    } catch (error) {
+      console.error('❌ [Firestore] resetUserLists hatası:', error);
+    }
+  },
+
   // =========================================================================
   // 5. KULLANICI PROFİLİ (USER PROFILE)
   // =========================================================================
@@ -601,5 +643,20 @@ export const FirebaseService = {
       console.error('❌ [Firestore] getHighScore hatası:', error);
     }
     return null;
+  },
+
+  /**
+   * Kullanıcının tüm verilerini (listeler, profil istatistikleri, kelime favorileri) sıfırlar.
+   */
+  async resetUserData(userId: string, cleanProfile: UserProfile, cleanLists: WordList[], cleanWords: Word[]): Promise<void> {
+    try {
+      if (!userId) return;
+      await this.resetUserLists(userId, cleanLists);
+      await this.saveUserProfile(userId, cleanProfile);
+      await this.saveUserWords(userId, cleanWords);
+      console.log(`🔥 [Firestore] Kullanıcı (${userId}) tüm verileri sıfırlandı.`);
+    } catch (error) {
+      console.error('❌ [Firestore] resetUserData hatası:', error);
+    }
   },
 };

@@ -98,13 +98,34 @@ export default function App() {
   useEffect(() => {
     async function loadData() {
       try {
-        const savedWords = await StorageService.getWords();
-        const savedLists = await StorageService.getUserLists();
-        const savedProfile = await StorageService.getProfile();
-        const savedSettings = await StorageService.getSettings();
+        const isCleanVersion = await StorageService.KEYS ? await StorageService.getOtherLists() : null;
+        let savedWords = await StorageService.getWords();
+        let savedLists = await StorageService.getUserLists();
+        let savedOtherLists = await StorageService.getOtherLists();
+        let savedProfile = await StorageService.getProfile();
+        let savedSettings = await StorageService.getSettings();
+
+        // 1. Eski mock verileri temizleme ve sürüm kontrolü
+        // Eğer Favoriler listesinde eski mock mastery (85) varsa veya temizleme yapılmamışsa sıfırla
+        const hasLegacyMockLists = savedLists.some(
+          (l) => (l.id === 'favorites' && (l.mastery === 85 || (l.words && l.words.length > 0 && !l.words[0].id)))
+        );
+
+        if (hasLegacyMockLists) {
+          savedLists = getCleanUserLists();
+          savedProfile = getCleanUserProfile();
+          savedWords = getCleanVocabularyDatabase();
+          savedSettings = getCleanAppSettings();
+
+          await StorageService.saveUserLists(savedLists);
+          await StorageService.saveProfile(savedProfile);
+          await StorageService.saveWords(savedWords);
+          await StorageService.saveSettings(savedSettings);
+        }
 
         if (savedWords) setWords(deduplicateWords(savedWords));
         if (savedLists) setUserLists(savedLists);
+        if (savedOtherLists) setOtherLists(savedOtherLists);
 
         const initialProf = savedProfile || INITIAL_USER_PROFILE;
         const initialSett = savedSettings || INITIAL_APP_SETTINGS;
@@ -189,7 +210,7 @@ export default function App() {
           if (cloudWords && cloudWords.length > 0) {
             wordsToUse = deduplicateWords(cloudWords);
           } else {
-            // Yeni kullanıcı veya yeni misafir: Temiz başlangıç kelimeleri (favoriler ve özel listeler olmadan)
+            // Yeni kullanıcı veya yeni misafir: Temiz başlangıç kelimeleri
             wordsToUse = getCleanVocabularyDatabase();
             await FirebaseService.saveUserWords(user.uid, wordsToUse);
           }
@@ -199,7 +220,13 @@ export default function App() {
           // 2. LİSTELER (User Lists - Favoriler, Tekrar Gözden Geçir, Zorlandığım Kelimeler)
           let listsToUse: WordList[];
           if (cloudLists && cloudLists.length > 0) {
-            listsToUse = cloudLists;
+            // Firestore'daki listelerin kelime sayıları ve verilerini temiz normalize et
+            listsToUse = cloudLists.map((cl) => ({
+              ...cl,
+              count: cl.words ? cl.words.length : cl.count || 0,
+              mastery: typeof cl.mastery === 'number' ? cl.mastery : 0,
+              words: cl.words ? deduplicateWords(cl.words) : [],
+            }));
           } else {
             // Yeni kullanıcı veya yeni misafir: Sıfırlanmış boş listeler (count: 0, mastery: 0, words: [])
             listsToUse = getCleanUserLists();
@@ -565,15 +592,194 @@ export default function App() {
   };
 
   const handleUpdateListMastery = (listId: string, delta: number) => {
-    setUserLists((prev) =>
-      prev.map((list) => {
+    setUserLists((prev) => {
+      const updated = prev.map((list) => {
         if (list.id === listId) {
           const newMastery = Math.min(100, Math.max(0, list.mastery + delta));
           return { ...list, mastery: newMastery };
         }
         return list;
-      })
-    );
+      });
+      StorageService.saveUserLists(updated);
+      const activeUser = currentUser || AuthService.getCurrentUser();
+      if (activeUser) FirebaseService.saveUserLists(activeUser.uid, updated);
+      return updated;
+    });
+
+    setOtherLists((prev) => {
+      const updated = prev.map((list) => {
+        if (list.id === listId) {
+          const newMastery = Math.min(100, Math.max(0, list.mastery + delta));
+          return { ...list, mastery: newMastery };
+        }
+        return list;
+      });
+      StorageService.saveOtherLists(updated);
+      return updated;
+    });
+  };
+
+  const handleClearList = async (listId: string) => {
+    if (listId === 'favorites') {
+      const updatedWords = words.map((w) => (w.isFavorite ? { ...w, isFavorite: false } : w));
+      setWords(updatedWords);
+      StorageService.saveWords(updatedWords);
+      const activeUser = currentUser || AuthService.getCurrentUser();
+      if (activeUser) {
+        FirebaseService.saveUserWords(activeUser.uid, updatedWords);
+      }
+    }
+
+    const updatedWords = words.map((w) => {
+      if (w.lists?.includes(listId)) {
+        return { ...w, lists: w.lists.filter((l) => l !== listId) };
+      }
+      return w;
+    });
+    setWords(updatedWords);
+    StorageService.saveWords(updatedWords);
+
+    const updatedLists = userLists.map((l) => {
+      if (l.id === listId) {
+        return {
+          ...l,
+          count: 0,
+          mastery: 0,
+          words: [],
+        };
+      }
+      return l;
+    });
+
+    setUserLists(updatedLists);
+    await StorageService.saveUserLists(updatedLists);
+
+    const activeUser = currentUser || AuthService.getCurrentUser();
+    if (activeUser) {
+      FirebaseService.saveUserLists(activeUser.uid, updatedLists);
+      FirebaseService.saveUserWords(activeUser.uid, updatedWords);
+    }
+
+    HapticsService.success();
+    Alert.alert('Liste Sıfırlandı 🎉', 'Listedeki tüm kelimeler temizlendi ve hakimiyet %0 yapıldı.');
+  };
+
+  const handleResetUserLists = async () => {
+    try {
+      const cleanLists = getCleanUserLists();
+      const cleanWords = getCleanVocabularyDatabase();
+
+      setUserLists(cleanLists);
+      setWords(cleanWords);
+      setSuggestedWords((prev) => prev.map((w) => ({ ...w, isFavorite: false })));
+
+      await StorageService.saveUserLists(cleanLists);
+      await StorageService.saveWords(cleanWords);
+
+      const activeUser = currentUser || AuthService.getCurrentUser();
+      if (activeUser) {
+        await FirebaseService.resetUserLists(activeUser.uid, cleanLists);
+        await FirebaseService.saveUserWords(activeUser.uid, cleanWords);
+      }
+
+      HapticsService.success();
+      Alert.alert('Listeler Sıfırlandı 🎉', 'Kişisel kelime listeleriniz ve favorileriniz başarıyla sıfırlandı.');
+    } catch (e) {
+      console.warn('Reset user lists error:', e);
+    }
+  };
+
+  const handleResetProfile = async () => {
+    try {
+      const emailName = currentUser?.email ? currentUser.email.split('@')[0] : 'Kelime Öğrencisi';
+      const isAnon = !currentUser || currentUser.isAnonymous;
+      const calculatedName = isAnon
+        ? 'Misafir Öğrenci'
+        : (currentUser?.displayName || (emailName.charAt(0).toUpperCase() + emailName.slice(1)));
+
+      const cleanProf = getCleanUserProfile(
+        calculatedName,
+        isAnon ? 'Misafir Hesap' : 'Kelime Kaşifi',
+        currentUser?.email || undefined,
+        profile.avatarUrl
+      );
+
+      const cleanSett: AppSettings = {
+        ...settings,
+        currentDayWordsCount: 0,
+      };
+
+      setProfile(cleanProf);
+      setSettings(cleanSett);
+
+      await StorageService.saveProfile(cleanProf);
+      await StorageService.saveSettings(cleanSett);
+
+      const activeUser = currentUser || AuthService.getCurrentUser();
+      if (activeUser) {
+        await FirebaseService.saveUserProfile(activeUser.uid, cleanProf);
+        await FirebaseService.saveAppSettings(activeUser.uid, cleanSett);
+      }
+
+      HapticsService.success();
+      Alert.alert('İlerleme Sıfırlandı 🎉', 'Öğrenilen kelimeler sayacı, haftalık aktivite grafiği ve seri sayaçlarınız sıfırlandı.');
+    } catch (e) {
+      console.warn('Reset profile error:', e);
+    }
+  };
+
+  const handleResetAllData = async () => {
+    try {
+      const emailName = currentUser?.email ? currentUser.email.split('@')[0] : 'Kelime Öğrencisi';
+      const isAnon = !currentUser || currentUser.isAnonymous;
+      const calculatedName = isAnon
+        ? 'Misafir Öğrenci'
+        : (currentUser?.displayName || (emailName.charAt(0).toUpperCase() + emailName.slice(1)));
+
+      const cleanProf = getCleanUserProfile(
+        calculatedName,
+        isAnon ? 'Misafir Hesap' : 'Kelime Kaşifi',
+        currentUser?.email || undefined,
+        profile.avatarUrl
+      );
+      const cleanSett = getCleanAppSettings(currentUser?.email || undefined);
+      const cleanLists = getCleanUserLists();
+      const cleanWords = getCleanVocabularyDatabase();
+
+      setProfile(cleanProf);
+      setSettings(cleanSett);
+      setUserLists(cleanLists);
+      setWords(cleanWords);
+      setSuggestedWords((prev) => prev.map((w) => ({ ...w, isFavorite: false })));
+
+      await StorageService.resetAll();
+
+      const activeUser = currentUser || AuthService.getCurrentUser();
+      if (activeUser) {
+        await FirebaseService.resetUserData(activeUser.uid, cleanProf, cleanLists, cleanWords);
+        await FirebaseService.saveAppSettings(activeUser.uid, cleanSett);
+      }
+
+      HapticsService.success();
+      Alert.alert('Fabrika Ayarlarına Döndürüldü 🎉', 'Tüm listeleriniz, öğrenilen kelimeler ve uygulama verileriniz başarıyla sıfırlandı.');
+    } catch (e) {
+      console.warn('Reset all data error:', e);
+    }
+  };
+
+  const handleWordMastered = async () => {
+    const { updatedProfile, updatedSettings } = recordLearningActivity(profile, settings, 1);
+    setProfile(updatedProfile);
+    setSettings(updatedSettings);
+
+    await StorageService.saveProfile(updatedProfile);
+    await StorageService.saveSettings(updatedSettings);
+
+    const activeUser = currentUser || AuthService.getCurrentUser();
+    if (activeUser) {
+      FirebaseService.saveUserProfile(activeUser.uid, updatedProfile);
+      FirebaseService.saveAppSettings(activeUser.uid, updatedSettings);
+    }
   };
 
   const handleIncrementGamesPlayed = () => {
@@ -714,6 +920,8 @@ export default function App() {
               onSelectList={(l) => setSelectedList(l)}
               onOpenCreateList={() => setIsCreateListOpen(true)}
               onDeleteList={handleDeleteList}
+              onClearList={handleClearList}
+              onResetAllLists={handleResetUserLists}
               darkMode={settings.darkMode}
             />
           )}
@@ -725,6 +933,7 @@ export default function App() {
               currentUser={currentUser}
               onOpenAuth={() => setIsAuthOpen(true)}
               onUpdateProfile={handleUpdateProfile}
+              onResetProfile={handleResetProfile}
             />
           )}
 
@@ -737,6 +946,9 @@ export default function App() {
               onOpenAuth={() => setIsAuthOpen(true)}
               onLogout={handleLogout}
               onSyncCloud={handleSyncGlobalVocabulary}
+              onResetUserLists={handleResetUserLists}
+              onResetProfile={handleResetProfile}
+              onResetAllData={handleResetAllData}
             />
           )}
         </View>
@@ -820,6 +1032,8 @@ export default function App() {
           onToggleFavorite={handleToggleFavorite}
           onUpdateListMastery={handleUpdateListMastery}
           onDeleteList={handleDeleteList}
+          onClearList={handleClearList}
+          onWordMastered={handleWordMastered}
           darkMode={settings.darkMode}
         />
 

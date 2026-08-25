@@ -20,6 +20,9 @@ import {
   X,
   Cloud,
   RefreshCw,
+  RotateCw,
+  BookOpen,
+  Trash2,
 } from 'lucide-react-native';
 import { User } from 'firebase/auth';
 import { AppSettings } from '../../types';
@@ -34,6 +37,9 @@ interface SettingsViewProps {
   onOpenAuth?: () => void;
   onLogout?: () => void;
   onSyncCloud?: () => Promise<void>;
+  onResetUserLists?: () => Promise<void> | void;
+  onResetProfile?: () => Promise<void> | void;
+  onResetAllData?: () => Promise<void> | void;
 }
 
 export const SettingsView: React.FC<SettingsViewProps> = ({
@@ -44,6 +50,9 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   onOpenAuth,
   onLogout,
   onSyncCloud,
+  onResetUserLists,
+  onResetProfile,
+  onResetAllData,
 }) => {
   const theme = getTheme(darkMode);
   const [showLangModal, setShowLangModal] = useState(false);
@@ -83,6 +92,63 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       : 'Mevcut: EN -> FR';
 
   const isGuest = !currentUser || currentUser.isAnonymous;
+
+  const handleResetUserLists = () => {
+    HapticsService.light();
+    Alert.alert(
+      'Listelerimi Sıfırla',
+      'Favoriler, Tekrar Gözden Geçir ve Zorlandığım Kelimeler listelerinizdeki tüm kelimeler temizlenecek ve hakimiyet oranları %0 yapılacaktır. Emin misiniz?',
+      [
+        { text: 'Vazgeç', style: 'cancel' },
+        {
+          text: 'Listeleri Sıfırla',
+          style: 'destructive',
+          onPress: async () => {
+            HapticsService.medium();
+            if (onResetUserLists) await onResetUserLists();
+          },
+        },
+      ]
+    );
+  };
+
+  const handleResetProfile = () => {
+    HapticsService.light();
+    Alert.alert(
+      'Öğrenilen Kelimeleri & İlerlemeyi Sıfırla',
+      'Öğrenilen kelimeler sayacı, bu haftaki çalışma grafiği, oynanan oyun sayısı ve aktif günlük seriniz 0\'a sıfırlanacaktır. Emin misiniz?',
+      [
+        { text: 'Vazgeç', style: 'cancel' },
+        {
+          text: 'İlerlemeyi Sıfırla',
+          style: 'destructive',
+          onPress: async () => {
+            HapticsService.medium();
+            if (onResetProfile) await onResetProfile();
+          },
+        },
+      ]
+    );
+  };
+
+  const handleResetAllData = () => {
+    HapticsService.heavy();
+    Alert.alert(
+      'Tüm Verileri Sıfırla (Fabrika Ayarları)',
+      'Tüm kelime listeleriniz, öğrenilen kelime istatistikleriniz, oyun rekorlarınız ve profil ilerlemeniz tamamen sıfırlanacaktır. Bu işlem geri alınamaz. Devam etmek istiyor musunuz?',
+      [
+        { text: 'Vazgeç', style: 'cancel' },
+        {
+          text: 'Evet, Tümünü Sıfırla',
+          style: 'destructive',
+          onPress: async () => {
+            HapticsService.heavy();
+            if (onResetAllData) await onResetAllData();
+          },
+        },
+      ]
+    );
+  };
 
   const handleLogout = () => {
     HapticsService.light();
@@ -337,6 +403,81 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
         )}
       </View>
 
+      {/* 2. Reset & Data Management Section */}
+      <View style={styles.sectionHeader}>
+        <Text style={[styles.sectionTitle, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
+          VERİ & SIFIRLAMA YÖNETİMİ
+        </Text>
+      </View>
+
+      <View style={[styles.menuCard, { backgroundColor: darkMode ? '#1e293b' : '#ffffff', borderColor: theme.cardBorder, marginBottom: 14 }]}>
+        {/* Reset User Lists */}
+        <TouchableOpacity
+          onPress={handleResetUserLists}
+          activeOpacity={0.7}
+          style={[styles.menuItem, { borderBottomColor: theme.cardBorder }]}
+        >
+          <View style={styles.itemLeft}>
+            <View style={[styles.iconWrap, { backgroundColor: darkMode ? '#451a03' : '#fef3c7' }]}>
+              <RotateCw size={18} color="#d97706" strokeWidth={2.2} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.itemTitle, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
+                Listelerimi Sıfırla
+              </Text>
+              <Text style={[styles.itemSub, { color: theme.textMuted }]}>
+                Favoriler, Tekrar ve Zorlandığım listelerini temizler (%0 hakimiyet)
+              </Text>
+            </View>
+          </View>
+          <ChevronRight size={20} color={darkMode ? Colors.primaryAccent : Colors.primary} />
+        </TouchableOpacity>
+
+        {/* Reset Profile Progress */}
+        <TouchableOpacity
+          onPress={handleResetProfile}
+          activeOpacity={0.7}
+          style={[styles.menuItem, { borderBottomColor: theme.cardBorder }]}
+        >
+          <View style={styles.itemLeft}>
+            <View style={[styles.iconWrap, { backgroundColor: darkMode ? '#3b1d54' : '#f3e8ff' }]}>
+              <BookOpen size={18} color="#9333ea" strokeWidth={2.2} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.itemTitle, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
+                Öğrenilen Kelimeleri & İlerlemeyi Sıfırla
+              </Text>
+              <Text style={[styles.itemSub, { color: theme.textMuted }]}>
+                Öğrenilen kelimeler sayacı, haftalık grafik ve seriyi 0 yapar
+              </Text>
+            </View>
+          </View>
+          <ChevronRight size={20} color={darkMode ? Colors.primaryAccent : Colors.primary} />
+        </TouchableOpacity>
+
+        {/* Reset All Data (Factory Reset) */}
+        <TouchableOpacity
+          onPress={handleResetAllData}
+          activeOpacity={0.7}
+          style={styles.menuItem}
+        >
+          <View style={styles.itemLeft}>
+            <View style={[styles.iconWrap, { backgroundColor: darkMode ? '#450a0a' : '#fee2e2' }]}>
+              <Trash2 size={18} color="#ef4444" strokeWidth={2.2} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={[styles.itemTitle, { color: '#ef4444' }]}>
+                Tüm Verileri Sıfırla (Fabrika Ayarları)
+              </Text>
+              <Text style={[styles.itemSub, { color: theme.textMuted }]}>
+                Listeleri, kelime favorilerini ve tüm istatistikleri sıfırlar
+              </Text>
+            </View>
+          </View>
+          <ChevronRight size={20} color="#ef4444" />
+        </TouchableOpacity>
+      </View>
+
       {/* App Version Info */}
       <View style={styles.versionContainer}>
         <Text style={[styles.versionText, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
@@ -456,6 +597,16 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
     marginTop: 2,
+  },
+  sectionHeader: {
+    marginTop: 18,
+    marginBottom: 8,
+    paddingHorizontal: 4,
+  },
+  sectionTitle: {
+    fontSize: 11,
+    fontWeight: '900',
+    letterSpacing: 1,
   },
   authBanner: {
     flexDirection: 'row',
