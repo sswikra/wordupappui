@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import {
   View,
   Text,
@@ -10,6 +10,7 @@ import {
   FlatList,
   Dimensions,
   Alert,
+  Platform,
 } from 'react-native';
 import {
   X,
@@ -43,6 +44,101 @@ interface ListDetailModalProps {
 
 const { width, height } = Dimensions.get('window');
 
+interface WordRowItemProps {
+  item: Word;
+  darkMode: boolean;
+  cardBorder: string;
+  textSecondary: string;
+  onSelectWord: (item: Word) => void;
+  onPlayPronunciation: (word: string) => void;
+  onToggleFavorite: (id: string) => void;
+}
+
+const WordRowItem = React.memo<WordRowItemProps>(
+  ({
+    item,
+    darkMode,
+    cardBorder,
+    textSecondary,
+    onSelectWord,
+    onPlayPronunciation,
+    onToggleFavorite,
+  }) => {
+    return (
+      <TouchableOpacity
+        onPress={() => onSelectWord(item)}
+        activeOpacity={0.85}
+        style={[
+          styles.wordRowCard,
+          {
+            backgroundColor: darkMode ? '#0f172a' : '#f8fafc',
+            borderColor: cardBorder,
+          },
+        ]}
+      >
+        <View style={styles.wordRowLeft}>
+          <TouchableOpacity
+            onPress={() => onPlayPronunciation(item.word)}
+            style={[
+              styles.wordRowAudio,
+              { backgroundColor: darkMode ? '#334155' : '#fef3e2' },
+            ]}
+          >
+            <Volume2 size={16} color={Colors.accentGold} />
+          </TouchableOpacity>
+
+          <View>
+            <View style={styles.wordRowHeader}>
+              <Text
+                style={[
+                  styles.wordRowTitle,
+                  { color: darkMode ? '#fbbf24' : Colors.accentOrange },
+                ]}
+              >
+                {item.word}
+              </Text>
+              {item.partOfSpeech ? (
+                <View
+                  style={[
+                    styles.rowTag,
+                    { backgroundColor: darkMode ? '#334155' : '#e2e8f0' },
+                  ]}
+                >
+                  <Text
+                    style={[styles.rowTagText, { color: textSecondary }]}
+                  >
+                    {item.partOfSpeech}
+                  </Text>
+                </View>
+              ) : null}
+            </View>
+            <Text
+              style={[
+                styles.wordRowTr,
+                { color: darkMode ? Colors.primaryAccent : Colors.primary },
+              ]}
+            >
+              {item.translation}
+            </Text>
+          </View>
+        </View>
+
+        <TouchableOpacity
+          onPress={() => onToggleFavorite(item.id)}
+          style={styles.favBtn}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        >
+          <Heart
+            size={18}
+            color="#ef4444"
+            fill={item.isFavorite ? '#ef4444' : 'transparent'}
+          />
+        </TouchableOpacity>
+      </TouchableOpacity>
+    );
+  }
+);
+
 export const ListDetailModal: React.FC<ListDetailModalProps> = ({
   list,
   isOpen,
@@ -73,13 +169,62 @@ export const ListDetailModal: React.FC<ListDetailModalProps> = ({
     });
   }, [list?.words]);
 
-  if (!isOpen || !list) return null;
+  const filteredWords = useMemo(() => {
+    const q = searchQuery.toLowerCase().trim();
+    if (!q) return words;
+    return words.filter(
+      (w) =>
+        w.word.toLowerCase().includes(q) ||
+        w.translation.toLowerCase().includes(q)
+    );
+  }, [words, searchQuery]);
 
-  const filteredWords = words.filter(
-    (w) =>
-      w.word.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      w.translation.toLowerCase().includes(searchQuery.toLowerCase())
+  const handleSelectWord = useCallback(
+    (item: Word) => {
+      HapticsService.selection();
+      onSelectWord(item);
+    },
+    [onSelectWord]
   );
+
+  const handlePlayPronunciation = useCallback((word: string) => {
+    HapticsService.light();
+    playPronunciation(word);
+  }, []);
+
+  const handleToggleFavorite = useCallback(
+    (id: string) => {
+      HapticsService.selection();
+      onToggleFavorite(id);
+    },
+    [onToggleFavorite]
+  );
+
+  const keyExtractor = useCallback((item: Word) => item.id, []);
+
+  const renderWordItem = useCallback(
+    ({ item }: { item: Word }) => (
+      <WordRowItem
+        item={item}
+        darkMode={darkMode}
+        cardBorder={theme.cardBorder}
+        textSecondary={theme.textSecondary}
+        onSelectWord={handleSelectWord}
+        onPlayPronunciation={handlePlayPronunciation}
+        onToggleFavorite={handleToggleFavorite}
+      />
+    ),
+    [
+      darkMode,
+      theme.cardBorder,
+      theme.textSecondary,
+      handleSelectWord,
+      handlePlayPronunciation,
+      handleToggleFavorite,
+    ]
+  );
+
+  if (!isOpen || !list) return null;
 
   const startFlashcards = () => {
     if (words.length === 0) return;
@@ -334,67 +479,16 @@ export const ListDetailModal: React.FC<ListDetailModalProps> = ({
               {/* Words FlatList */}
               <FlatList
                 data={filteredWords}
-                keyExtractor={(item) => item.id}
+                keyExtractor={keyExtractor}
+                renderItem={renderWordItem}
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.wordsScrollList}
-                renderItem={({ item }) => (
-                  <TouchableOpacity
-                    onPress={() => {
-                      HapticsService.selection();
-                      onSelectWord(item);
-                    }}
-                    activeOpacity={0.85}
-                    style={[
-                      styles.wordRowCard,
-                      {
-                        backgroundColor: darkMode ? '#0f172a' : '#f8fafc',
-                        borderColor: theme.cardBorder,
-                      },
-                    ]}
-                  >
-                    <View style={styles.wordRowLeft}>
-                      <TouchableOpacity
-                        onPress={() => {
-                          HapticsService.light();
-                          playPronunciation(item.word);
-                        }}
-                        style={[styles.wordRowAudio, { backgroundColor: darkMode ? '#334155' : '#fef3e2' }]}
-                      >
-                        <Volume2 size={16} color={Colors.accentGold} />
-                      </TouchableOpacity>
-
-                      <View>
-                        <View style={styles.wordRowHeader}>
-                          <Text style={[styles.wordRowTitle, { color: darkMode ? '#fbbf24' : Colors.accentOrange }]}>
-                            {item.word}
-                          </Text>
-                          <View style={[styles.rowTag, { backgroundColor: darkMode ? '#334155' : '#e2e8f0' }]}>
-                            <Text style={[styles.rowTagText, { color: theme.textSecondary }]}>
-                              {item.partOfSpeech}
-                            </Text>
-                          </View>
-                        </View>
-                        <Text style={[styles.wordRowTr, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
-                          {item.translation}
-                        </Text>
-                      </View>
-                    </View>
-
-                    <TouchableOpacity
-                      onPress={() => {
-                        HapticsService.selection();
-                        onToggleFavorite(item.id);
-                      }}
-                      style={styles.favBtn}
-                    >
-                      <Heart
-                        size={18}
-                        color="#ef4444"
-                        fill={item.isFavorite ? '#ef4444' : 'transparent'}
-                      />
-                    </TouchableOpacity>
-                  </TouchableOpacity>
-                )}
+                initialNumToRender={12}
+                maxToRenderPerBatch={10}
+                windowSize={5}
+                updateCellsBatchingPeriod={50}
+                removeClippedSubviews={Platform.OS === 'android'}
+                keyboardShouldPersistTaps="handled"
               />
             </View>
           )}

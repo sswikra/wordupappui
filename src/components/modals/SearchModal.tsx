@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import {
   View,
   Text,
@@ -9,6 +9,7 @@ import {
   ScrollView,
   FlatList,
   Dimensions,
+  Platform,
 } from 'react-native';
 import { Search, X, Volume2, Heart, ArrowRight } from 'lucide-react-native';
 import { Word } from '../../types';
@@ -26,6 +27,106 @@ interface SearchModalProps {
 }
 
 const { height } = Dimensions.get('window');
+
+interface SearchWordItemProps {
+  item: Word;
+  darkMode: boolean;
+  cardBorder: string;
+  onSelectWord: (item: Word) => void;
+  onPlayPronunciation: (word: string) => void;
+  onToggleFavorite: (id: string) => void;
+}
+
+const SearchWordItem = React.memo<SearchWordItemProps>(
+  ({
+    item,
+    darkMode,
+    cardBorder,
+    onSelectWord,
+    onPlayPronunciation,
+    onToggleFavorite,
+  }) => {
+    return (
+      <TouchableOpacity
+        onPress={() => onSelectWord(item)}
+        activeOpacity={0.85}
+        style={[
+          styles.wordItemCard,
+          {
+            backgroundColor: darkMode ? '#0f172a' : '#f8fafc',
+            borderColor: cardBorder,
+          },
+        ]}
+      >
+        <View style={styles.wordItemLeft}>
+          <TouchableOpacity
+            onPress={() => onPlayPronunciation(item.word)}
+            style={[
+              styles.audioBtn,
+              { backgroundColor: darkMode ? '#334155' : '#fef3e2' },
+            ]}
+          >
+            <Volume2 size={16} color={Colors.accentGold} />
+          </TouchableOpacity>
+
+          <View style={styles.wordItemTexts}>
+            <View style={styles.wordItemTitleRow}>
+              <Text
+                style={[
+                  styles.wordItemTitle,
+                  { color: darkMode ? '#fbbf24' : Colors.accentOrange },
+                ]}
+              >
+                {item.word}
+              </Text>
+              {item.level ? (
+                <View
+                  style={[
+                    styles.levelTag,
+                    { backgroundColor: darkMode ? '#334155' : '#d8ebee' },
+                  ]}
+                >
+                  <Text
+                    style={[
+                      styles.levelTagText,
+                      {
+                        color: darkMode
+                          ? Colors.primaryAccent
+                          : Colors.primaryDark,
+                      },
+                    ]}
+                  >
+                    {item.level}
+                  </Text>
+                </View>
+              ) : null}
+            </View>
+            <Text
+              style={[
+                styles.wordItemTr,
+                { color: darkMode ? Colors.primaryAccent : Colors.primary },
+              ]}
+            >
+              {item.translation}
+            </Text>
+          </View>
+        </View>
+
+        <TouchableOpacity
+          onPress={() => onToggleFavorite(item.id)}
+          style={styles.favBtn}
+          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+        >
+          <Heart
+            size={18}
+            color="#ef4444"
+            fill={item.isFavorite ? '#ef4444' : 'transparent'}
+          />
+        </TouchableOpacity>
+      </TouchableOpacity>
+    );
+  }
+);
 
 export const SearchModal: React.FC<SearchModalProps> = ({
   isOpen,
@@ -57,6 +158,49 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       return false;
     });
   }, [words, query]);
+
+  const handleSelectWord = useCallback(
+    (item: Word) => {
+      HapticsService.selection();
+      onSelectWord(item);
+    },
+    [onSelectWord]
+  );
+
+  const handlePlayPronunciation = useCallback((word: string) => {
+    HapticsService.light();
+    playPronunciation(word);
+  }, []);
+
+  const handleToggleFavorite = useCallback(
+    (id: string) => {
+      HapticsService.selection();
+      onToggleFavorite(id);
+    },
+    [onToggleFavorite]
+  );
+
+  const keyExtractor = useCallback((item: Word) => item.id, []);
+
+  const renderWordItem = useCallback(
+    ({ item }: { item: Word }) => (
+      <SearchWordItem
+        item={item}
+        darkMode={darkMode}
+        cardBorder={theme.cardBorder}
+        onSelectWord={handleSelectWord}
+        onPlayPronunciation={handlePlayPronunciation}
+        onToggleFavorite={handleToggleFavorite}
+      />
+    ),
+    [
+      darkMode,
+      theme.cardBorder,
+      handleSelectWord,
+      handlePlayPronunciation,
+      handleToggleFavorite,
+    ]
+  );
 
   if (!isOpen) return null;
 
@@ -106,68 +250,16 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           {/* Words List */}
           <FlatList
             data={filteredWords}
-            keyExtractor={(item) => item.id}
+            keyExtractor={keyExtractor}
+            renderItem={renderWordItem}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.resultsList}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                onPress={() => {
-                  HapticsService.selection();
-                  onSelectWord(item);
-                }}
-                activeOpacity={0.85}
-                style={[
-                  styles.wordItemCard,
-                  {
-                    backgroundColor: darkMode ? '#0f172a' : '#f8fafc',
-                    borderColor: theme.cardBorder,
-                  },
-                ]}
-              >
-                <View style={styles.wordItemLeft}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      HapticsService.light();
-                      playPronunciation(item.word);
-                    }}
-                    style={[styles.audioBtn, { backgroundColor: darkMode ? '#334155' : '#fef3e2' }]}
-                  >
-                    <Volume2 size={16} color={Colors.accentGold} />
-                  </TouchableOpacity>
-
-                  <View style={styles.wordItemTexts}>
-                    <View style={styles.wordItemTitleRow}>
-                      <Text style={[styles.wordItemTitle, { color: darkMode ? '#fbbf24' : Colors.accentOrange }]}>
-                        {item.word}
-                      </Text>
-                      <View style={[styles.levelTag, { backgroundColor: darkMode ? '#334155' : '#d8ebee' }]}>
-                        <Text style={[styles.levelTagText, { color: darkMode ? Colors.primaryAccent : Colors.primaryDark }]}>
-                          {item.level}
-                        </Text>
-                      </View>
-                    </View>
-                    <Text style={[styles.wordItemTr, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
-                      {item.translation}
-                    </Text>
-                  </View>
-                </View>
-
-                <TouchableOpacity
-                  onPress={() => {
-                    HapticsService.selection();
-                    onToggleFavorite(item.id);
-                  }}
-                  style={styles.favBtn}
-                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                >
-                  <Heart
-                    size={18}
-                    color="#ef4444"
-                    fill={item.isFavorite ? '#ef4444' : 'transparent'}
-                  />
-                </TouchableOpacity>
-              </TouchableOpacity>
-            )}
+            initialNumToRender={12}
+            maxToRenderPerBatch={10}
+            windowSize={5}
+            updateCellsBatchingPeriod={50}
+            removeClippedSubviews={Platform.OS === 'android'}
+            keyboardShouldPersistTaps="handled"
           />
         </View>
       </View>
