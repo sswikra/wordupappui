@@ -10,6 +10,7 @@ import {
   BackHandler,
   ActivityIndicator,
   Alert,
+  AppState,
 } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -26,6 +27,11 @@ import {
 } from './src/data/mockData';
 import { StorageService } from './src/utils/storage';
 import { HapticsService } from './src/utils/haptics';
+import {
+  checkDailyReset,
+  recordLearningActivity,
+  getEmptyWeeklyActivity,
+} from './src/utils/streakManager';
 import { Colors, getTheme } from './src/theme/colors';
 
 // Common Components
@@ -95,8 +101,23 @@ export default function App() {
 
         if (savedWords) setWords(deduplicateWords(savedWords));
         if (savedLists) setUserLists(savedLists);
-        if (savedProfile) setProfile(savedProfile);
-        if (savedSettings) setSettings(savedSettings);
+
+        const initialProf = savedProfile || INITIAL_USER_PROFILE;
+        const initialSett = savedSettings || INITIAL_APP_SETTINGS;
+
+        // Günlük sıfırlama ve seri kontrolü
+        const { updatedProfile, updatedSettings, hasChanged } = checkDailyReset(
+          initialProf,
+          initialSett
+        );
+
+        setProfile(updatedProfile);
+        setSettings(updatedSettings);
+
+        if (hasChanged) {
+          await StorageService.saveProfile(updatedProfile);
+          await StorageService.saveSettings(updatedSettings);
+        }
       } catch (e) {
         console.warn('Initial storage load failed', e);
       } finally {
@@ -105,6 +126,37 @@ export default function App() {
     }
     loadData();
   }, []);
+
+  // Uygulama ön plana geldiğinde (geceden sabaha geçildiğinde vb.) gün sıfırlamasını kontrol et
+  useEffect(() => {
+    const handleAppStateChange = (nextAppState: string) => {
+      if (nextAppState === 'active') {
+        setProfile((prevProfile) => {
+          setSettings((prevSettings) => {
+            const { updatedProfile, updatedSettings, hasChanged } = checkDailyReset(
+              prevProfile,
+              prevSettings
+            );
+            if (hasChanged) {
+              StorageService.saveProfile(updatedProfile);
+              StorageService.saveSettings(updatedSettings);
+              const activeUser = currentUser || AuthService.getCurrentUser();
+              if (activeUser) {
+                FirebaseService.saveUserProfile(activeUser.uid, updatedProfile);
+                FirebaseService.saveAppSettings(activeUser.uid, updatedSettings);
+              }
+            }
+            return updatedSettings;
+          });
+          const { updatedProfile } = checkDailyReset(prevProfile, settings);
+          return updatedProfile;
+        });
+      }
+    };
+
+    const sub = AppState.addEventListener('change', handleAppStateChange);
+    return () => sub.remove();
+  }, [currentUser, settings]);
 
   // Firebase Auth Listener & Firestore Data Sync
   useEffect(() => {
@@ -144,35 +196,61 @@ export default function App() {
             ? 'Misafir Öğrenci'
             : (user.displayName || (emailName.charAt(0).toUpperCase() + emailName.slice(1)));
 
-          const profileToUse = cloudProfile || profile;
-          const currentProfileName = (!cloudProfile || profileToUse.name === 'Alex' || profileToUse.name === 'Alex Morgan')
-            ? calculatedName
-            : profileToUse.name;
+          let profileToUse: UserProfile;
+          if (cloudProfile) {
+            const currentProfileName = (cloudProfile.name === 'Alex' || cloudProfile.name === 'Alex Morgan')
+              ? calculatedName
+              : cloudProfile.name;
 
-          const updatedProf: UserProfile = {
-            ...profileToUse,
-            name: currentProfileName,
-            role: isAnon ? 'Misafir Hesap' : 'Kelime Kaşifi',
-            avatarUrl: profileToUse.avatarUrl || user.photoURL || defaultAvatar,
-            gender: profileToUse.gender || 'male',
-          };
-
-          setProfile(updatedProf);
-          await StorageService.saveProfile(updatedProf);
-          await FirebaseService.saveUserProfile(user.uid, updatedProf);
-
-          if (cloudSettings) {
-            setSettings(cloudSettings);
-            await StorageService.saveSettings(cloudSettings);
-          } else {
-            const updatedSettings: AppSettings = {
-              ...settings,
-              email: isAnon ? 'misafir@wordmem.app' : (user.email || settings.email),
+            profileToUse = {
+              ...cloudProfile,
+              name: currentProfileName,
+              role: isAnon ? 'Misafir Hesap' : 'Kelime Kaşifi',
+              avatarUrl: cloudProfile.avatarUrl || user.photoURL || defaultAvatar,
+              gender: cloudProfile.gender || 'male',
             };
-            setSettings(updatedSettings);
-            await StorageService.saveSettings(updatedSettings);
-            await FirebaseService.saveAppSettings(user.uid, updatedSettings);
+          } else {
+            // Yeni kullanıcı kaydı / ilk kez giriş: Tamamen sıfır profil
+            profileToUse = {
+              ...INITIAL_USER_PROFILE,
+              name: calculatedName,
+              role: isAnon ? 'Misafir Hesap' : 'Kelime Kaşifi',
+              avatarUrl: user.photoURL || defaultAvatar,
+              gender: 'male',
+              activeStreak: 0,
+              wordsLearned: 0,
+              wordsThisWeek: 0,
+              gamesPlayed: 0,
+              weeklyActivity: getEmptyWeeklyActivity(),
+            };
           }
+
+          let settingsToUse: AppSettings;
+          if (cloudSettings) {
+            settingsToUse = {
+              ...cloudSettings,
+              email: isAnon ? 'misafir@wordmem.app' : (user.email || cloudSettings.email),
+            };
+          } else {
+            settingsToUse = {
+              ...INITIAL_APP_SETTINGS,
+              email: isAnon ? 'misafir@wordmem.app' : (user.email || ''),
+              currentDayWordsCount: 0,
+            };
+          }
+
+          // Gün sıfırlaması & seri doğrulaması yap
+          const { updatedProfile, updatedSettings } = checkDailyReset(
+            profileToUse,
+            settingsToUse
+          );
+
+          setProfile(updatedProfile);
+          setSettings(updatedSettings);
+          await StorageService.saveProfile(updatedProfile);
+          await StorageService.saveSettings(updatedSettings);
+          await FirebaseService.saveUserProfile(user.uid, updatedProfile);
+          await FirebaseService.saveAppSettings(user.uid, updatedSettings);
 
           // Giriş yapmışsa giriş ekranını kapat
           if (!isAnon) {
@@ -335,17 +413,8 @@ export default function App() {
       setUserLists(updatedLists);
     }
 
-    const updatedSettings = {
-      ...settings,
-      currentDayWordsCount: Math.min(settings.dailyGoal, settings.currentDayWordsCount + 1),
-    };
+    const { updatedProfile, updatedSettings } = recordLearningActivity(profile, settings, 1);
     setSettings(updatedSettings);
-
-    const updatedProfile = {
-      ...profile,
-      wordsLearned: profile.wordsLearned + 1,
-      wordsThisWeek: profile.wordsThisWeek + 1,
-    };
     setProfile(updatedProfile);
 
     // Yerel depolamaya anında kaydet
@@ -361,6 +430,7 @@ export default function App() {
       await FirebaseService.saveUserWords(activeUser.uid, updatedWords);
       if (targetListId) await FirebaseService.saveUserLists(activeUser.uid, updatedLists);
       await FirebaseService.saveUserProfile(activeUser.uid, updatedProfile);
+      await FirebaseService.saveAppSettings(activeUser.uid, updatedSettings);
     }
   };
 
@@ -386,11 +456,17 @@ export default function App() {
         role: 'Misafir Hesap',
         avatarUrl: AVATAR_OPTIONS.male,
         gender: 'male',
+        activeStreak: 0,
+        wordsLearned: 0,
+        wordsThisWeek: 0,
+        gamesPlayed: 0,
+        weeklyActivity: getEmptyWeeklyActivity(),
       };
 
       const guestSettings: AppSettings = {
         ...INITIAL_APP_SETTINGS,
         email: 'misafir@wordmem.app',
+        currentDayWordsCount: 0,
       };
 
       setProfile(guestProfile);
@@ -474,17 +550,23 @@ export default function App() {
   };
 
   const handleIncrementGamesPlayed = () => {
-    setProfile((prev) => {
-      const updated = {
-        ...prev,
-        gamesPlayed: prev.gamesPlayed + 1,
-        wordsThisWeek: prev.wordsThisWeek + 2,
-      };
-      StorageService.saveProfile(updated);
-      const activeUser = currentUser || AuthService.getCurrentUser();
-      if (activeUser) FirebaseService.saveUserProfile(activeUser.uid, updated);
-      return updated;
-    });
+    const { updatedProfile, updatedSettings } = recordLearningActivity(profile, settings, 2);
+    const finalProfile: UserProfile = {
+      ...updatedProfile,
+      gamesPlayed: (profile.gamesPlayed || 0) + 1,
+    };
+
+    setProfile(finalProfile);
+    setSettings(updatedSettings);
+
+    StorageService.saveProfile(finalProfile);
+    StorageService.saveSettings(updatedSettings);
+
+    const activeUser = currentUser || AuthService.getCurrentUser();
+    if (activeUser) {
+      FirebaseService.saveUserProfile(activeUser.uid, finalProfile);
+      FirebaseService.saveAppSettings(activeUser.uid, updatedSettings);
+    }
   };
 
   const handleDeleteWord = (wordId: string) => {

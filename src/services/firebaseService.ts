@@ -471,6 +471,7 @@ export const FirebaseService = {
           gender: cleanProfile.gender || 'male',
           wordsLearned: cleanProfile.wordsLearned,
           activeStreak: cleanProfile.activeStreak,
+          lastActiveDate: cleanProfile.lastActiveDate || null,
           wordsThisWeek: cleanProfile.wordsThisWeek,
           gamesPlayed: cleanProfile.gamesPlayed,
           overallAccuracy: cleanProfile.overallAccuracy,

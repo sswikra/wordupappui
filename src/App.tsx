@@ -23,6 +23,11 @@ import { ListsView } from './components/views/ListsView';
 import { ProfileView } from './components/views/ProfileView';
 import { SettingsView } from './components/views/SettingsView';
 
+import {
+  checkDailyReset,
+  recordLearningActivity,
+} from './utils/streakManager';
+
 const deduplicateWords = (wordsList: Word[] = []): Word[] => {
   const seen = new Set<string>();
   return wordsList.filter((w) => {
@@ -92,12 +97,20 @@ export default function App() {
 
   const [profile, setProfile] = useState<UserProfile>(() => {
     const saved = localStorage.getItem('wordup_profile');
-    return saved ? JSON.parse(saved) : INITIAL_USER_PROFILE;
+    const base = saved ? JSON.parse(saved) : INITIAL_USER_PROFILE;
+    const settSaved = localStorage.getItem('wordup_settings');
+    const baseSett = settSaved ? JSON.parse(settSaved) : INITIAL_APP_SETTINGS;
+    const { updatedProfile } = checkDailyReset(base, baseSett);
+    return updatedProfile;
   });
 
   const [settings, setSettings] = useState<AppSettings>(() => {
     const saved = localStorage.getItem('wordup_settings');
-    return saved ? JSON.parse(saved) : INITIAL_APP_SETTINGS;
+    const base = saved ? JSON.parse(saved) : INITIAL_APP_SETTINGS;
+    const profSaved = localStorage.getItem('wordup_profile');
+    const baseProf = profSaved ? JSON.parse(profSaved) : INITIAL_USER_PROFILE;
+    const { updatedSettings } = checkDailyReset(baseProf, base);
+    return updatedSettings;
   });
 
   // Modal States
@@ -192,17 +205,9 @@ export default function App() {
       );
     }
 
-    // Increment daily words learned
-    setSettings((prev) => ({
-      ...prev,
-      currentDayWordsCount: Math.min(prev.dailyGoal, prev.currentDayWordsCount + 1),
-    }));
-
-    setProfile((prev) => ({
-      ...prev,
-      wordsLearned: prev.wordsLearned + 1,
-      wordsThisWeek: prev.wordsThisWeek + 1,
-    }));
+    const { updatedProfile, updatedSettings } = recordLearningActivity(profile, settings, 1);
+    setSettings(updatedSettings);
+    setProfile(updatedProfile);
   };
 
   const handleCreateList = (newList: WordList) => {

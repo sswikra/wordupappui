@@ -82,6 +82,7 @@ export interface UserProfile {
   wordsLearned: number;
   gamesPlayed: number;
   activeStreak: number;
+  lastActiveDate?: string; // 'YYYY-MM-DD'
   overallAccuracy: number;
   badges: Badge[];
 }
@@ -95,6 +96,7 @@ export interface AppSettings {
   soundEnabled: boolean;
   dailyGoal: number;
   currentDayWordsCount: number;
+  lastDailyGoalDate?: string; // 'YYYY-MM-DD'
 }
 
 export type GameId = 'guess' | 'crosswords' | 'match' | 'scramble' | 'hangman';
