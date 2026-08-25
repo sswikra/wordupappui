@@ -2,2466 +2,6 @@ import { Word } from '../../types';
 
 export const WORDS_A1: Word[] = [
   {
-    "id": "w-water",
-    "word": "Water",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈwɔːtər/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "The clear liquid that falls as rain and that people and animals drink.",
-    "translation": "Su",
-    "example": "I drink a glass of water every morning.",
-    "exampleTranslation": "Her sabah bir bardak su içerim.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-food",
-    "word": "Food",
-    "partOfSpeech": "Noun",
-    "phonetic": "/fuːd/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Things that people and animals eat to live and grow.",
-    "translation": "Yiyecek / Gıda",
-    "example": "We need food and water to live.",
-    "exampleTranslation": "Yaşamak için yiyeceğe ve suya ihtiyacımız var.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-house",
-    "word": "House",
-    "partOfSpeech": "Noun",
-    "phonetic": "/haʊs/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A building where a person or family lives.",
-    "translation": "Ev",
-    "example": "They live in a small house near the park.",
-    "exampleTranslation": "Parkın yakınında küçük bir evde yaşıyorlar.",
-    "synonyms": [
-      "Home"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-family",
-    "word": "Family",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈfæm.ə.li/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A group of people who are related, such as parents and children.",
-    "translation": "Aile",
-    "example": "My family has dinner together every evening.",
-    "exampleTranslation": "Ailem her akşam birlikte yemek yer.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-friend",
-    "word": "Friend",
-    "partOfSpeech": "Noun",
-    "phonetic": "/frend/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A person you know well and like.",
-    "translation": "Arkadaş",
-    "example": "She is my best friend from school.",
-    "exampleTranslation": "O, okuldan en iyi arkadaşım.",
-    "synonyms": [
-      "Companion"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-book",
-    "word": "Book",
-    "partOfSpeech": "Noun",
-    "phonetic": "/bʊk/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A set of printed pages joined together, that you read.",
-    "translation": "Kitap",
-    "example": "He is reading a book about history.",
-    "exampleTranslation": "Tarihle ilgili bir kitap okuyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-school",
-    "word": "School",
-    "partOfSpeech": "Noun",
-    "phonetic": "/skuːl/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A place where children go to learn.",
-    "translation": "Okul",
-    "example": "My children walk to school every day.",
-    "exampleTranslation": "Çocuklarım her gün okula yürüyerek gider.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-teacher",
-    "word": "Teacher",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈtiː.tʃər/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A person whose job is to teach students.",
-    "translation": "Öğretmen",
-    "example": "Our teacher explains the lesson very clearly.",
-    "exampleTranslation": "Öğretmenimiz dersi çok net anlatıyor.",
-    "synonyms": [
-      "Instructor"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-student",
-    "word": "Student",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈstuː.dənt/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A person who is learning at a school or university.",
-    "translation": "Öğrenci",
-    "example": "She is a student at the university.",
-    "exampleTranslation": "O, üniversitede bir öğrenci.",
-    "synonyms": [
-      "Pupil"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-day",
-    "word": "Day",
-    "partOfSpeech": "Noun",
-    "phonetic": "/deɪ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A period of twenty-four hours.",
-    "translation": "Gün",
-    "example": "I go to work every day.",
-    "exampleTranslation": "Her gün işe giderim.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-night",
-    "word": "Night",
-    "partOfSpeech": "Noun",
-    "phonetic": "/naɪt/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "The time when it is dark outside and people usually sleep.",
-    "translation": "Gece",
-    "example": "We watched the stars at night.",
-    "exampleTranslation": "Gece yıldızları izledik.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-morning",
-    "word": "Morning",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈmɔːr.nɪŋ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "The early part of the day, from when the sun rises until noon.",
-    "translation": "Sabah",
-    "example": "I drink coffee every morning.",
-    "exampleTranslation": "Her sabah kahve içerim.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-week",
-    "word": "Week",
-    "partOfSpeech": "Noun",
-    "phonetic": "/wiːk/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A period of seven days.",
-    "translation": "Hafta",
-    "example": "I visit my parents once a week.",
-    "exampleTranslation": "Ailemi haftada bir kez ziyaret ederim.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-year",
-    "word": "Year",
-    "partOfSpeech": "Noun",
-    "phonetic": "/jɪr/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A period of twelve months.",
-    "translation": "Yıl / Sene",
-    "example": "We travel to Turkey every year.",
-    "exampleTranslation": "Her yıl Türkiye'ye seyahat ederiz.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-time",
-    "word": "Time",
-    "partOfSpeech": "Noun",
-    "phonetic": "/taɪm/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "The thing that is measured in hours, days, and years.",
-    "translation": "Zaman / Vakit",
-    "example": "I don't have time to talk right now.",
-    "exampleTranslation": "Şu anda konuşacak zamanım yok.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-money",
-    "word": "Money",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈmʌn.i/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Coins and paper notes used to buy things.",
-    "translation": "Para",
-    "example": "He doesn't have much money this month.",
-    "exampleTranslation": "Bu ay fazla parası yok.",
-    "synonyms": [
-      "Cash"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-city",
-    "word": "City",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈsɪt.i/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A large town where many people live and work.",
-    "translation": "Şehir",
-    "example": "London is a very big city.",
-    "exampleTranslation": "Londra çok büyük bir şehir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-country",
-    "word": "Country",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈkʌn.tri/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "An area of land with its own government, such as France or Japan.",
-    "translation": "Ülke",
-    "example": "Turkey is a beautiful country.",
-    "exampleTranslation": "Türkiye güzel bir ülke.",
-    "synonyms": [
-      "Nation"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-car",
-    "word": "Car",
-    "partOfSpeech": "Noun",
-    "phonetic": "/kɑːr/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A road vehicle with four wheels that carries a small number of people.",
-    "translation": "Araba",
-    "example": "We drove to the coast in our car.",
-    "exampleTranslation": "Kıyıya arabamızla gittik.",
-    "synonyms": [
-      "Automobile"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-dog",
-    "word": "Dog",
-    "partOfSpeech": "Noun",
-    "phonetic": "/dɔːg/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "An animal that many people keep as a pet.",
-    "translation": "Köpek",
-    "example": "The dog is playing in the garden.",
-    "exampleTranslation": "Köpek bahçede oynuyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-cat",
-    "word": "Cat",
-    "partOfSpeech": "Noun",
-    "phonetic": "/kæt/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A small animal with fur that people often keep as a pet.",
-    "translation": "Kedi",
-    "example": "My cat sleeps on the sofa all day.",
-    "exampleTranslation": "Kedim bütün gün kanepede uyur.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-bird",
-    "word": "Bird",
-    "partOfSpeech": "Noun",
-    "phonetic": "/bɜːrd/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "An animal with wings and feathers that can usually fly.",
-    "translation": "Kuş",
-    "example": "A small bird is singing in the tree.",
-    "exampleTranslation": "Ağaçta küçük bir kuş şarkı söylüyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-tree",
-    "word": "Tree",
-    "partOfSpeech": "Noun",
-    "phonetic": "/triː/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A tall plant with a wooden trunk, branches, and leaves.",
-    "translation": "Ağaç",
-    "example": "There is a big tree in front of our house.",
-    "exampleTranslation": "Evimizin önünde büyük bir ağaç var.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-flower",
-    "word": "Flower",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈflaʊ.ər/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "The colorful part of a plant that often has a pleasant smell.",
-    "translation": "Çiçek",
-    "example": "She gave me a red flower.",
-    "exampleTranslation": "Bana kırmızı bir çiçek verdi.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-sun",
-    "word": "Sun",
-    "partOfSpeech": "Noun",
-    "phonetic": "/sʌn/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "The bright star that gives the Earth light and heat.",
-    "translation": "Güneş",
-    "example": "The sun is very bright today.",
-    "exampleTranslation": "Bugün güneş çok parlak.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-sky",
-    "word": "Sky",
-    "partOfSpeech": "Noun",
-    "phonetic": "/skaɪ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "The space above the Earth where you see clouds and the sun.",
-    "translation": "Gökyüzü",
-    "example": "The sky is blue and clear today.",
-    "exampleTranslation": "Bugün gökyüzü mavi ve açık.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-rain",
-    "word": "Rain",
-    "partOfSpeech": "Noun",
-    "phonetic": "/reɪn/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Water that falls from clouds in small drops.",
-    "translation": "Yağmur",
-    "example": "We stayed inside because of the rain.",
-    "exampleTranslation": "Yağmur yüzünden içeride kaldık.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-color",
-    "word": "Color",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈkʌl.ər/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A quality such as red, blue, or green that you see with your eyes.",
-    "translation": "Renk",
-    "example": "What color is your new car?",
-    "exampleTranslation": "Yeni araban ne renk?",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-name",
-    "word": "Name",
-    "partOfSpeech": "Noun",
-    "phonetic": "/neɪm/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "The word that people use to talk to or about a person or thing.",
-    "translation": "İsim / Ad",
-    "example": "What is your name?",
-    "exampleTranslation": "Adın ne?",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-table",
-    "word": "Table",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈteɪ.bəl/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A piece of furniture with a flat top and legs.",
-    "translation": "Masa",
-    "example": "The children are sitting at the table.",
-    "exampleTranslation": "Çocuklar masada oturuyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-room",
-    "word": "Room",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ruːm/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A part of a building with its own walls, floor, and ceiling.",
-    "translation": "Oda",
-    "example": "My bedroom is the smallest room in the house.",
-    "exampleTranslation": "Yatak odam evdeki en küçük oda.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-phone",
-    "word": "Phone",
-    "partOfSpeech": "Noun",
-    "phonetic": "/foʊn/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A device used to talk to people who are in another place.",
-    "translation": "Telefon",
-    "example": "I forgot my phone at home.",
-    "exampleTranslation": "Telefonumu evde unuttum.",
-    "synonyms": [
-      "Telephone"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-music",
-    "word": "Music",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈmjuː.zɪk/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Sounds made by singing or by instruments, arranged in a pleasant way.",
-    "translation": "Müzik",
-    "example": "She listens to music every evening.",
-    "exampleTranslation": "Her akşam müzik dinler.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-job",
-    "word": "Job",
-    "partOfSpeech": "Noun",
-    "phonetic": "/dʒɑːb/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "The work that a person does to earn money.",
-    "translation": "İş",
-    "example": "He found a new job last month.",
-    "exampleTranslation": "Geçen ay yeni bir iş buldu.",
-    "synonyms": [
-      "Occupation"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-doctor",
-    "word": "Doctor",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈdɑːk.tər/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A person whose job is to treat sick or injured people.",
-    "translation": "Doktor",
-    "example": "I need to see a doctor about my headache.",
-    "exampleTranslation": "Baş ağrım için bir doktora görünmem gerekiyor.",
-    "synonyms": [
-      "Physician"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-be",
-    "word": "Be",
-    "partOfSpeech": "Verb",
-    "phonetic": "/biː/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To exist, or to have a particular state or quality.",
-    "translation": "Olmak",
-    "example": "She is a very kind person.",
-    "exampleTranslation": "O çok kibar bir insan.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-have",
-    "word": "Have",
-    "partOfSpeech": "Verb",
-    "phonetic": "/hæv/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To own, hold, or possess something.",
-    "translation": "Sahip olmak",
-    "example": "I have two brothers and one sister.",
-    "exampleTranslation": "İki erkek ve bir kız kardeşim var.",
-    "synonyms": [
-      "Own"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-do",
-    "word": "Do",
-    "partOfSpeech": "Verb",
-    "phonetic": "/duː/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To perform an action or activity.",
-    "translation": "Yapmak",
-    "example": "What do you do on weekends?",
-    "exampleTranslation": "Hafta sonları ne yaparsın?",
-    "synonyms": [
-      "Perform"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-go",
-    "word": "Go",
-    "partOfSpeech": "Verb",
-    "phonetic": "/goʊ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To move or travel from one place to another.",
-    "translation": "Gitmek",
-    "example": "We go to the gym twice a week.",
-    "exampleTranslation": "Haftada iki kez spor salonuna gideriz.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-come",
-    "word": "Come",
-    "partOfSpeech": "Verb",
-    "phonetic": "/kʌm/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To move toward the person who is speaking.",
-    "translation": "Gelmek",
-    "example": "Can you come to my house tomorrow?",
-    "exampleTranslation": "Yarın evime gelebilir misin?",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-see",
-    "word": "See",
-    "partOfSpeech": "Verb",
-    "phonetic": "/siː/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To notice something with your eyes.",
-    "translation": "Görmek",
-    "example": "I can see the mountains from my window.",
-    "exampleTranslation": "Penceremden dağları görebiliyorum.",
-    "synonyms": [
-      "Notice"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-know",
-    "word": "Know",
-    "partOfSpeech": "Verb",
-    "phonetic": "/noʊ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To have information about something in your mind.",
-    "translation": "Bilmek",
-    "example": "I know the answer to this question.",
-    "exampleTranslation": "Bu sorunun cevabını biliyorum.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-think",
-    "word": "Think",
-    "partOfSpeech": "Verb",
-    "phonetic": "/θɪŋk/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To use your mind to have ideas or opinions.",
-    "translation": "Düşünmek",
-    "example": "I think it will rain tomorrow.",
-    "exampleTranslation": "Sanırım yarın yağmur yağacak.",
-    "synonyms": [
-      "Believe"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-take",
-    "word": "Take",
-    "partOfSpeech": "Verb",
-    "phonetic": "/teɪk/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To carry or move something with you.",
-    "translation": "Almak",
-    "example": "Please take an umbrella; it might rain.",
-    "exampleTranslation": "Lütfen bir şemsiye al; yağmur yağabilir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-want",
-    "word": "Want",
-    "partOfSpeech": "Verb",
-    "phonetic": "/wɑːnt/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To have a strong wish for something.",
-    "translation": "İstemek",
-    "example": "I want a cup of tea, please.",
-    "exampleTranslation": "Bir fincan çay istiyorum, lütfen.",
-    "synonyms": [
-      "Wish"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-like",
-    "word": "Like",
-    "partOfSpeech": "Verb",
-    "phonetic": "/laɪk/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To enjoy something or think it is good.",
-    "translation": "Sevmek / Hoşlanmak",
-    "example": "I really like this song.",
-    "exampleTranslation": "Bu şarkıyı gerçekten seviyorum.",
-    "synonyms": [
-      "Enjoy"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-need",
-    "word": "Need",
-    "partOfSpeech": "Verb",
-    "phonetic": "/niːd/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To require something because it is necessary.",
-    "translation": "İhtiyaç duymak",
-    "example": "We need more time to finish this.",
-    "exampleTranslation": "Bunu bitirmek için daha fazla zamana ihtiyacımız var.",
-    "synonyms": [
-      "Require"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-eat",
-    "word": "Eat",
-    "partOfSpeech": "Verb",
-    "phonetic": "/iːt/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To put food in your mouth and swallow it.",
-    "translation": "Yemek yemek",
-    "example": "We eat dinner at seven o'clock.",
-    "exampleTranslation": "Saat yedide akşam yemeği yeriz.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-drink",
-    "word": "Drink",
-    "partOfSpeech": "Verb",
-    "phonetic": "/drɪŋk/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To take liquid into your mouth and swallow it.",
-    "translation": "İçmek",
-    "example": "She drinks a cup of tea every morning.",
-    "exampleTranslation": "Her sabah bir fincan çay içer.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-sleep",
-    "word": "Sleep",
-    "partOfSpeech": "Verb",
-    "phonetic": "/sliːp/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To rest with your eyes closed and your mind unconscious.",
-    "translation": "Uyumak",
-    "example": "The baby sleeps for ten hours at night.",
-    "exampleTranslation": "Bebek gece on saat uyur.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-live",
-    "word": "Live",
-    "partOfSpeech": "Verb",
-    "phonetic": "/lɪv/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To have your home in a particular place.",
-    "translation": "Yaşamak",
-    "example": "They live in a small apartment downtown.",
-    "exampleTranslation": "Şehir merkezinde küçük bir dairede yaşıyorlar.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-work",
-    "word": "Work",
-    "partOfSpeech": "Verb",
-    "phonetic": "/wɜːrk/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To do a job, especially in order to earn money.",
-    "translation": "Çalışmak",
-    "example": "She works in a hospital as a nurse.",
-    "exampleTranslation": "Hastanede hemşire olarak çalışıyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-play",
-    "word": "Play",
-    "partOfSpeech": "Verb",
-    "phonetic": "/pleɪ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To do something for fun or enjoyment.",
-    "translation": "Oynamak",
-    "example": "The kids play football in the park.",
-    "exampleTranslation": "Çocuklar parkta futbol oynuyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-read",
-    "word": "Read",
-    "partOfSpeech": "Verb",
-    "phonetic": "/riːd/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To look at written words and understand their meaning.",
-    "translation": "Okumak",
-    "example": "He reads the newspaper every morning.",
-    "exampleTranslation": "Her sabah gazete okur.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-write",
-    "word": "Write",
-    "partOfSpeech": "Verb",
-    "phonetic": "/raɪt/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To put words on paper or a screen.",
-    "translation": "Yazmak",
-    "example": "I write a letter to my grandmother every month.",
-    "exampleTranslation": "Her ay büyükanneme bir mektup yazarım.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-speak",
-    "word": "Speak",
-    "partOfSpeech": "Verb",
-    "phonetic": "/spiːk/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To talk and say words with your voice.",
-    "translation": "Konuşmak",
-    "example": "She can speak three languages.",
-    "exampleTranslation": "Üç dil konuşabiliyor.",
-    "synonyms": [
-      "Talk"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-listen",
-    "word": "Listen",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ˈlɪs.ən/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To pay attention in order to hear something.",
-    "translation": "Dinlemek",
-    "example": "Please listen carefully to the instructions.",
-    "exampleTranslation": "Lütfen talimatları dikkatlice dinleyin.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-look",
-    "word": "Look",
-    "partOfSpeech": "Verb",
-    "phonetic": "/lʊk/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To turn your eyes toward something in order to see it.",
-    "translation": "Bakmak",
-    "example": "Look at that beautiful sunset!",
-    "exampleTranslation": "Şu güzel gün batımına bak!",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-give",
-    "word": "Give",
-    "partOfSpeech": "Verb",
-    "phonetic": "/gɪv/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To hand something to someone else.",
-    "translation": "Vermek",
-    "example": "Can you give me your phone number?",
-    "exampleTranslation": "Bana telefon numaranı verebilir misin?",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-help",
-    "word": "Help",
-    "partOfSpeech": "Verb",
-    "phonetic": "/help/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To make it easier for someone to do something.",
-    "translation": "Yardım etmek",
-    "example": "Can you help me carry these bags?",
-    "exampleTranslation": "Bu çantaları taşımama yardım edebilir misin?",
-    "synonyms": [
-      "Assist"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-open",
-    "word": "Open",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ˈoʊ.pən/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To move something so that it is no longer closed.",
-    "translation": "Açmak",
-    "example": "Please open the window; it's hot in here.",
-    "exampleTranslation": "Lütfen pencereyi aç; burası sıcak.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-close",
-    "word": "Close",
-    "partOfSpeech": "Verb",
-    "phonetic": "/kloʊz/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To move something so that it is no longer open.",
-    "translation": "Kapatmak",
-    "example": "Please close the door when you leave.",
-    "exampleTranslation": "Çıkarken lütfen kapıyı kapat.",
-    "synonyms": [
-      "Shut"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-buy",
-    "word": "Buy",
-    "partOfSpeech": "Verb",
-    "phonetic": "/baɪ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To get something by paying money for it.",
-    "translation": "Satın almak",
-    "example": "I need to buy some milk and bread.",
-    "exampleTranslation": "Biraz süt ve ekmek almam gerekiyor.",
-    "synonyms": [
-      "Purchase"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-walk",
-    "word": "Walk",
-    "partOfSpeech": "Verb",
-    "phonetic": "/wɔːk/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To move on foot at a normal speed.",
-    "translation": "Yürümek",
-    "example": "We walk to school together every day.",
-    "exampleTranslation": "Her gün birlikte okula yürüyerek gideriz.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-run",
-    "word": "Run",
-    "partOfSpeech": "Verb",
-    "phonetic": "/rʌn/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To move quickly on foot, faster than walking.",
-    "translation": "Koşmak",
-    "example": "He runs in the park every morning.",
-    "exampleTranslation": "Her sabah parkta koşar.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-sit",
-    "word": "Sit",
-    "partOfSpeech": "Verb",
-    "phonetic": "/sɪt/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To rest your body on a chair or the ground with your back straight.",
-    "translation": "Oturmak",
-    "example": "Please sit down and relax.",
-    "exampleTranslation": "Lütfen otur ve rahatla.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-stand",
-    "word": "Stand",
-    "partOfSpeech": "Verb",
-    "phonetic": "/stænd/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To be on your feet in an upright position.",
-    "translation": "Ayakta durmak",
-    "example": "The passengers had to stand on the crowded bus.",
-    "exampleTranslation": "Yolcular kalabalık otobüste ayakta durmak zorunda kaldı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-cook",
-    "word": "Cook",
-    "partOfSpeech": "Verb",
-    "phonetic": "/kʊk/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To prepare food by heating it.",
-    "translation": "Pişirmek",
-    "example": "My father cooks dinner on Sundays.",
-    "exampleTranslation": "Babam pazar günleri akşam yemeği pişirir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-study",
-    "word": "Study",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ˈstʌd.i/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To spend time learning about a subject.",
-    "translation": "Ders çalışmak",
-    "example": "She studies English every evening.",
-    "exampleTranslation": "Her akşam İngilizce çalışır.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-meet",
-    "word": "Meet",
-    "partOfSpeech": "Verb",
-    "phonetic": "/miːt/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To come together with someone, often for the first time.",
-    "translation": "Tanışmak / Buluşmak",
-    "example": "Nice to meet you!",
-    "exampleTranslation": "Tanıştığımıza memnun oldum!",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-big",
-    "word": "Big",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/bɪg/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Large in size.",
-    "translation": "Büyük",
-    "example": "They live in a big house with a garden.",
-    "exampleTranslation": "Bahçeli büyük bir evde yaşıyorlar.",
-    "synonyms": [
-      "Large"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-small",
-    "word": "Small",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/smɔːl/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Not large in size.",
-    "translation": "Küçük",
-    "example": "We have a small kitchen in our apartment.",
-    "exampleTranslation": "Dairemizde küçük bir mutfağımız var.",
-    "synonyms": [
-      "Little"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-good",
-    "word": "Good",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/gʊd/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Of high quality, or pleasant and enjoyable.",
-    "translation": "İyi",
-    "example": "This is a good restaurant for lunch.",
-    "exampleTranslation": "Bu, öğle yemeği için iyi bir restoran.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-bad",
-    "word": "Bad",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/bæd/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Not good in quality or behavior.",
-    "translation": "Kötü",
-    "example": "The weather was bad all weekend.",
-    "exampleTranslation": "Hafta sonu boyunca hava kötüydü.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-new",
-    "word": "New",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/nuː/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Recently made, bought, or begun; not old.",
-    "translation": "Yeni",
-    "example": "I bought a new pair of shoes yesterday.",
-    "exampleTranslation": "Dün yeni bir ayakkabı aldım.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-old",
-    "word": "Old",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/oʊld/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Having lived or existed for a long time; not new or young.",
-    "translation": "Eski / Yaşlı",
-    "example": "My grandfather is eighty years old.",
-    "exampleTranslation": "Büyükbabam seksen yaşında.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-happy",
-    "word": "Happy",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈhæp.i/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Feeling or showing pleasure and enjoyment.",
-    "translation": "Mutlu",
-    "example": "She felt very happy on her birthday.",
-    "exampleTranslation": "Doğum gününde çok mutlu hissetti.",
-    "synonyms": [
-      "Glad"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-sad",
-    "word": "Sad",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/sæd/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Feeling unhappy, often because something bad has happened.",
-    "translation": "Üzgün",
-    "example": "He was sad when his friend moved away.",
-    "exampleTranslation": "Arkadaşı taşınınca üzüldü.",
-    "synonyms": [
-      "Unhappy"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-hot",
-    "word": "Hot",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/hɑːt/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Having a high temperature.",
-    "translation": "Sıcak",
-    "example": "It's very hot outside today.",
-    "exampleTranslation": "Bugün dışarısı çok sıcak.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-cold",
-    "word": "Cold",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/koʊld/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Having a low temperature.",
-    "translation": "Soğuk",
-    "example": "The water in the lake is very cold.",
-    "exampleTranslation": "Gölün suyu çok soğuk.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-easy",
-    "word": "Easy",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈiː.zi/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Not difficult; simple to do or understand.",
-    "translation": "Kolay",
-    "example": "This exercise is very easy for beginners.",
-    "exampleTranslation": "Bu egzersiz başlangıç seviyesindekiler için çok kolay.",
-    "synonyms": [
-      "Simple"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-difficult",
-    "word": "Difficult",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈdɪf.ɪ.kəlt/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Not easy; hard to do or understand.",
-    "translation": "Zor",
-    "example": "Learning a new language can be difficult at first.",
-    "exampleTranslation": "Yeni bir dil öğrenmek başlangıçta zor olabilir.",
-    "synonyms": [
-      "Hard"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-beautiful",
-    "word": "Beautiful",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈbjuː.tɪ.fəl/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Very pleasant to look at.",
-    "translation": "Güzel",
-    "example": "The view from the mountain was beautiful.",
-    "exampleTranslation": "Dağdan görünen manzara çok güzeldi.",
-    "synonyms": [
-      "Pretty"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-tall",
-    "word": "Tall",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/tɔːl/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Having a greater than average height.",
-    "translation": "Uzun (boy)",
-    "example": "My brother is very tall for his age.",
-    "exampleTranslation": "Kardeşim yaşına göre çok uzun.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-short",
-    "word": "Short",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ʃɔːrt/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Having a small length or height.",
-    "translation": "Kısa",
-    "example": "She has short brown hair.",
-    "exampleTranslation": "Kısa kahverengi saçları var.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-young",
-    "word": "Young",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/jʌŋ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Not old; having lived for only a short time.",
-    "translation": "Genç",
-    "example": "The teacher is young and very energetic.",
-    "exampleTranslation": "Öğretmen genç ve çok enerjik.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-fast",
-    "word": "Fast",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/fæst/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Moving or happening quickly.",
-    "translation": "Hızlı",
-    "example": "He is a very fast runner.",
-    "exampleTranslation": "O çok hızlı bir koşucu.",
-    "synonyms": [
-      "Quick"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-slow",
-    "word": "Slow",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/sloʊ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Not fast; taking a long time.",
-    "translation": "Yavaş",
-    "example": "The old car goes very slow uphill.",
-    "exampleTranslation": "Eski araba yokuş yukarı çok yavaş gider.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-clean",
-    "word": "Clean",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/kliːn/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Free from dirt or dust.",
-    "translation": "Temiz",
-    "example": "Please keep your room clean.",
-    "exampleTranslation": "Lütfen odanı temiz tut.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-dirty",
-    "word": "Dirty",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈdɜːr.ti/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Covered with dirt; not clean.",
-    "translation": "Kirli",
-    "example": "His shoes were dirty after the walk in the rain.",
-    "exampleTranslation": "Yağmurda yürüyünce ayakkabıları kirlendi.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-always",
-    "word": "Always",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ˈɔːl.weɪz/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "At all times; every time.",
-    "translation": "Her zaman / Daima",
-    "example": "She always drinks tea in the morning.",
-    "exampleTranslation": "Sabahları her zaman çay içer.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-never",
-    "word": "Never",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ˈnev.ər/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "At no time; not ever.",
-    "translation": "Asla / Hiçbir zaman",
-    "example": "I have never been to Japan.",
-    "exampleTranslation": "Hiç Japonya'ya gitmedim.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-often",
-    "word": "Often",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ˈɔːf.ən/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Many times; frequently.",
-    "translation": "Sık sık",
-    "example": "We often eat pizza on Fridays.",
-    "exampleTranslation": "Cuma günleri sık sık pizza yeriz.",
-    "synonyms": [
-      "Frequently"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-sometimes",
-    "word": "Sometimes",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ˈsʌm.taɪmz/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "On some occasions, but not always.",
-    "translation": "Bazen",
-    "example": "Sometimes I walk to work instead of driving.",
-    "exampleTranslation": "Bazen araba kullanmak yerine işe yürüyerek giderim.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-here",
-    "word": "Here",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/hɪr/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "In, at, or to this place.",
-    "translation": "Burada / Buraya",
-    "example": "Please come here for a minute.",
-    "exampleTranslation": "Lütfen bir dakikalığına buraya gel.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-there",
-    "word": "There",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ðer/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "In, at, or to that place.",
-    "translation": "Orada / Oraya",
-    "example": "The keys are over there, on the table.",
-    "exampleTranslation": "Anahtarlar şurada, masanın üzerinde.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-now",
-    "word": "Now",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/naʊ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "At this present time.",
-    "translation": "Şimdi",
-    "example": "I have to leave now or I'll be late.",
-    "exampleTranslation": "Şimdi gitmem lazım yoksa geç kalacağım.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-today",
-    "word": "Today",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/təˈdeɪ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "On this day.",
-    "translation": "Bugün",
-    "example": "What are you doing today?",
-    "exampleTranslation": "Bugün ne yapıyorsun?",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-very",
-    "word": "Very",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ˈver.i/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To a great degree; extremely.",
-    "translation": "Çok",
-    "example": "This soup is very hot.",
-    "exampleTranslation": "Bu çorba çok sıcak.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-well",
-    "word": "Well",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/wel/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "In a good or satisfactory way.",
-    "translation": "İyi (bir şekilde)",
-    "example": "She speaks English very well.",
-    "exampleTranslation": "İngilizceyi çok iyi konuşuyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-man",
-    "word": "Man",
-    "partOfSpeech": "Noun",
-    "phonetic": "/mæn/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "An adult male human.",
-    "translation": "Adam / Erkek",
-    "example": "The man is waiting at the bus stop.",
-    "exampleTranslation": "Adam otobüs durağında bekliyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-woman",
-    "word": "Woman",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈwʊm.ən/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "An adult female human.",
-    "translation": "Kadın",
-    "example": "The woman is reading a book in the park.",
-    "exampleTranslation": "Kadın parkta bir kitap okuyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-boy",
-    "word": "Boy",
-    "partOfSpeech": "Noun",
-    "phonetic": "/bɔɪ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A young male person, from birth to about eighteen years old.",
-    "translation": "Erkek çocuk / Oğlan",
-    "example": "The boy is playing football with his friends.",
-    "exampleTranslation": "Erkek çocuk arkadaşlarıyla futbol oynuyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-girl",
-    "word": "Girl",
-    "partOfSpeech": "Noun",
-    "phonetic": "/gɜːrl/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A young female person, from birth to about eighteen years old.",
-    "translation": "Kız çocuk",
-    "example": "The girl is drawing a picture of her house.",
-    "exampleTranslation": "Kız çocuk evinin resmini çiziyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-baby",
-    "word": "Baby",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈbeɪ.bi/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A very young child who cannot yet walk or talk.",
-    "translation": "Bebek",
-    "example": "The baby is sleeping in her room.",
-    "exampleTranslation": "Bebek odasında uyuyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-mother",
-    "word": "Mother",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈmʌð.ər/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A female parent.",
-    "translation": "Anne",
-    "example": "My mother cooks dinner every evening.",
-    "exampleTranslation": "Annem her akşam yemek pişirir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-father",
-    "word": "Father",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈfɑː.ðər/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A male parent.",
-    "translation": "Baba",
-    "example": "My father drives me to school every morning.",
-    "exampleTranslation": "Babam her sabah beni okula bırakır.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-sister",
-    "word": "Sister",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈsɪs.tər/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A girl or woman who has the same parents as you.",
-    "translation": "Kız kardeş",
-    "example": "My sister lives in another city.",
-    "exampleTranslation": "Kız kardeşim başka bir şehirde yaşıyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-brother",
-    "word": "Brother",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈbrʌð.ər/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A boy or man who has the same parents as you.",
-    "translation": "Erkek kardeş",
-    "example": "My brother is older than me.",
-    "exampleTranslation": "Erkek kardeşim benden büyük.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-bag",
-    "word": "Bag",
-    "partOfSpeech": "Noun",
-    "phonetic": "/bæg/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A container made of cloth, paper, or leather, used for carrying things.",
-    "translation": "Çanta",
-    "example": "She put her books in her bag.",
-    "exampleTranslation": "Kitaplarını çantasına koydu.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-shirt",
-    "word": "Shirt",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ʃɜːrt/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A piece of clothing worn on the upper body.",
-    "translation": "Gömlek",
-    "example": "He is wearing a blue shirt today.",
-    "exampleTranslation": "Bugün mavi bir gömlek giyiyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-shoes",
-    "word": "Shoes",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ʃuːz/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Items worn on the feet for walking.",
-    "translation": "Ayakkabı",
-    "example": "These shoes are very comfortable for walking.",
-    "exampleTranslation": "Bu ayakkabılar yürümek için çok rahat.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-door",
-    "word": "Door",
-    "partOfSpeech": "Noun",
-    "phonetic": "/dɔːr/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A flat object used to open and close the entrance of a room or building.",
-    "translation": "Kapı",
-    "example": "Please close the door behind you.",
-    "exampleTranslation": "Lütfen arkandan kapıyı kapat.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-window",
-    "word": "Window",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈwɪn.doʊ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "An opening in a wall, usually covered with glass, that lets in light.",
-    "translation": "Pencere",
-    "example": "Open the window; it's too warm in here.",
-    "exampleTranslation": "Pencereyi aç; burası çok sıcak.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-snow",
-    "word": "Snow",
-    "partOfSpeech": "Noun",
-    "phonetic": "/snoʊ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Soft white pieces of frozen water that fall from the sky in winter.",
-    "translation": "Kar",
-    "example": "The children were playing in the snow.",
-    "exampleTranslation": "Çocuklar karda oynuyordu.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-wind",
-    "word": "Wind",
-    "partOfSpeech": "Noun",
-    "phonetic": "/wɪnd/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Air that moves quickly, especially outdoors.",
-    "translation": "Rüzgar",
-    "example": "The wind was very strong yesterday.",
-    "exampleTranslation": "Dün rüzgar çok güçlüydü.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-cloud",
-    "word": "Cloud",
-    "partOfSpeech": "Noun",
-    "phonetic": "/klaʊd/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A white or grey mass in the sky, made of small drops of water.",
-    "translation": "Bulut",
-    "example": "There isn't a single cloud in the sky today.",
-    "exampleTranslation": "Bugün gökyüzünde tek bir bulut yok.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-egg",
-    "word": "Egg",
-    "partOfSpeech": "Noun",
-    "phonetic": "/eg/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "An oval object laid by a bird, often eaten as food.",
-    "translation": "Yumurta",
-    "example": "I eat an egg for breakfast every day.",
-    "exampleTranslation": "Her gün kahvaltıda bir yumurta yerim.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-apple",
-    "word": "Apple",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈæp.əl/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "A round fruit with red, green, or yellow skin.",
-    "translation": "Elma",
-    "example": "She eats an apple every afternoon.",
-    "exampleTranslation": "Her öğleden sonra bir elma yer.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-rice",
-    "word": "Rice",
-    "partOfSpeech": "Noun",
-    "phonetic": "/raɪs/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Small white or brown grains that are cooked and eaten as food.",
-    "translation": "Pirinç",
-    "example": "We usually have rice with our dinner.",
-    "exampleTranslation": "Genellikle akşam yemeğimizle pirinç yeriz.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-wear",
-    "word": "Wear",
-    "partOfSpeech": "Verb",
-    "phonetic": "/wer/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To have clothes or jewelry on your body.",
-    "translation": "Giymek",
-    "example": "She likes to wear bright colors in summer.",
-    "exampleTranslation": "Yazın parlak renkler giymeyi sever.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-cut",
-    "word": "Cut",
-    "partOfSpeech": "Verb",
-    "phonetic": "/kʌt/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To use something sharp to divide something into pieces.",
-    "translation": "Kesmek",
-    "example": "Can you cut the bread for the sandwiches?",
-    "exampleTranslation": "Sandviçler için ekmeği kesebilir misin?",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-wash",
-    "word": "Wash",
-    "partOfSpeech": "Verb",
-    "phonetic": "/wɑːʃ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To clean something using water.",
-    "translation": "Yıkamak",
-    "example": "I wash my hands before every meal.",
-    "exampleTranslation": "Her yemekten önce ellerimi yıkarım.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-fly",
-    "word": "Fly",
-    "partOfSpeech": "Verb",
-    "phonetic": "/flaɪ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To move through the air, as birds and planes do.",
-    "translation": "Uçmak",
-    "example": "We fly to Istanbul twice a year.",
-    "exampleTranslation": "Yılda iki kez İstanbul'a uçuyoruz.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-swim",
-    "word": "Swim",
-    "partOfSpeech": "Verb",
-    "phonetic": "/swɪm/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To move through water using your arms and legs.",
-    "translation": "Yüzmek",
-    "example": "The children swim in the pool every summer.",
-    "exampleTranslation": "Çocuklar her yaz havuzda yüzer.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-dance",
-    "word": "Dance",
-    "partOfSpeech": "Verb",
-    "phonetic": "/dæns/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To move your body to the rhythm of music.",
-    "translation": "Dans etmek",
-    "example": "They danced together at the wedding.",
-    "exampleTranslation": "Düğünde birlikte dans ettiler.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-sing",
-    "word": "Sing",
-    "partOfSpeech": "Verb",
-    "phonetic": "/sɪŋ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To make musical sounds with your voice.",
-    "translation": "Şarkı söylemek",
-    "example": "She sings in the shower every morning.",
-    "exampleTranslation": "Her sabah duşta şarkı söyler.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-draw",
-    "word": "Draw",
-    "partOfSpeech": "Verb",
-    "phonetic": "/drɔː/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To make a picture using a pen or pencil.",
-    "translation": "Çizmek",
-    "example": "My son loves to draw animals.",
-    "exampleTranslation": "Oğlum hayvan çizmeyi seviyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-paint",
-    "word": "Paint",
-    "partOfSpeech": "Verb",
-    "phonetic": "/peɪnt/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To cover a surface with color, or to make a picture using paint.",
-    "translation": "Boyamak / Resim yapmak",
-    "example": "We painted the kitchen walls yellow.",
-    "exampleTranslation": "Mutfak duvarlarını sarıya boyadık.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-fall",
-    "word": "Fall",
-    "partOfSpeech": "Verb",
-    "phonetic": "/fɔːl/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To drop down toward the ground by accident.",
-    "translation": "Düşmek",
-    "example": "Be careful not to fall on the ice.",
-    "exampleTranslation": "Buzda düşmemeye dikkat et.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-push",
-    "word": "Push",
-    "partOfSpeech": "Verb",
-    "phonetic": "/pʊʃ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To use force to move something away from you.",
-    "translation": "İtmek",
-    "example": "Push the door to open it.",
-    "exampleTranslation": "Açmak için kapıyı it.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-pull",
-    "word": "Pull",
-    "partOfSpeech": "Verb",
-    "phonetic": "/pʊl/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To use force to move something toward you.",
-    "translation": "Çekmek",
-    "example": "Pull the door instead of pushing it.",
-    "exampleTranslation": "Kapıyı itmek yerine çek.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-carry",
-    "word": "Carry",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ˈker.i/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To hold something and take it with you from one place to another.",
-    "translation": "Taşımak",
-    "example": "Can you help me carry these boxes upstairs?",
-    "exampleTranslation": "Bu kutuları yukarı taşımama yardım edebilir misin?",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-send",
-    "word": "Send",
-    "partOfSpeech": "Verb",
-    "phonetic": "/send/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To make something go to another place, such as by post or online.",
-    "translation": "Göndermek",
-    "example": "I'll send you the photos tonight.",
-    "exampleTranslation": "Fotoğrafları sana bu gece göndereceğim.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-turn",
-    "word": "Turn",
-    "partOfSpeech": "Verb",
-    "phonetic": "/tɜːrn/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "To move so that you are facing a different direction.",
-    "translation": "Dönmek",
-    "example": "Turn left at the next corner.",
-    "exampleTranslation": "Bir sonraki köşede sola dön.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-rich",
-    "word": "Rich",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/rɪtʃ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Having a lot of money.",
-    "translation": "Zengin",
-    "example": "They became rich after starting their business.",
-    "exampleTranslation": "İşlerini kurduktan sonra zengin oldular.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-poor",
-    "word": "Poor",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/pɔːr/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Having very little money.",
-    "translation": "Fakir",
-    "example": "The charity helps poor families in the city.",
-    "exampleTranslation": "Yardım kuruluşu şehirdeki fakir ailelere yardım ediyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-long",
-    "word": "Long",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/lɔːŋ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Measuring a great distance or amount of time.",
-    "translation": "Uzun",
-    "example": "It was a long journey from home to the airport.",
-    "exampleTranslation": "Evden havalimanına uzun bir yolculuktu.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-thin",
-    "word": "Thin",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/θɪn/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Not thick or wide; having little space between two sides.",
-    "translation": "İnce",
-    "example": "She cut the cheese into thin slices.",
-    "exampleTranslation": "Peyniri ince dilimler halinde kesti.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-round",
-    "word": "Round",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/raʊnd/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Shaped like a circle or a ball.",
-    "translation": "Yuvarlak",
-    "example": "The table in our kitchen is round.",
-    "exampleTranslation": "Mutfağımızdaki masa yuvarlak.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-square",
-    "word": "Square",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/skwer/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Having four straight, equal sides.",
-    "translation": "Kare",
-    "example": "He drew a square on the paper.",
-    "exampleTranslation": "Kağıda bir kare çizdi.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-soft",
-    "word": "Soft",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/sɔːft/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Not hard or rough; pleasant to touch.",
-    "translation": "Yumuşak",
-    "example": "This blanket is very soft and warm.",
-    "exampleTranslation": "Bu battaniye çok yumuşak ve sıcak.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-hard",
-    "word": "Hard",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/hɑːrd/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Firm and not easy to bend or break, or difficult to do.",
-    "translation": "Sert / Zor",
-    "example": "The bread was too hard to eat.",
-    "exampleTranslation": "Ekmek yemek için çok sertti.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-wet",
-    "word": "Wet",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/wet/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Covered in water or another liquid; not dry.",
-    "translation": "Islak",
-    "example": "My shoes got wet in the rain.",
-    "exampleTranslation": "Ayakkabılarım yağmurda ıslandı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-dry",
-    "word": "Dry",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/draɪ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Not wet; having no water or liquid.",
-    "translation": "Kuru",
-    "example": "The clothes are dry now; you can put them away.",
-    "exampleTranslation": "Kıyafetler şimdi kuru; kaldırabilirsin.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-yesterday",
-    "word": "Yesterday",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ˈjes.tər.deɪ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "On the day before today.",
-    "translation": "Dün",
-    "example": "We went to the cinema yesterday evening.",
-    "exampleTranslation": "Dün akşam sinemaya gittik.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-tomorrow",
-    "word": "Tomorrow",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/təˈmɑːr.oʊ/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "On the day after today.",
-    "translation": "Yarın",
-    "example": "I have a meeting with my boss tomorrow.",
-    "exampleTranslation": "Yarın patronumla bir toplantım var.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-soon",
-    "word": "Soon",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/suːn/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "In a short time from now.",
-    "translation": "Yakında",
-    "example": "The bus will arrive soon.",
-    "exampleTranslation": "Otobüs yakında gelecek.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-early",
-    "word": "Early",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ˈɜːr.li/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "Before the usual or expected time.",
-    "translation": "Erken",
-    "example": "We woke up early to catch the flight.",
-    "exampleTranslation": "Uçağı yakalamak için erken kalktık.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-outside",
-    "word": "Outside",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ˌaʊtˈsaɪd/",
-    "level": "A1",
-    "lists": [
-      "oxford-3000"
-    ],
-    "definition": "In or to a place that is not inside a building.",
-    "translation": "Dışarıda / Dışarıya",
-    "example": "The children are playing outside in the garden.",
-    "exampleTranslation": "Çocuklar bahçede dışarıda oynuyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
     "id": "w-a",
     "word": "A",
     "partOfSpeech": "Article",
@@ -2478,19 +18,22 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
-    "id": "w-am-time",
-    "word": "AM",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˌeɪˈem/",
+    "id": "w-able",
+    "word": "Able",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈeɪ.bəl/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "ielts-1000"
     ],
-    "definition": "Used after a time to show it is before noon.",
-    "translation": "ÖÖ (öğleden önce)",
-    "example": "The meeting starts at 9 a.m.",
-    "exampleTranslation": "Toplantı sabah 9'da başlıyor.",
-    "synonyms": [],
+    "definition": "Having the power, skill, or means to do something; capable.",
+    "translation": "Yetenekli, kabiliyetli",
+    "example": "She is able to speak four languages fluently.",
+    "exampleTranslation": "Dört dili akıcı bir şekilde konuşabiliyor.",
+    "synonyms": [
+      "capable",
+      "competent"
+    ],
     "mastery": 0
   },
   {
@@ -2500,29 +43,37 @@ export const WORDS_A1: Word[] = [
     "phonetic": "/əˈbaʊt/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "ielts-1000"
     ],
-    "definition": "Used to show the topic of something, or to mean approximately.",
-    "translation": "Hakkında / Yaklaşık",
-    "example": "Tell me about your day.",
-    "exampleTranslation": "Bana günün hakkında anlat.",
-    "synonyms": [],
+    "definition": "Used to indicate an approximate amount, number, or time.",
+    "translation": "Yaklaşık, hakkında",
+    "example": "The journey takes about two hours.",
+    "exampleTranslation": "Yolculuk yaklaşık iki saat sürüyor.",
+    "synonyms": [
+      "approximately",
+      "roughly"
+    ],
     "mastery": 0
   },
   {
     "id": "w-above",
     "word": "Above",
-    "partOfSpeech": "Preposition",
+    "partOfSpeech": "Adverb",
     "phonetic": "/əˈbʌv/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "ielts-1000"
     ],
-    "definition": "In a higher position than something else.",
-    "translation": "Üzerinde / Yukarıda",
-    "example": "The plane flew above the clouds.",
-    "exampleTranslation": "Uçak bulutların üzerinde uçtu.",
-    "synonyms": [],
+    "definition": "In or to a higher place; overhead.",
+    "translation": "Yukarıda, üstünde",
+    "example": "Dark clouds gathered above the mountains.",
+    "exampleTranslation": "Dağların üzerinde koyu bulutlar toplandı.",
+    "synonyms": [
+      "overhead",
+      "higher up"
+    ],
     "mastery": 0
   },
   {
@@ -2590,19 +141,42 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
-    "id": "w-after",
-    "word": "After",
-    "partOfSpeech": "Preposition",
-    "phonetic": "/ˈæf.tər/",
+    "id": "w-afraid",
+    "word": "Afraid",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/əˈfreɪd/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "ielts-1000"
     ],
-    "definition": "Following in time or place; later than.",
-    "translation": "Sonra",
-    "example": "We went home after the movie.",
-    "exampleTranslation": "Filmden sonra eve gittik.",
-    "synonyms": [],
+    "definition": "Feeling fear or anxiety; frightened.",
+    "translation": "Korkmuş",
+    "example": "She is afraid of spiders.",
+    "exampleTranslation": "Örümceklerden korkar.",
+    "synonyms": [
+      "scared",
+      "frightened"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-after",
+    "word": "After",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈɑːf.tər/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000",
+      "ielts-1000"
+    ],
+    "definition": "Following in time or order; next.",
+    "translation": "Sonraki, ondan sonraki",
+    "example": "In the after years, she rarely spoke of the accident.",
+    "exampleTranslation": "Sonraki yıllarda kazadan nadiren bahsetti.",
+    "synonyms": [
+      "following",
+      "next"
+    ],
     "mastery": 0
   },
   {
@@ -2739,16 +313,20 @@ export const WORDS_A1: Word[] = [
     "id": "w-almost",
     "word": "Almost",
     "partOfSpeech": "Adverb",
-    "phonetic": "/ˈɔːl.moʊst/",
+    "phonetic": "/ˈɔːl.məʊst/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "ielts-1000"
     ],
-    "definition": "Very close to, but not completely.",
+    "definition": "Not quite; very nearly.",
     "translation": "Neredeyse",
-    "example": "I almost missed the bus.",
-    "exampleTranslation": "Neredeyse otobüsü kaçırıyordum.",
-    "synonyms": [],
+    "example": "It's almost midnight; we should head home.",
+    "exampleTranslation": "Neredeyse gece yarısı; eve gitmeliyiz.",
+    "synonyms": [
+      "nearly",
+      "practically"
+    ],
     "mastery": 0
   },
   {
@@ -2803,16 +381,41 @@ export const WORDS_A1: Word[] = [
     "id": "w-also",
     "word": "Also",
     "partOfSpeech": "Adverb",
-    "phonetic": "/ˈɔːl.soʊ/",
+    "phonetic": "/ˈɔːl.səʊ/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "toefl-300",
+      "transition-addition"
     ],
-    "definition": "In addition; as well.",
-    "translation": "Ayrıca / Da",
-    "example": "She speaks French and also Spanish.",
-    "exampleTranslation": "Fransızca ve ayrıca İspanyolca konuşuyor.",
-    "synonyms": [],
+    "definition": "In addition; too.",
+    "translation": "Ayrıca, de/da",
+    "example": "The hotel also offers free breakfast.",
+    "exampleTranslation": "Otel ayrıca ücretsiz kahvaltı da sunuyor.",
+    "synonyms": [
+      "too",
+      "as well"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-always",
+    "word": "Always",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈɔːl.weɪz/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000",
+      "ielts-1000"
+    ],
+    "definition": "At all times; forever.",
+    "translation": "Her zaman, daima",
+    "example": "She has always been supportive of my decisions.",
+    "exampleTranslation": "Kararlarımı her zaman destekledi.",
+    "synonyms": [
+      "forever",
+      "constantly"
+    ],
     "mastery": 0
   },
   {
@@ -2828,6 +431,22 @@ export const WORDS_A1: Word[] = [
     "translation": "-im/-yim (olmak fiilinin 'ben' hali)",
     "example": "I am a student.",
     "exampleTranslation": "Ben bir öğrenciyim.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-am-time",
+    "word": "AM",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˌeɪˈem/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Used after a time to show it is before noon.",
+    "translation": "ÖÖ (öğleden önce)",
+    "example": "The meeting starts at 9 a.m.",
+    "exampleTranslation": "Toplantı sabah 9'da başlıyor.",
     "synonyms": [],
     "mastery": 0
   },
@@ -2914,6 +533,25 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-answer",
+    "word": "Answer",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈɑːn.sər/",
+    "level": "A1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To respond to a question or statement; to reply.",
+    "translation": "Cevaplamak, yanıtlamak",
+    "example": "She answered every question confidently during the interview.",
+    "exampleTranslation": "Mülakat sırasında her soruyu güvenle yanıtladı.",
+    "synonyms": [
+      "reply",
+      "respond"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-any",
     "word": "Any",
     "partOfSpeech": "Determiner",
@@ -2974,6 +612,22 @@ export const WORDS_A1: Word[] = [
     "translation": "Herhangi bir şey / Hiçbir şey",
     "example": "Do you need anything from the store?",
     "exampleTranslation": "Mağazadan bir şeye ihtiyacın var mı?",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-apple",
+    "word": "Apple",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈæp.əl/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A round fruit with red, green, or yellow skin.",
+    "translation": "Elma",
+    "example": "She eats an apple every afternoon.",
+    "exampleTranslation": "Her öğleden sonra bir elma yer.",
     "synonyms": [],
     "mastery": 0
   },
@@ -3055,6 +709,25 @@ export const WORDS_A1: Word[] = [
     "example": "We walked around the park.",
     "exampleTranslation": "Parkın etrafında yürüdük.",
     "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-arrive",
+    "word": "Arrive",
+    "partOfSpeech": "Verb",
+    "phonetic": "/əˈraɪv/",
+    "level": "A1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To reach a destination; to come.",
+    "translation": "Varmak, ulaşmak",
+    "example": "The train arrived ten minutes late.",
+    "exampleTranslation": "Tren on dakika geç geldi.",
+    "synonyms": [
+      "reach",
+      "come"
+    ],
     "mastery": 0
   },
   {
@@ -3190,16 +863,36 @@ export const WORDS_A1: Word[] = [
   {
     "id": "w-away",
     "word": "Away",
-    "partOfSpeech": "Adverb",
+    "partOfSpeech": "Adjective",
     "phonetic": "/əˈweɪ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000",
+      "ielts-1000"
+    ],
+    "definition": "Not present; absent.",
+    "translation": "Uzakta, ortada olmayan",
+    "example": "She is away on business this week.",
+    "exampleTranslation": "Bu hafta iş için şehir dışında.",
+    "synonyms": [
+      "absent",
+      "gone"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-baby",
+    "word": "Baby",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈbeɪ.bi/",
     "level": "A1",
     "lists": [
       "oxford-3000"
     ],
-    "definition": "At a distance from a place or person, or moving in a different direction.",
-    "translation": "Uzakta / Uzağa",
-    "example": "The beach is two miles away.",
-    "exampleTranslation": "Sahil iki mil uzakta.",
+    "definition": "A very young child who cannot yet walk or talk.",
+    "translation": "Bebek",
+    "example": "The baby is sleeping in her room.",
+    "exampleTranslation": "Bebek odasında uyuyor.",
     "synonyms": [],
     "mastery": 0
   },
@@ -3216,6 +909,38 @@ export const WORDS_A1: Word[] = [
     "translation": "Sırt / Geri",
     "example": "He hurt his back while lifting the box.",
     "exampleTranslation": "Kutuyu kaldırırken sırtını incitti.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-bad",
+    "word": "Bad",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/bæd/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Not good in quality or behavior.",
+    "translation": "Kötü",
+    "example": "The weather was bad all weekend.",
+    "exampleTranslation": "Hafta sonu boyunca hava kötüydü.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-bag",
+    "word": "Bag",
+    "partOfSpeech": "Noun",
+    "phonetic": "/bæg/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A container made of cloth, paper, or leather, used for carrying things.",
+    "translation": "Çanta",
+    "example": "She put her books in her bag.",
+    "exampleTranslation": "Kitaplarını çantasına koydu.",
     "synonyms": [],
     "mastery": 0
   },
@@ -3364,6 +1089,22 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-be",
+    "word": "Be",
+    "partOfSpeech": "Verb",
+    "phonetic": "/biː/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To exist, or to have a particular state or quality.",
+    "translation": "Olmak",
+    "example": "She is a very kind person.",
+    "exampleTranslation": "O çok kibar bir insan.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-beach",
     "word": "Beach",
     "partOfSpeech": "Noun",
@@ -3409,6 +1150,47 @@ export const WORDS_A1: Word[] = [
     "example": "We saw a bear in the forest.",
     "exampleTranslation": "Ormanda bir ayı gördük.",
     "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-beautiful",
+    "word": "Beautiful",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈbjuː.tɪ.fəl/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000",
+      "ielts-1000"
+    ],
+    "definition": "Pleasing to the senses or mind aesthetically; attractive.",
+    "translation": "Güzel",
+    "example": "The sunset over the mountains was beautiful.",
+    "exampleTranslation": "Dağların üzerindeki gün batımı güzeldi.",
+    "synonyms": [
+      "Pretty",
+      "attractive",
+      "gorgeous"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-because",
+    "word": "Because",
+    "partOfSpeech": "Conjunction",
+    "phonetic": "/bɪˈkɒz/",
+    "level": "A1",
+    "lists": [
+      "toefl-300",
+      "transition-cause"
+    ],
+    "definition": "For the reason that.",
+    "translation": "Çünkü",
+    "example": "She stayed home because she was feeling ill.",
+    "exampleTranslation": "Kendini hasta hissettiği için evde kaldı.",
+    "synonyms": [
+      "since",
+      "as"
+    ],
     "mastery": 0
   },
   {
@@ -3478,17 +1260,40 @@ export const WORDS_A1: Word[] = [
   {
     "id": "w-before",
     "word": "Before",
-    "partOfSpeech": "Preposition",
+    "partOfSpeech": "Adverb",
     "phonetic": "/bɪˈfɔːr/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "ielts-1000"
     ],
-    "definition": "Earlier than a particular time or event.",
-    "translation": "Önce",
-    "example": "Please arrive before nine o'clock.",
-    "exampleTranslation": "Lütfen saat dokuzdan önce gelin.",
-    "synonyms": [],
+    "definition": "Earlier in time; previously; prior.",
+    "translation": "Önce, daha önce",
+    "example": "Have you ever been to Japan before?",
+    "exampleTranslation": "Daha önce Japonya'ya gittin mi?",
+    "synonyms": [
+      "prior",
+      "previously"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-begin",
+    "word": "Begin",
+    "partOfSpeech": "Verb",
+    "phonetic": "/bɪˈgɪn/",
+    "level": "A1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To start; to come into being.",
+    "translation": "Başlamak",
+    "example": "The concert will begin at eight o'clock.",
+    "exampleTranslation": "Konser saat sekizde başlayacak.",
+    "synonyms": [
+      "start",
+      "commence"
+    ],
     "mastery": 0
   },
   {
@@ -3638,6 +1443,24 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-big",
+    "word": "Big",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/bɪg/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Large in size.",
+    "translation": "Büyük",
+    "example": "They live in a big house with a garden.",
+    "exampleTranslation": "Bahçeli büyük bir evde yaşıyorlar.",
+    "synonyms": [
+      "Large"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-bike",
     "word": "Bike",
     "partOfSpeech": "Noun",
@@ -3650,6 +1473,22 @@ export const WORDS_A1: Word[] = [
     "translation": "Bisiklet",
     "example": "She parked her bike outside the shop.",
     "exampleTranslation": "Bisikletini dükkanın dışına park etti.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-bird",
+    "word": "Bird",
+    "partOfSpeech": "Noun",
+    "phonetic": "/bɜːrd/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "An animal with wings and feathers that can usually fly.",
+    "translation": "Kuş",
+    "example": "A small bird is singing in the tree.",
+    "exampleTranslation": "Ağaçta küçük bir kuş şarkı söylüyor.",
     "synonyms": [],
     "mastery": 0
   },
@@ -3830,6 +1669,22 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-book",
+    "word": "Book",
+    "partOfSpeech": "Noun",
+    "phonetic": "/bʊk/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A set of printed pages joined together, that you read.",
+    "translation": "Kitap",
+    "example": "He is reading a book about history.",
+    "exampleTranslation": "Tarihle ilgili bir kitap okuyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-bookstore",
     "word": "Bookstore",
     "partOfSpeech": "Noun",
@@ -3922,6 +1777,22 @@ export const WORDS_A1: Word[] = [
     "translation": "Kutu",
     "example": "She packed her clothes into a box.",
     "exampleTranslation": "Kıyafetlerini bir kutuya paketledi.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-boy",
+    "word": "Boy",
+    "partOfSpeech": "Noun",
+    "phonetic": "/bɔɪ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A young male person, from birth to about eighteen years old.",
+    "translation": "Erkek çocuk / Oğlan",
+    "example": "The boy is playing football with his friends.",
+    "exampleTranslation": "Erkek çocuk arkadaşlarıyla futbol oynuyor.",
     "synonyms": [],
     "mastery": 0
   },
@@ -4054,6 +1925,22 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-brother",
+    "word": "Brother",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈbrʌð.ər/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A boy or man who has the same parents as you.",
+    "translation": "Erkek kardeş",
+    "example": "My brother is older than me.",
+    "exampleTranslation": "Erkek kardeşim benden büyük.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-brown",
     "word": "Brown",
     "partOfSpeech": "Adjective",
@@ -4156,13 +2043,18 @@ export const WORDS_A1: Word[] = [
     "phonetic": "/bʌt/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "toefl-300",
+      "transition-contrast"
     ],
-    "definition": "Used to introduce something that is different or opposite.",
-    "translation": "Ama / Fakat",
-    "example": "I wanted to go, but I was too tired.",
-    "exampleTranslation": "Gitmek istedim ama çok yorgundum.",
-    "synonyms": [],
+    "definition": "Used to introduce a contrasting idea.",
+    "translation": "Ama, fakat",
+    "example": "The film was long, but it was very enjoyable.",
+    "exampleTranslation": "Film uzundu ama çok keyifliydi.",
+    "synonyms": [
+      "however",
+      "yet"
+    ],
     "mastery": 0
   },
   {
@@ -4211,6 +2103,24 @@ export const WORDS_A1: Word[] = [
     "example": "Press the red button to start the machine.",
     "exampleTranslation": "Makineyi başlatmak için kırmızı düğmeye basın.",
     "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-buy",
+    "word": "Buy",
+    "partOfSpeech": "Verb",
+    "phonetic": "/baɪ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To get something by paying money for it.",
+    "translation": "Satın almak",
+    "example": "I need to buy some milk and bread.",
+    "exampleTranslation": "Biraz süt ve ekmek almam gerekiyor.",
+    "synonyms": [
+      "Purchase"
+    ],
     "mastery": 0
   },
   {
@@ -4348,13 +2258,17 @@ export const WORDS_A1: Word[] = [
     "phonetic": "/ˈkæn.di/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "ielts-1000"
     ],
-    "definition": "A sweet food made mostly of sugar.",
-    "translation": "Şeker (tatlı) / Şekerleme",
-    "example": "The children love eating candy.",
-    "exampleTranslation": "Çocuklar şekerleme yemeyi sever.",
-    "synonyms": [],
+    "definition": "A sweet food made with sugar; sweets.",
+    "translation": "Şeker, şekerleme",
+    "example": "The children asked for candy at the store.",
+    "exampleTranslation": "Çocuklar mağazada şeker istedi.",
+    "synonyms": [
+      "sweet",
+      "confectionery"
+    ],
     "mastery": 0
   },
   {
@@ -4371,6 +2285,24 @@ export const WORDS_A1: Word[] = [
     "example": "He wore a blue cap to the game.",
     "exampleTranslation": "Maça mavi bir kasket taktı.",
     "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-car",
+    "word": "Car",
+    "partOfSpeech": "Noun",
+    "phonetic": "/kɑːr/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A road vehicle with four wheels that carries a small number of people.",
+    "translation": "Araba",
+    "example": "We drove to the coast in our car.",
+    "exampleTranslation": "Kıyıya arabamızla gittik.",
+    "synonyms": [
+      "Automobile"
+    ],
     "mastery": 0
   },
   {
@@ -4438,6 +2370,22 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-carry",
+    "word": "Carry",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈker.i/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To hold something and take it with you from one place to another.",
+    "translation": "Taşımak",
+    "example": "Can you help me carry these boxes upstairs?",
+    "exampleTranslation": "Bu kutuları yukarı taşımama yardım edebilir misin?",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-cartoon",
     "word": "Cartoon",
     "partOfSpeech": "Noun",
@@ -4466,6 +2414,22 @@ export const WORDS_A1: Word[] = [
     "translation": "Durum / Kutu",
     "example": "In this case, we need to act quickly.",
     "exampleTranslation": "Bu durumda hızlı hareket etmemiz gerekiyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-cat",
+    "word": "Cat",
+    "partOfSpeech": "Noun",
+    "phonetic": "/kæt/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A small animal with fur that people often keep as a pet.",
+    "translation": "Kedi",
+    "example": "My cat sleeps on the sofa all day.",
+    "exampleTranslation": "Kedim bütün gün kanepede uyur.",
     "synonyms": [],
     "mastery": 0
   },
@@ -4696,19 +2660,39 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
-    "id": "w-class",
-    "word": "Class",
+    "id": "w-city",
+    "word": "City",
     "partOfSpeech": "Noun",
-    "phonetic": "/klæs/",
+    "phonetic": "/ˈsɪt.i/",
     "level": "A1",
     "lists": [
       "oxford-3000"
     ],
-    "definition": "A group of students who study together, or a lesson.",
-    "translation": "Sınıf / Ders",
-    "example": "Our class starts at nine o'clock.",
-    "exampleTranslation": "Dersimiz saat dokuzda başlıyor.",
+    "definition": "A large town where many people live and work.",
+    "translation": "Şehir",
+    "example": "London is a very big city.",
+    "exampleTranslation": "Londra çok büyük bir şehir.",
     "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-class",
+    "word": "Class",
+    "partOfSpeech": "Noun",
+    "phonetic": "/klɑːs/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000",
+      "ielts-1000"
+    ],
+    "definition": "A course of instruction; a lesson.",
+    "translation": "Ders, sınıf",
+    "example": "I have a Spanish class every Tuesday evening.",
+    "exampleTranslation": "Her salı akşamı bir İspanyolca dersim var.",
+    "synonyms": [
+      "lesson",
+      "course"
+    ],
     "mastery": 0
   },
   {
@@ -4740,6 +2724,22 @@ export const WORDS_A1: Word[] = [
     "translation": "Sınıf (oda)",
     "example": "The classroom has twenty desks.",
     "exampleTranslation": "Sınıfta yirmi masa var.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-clean",
+    "word": "Clean",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/kliːn/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Free from dirt or dust.",
+    "translation": "Temiz",
+    "example": "Please keep your room clean.",
+    "exampleTranslation": "Lütfen odanı temiz tut.",
     "synonyms": [],
     "mastery": 0
   },
@@ -4794,6 +2794,27 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-close",
+    "word": "Close",
+    "partOfSpeech": "Verb",
+    "phonetic": "/kləʊz/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000",
+      "ielts-1000"
+    ],
+    "definition": "To move something so that it covers an opening; to shut.",
+    "translation": "Kapatmak",
+    "example": "Please close the window; it's getting cold.",
+    "exampleTranslation": "Lütfen pencereyi kapat, hava soğuyor.",
+    "synonyms": [
+      "Shut",
+      "shut",
+      "seal"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-closed",
     "word": "Closed",
     "partOfSpeech": "Adjective",
@@ -4838,6 +2859,22 @@ export const WORDS_A1: Word[] = [
     "translation": "Kıyafet / Giysi",
     "example": "I need to buy new clothes for winter.",
     "exampleTranslation": "Kış için yeni kıyafetler almam gerekiyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-cloud",
+    "word": "Cloud",
+    "partOfSpeech": "Noun",
+    "phonetic": "/klaʊd/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A white or grey mass in the sky, made of small drops of water.",
+    "translation": "Bulut",
+    "example": "There isn't a single cloud in the sky today.",
+    "exampleTranslation": "Bugün gökyüzünde tek bir bulut yok.",
     "synonyms": [],
     "mastery": 0
   },
@@ -4954,6 +2991,22 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-cold",
+    "word": "Cold",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/koʊld/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Having a low temperature.",
+    "translation": "Soğuk",
+    "example": "The water in the lake is very cold.",
+    "exampleTranslation": "Gölün suyu çok soğuk.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-collection",
     "word": "Collection",
     "partOfSpeech": "Noun",
@@ -4982,6 +3035,38 @@ export const WORDS_A1: Word[] = [
     "translation": "Kolej / Üniversite",
     "example": "He is studying business at college.",
     "exampleTranslation": "Kolejde işletme okuyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-color",
+    "word": "Color",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈkʌl.ər/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A quality such as red, blue, or green that you see with your eyes.",
+    "translation": "Renk",
+    "example": "What color is your new car?",
+    "exampleTranslation": "Yeni araban ne renk?",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-come",
+    "word": "Come",
+    "partOfSpeech": "Verb",
+    "phonetic": "/kʌm/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To move toward the person who is speaking.",
+    "translation": "Gelmek",
+    "example": "Can you come to my house tomorrow?",
+    "exampleTranslation": "Yarın evime gelebilir misin?",
     "synonyms": [],
     "mastery": 0
   },
@@ -5046,6 +3131,22 @@ export const WORDS_A1: Word[] = [
     "translation": "Sohbet / Konuşma",
     "example": "We had a long conversation about our plans.",
     "exampleTranslation": "Planlarımız hakkında uzun bir sohbet ettik.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-cook",
+    "word": "Cook",
+    "partOfSpeech": "Verb",
+    "phonetic": "/kʊk/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To prepare food by heating it.",
+    "translation": "Pişirmek",
+    "example": "My father cooks dinner on Sundays.",
+    "exampleTranslation": "Babam pazar günleri akşam yemeği pişirir.",
     "synonyms": [],
     "mastery": 0
   },
@@ -5154,13 +3255,17 @@ export const WORDS_A1: Word[] = [
     "phonetic": "/kəˈrekt/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "ielts-1000"
     ],
-    "definition": "Without any mistakes; true or accurate.",
+    "definition": "Free from error; in accordance with fact; right.",
     "translation": "Doğru",
-    "example": "Is this the correct answer to the question?",
-    "exampleTranslation": "Bu, sorunun doğru cevabı mı?",
-    "synonyms": [],
+    "example": "Please check that all the details are correct.",
+    "exampleTranslation": "Lütfen tüm ayrıntıların doğru olduğunu kontrol edin.",
+    "synonyms": [
+      "right",
+      "accurate"
+    ],
     "mastery": 0
   },
   {
@@ -5195,6 +3300,24 @@ export const WORDS_A1: Word[] = [
     "example": "She could swim when she was five.",
     "exampleTranslation": "Beş yaşındayken yüzebiliyordu.",
     "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-country",
+    "word": "Country",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈkʌn.tri/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "An area of land with its own government, such as France or Japan.",
+    "translation": "Ülke",
+    "example": "Turkey is a beautiful country.",
+    "exampleTranslation": "Türkiye güzel bir ülke.",
+    "synonyms": [
+      "Nation"
+    ],
     "mastery": 0
   },
   {
@@ -5300,13 +3423,17 @@ export const WORDS_A1: Word[] = [
     "phonetic": "/kraɪ/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "ielts-1000"
     ],
-    "definition": "To produce tears from your eyes, usually because you are sad.",
+    "definition": "To shed tears, typically as an expression of emotion.",
     "translation": "Ağlamak",
-    "example": "The baby started to cry when she woke up.",
-    "exampleTranslation": "Bebek uyandığında ağlamaya başladı.",
-    "synonyms": [],
+    "example": "The baby began to cry as soon as she left the room.",
+    "exampleTranslation": "Bebek odadan çıkar çıkmaz ağlamaya başladı.",
+    "synonyms": [
+      "sob",
+      "weep"
+    ],
     "mastery": 0
   },
   {
@@ -5322,6 +3449,22 @@ export const WORDS_A1: Word[] = [
     "translation": "Fincan",
     "example": "Would you like a cup of tea?",
     "exampleTranslation": "Bir fincan çay ister misin?",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-cut",
+    "word": "Cut",
+    "partOfSpeech": "Verb",
+    "phonetic": "/kʌt/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To use something sharp to divide something into pieces.",
+    "translation": "Kesmek",
+    "example": "Can you cut the bread for the sandwiches?",
+    "exampleTranslation": "Sandviçler için ekmeği kesebilir misin?",
     "synonyms": [],
     "mastery": 0
   },
@@ -5374,6 +3517,22 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-dance",
+    "word": "Dance",
+    "partOfSpeech": "Verb",
+    "phonetic": "/dæns/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To move your body to the rhythm of music.",
+    "translation": "Dans etmek",
+    "example": "They danced together at the wedding.",
+    "exampleTranslation": "Düğünde birlikte dans ettiler.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-dancing",
     "word": "Dancing",
     "partOfSpeech": "Noun",
@@ -5393,16 +3552,20 @@ export const WORDS_A1: Word[] = [
     "id": "w-dark",
     "word": "Dark",
     "partOfSpeech": "Adjective",
-    "phonetic": "/dɑːrk/",
+    "phonetic": "/dɑːk/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "ielts-1000"
     ],
-    "definition": "With little or no light.",
-    "translation": "Karanlık",
-    "example": "It gets dark early in winter.",
-    "exampleTranslation": "Kışın erken karanlık oluyor.",
-    "synonyms": [],
+    "definition": "With little or no light; gloomy, dismal.",
+    "translation": "Karanlık, kasvetli",
+    "example": "The novel has a rather dark tone.",
+    "exampleTranslation": "Roman oldukça kasvetli bir tona sahip.",
+    "synonyms": [
+      "dismal",
+      "gloomy"
+    ],
     "mastery": 0
   },
   {
@@ -5435,6 +3598,41 @@ export const WORDS_A1: Word[] = [
     "example": "They have two sons and one daughter.",
     "exampleTranslation": "İki oğulları ve bir kızları var.",
     "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-day",
+    "word": "Day",
+    "partOfSpeech": "Noun",
+    "phonetic": "/deɪ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A period of twenty-four hours.",
+    "translation": "Gün",
+    "example": "I go to work every day.",
+    "exampleTranslation": "Her gün işe giderim.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-dead",
+    "word": "Dead",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ded/",
+    "level": "A1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "No longer alive; lifeless.",
+    "translation": "Ölü, cansız",
+    "example": "The tree in the garden has been dead for years.",
+    "exampleTranslation": "Bahçedeki ağaç yıllardır ölü.",
+    "synonyms": [
+      "lifeless",
+      "deceased"
+    ],
     "mastery": 0
   },
   {
@@ -5550,6 +3748,24 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-difficult",
+    "word": "Difficult",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈdɪf.ɪ.kəlt/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Not easy; hard to do or understand.",
+    "translation": "Zor",
+    "example": "Learning a new language can be difficult at first.",
+    "exampleTranslation": "Yeni bir dil öğrenmek başlangıçta zor olabilir.",
+    "synonyms": [
+      "Hard"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-dig",
     "word": "Dig",
     "partOfSpeech": "Verb",
@@ -5598,6 +3814,26 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-dirty",
+    "word": "Dirty",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈdɜː.ti/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000",
+      "ielts-1000"
+    ],
+    "definition": "Covered or marked with an unclean substance; soiled.",
+    "translation": "Kirli",
+    "example": "His shoes were dirty after the hike.",
+    "exampleTranslation": "Yürüyüşten sonra ayakkabıları kirliydi.",
+    "synonyms": [
+      "soiled",
+      "filthy"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-dish",
     "word": "Dish",
     "partOfSpeech": "Noun",
@@ -5614,6 +3850,42 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-do",
+    "word": "Do",
+    "partOfSpeech": "Verb",
+    "phonetic": "/duː/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To perform an action or activity.",
+    "translation": "Yapmak",
+    "example": "What do you do on weekends?",
+    "exampleTranslation": "Hafta sonları ne yaparsın?",
+    "synonyms": [
+      "Perform"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-doctor",
+    "word": "Doctor",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈdɑːk.tər/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A person whose job is to treat sick or injured people.",
+    "translation": "Doktor",
+    "example": "I need to see a doctor about my headache.",
+    "exampleTranslation": "Baş ağrım için bir doktora görünmem gerekiyor.",
+    "synonyms": [
+      "Physician"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-does",
     "word": "Does",
     "partOfSpeech": "Verb",
@@ -5626,6 +3898,22 @@ export const WORDS_A1: Word[] = [
     "translation": "Yapar",
     "example": "Does she like coffee?",
     "exampleTranslation": "Kahve sever mi?",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-dog",
+    "word": "Dog",
+    "partOfSpeech": "Noun",
+    "phonetic": "/dɔːg/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "An animal that many people keep as a pet.",
+    "translation": "Köpek",
+    "example": "The dog is playing in the garden.",
+    "exampleTranslation": "Köpek bahçede oynuyor.",
     "synonyms": [],
     "mastery": 0
   },
@@ -5678,6 +3966,22 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-door",
+    "word": "Door",
+    "partOfSpeech": "Noun",
+    "phonetic": "/dɔːr/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A flat object used to open and close the entrance of a room or building.",
+    "translation": "Kapı",
+    "example": "Please close the door behind you.",
+    "exampleTranslation": "Lütfen arkandan kapıyı kapat.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-down",
     "word": "Down",
     "partOfSpeech": "Adverb",
@@ -5710,6 +4014,22 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-draw",
+    "word": "Draw",
+    "partOfSpeech": "Verb",
+    "phonetic": "/drɔː/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To make a picture using a pen or pencil.",
+    "translation": "Çizmek",
+    "example": "My son loves to draw animals.",
+    "exampleTranslation": "Oğlum hayvan çizmeyi seviyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-dream",
     "word": "Dream",
     "partOfSpeech": "Noun",
@@ -5738,6 +4058,22 @@ export const WORDS_A1: Word[] = [
     "translation": "Elbise",
     "example": "She wore a beautiful blue dress to the party.",
     "exampleTranslation": "Partiye güzel mavi bir elbise giydi.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-drink",
+    "word": "Drink",
+    "partOfSpeech": "Verb",
+    "phonetic": "/drɪŋk/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To take liquid into your mouth and swallow it.",
+    "translation": "İçmek",
+    "example": "She drinks a cup of tea every morning.",
+    "exampleTranslation": "Her sabah bir fincan çay içer.",
     "synonyms": [],
     "mastery": 0
   },
@@ -5803,6 +4139,26 @@ export const WORDS_A1: Word[] = [
     "example": "He learned to play the drums last year.",
     "exampleTranslation": "Geçen yıl davul çalmayı öğrendi.",
     "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-dry",
+    "word": "Dry",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/draɪ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000",
+      "ielts-1000"
+    ],
+    "definition": "Free from moisture or liquid; arid.",
+    "translation": "Kuru, kurak",
+    "example": "The desert climate is extremely dry.",
+    "exampleTranslation": "Çöl iklimi son derece kurudur.",
+    "synonyms": [
+      "arid",
+      "parched"
+    ],
     "mastery": 0
   },
   {
@@ -5882,6 +4238,94 @@ export const WORDS_A1: Word[] = [
     "translation": "Kulak",
     "example": "She has an earring in each ear.",
     "exampleTranslation": "Her kulağında bir küpe var.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-early",
+    "word": "Early",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈɜːr.li/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Before the usual or expected time.",
+    "translation": "Erken",
+    "example": "We woke up early to catch the flight.",
+    "exampleTranslation": "Uçağı yakalamak için erken kalktık.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-earth",
+    "word": "Earth",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ɜːθ/",
+    "level": "A1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "The planet on which we live; soil.",
+    "translation": "Dünya, toprak",
+    "example": "The children planted seeds in the earth.",
+    "exampleTranslation": "Çocuklar toprağa tohum ektiler.",
+    "synonyms": [
+      "soil",
+      "ground"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-easy",
+    "word": "Easy",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈiː.zi/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000",
+      "ielts-1000"
+    ],
+    "definition": "Achieved without great effort; not difficult.",
+    "translation": "Kolay",
+    "example": "The test was easier than we expected.",
+    "exampleTranslation": "Sınav beklediğimizden daha kolaydı.",
+    "synonyms": [
+      "Simple",
+      "simple",
+      "straightforward"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-eat",
+    "word": "Eat",
+    "partOfSpeech": "Verb",
+    "phonetic": "/iːt/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To put food in your mouth and swallow it.",
+    "translation": "Yemek yemek",
+    "example": "We eat dinner at seven o'clock.",
+    "exampleTranslation": "Saat yedide akşam yemeği yeriz.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-egg",
+    "word": "Egg",
+    "partOfSpeech": "Noun",
+    "phonetic": "/eg/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "An oval object laid by a bird, often eaten as food.",
+    "translation": "Yumurta",
+    "example": "I eat an egg for breakfast every day.",
+    "exampleTranslation": "Her gün kahvaltıda bir yumurta yerim.",
     "synonyms": [],
     "mastery": 0
   },
@@ -6334,6 +4778,22 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-fall",
+    "word": "Fall",
+    "partOfSpeech": "Verb",
+    "phonetic": "/fɔːl/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To drop down toward the ground by accident.",
+    "translation": "Düşmek",
+    "example": "Be careful not to fall on the ice.",
+    "exampleTranslation": "Buzda düşmemeye dikkat et.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-false",
     "word": "False",
     "partOfSpeech": "Adjective",
@@ -6346,6 +4806,22 @@ export const WORDS_A1: Word[] = [
     "translation": "Yanlış / Sahte",
     "example": "The statement turned out to be false.",
     "exampleTranslation": "İfadenin yanlış olduğu ortaya çıktı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-family",
+    "word": "Family",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈfæm.ə.li/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A group of people who are related, such as parents and children.",
+    "translation": "Aile",
+    "example": "My family has dinner together every evening.",
+    "exampleTranslation": "Ailem her akşam birlikte yemek yer.",
     "synonyms": [],
     "mastery": 0
   },
@@ -6414,6 +4890,24 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-fast",
+    "word": "Fast",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/fæst/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Moving or happening quickly.",
+    "translation": "Hızlı",
+    "example": "He is a very fast runner.",
+    "exampleTranslation": "O çok hızlı bir koşucu.",
+    "synonyms": [
+      "Quick"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-fat",
     "word": "Fat",
     "partOfSpeech": "Adjective",
@@ -6426,6 +4920,22 @@ export const WORDS_A1: Word[] = [
     "translation": "Şişman / Yağlı",
     "example": "The cat became fat after eating too much.",
     "exampleTranslation": "Kedi çok fazla yiyince şişmanladı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-father",
+    "word": "Father",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈfɑː.ðər/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A male parent.",
+    "translation": "Baba",
+    "example": "My father drives me to school every morning.",
+    "exampleTranslation": "Babam her sabah beni okula bırakır.",
     "synonyms": [],
     "mastery": 0
   },
@@ -6672,17 +5182,22 @@ export const WORDS_A1: Word[] = [
   {
     "id": "w-first",
     "word": "First",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/fɜːrst/",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/fɜːst/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "toefl-300",
+      "transition-sequence"
     ],
-    "definition": "Coming before all others in order or time.",
-    "translation": "İlk / Birinci",
-    "example": "This is my first time visiting Paris.",
-    "exampleTranslation": "Paris'i ilk ziyaret edişim.",
-    "synonyms": [],
+    "definition": "Before anything else; used to introduce the first point in a sequence.",
+    "translation": "İlk olarak, birinci",
+    "example": "First, preheat the oven to 180 degrees.",
+    "exampleTranslation": "İlk olarak, fırını 180 dereceye ısıtın.",
+    "synonyms": [
+      "firstly",
+      "initially"
+    ],
     "mastery": 0
   },
   {
@@ -6782,6 +5297,38 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-flower",
+    "word": "Flower",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈflaʊ.ər/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "The colorful part of a plant that often has a pleasant smell.",
+    "translation": "Çiçek",
+    "example": "She gave me a red flower.",
+    "exampleTranslation": "Bana kırmızı bir çiçek verdi.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-fly",
+    "word": "Fly",
+    "partOfSpeech": "Verb",
+    "phonetic": "/flaɪ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To move through the air, as birds and planes do.",
+    "translation": "Uçmak",
+    "example": "We fly to Istanbul twice a year.",
+    "exampleTranslation": "Yılda iki kez İstanbul'a uçuyoruz.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-foggy",
     "word": "Foggy",
     "partOfSpeech": "Adjective",
@@ -6810,6 +5357,22 @@ export const WORDS_A1: Word[] = [
     "translation": "Takip eden / Sonraki",
     "example": "We will discuss this in the following meeting.",
     "exampleTranslation": "Bunu takip eden toplantıda tartışacağız.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-food",
+    "word": "Food",
+    "partOfSpeech": "Noun",
+    "phonetic": "/fuːd/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Things that people and animals eat to live and grow.",
+    "translation": "Yiyecek / Gıda",
+    "example": "We need food and water to live.",
+    "exampleTranslation": "Yaşamak için yiyeceğe ve suya ihtiyacımız var.",
     "synonyms": [],
     "mastery": 0
   },
@@ -6955,6 +5518,24 @@ export const WORDS_A1: Word[] = [
     "example": "We go out for dinner every Friday.",
     "exampleTranslation": "Her cuma akşam yemeğine çıkarız.",
     "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-friend",
+    "word": "Friend",
+    "partOfSpeech": "Noun",
+    "phonetic": "/frend/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A person you know well and like.",
+    "translation": "Arkadaş",
+    "example": "She is my best friend from school.",
+    "exampleTranslation": "O, okuldan en iyi arkadaşım.",
+    "synonyms": [
+      "Companion"
+    ],
     "mastery": 0
   },
   {
@@ -7154,6 +5735,22 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-girl",
+    "word": "Girl",
+    "partOfSpeech": "Noun",
+    "phonetic": "/gɜːrl/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A young female person, from birth to about eighteen years old.",
+    "translation": "Kız çocuk",
+    "example": "The girl is drawing a picture of her house.",
+    "exampleTranslation": "Kız çocuk evinin resmini çiziyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-girlfriend",
     "word": "Girlfriend",
     "partOfSpeech": "Noun",
@@ -7166,6 +5763,22 @@ export const WORDS_A1: Word[] = [
     "translation": "Kız arkadaş",
     "example": "He has been dating his girlfriend for two years.",
     "exampleTranslation": "Kız arkadaşıyla iki yıldır birlikteler.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-give",
+    "word": "Give",
+    "partOfSpeech": "Verb",
+    "phonetic": "/gɪv/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To hand something to someone else.",
+    "translation": "Vermek",
+    "example": "Can you give me your phone number?",
+    "exampleTranslation": "Bana telefon numaranı verebilir misin?",
     "synonyms": [],
     "mastery": 0
   },
@@ -7218,6 +5831,22 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-go",
+    "word": "Go",
+    "partOfSpeech": "Verb",
+    "phonetic": "/goʊ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To move or travel from one place to another.",
+    "translation": "Gitmek",
+    "example": "We go to the gym twice a week.",
+    "exampleTranslation": "Haftada iki kez spor salonuna gideriz.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-gold",
     "word": "Gold",
     "partOfSpeech": "Noun",
@@ -7230,6 +5859,22 @@ export const WORDS_A1: Word[] = [
     "translation": "Altın",
     "example": "She received a gold necklace as a gift.",
     "exampleTranslation": "Hediye olarak altın bir kolye aldı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-good",
+    "word": "Good",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/gʊd/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Of high quality, or pleasant and enjoyable.",
+    "translation": "İyi",
+    "example": "This is a good restaurant for lunch.",
+    "exampleTranslation": "Bu, öğle yemeği için iyi bir restoran.",
     "synonyms": [],
     "mastery": 0
   },
@@ -7732,6 +6377,44 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-happy",
+    "word": "Happy",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈhæp.i/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Feeling or showing pleasure and enjoyment.",
+    "translation": "Mutlu",
+    "example": "She felt very happy on her birthday.",
+    "exampleTranslation": "Doğum gününde çok mutlu hissetti.",
+    "synonyms": [
+      "Glad"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-hard",
+    "word": "Hard",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/hɑːd/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000",
+      "ielts-1000"
+    ],
+    "definition": "Solid and firm to the touch; difficult.",
+    "translation": "Sert; zor",
+    "example": "The bread had gone hard overnight.",
+    "exampleTranslation": "Ekmek gecede sertleşmişti.",
+    "synonyms": [
+      "firm",
+      "difficult"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-has",
     "word": "Has",
     "partOfSpeech": "Verb",
@@ -7761,6 +6444,24 @@ export const WORDS_A1: Word[] = [
     "example": "He wore a hat to protect himself from the sun.",
     "exampleTranslation": "Güneşten korunmak için şapka taktı.",
     "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-have",
+    "word": "Have",
+    "partOfSpeech": "Verb",
+    "phonetic": "/hæv/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To own, hold, or possess something.",
+    "translation": "Sahip olmak",
+    "example": "I have two brothers and one sister.",
+    "exampleTranslation": "İki erkek ve bir kız kardeşim var.",
+    "synonyms": [
+      "Own"
+    ],
     "mastery": 0
   },
   {
@@ -7908,6 +6609,27 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-help",
+    "word": "Help",
+    "partOfSpeech": "Noun",
+    "phonetic": "/help/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000",
+      "ielts-1000"
+    ],
+    "definition": "The action of assisting someone; aid.",
+    "translation": "Yardım",
+    "example": "Thank you for your help with the project.",
+    "exampleTranslation": "Projedeki yardımınız için teşekkür ederim.",
+    "synonyms": [
+      "Assist",
+      "aid",
+      "assistance"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-her",
     "word": "Her",
     "partOfSpeech": "Pronoun",
@@ -7920,6 +6642,22 @@ export const WORDS_A1: Word[] = [
     "translation": "Onu / Onun (kadın)",
     "example": "I gave her the book yesterday.",
     "exampleTranslation": "Kitabı dün ona verdim.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-here",
+    "word": "Here",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/hɪr/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "In, at, or to this place.",
+    "translation": "Burada / Buraya",
+    "example": "Please come here for a minute.",
+    "exampleTranslation": "Lütfen bir dakikalığına buraya gel.",
     "synonyms": [],
     "mastery": 0
   },
@@ -7978,13 +6716,17 @@ export const WORDS_A1: Word[] = [
     "phonetic": "/haɪ/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "ielts-1000"
     ],
-    "definition": "Having a great height, or a large amount.",
+    "definition": "Extending far upward; elevated.",
     "translation": "Yüksek",
-    "example": "The mountain is very high.",
-    "exampleTranslation": "Dağ çok yüksek.",
-    "synonyms": [],
+    "example": "The house has high ceilings and large windows.",
+    "exampleTranslation": "Evde yüksek tavanlar ve büyük pencereler var.",
+    "synonyms": [
+      "elevated",
+      "tall"
+    ],
     "mastery": 0
   },
   {
@@ -8071,48 +6813,60 @@ export const WORDS_A1: Word[] = [
     "id": "w-hold",
     "word": "Hold",
     "partOfSpeech": "Verb",
-    "phonetic": "/hoʊld/",
+    "phonetic": "/həʊld/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "ielts-1000"
     ],
-    "definition": "To have something in your hands or arms.",
-    "translation": "Tutmak",
-    "example": "Can you hold my bag for a minute?",
-    "exampleTranslation": "Bir dakikalığına çantamı tutabilir misin?",
-    "synonyms": [],
+    "definition": "To carry or support something with one's hands; to grasp.",
+    "translation": "Tutmak, kavramak",
+    "example": "She held the baby gently in her arms.",
+    "exampleTranslation": "Bebeği kollarında nazikçe tuttu.",
+    "synonyms": [
+      "grasp",
+      "grip"
+    ],
     "mastery": 0
   },
   {
     "id": "w-hole",
     "word": "Hole",
     "partOfSpeech": "Noun",
-    "phonetic": "/hoʊl/",
+    "phonetic": "/həʊl/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "ielts-1000"
     ],
-    "definition": "An empty space or opening in something.",
-    "translation": "Delik / Çukur",
-    "example": "There is a hole in my sock.",
+    "definition": "An empty space in something solid; a gap.",
+    "translation": "Delik, boşluk",
+    "example": "There's a hole in my sock.",
     "exampleTranslation": "Çorabımda bir delik var.",
-    "synonyms": [],
+    "synonyms": [
+      "gap",
+      "opening"
+    ],
     "mastery": 0
   },
   {
     "id": "w-home",
     "word": "Home",
-    "partOfSpeech": "Noun",
-    "phonetic": "/hoʊm/",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/həʊm/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "ielts-1000"
     ],
-    "definition": "The place where someone lives.",
-    "translation": "Ev / Yuva",
-    "example": "I usually stay home on Sundays.",
-    "exampleTranslation": "Genellikle pazar günleri evde kalırım.",
-    "synonyms": [],
+    "definition": "Relating to one's own country or the place one lives; domestic.",
+    "translation": "Ev ile ilgili, yerli",
+    "example": "The team enjoyed home advantage in the final.",
+    "exampleTranslation": "Takım finalde ev sahibi avantajından yararlandı.",
+    "synonyms": [
+      "domestic",
+      "local"
+    ],
     "mastery": 0
   },
   {
@@ -8180,6 +6934,22 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-hot",
+    "word": "Hot",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/hɑːt/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Having a high temperature.",
+    "translation": "Sıcak",
+    "example": "It's very hot outside today.",
+    "exampleTranslation": "Bugün dışarısı çok sıcak.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-hour",
     "word": "Hour",
     "partOfSpeech": "Noun",
@@ -8193,6 +6963,24 @@ export const WORDS_A1: Word[] = [
     "example": "The meeting lasted about an hour.",
     "exampleTranslation": "Toplantı yaklaşık bir saat sürdü.",
     "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-house",
+    "word": "House",
+    "partOfSpeech": "Noun",
+    "phonetic": "/haʊs/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A building where a person or family lives.",
+    "translation": "Ev",
+    "example": "They live in a small house near the park.",
+    "exampleTranslation": "Parkın yakınında küçük bir evde yaşıyorlar.",
+    "synonyms": [
+      "Home"
+    ],
     "mastery": 0
   },
   {
@@ -8346,13 +7134,16 @@ export const WORDS_A1: Word[] = [
     "phonetic": "/ɪf/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "ielts-1000"
     ],
-    "definition": "Used to talk about something that might happen or be true.",
-    "translation": "Eğer / -se",
-    "example": "If it rains, we will stay inside.",
-    "exampleTranslation": "Eğer yağmur yağarsa içeride kalırız.",
-    "synonyms": [],
+    "definition": "Introducing a conditional clause; whether.",
+    "translation": "Eğer, -se/-sa",
+    "example": "I'm not sure if she will come to the party.",
+    "exampleTranslation": "Partiye gelip gelmeyeceğinden emin değilim.",
+    "synonyms": [
+      "whether"
+    ],
     "mastery": 0
   },
   {
@@ -8628,6 +7419,24 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-job",
+    "word": "Job",
+    "partOfSpeech": "Noun",
+    "phonetic": "/dʒɑːb/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "The work that a person does to earn money.",
+    "translation": "İş",
+    "example": "He found a new job last month.",
+    "exampleTranslation": "Geçen ay yeni bir iş buldu.",
+    "synonyms": [
+      "Occupation"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-join",
     "word": "Join",
     "partOfSpeech": "Verb",
@@ -8900,6 +7709,22 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-know",
+    "word": "Know",
+    "partOfSpeech": "Verb",
+    "phonetic": "/noʊ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To have information about something in your mind.",
+    "translation": "Bilmek",
+    "example": "I know the answer to this question.",
+    "exampleTranslation": "Bu sorunun cevabını biliyorum.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-lady",
     "word": "Lady",
     "partOfSpeech": "Noun",
@@ -8929,6 +7754,25 @@ export const WORDS_A1: Word[] = [
     "example": "They live in a large house with a garden.",
     "exampleTranslation": "Bahçeli büyük bir evde yaşıyorlar.",
     "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-last",
+    "word": "Last",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/lɑːst/",
+    "level": "A1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Coming after all others in time or order; final.",
+    "translation": "Son",
+    "example": "This is the last chance to register for the course.",
+    "exampleTranslation": "Bu, kursa kayıt olmak için son şans.",
+    "synonyms": [
+      "final",
+      "concluding"
+    ],
     "mastery": 0
   },
   {
@@ -9047,16 +7891,20 @@ export const WORDS_A1: Word[] = [
     "id": "w-learn",
     "word": "Learn",
     "partOfSpeech": "Verb",
-    "phonetic": "/lɜːrn/",
+    "phonetic": "/lɜːn/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "ielts-1000"
     ],
-    "definition": "To gain knowledge or a skill through study or experience.",
-    "translation": "Öğrenmek",
-    "example": "She wants to learn how to play the piano.",
-    "exampleTranslation": "Piyano çalmayı öğrenmek istiyor.",
-    "synonyms": [],
+    "definition": "To gain knowledge or skill; to memorize.",
+    "translation": "Öğrenmek, ezberlemek",
+    "example": "She is learning to play the piano this year.",
+    "exampleTranslation": "Bu yıl piyano çalmayı öğreniyor.",
+    "synonyms": [
+      "memorize",
+      "study"
+    ],
     "mastery": 0
   },
   {
@@ -9156,6 +8004,24 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-like",
+    "word": "Like",
+    "partOfSpeech": "Verb",
+    "phonetic": "/laɪk/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To enjoy something or think it is good.",
+    "translation": "Sevmek / Hoşlanmak",
+    "example": "I really like this song.",
+    "exampleTranslation": "Bu şarkıyı gerçekten seviyorum.",
+    "synonyms": [
+      "Enjoy"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-lily",
     "word": "Lily",
     "partOfSpeech": "Noun",
@@ -9220,6 +8086,22 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-listen",
+    "word": "Listen",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈlɪs.ən/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To pay attention in order to hear something.",
+    "translation": "Dinlemek",
+    "example": "Please listen carefully to the instructions.",
+    "exampleTranslation": "Lütfen talimatları dikkatlice dinleyin.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-little",
     "word": "Little",
     "partOfSpeech": "Adjective",
@@ -9232,6 +8114,22 @@ export const WORDS_A1: Word[] = [
     "translation": "Küçük / Az",
     "example": "There is a little café near my house.",
     "exampleTranslation": "Evimin yakınında küçük bir kafe var.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-live",
+    "word": "Live",
+    "partOfSpeech": "Verb",
+    "phonetic": "/lɪv/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To have your home in a particular place.",
+    "translation": "Yaşamak",
+    "example": "They live in a small apartment downtown.",
+    "exampleTranslation": "Şehir merkezinde küçük bir dairede yaşıyorlar.",
     "synonyms": [],
     "mastery": 0
   },
@@ -9280,6 +8178,38 @@ export const WORDS_A1: Word[] = [
     "translation": "Yalnız (üzgün)",
     "example": "He felt lonely after moving to a new city.",
     "exampleTranslation": "Yeni bir şehre taşındıktan sonra kendini yalnız hissetti.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-long",
+    "word": "Long",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/lɔːŋ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Measuring a great distance or amount of time.",
+    "translation": "Uzun",
+    "example": "It was a long journey from home to the airport.",
+    "exampleTranslation": "Evden havalimanına uzun bir yolculuktu.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-look",
+    "word": "Look",
+    "partOfSpeech": "Verb",
+    "phonetic": "/lʊk/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To turn your eyes toward something in order to see it.",
+    "translation": "Bakmak",
+    "example": "Look at that beautiful sunset!",
+    "exampleTranslation": "Şu güzel gün batımına bak!",
     "synonyms": [],
     "mastery": 0
   },
@@ -9428,6 +8358,22 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-man",
+    "word": "Man",
+    "partOfSpeech": "Noun",
+    "phonetic": "/mæn/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "An adult male human.",
+    "translation": "Adam / Erkek",
+    "example": "The man is waiting at the bus stop.",
+    "exampleTranslation": "Adam otobüs durağında bekliyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-many",
     "word": "Many",
     "partOfSpeech": "Determiner",
@@ -9530,13 +8476,17 @@ export const WORDS_A1: Word[] = [
     "phonetic": "/ˈmeɪ.bi/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "ielts-1000"
     ],
-    "definition": "Possibly; perhaps.",
+    "definition": "Perhaps; possibly.",
     "translation": "Belki",
-    "example": "Maybe we should ask for directions.",
-    "exampleTranslation": "Belki yol tarifi istemeliyiz.",
-    "synonyms": [],
+    "example": "Maybe we should try a different approach.",
+    "exampleTranslation": "Belki farklı bir yaklaşım denemeliyiz.",
+    "synonyms": [
+      "perhaps",
+      "possibly"
+    ],
     "mastery": 0
   },
   {
@@ -9620,19 +8570,39 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-meet",
+    "word": "Meet",
+    "partOfSpeech": "Verb",
+    "phonetic": "/miːt/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To come together with someone, often for the first time.",
+    "translation": "Tanışmak / Buluşmak",
+    "example": "Nice to meet you!",
+    "exampleTranslation": "Tanıştığımıza memnun oldum!",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-meeting",
     "word": "Meeting",
     "partOfSpeech": "Noun",
     "phonetic": "/ˈmiː.tɪŋ/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "ielts-1000"
     ],
-    "definition": "A gathering of people to discuss something.",
+    "definition": "An assembly of people for a particular purpose.",
     "translation": "Toplantı",
-    "example": "We have a meeting at ten o'clock.",
-    "exampleTranslation": "Saat onda bir toplantımız var.",
-    "synonyms": [],
+    "example": "We have a meeting scheduled for nine o'clock.",
+    "exampleTranslation": "Saat dokuzda bir toplantımız var.",
+    "synonyms": [
+      "assembly",
+      "gathering"
+    ],
     "mastery": 0
   },
   {
@@ -9860,6 +8830,24 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-money",
+    "word": "Money",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈmʌn.i/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Coins and paper notes used to buy things.",
+    "translation": "Para",
+    "example": "He doesn't have much money this month.",
+    "exampleTranslation": "Bu ay fazla parası yok.",
+    "synonyms": [
+      "Cash"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-monkey",
     "word": "Monkey",
     "partOfSpeech": "Noun",
@@ -9924,6 +8912,22 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-morning",
+    "word": "Morning",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈmɔːr.nɪŋ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "The early part of the day, from when the sun rises until noon.",
+    "translation": "Sabah",
+    "example": "I drink coffee every morning.",
+    "exampleTranslation": "Her sabah kahve içerim.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-most",
     "word": "Most",
     "partOfSpeech": "Determiner",
@@ -9936,6 +8940,22 @@ export const WORDS_A1: Word[] = [
     "translation": "En çok / Çoğu",
     "example": "Most of the students passed the test.",
     "exampleTranslation": "Öğrencilerin çoğu testi geçti.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-mother",
+    "word": "Mother",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈmʌð.ər/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A female parent.",
+    "translation": "Anne",
+    "example": "My mother cooks dinner every evening.",
+    "exampleTranslation": "Annem her akşam yemek pişirir.",
     "synonyms": [],
     "mastery": 0
   },
@@ -10010,13 +9030,16 @@ export const WORDS_A1: Word[] = [
     "phonetic": "/ˈmuː.vi/",
     "level": "A1",
     "lists": [
-      "oxford-3000"
+      "oxford-3000",
+      "ielts-1000"
     ],
-    "definition": "A film shown in a cinema or on a screen.",
+    "definition": "A film shown in a cinema or on television.",
     "translation": "Film",
-    "example": "We watched a movie together last night.",
-    "exampleTranslation": "Dün gece birlikte bir film izledik.",
-    "synonyms": [],
+    "example": "We watched a movie at home last night.",
+    "exampleTranslation": "Dün gece evde bir film izledik.",
+    "synonyms": [
+      "film"
+    ],
     "mastery": 0
   },
   {
@@ -10084,6 +9107,22 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-music",
+    "word": "Music",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈmjuː.zɪk/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Sounds made by singing or by instruments, arranged in a pleasant way.",
+    "translation": "Müzik",
+    "example": "She listens to music every evening.",
+    "exampleTranslation": "Her akşam müzik dinler.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-musician",
     "word": "Musician",
     "partOfSpeech": "Noun",
@@ -10128,6 +9167,22 @@ export const WORDS_A1: Word[] = [
     "translation": "Benim",
     "example": "This is my favorite song.",
     "exampleTranslation": "Bu benim en sevdiğim şarkı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-name",
+    "word": "Name",
+    "partOfSpeech": "Noun",
+    "phonetic": "/neɪm/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "The word that people use to talk to or about a person or thing.",
+    "translation": "İsim / Ad",
+    "example": "What is your name?",
+    "exampleTranslation": "Adın ne?",
     "synonyms": [],
     "mastery": 0
   },
@@ -10180,6 +9235,60 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-need",
+    "word": "Need",
+    "partOfSpeech": "Verb",
+    "phonetic": "/niːd/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To require something because it is necessary.",
+    "translation": "İhtiyaç duymak",
+    "example": "We need more time to finish this.",
+    "exampleTranslation": "Bunu bitirmek için daha fazla zamana ihtiyacımız var.",
+    "synonyms": [
+      "Require"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-never",
+    "word": "Never",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈnev.ər/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "At no time; not ever.",
+    "translation": "Asla / Hiçbir zaman",
+    "example": "I have never been to Japan.",
+    "exampleTranslation": "Hiç Japonya'ya gitmedim.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-new",
+    "word": "New",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/njuː/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000",
+      "ielts-1000"
+    ],
+    "definition": "Not existing before; recently made or introduced; fresh.",
+    "translation": "Yeni",
+    "example": "She bought a new dress for the party.",
+    "exampleTranslation": "Parti için yeni bir elbise satın aldı.",
+    "synonyms": [
+      "fresh",
+      "recent"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-newspaper",
     "word": "Newspaper",
     "partOfSpeech": "Noun",
@@ -10196,18 +9305,58 @@ export const WORDS_A1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-next",
+    "word": "Next",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/nekst/",
+    "level": "A1",
+    "lists": [
+      "toefl-300",
+      "transition-sequence"
+    ],
+    "definition": "Immediately following in time, order, or space.",
+    "translation": "Sonra, sıradaki",
+    "example": "Next, the panel will discuss the budget.",
+    "exampleTranslation": "Sonra, panel bütçeyi tartışacak.",
+    "synonyms": [
+      "then",
+      "afterwards"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-nice",
     "word": "Nice",
     "partOfSpeech": "Adjective",
     "phonetic": "/naɪs/",
     "level": "A1",
     "lists": [
+      "oxford-3000",
+      "ielts-1000"
+    ],
+    "definition": "Pleasant, agreeable, or satisfactory.",
+    "translation": "Hoş, güzel",
+    "example": "It was nice to see you again after so long.",
+    "exampleTranslation": "Uzun zaman sonra seni tekrar görmek güzeldi.",
+    "synonyms": [
+      "pleasing",
+      "pleasant"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-night",
+    "word": "Night",
+    "partOfSpeech": "Noun",
+    "phonetic": "/naɪt/",
+    "level": "A1",
+    "lists": [
       "oxford-3000"
     ],
-    "definition": "Pleasant, kind, or enjoyable.",
-    "translation": "Güzel / Hoş",
-    "example": "It was nice to meet you.",
-    "exampleTranslation": "Seninle tanışmak güzeldi.",
+    "definition": "The time when it is dark outside and people usually sleep.",
+    "translation": "Gece",
+    "example": "We watched the stars at night.",
+    "exampleTranslation": "Gece yıldızları izledik.",
     "synonyms": [],
     "mastery": 0
   },
@@ -10320,6 +9469,1361 @@ export const WORDS_A1: Word[] = [
     "translation": "Değil",
     "example": "This is not the right answer.",
     "exampleTranslation": "Bu doğru cevap değil.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-now",
+    "word": "Now",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/naʊ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "At this present time.",
+    "translation": "Şimdi",
+    "example": "I have to leave now or I'll be late.",
+    "exampleTranslation": "Şimdi gitmem lazım yoksa geç kalacağım.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-often",
+    "word": "Often",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈɔːf.ən/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Many times; frequently.",
+    "translation": "Sık sık",
+    "example": "We often eat pizza on Fridays.",
+    "exampleTranslation": "Cuma günleri sık sık pizza yeriz.",
+    "synonyms": [
+      "Frequently"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-old",
+    "word": "Old",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/oʊld/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Having lived or existed for a long time; not new or young.",
+    "translation": "Eski / Yaşlı",
+    "example": "My grandfather is eighty years old.",
+    "exampleTranslation": "Büyükbabam seksen yaşında.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-open",
+    "word": "Open",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈoʊ.pən/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To move something so that it is no longer closed.",
+    "translation": "Açmak",
+    "example": "Please open the window; it's hot in here.",
+    "exampleTranslation": "Lütfen pencereyi aç; burası sıcak.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-outside",
+    "word": "Outside",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˌaʊtˈsaɪd/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000",
+      "ielts-1000"
+    ],
+    "definition": "Situated on the outer side; external.",
+    "translation": "Dış, dışarıdaki",
+    "example": "There's an outside chance the deal could still fall through.",
+    "exampleTranslation": "Anlaşmanın hala bozulma ihtimali düşük de olsa var.",
+    "synonyms": [
+      "external",
+      "exterior"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-paint",
+    "word": "Paint",
+    "partOfSpeech": "Verb",
+    "phonetic": "/peɪnt/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To cover a surface with color, or to make a picture using paint.",
+    "translation": "Boyamak / Resim yapmak",
+    "example": "We painted the kitchen walls yellow.",
+    "exampleTranslation": "Mutfak duvarlarını sarıya boyadık.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-phone",
+    "word": "Phone",
+    "partOfSpeech": "Noun",
+    "phonetic": "/foʊn/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A device used to talk to people who are in another place.",
+    "translation": "Telefon",
+    "example": "I forgot my phone at home.",
+    "exampleTranslation": "Telefonumu evde unuttum.",
+    "synonyms": [
+      "Telephone"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-play",
+    "word": "Play",
+    "partOfSpeech": "Verb",
+    "phonetic": "/pleɪ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To do something for fun or enjoyment.",
+    "translation": "Oynamak",
+    "example": "The kids play football in the park.",
+    "exampleTranslation": "Çocuklar parkta futbol oynuyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-poor",
+    "word": "Poor",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/pɔːr/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000",
+      "ielts-1000"
+    ],
+    "definition": "Lacking sufficient money; of a low or inferior standard; naughty (informal, of children).",
+    "translation": "Fakir; kötü, zayıf",
+    "example": "The quality of the work was quite poor.",
+    "exampleTranslation": "İşin kalitesi oldukça kötüydü.",
+    "synonyms": [
+      "naughty",
+      "inferior"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-pull",
+    "word": "Pull",
+    "partOfSpeech": "Verb",
+    "phonetic": "/pʊl/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To use force to move something toward you.",
+    "translation": "Çekmek",
+    "example": "Pull the door instead of pushing it.",
+    "exampleTranslation": "Kapıyı itmek yerine çek.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-push",
+    "word": "Push",
+    "partOfSpeech": "Verb",
+    "phonetic": "/pʊʃ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To use force to move something away from you.",
+    "translation": "İtmek",
+    "example": "Push the door to open it.",
+    "exampleTranslation": "Açmak için kapıyı it.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-rain",
+    "word": "Rain",
+    "partOfSpeech": "Noun",
+    "phonetic": "/reɪn/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Water that falls from clouds in small drops.",
+    "translation": "Yağmur",
+    "example": "We stayed inside because of the rain.",
+    "exampleTranslation": "Yağmur yüzünden içeride kaldık.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-read",
+    "word": "Read",
+    "partOfSpeech": "Verb",
+    "phonetic": "/riːd/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To look at written words and understand their meaning.",
+    "translation": "Okumak",
+    "example": "He reads the newspaper every morning.",
+    "exampleTranslation": "Her sabah gazete okur.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-rice",
+    "word": "Rice",
+    "partOfSpeech": "Noun",
+    "phonetic": "/raɪs/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Small white or brown grains that are cooked and eaten as food.",
+    "translation": "Pirinç",
+    "example": "We usually have rice with our dinner.",
+    "exampleTranslation": "Genellikle akşam yemeğimizle pirinç yeriz.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-rich",
+    "word": "Rich",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/rɪtʃ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Having a lot of money.",
+    "translation": "Zengin",
+    "example": "They became rich after starting their business.",
+    "exampleTranslation": "İşlerini kurduktan sonra zengin oldular.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-room",
+    "word": "Room",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ruːm/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A part of a building with its own walls, floor, and ceiling.",
+    "translation": "Oda",
+    "example": "My bedroom is the smallest room in the house.",
+    "exampleTranslation": "Yatak odam evdeki en küçük oda.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-round",
+    "word": "Round",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/raʊnd/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Shaped like a circle or a ball.",
+    "translation": "Yuvarlak",
+    "example": "The table in our kitchen is round.",
+    "exampleTranslation": "Mutfağımızdaki masa yuvarlak.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-run",
+    "word": "Run",
+    "partOfSpeech": "Verb",
+    "phonetic": "/rʌn/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To move quickly on foot, faster than walking.",
+    "translation": "Koşmak",
+    "example": "He runs in the park every morning.",
+    "exampleTranslation": "Her sabah parkta koşar.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-sad",
+    "word": "Sad",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/sæd/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Feeling unhappy, often because something bad has happened.",
+    "translation": "Üzgün",
+    "example": "He was sad when his friend moved away.",
+    "exampleTranslation": "Arkadaşı taşınınca üzüldü.",
+    "synonyms": [
+      "Unhappy"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-school",
+    "word": "School",
+    "partOfSpeech": "Noun",
+    "phonetic": "/skuːl/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A place where children go to learn.",
+    "translation": "Okul",
+    "example": "My children walk to school every day.",
+    "exampleTranslation": "Çocuklarım her gün okula yürüyerek gider.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-second",
+    "word": "Second",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈsek.ənd/",
+    "level": "A1",
+    "lists": [
+      "toefl-300",
+      "transition-sequence"
+    ],
+    "definition": "Used to introduce the second point in a sequence.",
+    "translation": "İkinci olarak",
+    "example": "Second, add the flour and mix well.",
+    "exampleTranslation": "İkinci olarak, unu ekleyip iyice karıştırın.",
+    "synonyms": [
+      "secondly",
+      "next"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-see",
+    "word": "See",
+    "partOfSpeech": "Verb",
+    "phonetic": "/siː/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To notice something with your eyes.",
+    "translation": "Görmek",
+    "example": "I can see the mountains from my window.",
+    "exampleTranslation": "Penceremden dağları görebiliyorum.",
+    "synonyms": [
+      "Notice"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-send",
+    "word": "Send",
+    "partOfSpeech": "Verb",
+    "phonetic": "/send/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To make something go to another place, such as by post or online.",
+    "translation": "Göndermek",
+    "example": "I'll send you the photos tonight.",
+    "exampleTranslation": "Fotoğrafları sana bu gece göndereceğim.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-shirt",
+    "word": "Shirt",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ʃɜːrt/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A piece of clothing worn on the upper body.",
+    "translation": "Gömlek",
+    "example": "He is wearing a blue shirt today.",
+    "exampleTranslation": "Bugün mavi bir gömlek giyiyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-shoes",
+    "word": "Shoes",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ʃuːz/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Items worn on the feet for walking.",
+    "translation": "Ayakkabı",
+    "example": "These shoes are very comfortable for walking.",
+    "exampleTranslation": "Bu ayakkabılar yürümek için çok rahat.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-short",
+    "word": "Short",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ʃɔːrt/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Having a small length or height.",
+    "translation": "Kısa",
+    "example": "She has short brown hair.",
+    "exampleTranslation": "Kısa kahverengi saçları var.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-sing",
+    "word": "Sing",
+    "partOfSpeech": "Verb",
+    "phonetic": "/sɪŋ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To make musical sounds with your voice.",
+    "translation": "Şarkı söylemek",
+    "example": "She sings in the shower every morning.",
+    "exampleTranslation": "Her sabah duşta şarkı söyler.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-sister",
+    "word": "Sister",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈsɪs.tər/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A girl or woman who has the same parents as you.",
+    "translation": "Kız kardeş",
+    "example": "My sister lives in another city.",
+    "exampleTranslation": "Kız kardeşim başka bir şehirde yaşıyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-sit",
+    "word": "Sit",
+    "partOfSpeech": "Verb",
+    "phonetic": "/sɪt/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To rest your body on a chair or the ground with your back straight.",
+    "translation": "Oturmak",
+    "example": "Please sit down and relax.",
+    "exampleTranslation": "Lütfen otur ve rahatla.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-sky",
+    "word": "Sky",
+    "partOfSpeech": "Noun",
+    "phonetic": "/skaɪ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "The space above the Earth where you see clouds and the sun.",
+    "translation": "Gökyüzü",
+    "example": "The sky is blue and clear today.",
+    "exampleTranslation": "Bugün gökyüzü mavi ve açık.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-sleep",
+    "word": "Sleep",
+    "partOfSpeech": "Verb",
+    "phonetic": "/sliːp/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To rest with your eyes closed and your mind unconscious.",
+    "translation": "Uyumak",
+    "example": "The baby sleeps for ten hours at night.",
+    "exampleTranslation": "Bebek gece on saat uyur.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-slow",
+    "word": "Slow",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/sloʊ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Not fast; taking a long time.",
+    "translation": "Yavaş",
+    "example": "The old car goes very slow uphill.",
+    "exampleTranslation": "Eski araba yokuş yukarı çok yavaş gider.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-small",
+    "word": "Small",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/smɔːl/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Not large in size.",
+    "translation": "Küçük",
+    "example": "We have a small kitchen in our apartment.",
+    "exampleTranslation": "Dairemizde küçük bir mutfağımız var.",
+    "synonyms": [
+      "Little"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-snow",
+    "word": "Snow",
+    "partOfSpeech": "Noun",
+    "phonetic": "/snoʊ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Soft white pieces of frozen water that fall from the sky in winter.",
+    "translation": "Kar",
+    "example": "The children were playing in the snow.",
+    "exampleTranslation": "Çocuklar karda oynuyordu.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-so",
+    "word": "So",
+    "partOfSpeech": "Conjunction",
+    "phonetic": "/səʊ/",
+    "level": "A1",
+    "lists": [
+      "toefl-300",
+      "transition-result"
+    ],
+    "definition": "With the result that; therefore.",
+    "translation": "Bu yüzden, o yüzden",
+    "example": "It was late, so we decided to go home.",
+    "exampleTranslation": "Geç olmuştu, bu yüzden eve gitmeye karar verdik.",
+    "synonyms": [
+      "therefore",
+      "thus"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-soft",
+    "word": "Soft",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/sɔːft/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Not hard or rough; pleasant to touch.",
+    "translation": "Yumuşak",
+    "example": "This blanket is very soft and warm.",
+    "exampleTranslation": "Bu battaniye çok yumuşak ve sıcak.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-sometimes",
+    "word": "Sometimes",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈsʌm.taɪmz/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "On some occasions, but not always.",
+    "translation": "Bazen",
+    "example": "Sometimes I walk to work instead of driving.",
+    "exampleTranslation": "Bazen araba kullanmak yerine işe yürüyerek giderim.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-soon",
+    "word": "Soon",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/suːn/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "In a short time from now.",
+    "translation": "Yakında",
+    "example": "The bus will arrive soon.",
+    "exampleTranslation": "Otobüs yakında gelecek.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-speak",
+    "word": "Speak",
+    "partOfSpeech": "Verb",
+    "phonetic": "/spiːk/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To talk and say words with your voice.",
+    "translation": "Konuşmak",
+    "example": "She can speak three languages.",
+    "exampleTranslation": "Üç dil konuşabiliyor.",
+    "synonyms": [
+      "Talk"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-special",
+    "word": "Special",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈspeʃ.əl/",
+    "level": "A1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Better, greater, or otherwise different from usual; exceptional.",
+    "translation": "Özel, olağanüstü",
+    "example": "Her wedding day was extremely special to her.",
+    "exampleTranslation": "Düğün günü onun için son derece özeldi.",
+    "synonyms": [
+      "exceptional",
+      "unique"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-square",
+    "word": "Square",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/skwer/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Having four straight, equal sides.",
+    "translation": "Kare",
+    "example": "He drew a square on the paper.",
+    "exampleTranslation": "Kağıda bir kare çizdi.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-stand",
+    "word": "Stand",
+    "partOfSpeech": "Verb",
+    "phonetic": "/stænd/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To be on your feet in an upright position.",
+    "translation": "Ayakta durmak",
+    "example": "The passengers had to stand on the crowded bus.",
+    "exampleTranslation": "Yolcular kalabalık otobüste ayakta durmak zorunda kaldı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-student",
+    "word": "Student",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈstuː.dənt/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A person who is learning at a school or university.",
+    "translation": "Öğrenci",
+    "example": "She is a student at the university.",
+    "exampleTranslation": "O, üniversitede bir öğrenci.",
+    "synonyms": [
+      "Pupil"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-study",
+    "word": "Study",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈstʌd.i/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To spend time learning about a subject.",
+    "translation": "Ders çalışmak",
+    "example": "She studies English every evening.",
+    "exampleTranslation": "Her akşam İngilizce çalışır.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-sun",
+    "word": "Sun",
+    "partOfSpeech": "Noun",
+    "phonetic": "/sʌn/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "The bright star that gives the Earth light and heat.",
+    "translation": "Güneş",
+    "example": "The sun is very bright today.",
+    "exampleTranslation": "Bugün güneş çok parlak.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-sure",
+    "word": "Sure",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ʃʊər/",
+    "level": "A1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Confident about something; certain.",
+    "translation": "Emin",
+    "example": "Are you sure you locked the door?",
+    "exampleTranslation": "Kapıyı kilitlediğinden emin misin?",
+    "synonyms": [
+      "certain",
+      "confident"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-swim",
+    "word": "Swim",
+    "partOfSpeech": "Verb",
+    "phonetic": "/swɪm/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To move through water using your arms and legs.",
+    "translation": "Yüzmek",
+    "example": "The children swim in the pool every summer.",
+    "exampleTranslation": "Çocuklar her yaz havuzda yüzer.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-table",
+    "word": "Table",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈteɪ.bəl/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A piece of furniture with a flat top and legs.",
+    "translation": "Masa",
+    "example": "The children are sitting at the table.",
+    "exampleTranslation": "Çocuklar masada oturuyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-take",
+    "word": "Take",
+    "partOfSpeech": "Verb",
+    "phonetic": "/teɪk/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To carry or move something with you.",
+    "translation": "Almak",
+    "example": "Please take an umbrella; it might rain.",
+    "exampleTranslation": "Lütfen bir şemsiye al; yağmur yağabilir.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-tall",
+    "word": "Tall",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/tɔːl/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Having a greater than average height.",
+    "translation": "Uzun (boy)",
+    "example": "My brother is very tall for his age.",
+    "exampleTranslation": "Kardeşim yaşına göre çok uzun.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-teacher",
+    "word": "Teacher",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈtiː.tʃər/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A person whose job is to teach students.",
+    "translation": "Öğretmen",
+    "example": "Our teacher explains the lesson very clearly.",
+    "exampleTranslation": "Öğretmenimiz dersi çok net anlatıyor.",
+    "synonyms": [
+      "Instructor"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-then",
+    "word": "Then",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ðen/",
+    "level": "A1",
+    "lists": [
+      "toefl-300",
+      "transition-sequence"
+    ],
+    "definition": "Next in time or order; after that.",
+    "translation": "Sonra, ardından",
+    "example": "We finished dinner, then went for a walk.",
+    "exampleTranslation": "Akşam yemeğini bitirdik, sonra yürüyüşe çıktık.",
+    "synonyms": [
+      "next",
+      "afterwards"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-there",
+    "word": "There",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ðer/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "In, at, or to that place.",
+    "translation": "Orada / Oraya",
+    "example": "The keys are over there, on the table.",
+    "exampleTranslation": "Anahtarlar şurada, masanın üzerinde.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-thin",
+    "word": "Thin",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/θɪn/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Not thick or wide; having little space between two sides.",
+    "translation": "İnce",
+    "example": "She cut the cheese into thin slices.",
+    "exampleTranslation": "Peyniri ince dilimler halinde kesti.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-think",
+    "word": "Think",
+    "partOfSpeech": "Verb",
+    "phonetic": "/θɪŋk/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To use your mind to have ideas or opinions.",
+    "translation": "Düşünmek",
+    "example": "I think it will rain tomorrow.",
+    "exampleTranslation": "Sanırım yarın yağmur yağacak.",
+    "synonyms": [
+      "Believe"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-time",
+    "word": "Time",
+    "partOfSpeech": "Noun",
+    "phonetic": "/taɪm/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "The thing that is measured in hours, days, and years.",
+    "translation": "Zaman / Vakit",
+    "example": "I don't have time to talk right now.",
+    "exampleTranslation": "Şu anda konuşacak zamanım yok.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-today",
+    "word": "Today",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/təˈdeɪ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "On this day.",
+    "translation": "Bugün",
+    "example": "What are you doing today?",
+    "exampleTranslation": "Bugün ne yapıyorsun?",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-tomorrow",
+    "word": "Tomorrow",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/təˈmɑːr.oʊ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "On the day after today.",
+    "translation": "Yarın",
+    "example": "I have a meeting with my boss tomorrow.",
+    "exampleTranslation": "Yarın patronumla bir toplantım var.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-too",
+    "word": "Too",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/tuː/",
+    "level": "A1",
+    "lists": [
+      "toefl-300",
+      "transition-addition"
+    ],
+    "definition": "In addition; also.",
+    "translation": "Ayrıca, de/da",
+    "example": "I would like some coffee, and a pastry too.",
+    "exampleTranslation": "Biraz kahve ve bir de hamur işi almak istiyorum.",
+    "synonyms": [
+      "also",
+      "as well"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-tree",
+    "word": "Tree",
+    "partOfSpeech": "Noun",
+    "phonetic": "/triː/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A tall plant with a wooden trunk, branches, and leaves.",
+    "translation": "Ağaç",
+    "example": "There is a big tree in front of our house.",
+    "exampleTranslation": "Evimizin önünde büyük bir ağaç var.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-turn",
+    "word": "Turn",
+    "partOfSpeech": "Verb",
+    "phonetic": "/tɜːrn/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To move so that you are facing a different direction.",
+    "translation": "Dönmek",
+    "example": "Turn left at the next corner.",
+    "exampleTranslation": "Bir sonraki köşede sola dön.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-usually",
+    "word": "Usually",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈjuː.ʒu.əl.i/",
+    "level": "A1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Under normal conditions; generally; normally.",
+    "translation": "Genellikle",
+    "example": "I usually wake up at seven o'clock.",
+    "exampleTranslation": "Genellikle saat yedide uyanırım.",
+    "synonyms": [
+      "generally",
+      "normally"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-very",
+    "word": "Very",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈver.i/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To a great degree; extremely.",
+    "translation": "Çok",
+    "example": "This soup is very hot.",
+    "exampleTranslation": "Bu çorba çok sıcak.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-walk",
+    "word": "Walk",
+    "partOfSpeech": "Verb",
+    "phonetic": "/wɔːk/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To move on foot at a normal speed.",
+    "translation": "Yürümek",
+    "example": "We walk to school together every day.",
+    "exampleTranslation": "Her gün birlikte okula yürüyerek gideriz.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-want",
+    "word": "Want",
+    "partOfSpeech": "Verb",
+    "phonetic": "/wɑːnt/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To have a strong wish for something.",
+    "translation": "İstemek",
+    "example": "I want a cup of tea, please.",
+    "exampleTranslation": "Bir fincan çay istiyorum, lütfen.",
+    "synonyms": [
+      "Wish"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-wash",
+    "word": "Wash",
+    "partOfSpeech": "Verb",
+    "phonetic": "/wɑːʃ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To clean something using water.",
+    "translation": "Yıkamak",
+    "example": "I wash my hands before every meal.",
+    "exampleTranslation": "Her yemekten önce ellerimi yıkarım.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-water",
+    "word": "Water",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈwɔːtər/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "The clear liquid that falls as rain and that people and animals drink.",
+    "translation": "Su",
+    "example": "I drink a glass of water every morning.",
+    "exampleTranslation": "Her sabah bir bardak su içerim.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-wear",
+    "word": "Wear",
+    "partOfSpeech": "Verb",
+    "phonetic": "/wer/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To have clothes or jewelry on your body.",
+    "translation": "Giymek",
+    "example": "She likes to wear bright colors in summer.",
+    "exampleTranslation": "Yazın parlak renkler giymeyi sever.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-week",
+    "word": "Week",
+    "partOfSpeech": "Noun",
+    "phonetic": "/wiːk/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A period of seven days.",
+    "translation": "Hafta",
+    "example": "I visit my parents once a week.",
+    "exampleTranslation": "Ailemi haftada bir kez ziyaret ederim.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-well",
+    "word": "Well",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/wel/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "In a good or satisfactory way.",
+    "translation": "İyi (bir şekilde)",
+    "example": "She speaks English very well.",
+    "exampleTranslation": "İngilizceyi çok iyi konuşuyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-wet",
+    "word": "Wet",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/wet/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Covered in water or another liquid; not dry.",
+    "translation": "Islak",
+    "example": "My shoes got wet in the rain.",
+    "exampleTranslation": "Ayakkabılarım yağmurda ıslandı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-wind",
+    "word": "Wind",
+    "partOfSpeech": "Noun",
+    "phonetic": "/wɪnd/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Air that moves quickly, especially outdoors.",
+    "translation": "Rüzgar",
+    "example": "The wind was very strong yesterday.",
+    "exampleTranslation": "Dün rüzgar çok güçlüydü.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-window",
+    "word": "Window",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈwɪn.doʊ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "An opening in a wall, usually covered with glass, that lets in light.",
+    "translation": "Pencere",
+    "example": "Open the window; it's too warm in here.",
+    "exampleTranslation": "Pencereyi aç; burası çok sıcak.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-woman",
+    "word": "Woman",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈwʊm.ən/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "An adult female human.",
+    "translation": "Kadın",
+    "example": "The woman is reading a book in the park.",
+    "exampleTranslation": "Kadın parkta bir kitap okuyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-word",
+    "word": "Word",
+    "partOfSpeech": "Noun",
+    "phonetic": "/wɜːd/",
+    "level": "A1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "A single unit of language with meaning; a promise.",
+    "translation": "Kelime, söz",
+    "example": "She couldn't find the right word to describe how she felt.",
+    "exampleTranslation": "Nasıl hissettiğini tanımlayacak doğru kelimeyi bulamadı.",
+    "synonyms": [
+      "term",
+      "expression"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-work",
+    "word": "Work",
+    "partOfSpeech": "Verb",
+    "phonetic": "/wɜːrk/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To do a job, especially in order to earn money.",
+    "translation": "Çalışmak",
+    "example": "She works in a hospital as a nurse.",
+    "exampleTranslation": "Hastanede hemşire olarak çalışıyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-write",
+    "word": "Write",
+    "partOfSpeech": "Verb",
+    "phonetic": "/raɪt/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "To put words on paper or a screen.",
+    "translation": "Yazmak",
+    "example": "I write a letter to my grandmother every month.",
+    "exampleTranslation": "Her ay büyükanneme bir mektup yazarım.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-wrong",
+    "word": "Wrong",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/rɒŋ/",
+    "level": "A1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Not correct or true; mistaken.",
+    "translation": "Yanlış",
+    "example": "You have the wrong number.",
+    "exampleTranslation": "Yanlış numarayı aradınız.",
+    "synonyms": [
+      "mistaken",
+      "incorrect"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-year",
+    "word": "Year",
+    "partOfSpeech": "Noun",
+    "phonetic": "/jɪr/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "A period of twelve months.",
+    "translation": "Yıl / Sene",
+    "example": "We travel to Turkey every year.",
+    "exampleTranslation": "Her yıl Türkiye'ye seyahat ederiz.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-yesterday",
+    "word": "Yesterday",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈjes.tər.deɪ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "On the day before today.",
+    "translation": "Dün",
+    "example": "We went to the cinema yesterday evening.",
+    "exampleTranslation": "Dün akşam sinemaya gittik.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-young",
+    "word": "Young",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/jʌŋ/",
+    "level": "A1",
+    "lists": [
+      "oxford-3000"
+    ],
+    "definition": "Not old; having lived for only a short time.",
+    "translation": "Genç",
+    "example": "The teacher is young and very energetic.",
+    "exampleTranslation": "Öğretmen genç ve çok enerjik.",
     "synonyms": [],
     "mastery": 0
   }

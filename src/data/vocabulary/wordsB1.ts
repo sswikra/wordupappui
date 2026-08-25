@@ -2,2124 +2,6 @@ import { Word } from '../../types';
 
 export const WORDS_B1: Word[] = [
   {
-    "id": "w-opinion",
-    "word": "Opinion",
-    "partOfSpeech": "Noun",
-    "phonetic": "/əˈpɪn.jən/",
-    "level": "B1",
-    "lists": [],
-    "definition": "A person's thoughts or feelings about something, rather than a fact.",
-    "translation": "Görüş / Fikir",
-    "example": "In my opinion, this is the best restaurant in town.",
-    "exampleTranslation": "Bence bu, şehirdeki en iyi restoran.",
-    "synonyms": [
-      "View"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-experience",
-    "word": "Experience",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ɪkˈspɪr.i.əns/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Knowledge or skill gained from doing something, or an event that happens to you.",
-    "translation": "Deneyim / Tecrübe",
-    "example": "She has a lot of experience working with children.",
-    "exampleTranslation": "Çocuklarla çalışma konusunda çok deneyimi var.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-environment",
-    "word": "Environment",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ɪnˈvaɪ.rən.mənt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "The natural world, or the conditions that surround a person or place.",
-    "translation": "Çevre",
-    "example": "We should all try to protect the environment.",
-    "exampleTranslation": "Hepimiz çevreyi korumaya çalışmalıyız.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-relationship",
-    "word": "Relationship",
-    "partOfSpeech": "Noun",
-    "phonetic": "/rɪˈleɪ.ʃən.ʃɪp/",
-    "level": "B1",
-    "lists": [],
-    "definition": "The way in which two or more people or things are connected.",
-    "translation": "İlişki",
-    "example": "They have a close relationship with their neighbors.",
-    "exampleTranslation": "Komşularıyla yakın bir ilişkileri var.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-education",
-    "word": "Education",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˌedʒ.uˈkeɪ.ʃən/",
-    "level": "B1",
-    "lists": [],
-    "definition": "The process of teaching or learning, especially in a school.",
-    "translation": "Eğitim",
-    "example": "A good education can open many doors in life.",
-    "exampleTranslation": "İyi bir eğitim hayatta birçok kapı açabilir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-government",
-    "word": "Government",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈgʌv.ər.mənt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "The group of people who officially control a country.",
-    "translation": "Hükümet",
-    "example": "The government announced new plans for education.",
-    "exampleTranslation": "Hükümet eğitimle ilgili yeni planlar açıkladı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-society",
-    "word": "Society",
-    "partOfSpeech": "Noun",
-    "phonetic": "/səˈsaɪ.ə.ti/",
-    "level": "B1",
-    "lists": [],
-    "definition": "All the people who live in a particular country or area, considered together.",
-    "translation": "Toplum",
-    "example": "Technology has changed modern society a lot.",
-    "exampleTranslation": "Teknoloji modern toplumu çok değiştirdi.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-economy",
-    "word": "Economy",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ɪˈkɑː.nə.mi/",
-    "level": "B1",
-    "lists": [],
-    "definition": "The system of trade and money in a country or region.",
-    "translation": "Ekonomi",
-    "example": "The country's economy is growing quickly this year.",
-    "exampleTranslation": "Ülkenin ekonomisi bu yıl hızla büyüyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-culture",
-    "word": "Culture",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈkʌl.tʃər/",
-    "level": "B1",
-    "lists": [],
-    "definition": "The customs, arts, and way of life of a particular group of people.",
-    "translation": "Kültür",
-    "example": "I enjoy learning about different cultures when I travel.",
-    "exampleTranslation": "Seyahat ederken farklı kültürler hakkında bilgi edinmekten hoşlanırım.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-tradition",
-    "word": "Tradition",
-    "partOfSpeech": "Noun",
-    "phonetic": "/trəˈdɪʃ.ən/",
-    "level": "B1",
-    "lists": [],
-    "definition": "A custom or belief that has existed for a long time and is passed down.",
-    "translation": "Gelenek",
-    "example": "It's a family tradition to eat together on Sundays.",
-    "exampleTranslation": "Pazar günleri birlikte yemek yemek bir aile geleneğidir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-opportunity",
-    "word": "Opportunity",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˌɑː.pərˈtuː.nə.ti/",
-    "level": "B1",
-    "lists": [],
-    "definition": "A chance to do something, especially something good.",
-    "translation": "Fırsat",
-    "example": "Studying abroad was a great opportunity for her.",
-    "exampleTranslation": "Yurt dışında okumak onun için harika bir fırsattı.",
-    "synonyms": [
-      "Chance"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-achievement",
-    "word": "Achievement",
-    "partOfSpeech": "Noun",
-    "phonetic": "/əˈtʃiːv.mənt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Something that you have succeeded in doing, especially through hard work.",
-    "translation": "Başarı",
-    "example": "Winning the competition was a great achievement for the team.",
-    "exampleTranslation": "Yarışmayı kazanmak takım için büyük bir başarıydı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-responsibility",
-    "word": "Responsibility",
-    "partOfSpeech": "Noun",
-    "phonetic": "/rɪˌspɑːn.səˈbɪl.ə.ti/",
-    "level": "B1",
-    "lists": [],
-    "definition": "A duty to deal with or take care of something.",
-    "translation": "Sorumluluk",
-    "example": "Taking care of the dog is my daughter's responsibility.",
-    "exampleTranslation": "Köpeğe bakmak kızımın sorumluluğu.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-decision",
-    "word": "Decision",
-    "partOfSpeech": "Noun",
-    "phonetic": "/dɪˈsɪʒ.ən/",
-    "level": "B1",
-    "lists": [],
-    "definition": "A choice that you make after thinking about it.",
-    "translation": "Karar",
-    "example": "It was a difficult decision to change jobs.",
-    "exampleTranslation": "İş değiştirmek zor bir karardı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-situation",
-    "word": "Situation",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˌsɪtʃ.uˈeɪ.ʃən/",
-    "level": "B1",
-    "lists": [],
-    "definition": "The set of things that are happening at a particular time and place.",
-    "translation": "Durum",
-    "example": "We need a plan for this difficult situation.",
-    "exampleTranslation": "Bu zor durum için bir plana ihtiyacımız var.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-condition",
-    "word": "Condition",
-    "partOfSpeech": "Noun",
-    "phonetic": "/kənˈdɪʃ.ən/",
-    "level": "B1",
-    "lists": [],
-    "definition": "The physical state that something or someone is in.",
-    "translation": "Durum / Koşul",
-    "example": "The old car is still in good condition.",
-    "exampleTranslation": "Eski araba hâlâ iyi durumda.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-purpose",
-    "word": "Purpose",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈpɜːr.pəs/",
-    "level": "B1",
-    "lists": [],
-    "definition": "The reason why something is done or exists.",
-    "translation": "Amaç",
-    "example": "The purpose of the meeting is to discuss the new project.",
-    "exampleTranslation": "Toplantının amacı yeni projeyi görüşmek.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-result",
-    "word": "Result",
-    "partOfSpeech": "Noun",
-    "phonetic": "/rɪˈzʌlt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Something that happens or exists because of something else.",
-    "translation": "Sonuç",
-    "example": "She was happy with the results of the exam.",
-    "exampleTranslation": "Sınavın sonuçlarından memnun kaldı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-effect",
-    "word": "Effect",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ɪˈfekt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "A change that happens because of an event, action, or situation.",
-    "translation": "Etki",
-    "example": "Too much sugar can have a bad effect on your health.",
-    "exampleTranslation": "Çok fazla şeker sağlığın üzerinde kötü bir etki yapabilir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-advantage",
-    "word": "Advantage",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ədˈvæn.tɪdʒ/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Something that helps you or gives you a better chance of success.",
-    "translation": "Avantaj",
-    "example": "Speaking two languages is a big advantage at work.",
-    "exampleTranslation": "İki dil konuşmak iş yerinde büyük bir avantaj.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-disadvantage",
-    "word": "Disadvantage",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˌdɪs.ədˈvæn.tɪdʒ/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Something that causes difficulty or makes success less likely.",
-    "translation": "Dezavantaj",
-    "example": "One disadvantage of the job is the long hours.",
-    "exampleTranslation": "İşin bir dezavantajı uzun çalışma saatleri.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-behavior",
-    "word": "Behavior",
-    "partOfSpeech": "Noun",
-    "phonetic": "/bɪˈheɪv.jər/",
-    "level": "B1",
-    "lists": [],
-    "definition": "The way a person or animal acts or behaves.",
-    "translation": "Davranış",
-    "example": "The teacher praised the students' good behavior.",
-    "exampleTranslation": "Öğretmen öğrencilerin iyi davranışlarını övdü.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-attitude",
-    "word": "Attitude",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈæt.ə.tuːd/",
-    "level": "B1",
-    "lists": [],
-    "definition": "The way someone thinks or feels about something, shown in their behavior.",
-    "translation": "Tutum / Tavır",
-    "example": "She has a very positive attitude toward her work.",
-    "exampleTranslation": "İşine karşı çok olumlu bir tutumu var.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-population",
-    "word": "Population",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˌpɑː.pjəˈleɪ.ʃən/",
-    "level": "B1",
-    "lists": [],
-    "definition": "The number of people who live in a place.",
-    "translation": "Nüfus",
-    "example": "The population of the city has grown a lot.",
-    "exampleTranslation": "Şehrin nüfusu çok arttı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-method",
-    "word": "Method",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈmeθ.əd/",
-    "level": "B1",
-    "lists": [],
-    "definition": "A particular way of doing something.",
-    "translation": "Yöntem",
-    "example": "This is a good method for learning new words.",
-    "exampleTranslation": "Bu, yeni kelimeler öğrenmek için iyi bir yöntem.",
-    "synonyms": [
-      "Way"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-process",
-    "word": "Process",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈprɑː.ses/",
-    "level": "B1",
-    "lists": [],
-    "definition": "A series of actions that you take to achieve a result.",
-    "translation": "Süreç",
-    "example": "Learning a language is a slow process.",
-    "exampleTranslation": "Bir dil öğrenmek yavaş bir süreçtir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-skill",
-    "word": "Skill",
-    "partOfSpeech": "Noun",
-    "phonetic": "/skɪl/",
-    "level": "B1",
-    "lists": [],
-    "definition": "The ability to do something well, usually gained through training.",
-    "translation": "Beceri / Yetenek",
-    "example": "Cooking is a useful skill to have.",
-    "exampleTranslation": "Yemek pişirmek sahip olunması faydalı bir beceri.",
-    "synonyms": [
-      "Ability"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-goal",
-    "word": "Goal",
-    "partOfSpeech": "Noun",
-    "phonetic": "/goʊl/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Something that you hope to achieve in the future.",
-    "translation": "Hedef",
-    "example": "Her goal is to become a doctor one day.",
-    "exampleTranslation": "Hedefi bir gün doktor olmak.",
-    "synonyms": [
-      "Aim"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-challenge",
-    "word": "Challenge",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈtʃæl.ɪndʒ/",
-    "level": "B1",
-    "lists": [],
-    "definition": "A new or difficult task that tests someone's ability.",
-    "translation": "Zorluk / Meydan okuma",
-    "example": "Learning to drive was a real challenge for him.",
-    "exampleTranslation": "Araba kullanmayı öğrenmek onun için gerçek bir zorluktu.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-community",
-    "word": "Community",
-    "partOfSpeech": "Noun",
-    "phonetic": "/kəˈmjuː.nə.ti/",
-    "level": "B1",
-    "lists": [],
-    "definition": "A group of people who live in the same area or share something in common.",
-    "translation": "Topluluk",
-    "example": "Everyone in the community helped after the storm.",
-    "exampleTranslation": "Fırtınadan sonra topluluktaki herkes yardım etti.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-achieve",
-    "word": "Achieve",
-    "partOfSpeech": "Verb",
-    "phonetic": "/əˈtʃiːv/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To succeed in doing something after effort.",
-    "translation": "Başarmak",
-    "example": "She worked hard to achieve her goals.",
-    "exampleTranslation": "Hedeflerine ulaşmak için çok çalıştı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-improve",
-    "word": "Improve",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ɪmˈpruːv/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To make something better, or to become better.",
-    "translation": "Geliştirmek / İyileştirmek",
-    "example": "He wants to improve his English before the trip.",
-    "exampleTranslation": "Geziden önce İngilizcesini geliştirmek istiyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-develop",
-    "word": "Develop",
-    "partOfSpeech": "Verb",
-    "phonetic": "/dɪˈvel.əp/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To grow or change into a more advanced state.",
-    "translation": "Geliştirmek / Gelişmek",
-    "example": "The company is developing a new product.",
-    "exampleTranslation": "Şirket yeni bir ürün geliştiriyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-increase",
-    "word": "Increase",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ɪnˈkriːs/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To become larger in amount or number, or to make something larger.",
-    "translation": "Artırmak / Artmak",
-    "example": "Prices have increased a lot this year.",
-    "exampleTranslation": "Fiyatlar bu yıl çok arttı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-decrease",
-    "word": "Decrease",
-    "partOfSpeech": "Verb",
-    "phonetic": "/dɪˈkriːs/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To become smaller in amount or number, or to make something smaller.",
-    "translation": "Azaltmak / Azalmak",
-    "example": "The number of students has decreased this year.",
-    "exampleTranslation": "Öğrenci sayısı bu yıl azaldı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-reduce",
-    "word": "Reduce",
-    "partOfSpeech": "Verb",
-    "phonetic": "/rɪˈduːs/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To make something smaller or less in amount.",
-    "translation": "Azaltmak",
-    "example": "We are trying to reduce our costs this year.",
-    "exampleTranslation": "Bu yıl maliyetlerimizi azaltmaya çalışıyoruz.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-produce",
-    "word": "Produce",
-    "partOfSpeech": "Verb",
-    "phonetic": "/prəˈduːs/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To make or grow something.",
-    "translation": "Üretmek",
-    "example": "This factory produces thousands of cars every year.",
-    "exampleTranslation": "Bu fabrika her yıl binlerce araba üretiyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-provide",
-    "word": "Provide",
-    "partOfSpeech": "Verb",
-    "phonetic": "/prəˈvaɪd/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To give someone something that they need.",
-    "translation": "Sağlamak",
-    "example": "The hotel provides free breakfast for guests.",
-    "exampleTranslation": "Otel misafirlere ücretsiz kahvaltı sağlıyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-suggest",
-    "word": "Suggest",
-    "partOfSpeech": "Verb",
-    "phonetic": "/səgˈdʒest/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To offer an idea or plan for someone to consider.",
-    "translation": "Önermek",
-    "example": "I suggest we leave early to avoid traffic.",
-    "exampleTranslation": "Trafikten kaçınmak için erken çıkmayı öneriyorum.",
-    "synonyms": [
-      "Propose"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-recommend",
-    "word": "Recommend",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ˌrek.əˈmend/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To say that something is good or suitable.",
-    "translation": "Tavsiye etmek",
-    "example": "Can you recommend a good restaurant nearby?",
-    "exampleTranslation": "Yakınlarda iyi bir restoran tavsiye edebilir misin?",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-describe",
-    "word": "Describe",
-    "partOfSpeech": "Verb",
-    "phonetic": "/dɪˈskraɪb/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To say what someone or something is like.",
-    "translation": "Tanımlamak / Betimlemek",
-    "example": "Can you describe the man you saw?",
-    "exampleTranslation": "Gördüğün adamı tanımlayabilir misin?",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-compare",
-    "word": "Compare",
-    "partOfSpeech": "Verb",
-    "phonetic": "/kəmˈper/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To look at two or more things to see how they are similar or different.",
-    "translation": "Karşılaştırmak",
-    "example": "Let's compare the prices before we buy anything.",
-    "exampleTranslation": "Bir şey almadan önce fiyatları karşılaştıralım.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-discover",
-    "word": "Discover",
-    "partOfSpeech": "Verb",
-    "phonetic": "/dɪˈskʌv.ər/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To find something that was not known before.",
-    "translation": "Keşfetmek",
-    "example": "Scientists discovered a new type of fish in the ocean.",
-    "exampleTranslation": "Bilim insanları okyanusta yeni bir balık türü keşfetti.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-discuss",
-    "word": "Discuss",
-    "partOfSpeech": "Verb",
-    "phonetic": "/dɪˈskʌs/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To talk about something with other people.",
-    "translation": "Tartışmak / Görüşmek",
-    "example": "We need to discuss the schedule for next week.",
-    "exampleTranslation": "Gelecek haftanın programını görüşmemiz gerekiyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-argue",
-    "word": "Argue",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ˈɑːr.gjuː/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To speak angrily with someone because you disagree.",
-    "translation": "Tartışmak / Kavga etmek",
-    "example": "The brothers often argue about small things.",
-    "exampleTranslation": "Kardeşler sık sık küçük şeyler için tartışır.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-convince",
-    "word": "Convince",
-    "partOfSpeech": "Verb",
-    "phonetic": "/kənˈvɪns/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To make someone believe that something is true.",
-    "translation": "İkna etmek",
-    "example": "She convinced her parents to let her travel alone.",
-    "exampleTranslation": "Ailesini tek başına seyahat etmesine izin vermeleri için ikna etti.",
-    "synonyms": [
-      "Persuade"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-admit",
-    "word": "Admit",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ədˈmɪt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To agree, often unwillingly, that something is true.",
-    "translation": "Kabul etmek (itiraf etmek)",
-    "example": "He admitted that he had made a mistake.",
-    "exampleTranslation": "Bir hata yaptığını kabul etti.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-deny",
-    "word": "Deny",
-    "partOfSpeech": "Verb",
-    "phonetic": "/dɪˈnaɪ/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To say that something is not true.",
-    "translation": "İnkar etmek / Reddetmek",
-    "example": "She denied breaking the window.",
-    "exampleTranslation": "Pencereyi kırdığını inkar etti.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-refuse",
-    "word": "Refuse",
-    "partOfSpeech": "Verb",
-    "phonetic": "/rɪˈfjuːz/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To say that you will not do or accept something.",
-    "translation": "Reddetmek",
-    "example": "He refused to answer the question.",
-    "exampleTranslation": "Soruyu cevaplamayı reddetti.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-accept",
-    "word": "Accept",
-    "partOfSpeech": "Verb",
-    "phonetic": "/əkˈsept/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To agree to take or receive something.",
-    "translation": "Kabul etmek",
-    "example": "She accepted the job offer yesterday.",
-    "exampleTranslation": "Dün iş teklifini kabul etti.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-avoid",
-    "word": "Avoid",
-    "partOfSpeech": "Verb",
-    "phonetic": "/əˈvɔɪd/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To stay away from something or someone, or to prevent something from happening.",
-    "translation": "Kaçınmak",
-    "example": "Try to avoid busy roads during rush hour.",
-    "exampleTranslation": "Yoğun saatlerde kalabalık yollardan kaçınmaya çalış.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-prevent",
-    "word": "Prevent",
-    "partOfSpeech": "Verb",
-    "phonetic": "/prɪˈvent/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To stop something from happening.",
-    "translation": "Önlemek",
-    "example": "Regular exercise can help prevent illness.",
-    "exampleTranslation": "Düzenli egzersiz hastalığı önlemeye yardımcı olabilir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-protect",
-    "word": "Protect",
-    "partOfSpeech": "Verb",
-    "phonetic": "/prəˈtekt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To keep someone or something safe from harm.",
-    "translation": "Korumak",
-    "example": "Parents want to protect their children from danger.",
-    "exampleTranslation": "Ebeveynler çocuklarını tehlikeden korumak ister.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-replace",
-    "word": "Replace",
-    "partOfSpeech": "Verb",
-    "phonetic": "/rɪˈpleɪs/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To put a new or different thing in the place of another.",
-    "translation": "Değiştirmek (yenisiyle)",
-    "example": "We need to replace the old computer soon.",
-    "exampleTranslation": "Eski bilgisayarı yakında değiştirmemiz gerekiyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-support",
-    "word": "Support",
-    "partOfSpeech": "Verb",
-    "phonetic": "/səˈpɔːrt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To help or encourage someone or something.",
-    "translation": "Desteklemek",
-    "example": "My family has always supported my decisions.",
-    "exampleTranslation": "Ailem her zaman kararlarımı destekledi.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-encourage",
-    "word": "Encourage",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ɪnˈkɜːr.ɪdʒ/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To give someone confidence or hope to do something.",
-    "translation": "Cesaretlendirmek / Teşvik etmek",
-    "example": "Her teacher encouraged her to keep writing.",
-    "exampleTranslation": "Öğretmeni onu yazmaya devam etmesi için teşvik etti.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-ignore",
-    "word": "Ignore",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ɪgˈnɔːr/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To pay no attention to someone or something.",
-    "translation": "Görmezden gelmek",
-    "example": "It's rude to ignore someone when they are talking to you.",
-    "exampleTranslation": "Biri seninle konuşurken onu görmezden gelmek kabalıktır.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-notice",
-    "word": "Notice",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ˈnoʊ.tɪs/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To see or become aware of something.",
-    "translation": "Fark etmek",
-    "example": "I noticed a new café on my way to work.",
-    "exampleTranslation": "İşe giderken yeni bir kafe fark ettim.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-realize",
-    "word": "Realize",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ˈriː.ə.laɪz/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To become aware of or understand something.",
-    "translation": "Fark etmek / Anlamak",
-    "example": "I didn't realize how late it was.",
-    "exampleTranslation": "Saatin bu kadar geç olduğunu fark etmemiştim.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-recognize",
-    "word": "Recognize",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ˈrek.əg.naɪz/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To know someone or something because you have seen them before.",
-    "translation": "Tanımak",
-    "example": "I almost didn't recognize you with your new haircut.",
-    "exampleTranslation": "Yeni saç kesiminle seni neredeyse tanıyamayacaktım.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-succeed",
-    "word": "Succeed",
-    "partOfSpeech": "Verb",
-    "phonetic": "/səkˈsiːd/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To achieve what you were trying to do.",
-    "translation": "Başarmak / Başarılı olmak",
-    "example": "She succeeded in passing all her exams.",
-    "exampleTranslation": "Tüm sınavlarını geçmeyi başardı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-fail",
-    "word": "Fail",
-    "partOfSpeech": "Verb",
-    "phonetic": "/feɪl/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To not succeed in doing something.",
-    "translation": "Başarısız olmak",
-    "example": "He failed his driving test the first time.",
-    "exampleTranslation": "İlk seferinde ehliyet sınavında başarısız oldu.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-manage",
-    "word": "Manage",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ˈmæn.ɪdʒ/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To succeed in doing something difficult, or to be in charge of something.",
-    "translation": "Yönetmek / Başarabilmek",
-    "example": "She manages a small team at work.",
-    "exampleTranslation": "İşte küçük bir ekibi yönetiyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-depend",
-    "word": "Depend",
-    "partOfSpeech": "Verb",
-    "phonetic": "/dɪˈpend/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To need someone or something in order to exist or succeed.",
-    "translation": "Bağlı olmak / Güvenmek",
-    "example": "Our plans depend on the weather tomorrow.",
-    "exampleTranslation": "Planlarımız yarınki hava durumuna bağlı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-involve",
-    "word": "Involve",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ɪnˈvɑːlv/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To include something as a necessary part, or to make someone take part in something.",
-    "translation": "İçermek / Dahil etmek",
-    "example": "The project involves a lot of research.",
-    "exampleTranslation": "Proje çok fazla araştırma içeriyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-available",
-    "word": "Available",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/əˈveɪ.lə.bəl/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Able to be used or obtained; free to do something.",
-    "translation": "Mevcut / Müsait",
-    "example": "Is this seat available, or is someone sitting here?",
-    "exampleTranslation": "Bu koltuk müsait mi, yoksa burada biri mi oturuyor?",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-possible",
-    "word": "Possible",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈpɑː.sə.bəl/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Able to happen, exist, or be done.",
-    "translation": "Mümkün",
-    "example": "Is it possible to change my flight to an earlier time?",
-    "exampleTranslation": "Uçuşumu daha erken bir saate değiştirmem mümkün mü?",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-necessary",
-    "word": "Necessary",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈnes.ə.ser.i/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Needed in order to achieve something.",
-    "translation": "Gerekli",
-    "example": "It's necessary to book a table in advance.",
-    "exampleTranslation": "Önceden masa ayırtmak gerekli.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-useful",
-    "word": "Useful",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈjuːs.fəl/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Helpful for doing something, or having practical value.",
-    "translation": "Faydalı / Kullanışlı",
-    "example": "This app is really useful for learning new words.",
-    "exampleTranslation": "Bu uygulama yeni kelimeler öğrenmek için gerçekten faydalı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-successful",
-    "word": "Successful",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/səkˈses.fəl/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Having achieved a desired result or aim.",
-    "translation": "Başarılı",
-    "example": "She is a successful businesswoman with her own company.",
-    "exampleTranslation": "Kendi şirketi olan başarılı bir iş kadını.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-effective",
-    "word": "Effective",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ɪˈfek.tɪv/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Producing the result that you want.",
-    "translation": "Etkili",
-    "example": "This is a very effective way to learn vocabulary.",
-    "exampleTranslation": "Bu, kelime öğrenmek için çok etkili bir yol.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-common",
-    "word": "Common",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈkɑː.mən/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Happening or existing often; not rare.",
-    "translation": "Yaygın / Ortak",
-    "example": "It's common for people to feel nervous before an exam.",
-    "exampleTranslation": "İnsanların sınavdan önce gergin hissetmesi yaygındır.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-rare",
-    "word": "Rare",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/rer/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Not happening or existing often; uncommon.",
-    "translation": "Nadir",
-    "example": "Snow is quite rare in this part of the country.",
-    "exampleTranslation": "Ülkenin bu bölgesinde kar oldukça nadirdir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-obvious",
-    "word": "Obvious",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈɑːb.vi.əs/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Easy to see or understand; very clear.",
-    "translation": "Belirgin / Açık",
-    "example": "It was obvious that she was tired.",
-    "exampleTranslation": "Yorgun olduğu çok belliydi.",
-    "synonyms": [
-      "Clear"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-complex",
-    "word": "Complex",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈkɑːm.pleks/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Made of many parts; difficult to understand.",
-    "translation": "Karmaşık",
-    "example": "The instructions were too complex for me to follow.",
-    "exampleTranslation": "Talimatlar takip etmem için çok karmaşıktı.",
-    "synonyms": [
-      "Complicated"
-    ],
-    "mastery": 0
-  },
-  {
-    "id": "w-various",
-    "word": "Various",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈver.i.əs/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Several different types of something.",
-    "translation": "Çeşitli",
-    "example": "The shop sells various kinds of bread.",
-    "exampleTranslation": "Dükkan çeşitli ekmek türleri satıyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-certain",
-    "word": "Certain",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈsɜːr.tən/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Sure or definite about something.",
-    "translation": "Kesin / Emin",
-    "example": "I am certain that I locked the door.",
-    "exampleTranslation": "Kapıyı kilitlediğimden eminim.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-particular",
-    "word": "Particular",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/pərˈtɪk.jə.lər/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Used to talk about one specific thing rather than others.",
-    "translation": "Belirli / Özel",
-    "example": "Is there a particular reason you're asking?",
-    "exampleTranslation": "Sormanın belirli bir sebebi var mı?",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-specific",
-    "word": "Specific",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/spəˈsɪf.ɪk/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Clear and exact; particular, not general.",
-    "translation": "Belirli / Özgül",
-    "example": "Can you give me a more specific answer?",
-    "exampleTranslation": "Bana daha belirli bir cevap verebilir misin?",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-general",
-    "word": "General",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈdʒen.ər.əl/",
-    "level": "B1",
-    "lists": [],
-    "definition": "True or relevant in most situations; not specific.",
-    "translation": "Genel",
-    "example": "In general, people here are very friendly.",
-    "exampleTranslation": "Genel olarak, buradaki insanlar çok arkadaş canlısı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-typical",
-    "word": "Typical",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈtɪp.ɪ.kəl/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Showing the usual qualities of a particular type of thing.",
-    "translation": "Tipik",
-    "example": "A typical day for me starts at seven in the morning.",
-    "exampleTranslation": "Benim için tipik bir gün sabah yedide başlar.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-unusual",
-    "word": "Unusual",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ʌnˈjuː.ʒu.əl/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Not common or ordinary; different from what is expected.",
-    "translation": "Alışılmadık",
-    "example": "It's unusual for him to be late.",
-    "exampleTranslation": "Onun geç kalması alışılmadık bir şey.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-familiar",
-    "word": "Familiar",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/fəˈmɪl.jər/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Well known to you; easy to recognize.",
-    "translation": "Tanıdık / Aşina",
-    "example": "This street looks familiar to me.",
-    "exampleTranslation": "Bu sokak bana tanıdık geliyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-aware",
-    "word": "Aware",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/əˈwer/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Knowing that something exists or is happening.",
-    "translation": "Farkında",
-    "example": "Are you aware of the new rules at work?",
-    "exampleTranslation": "İşteki yeni kurallardan haberdar mısın?",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-confident",
-    "word": "Confident",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈkɑːn.fə.dənt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Feeling sure about your own abilities or about something being true.",
-    "translation": "Kendinden emin / Özgüvenli",
-    "example": "She felt confident before the job interview.",
-    "exampleTranslation": "İş görüşmesinden önce kendinden emindi.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-curious",
-    "word": "Curious",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈkjʊr.i.əs/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Wanting to know or learn about something.",
-    "translation": "Meraklı",
-    "example": "The children were curious about the old house.",
-    "exampleTranslation": "Çocuklar eski ev hakkında meraklıydı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-proud",
-    "word": "Proud",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/praʊd/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Feeling pleased about something you or someone else has achieved.",
-    "translation": "Gururlu",
-    "example": "My parents are very proud of my achievements.",
-    "exampleTranslation": "Ailem başarılarımla çok gurur duyuyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-embarrassed",
-    "word": "Embarrassed",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ɪmˈber.əst/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Feeling shy, ashamed, or uncomfortable.",
-    "translation": "Utanmış / Mahcup",
-    "example": "He felt embarrassed when he forgot her name.",
-    "exampleTranslation": "Adını unuttuğunda utandı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-disappointed",
-    "word": "Disappointed",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˌdɪs.əˈpɔɪn.tɪd/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Feeling sad because something was not as good as you hoped.",
-    "translation": "Hayal kırıklığına uğramış",
-    "example": "She was disappointed with her exam results.",
-    "exampleTranslation": "Sınav sonuçlarından dolayı hayal kırıklığına uğradı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-confused",
-    "word": "Confused",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/kənˈfjuːzd/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Unable to think clearly or understand something.",
-    "translation": "Kafası karışmış",
-    "example": "I'm a bit confused about the instructions.",
-    "exampleTranslation": "Talimatlar konusunda biraz kafam karıştı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-although",
-    "word": "Although",
-    "partOfSpeech": "Conjunction",
-    "phonetic": "/ɔːlˈðoʊ/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Used to introduce a statement that contrasts with the main idea.",
-    "translation": "Rağmen / -e karşın",
-    "example": "Although it was raining, we went for a walk.",
-    "exampleTranslation": "Yağmur yağmasına rağmen yürüyüşe çıktık.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-therefore",
-    "word": "Therefore",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ˈðer.fɔːr/",
-    "level": "B1",
-    "lists": [],
-    "definition": "For that reason; as a result.",
-    "translation": "Bu yüzden / Dolayısıyla",
-    "example": "The shop was closed; therefore, we went home.",
-    "exampleTranslation": "Dükkan kapalıydı; bu yüzden eve gittik.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-meanwhile",
-    "word": "Meanwhile",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ˈmiːn.waɪl/",
-    "level": "B1",
-    "lists": [],
-    "definition": "During the same time, or until something happens.",
-    "translation": "Bu arada",
-    "example": "I'll cook dinner; meanwhile, you can set the table.",
-    "exampleTranslation": "Ben akşam yemeğini pişireyim; bu arada sen masayı hazırlayabilirsin.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-otherwise",
-    "word": "Otherwise",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ˈʌð.ər.waɪz/",
-    "level": "B1",
-    "lists": [],
-    "definition": "If not; under other circumstances.",
-    "translation": "Aksi takdirde / Yoksa",
-    "example": "Hurry up, otherwise we'll miss the train.",
-    "exampleTranslation": "Acele et, yoksa treni kaçıracağız.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-instead",
-    "word": "Instead",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ɪnˈsted/",
-    "level": "B1",
-    "lists": [],
-    "definition": "In place of something or someone else.",
-    "translation": "Onun yerine",
-    "example": "I don't have tea, so I'll have coffee instead.",
-    "exampleTranslation": "Çayım yok, o yüzden onun yerine kahve içeceğim.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-eventually",
-    "word": "Eventually",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ɪˈven.tʃu.ə.li/",
-    "level": "B1",
-    "lists": [],
-    "definition": "In the end, especially after a long time or delay.",
-    "translation": "Sonunda / Nihayetinde",
-    "example": "We got lost, but we eventually found the hotel.",
-    "exampleTranslation": "Kayboduk ama sonunda oteli bulduk.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-gradually",
-    "word": "Gradually",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ˈgrædʒ.u.ə.li/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Slowly, over a period of time.",
-    "translation": "Yavaş yavaş / Kademeli olarak",
-    "example": "The weather gradually got warmer during spring.",
-    "exampleTranslation": "İlkbahar boyunca hava yavaş yavaş ısındı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-immediately",
-    "word": "Immediately",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ɪˈmiː.di.ət.li/",
-    "level": "B1",
-    "lists": [],
-    "definition": "At once; without any delay.",
-    "translation": "Hemen / Derhal",
-    "example": "Please call me immediately if there is a problem.",
-    "exampleTranslation": "Bir sorun olursa lütfen hemen beni ara.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-recently",
-    "word": "Recently",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ˈriː.sənt.li/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Not long ago.",
-    "translation": "Son zamanlarda / Yakın zamanda",
-    "example": "I saw her recently at the supermarket.",
-    "exampleTranslation": "Onu yakın zamanda süpermarkette gördüm.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-unfortunately",
-    "word": "Unfortunately",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ʌnˈfɔːr.tʃə.nət.li/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Used to say that something is disappointing or unlucky.",
-    "translation": "Ne yazık ki",
-    "example": "Unfortunately, the concert was cancelled.",
-    "exampleTranslation": "Ne yazık ki konser iptal edildi.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-budget",
-    "word": "Budget",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈbʌdʒ.ɪt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "A plan for how much money you will spend and save.",
-    "translation": "Bütçe",
-    "example": "We need to plan our budget for next month.",
-    "exampleTranslation": "Gelecek ay için bütçemizi planlamamız gerekiyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-income",
-    "word": "Income",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈɪn.kʌm/",
-    "level": "B1",
-    "lists": [],
-    "definition": "The money that a person or family earns, usually from work.",
-    "translation": "Gelir",
-    "example": "Their monthly income increased after the promotion.",
-    "exampleTranslation": "Terfiden sonra aylık gelirleri arttı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-salary",
-    "word": "Salary",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈsæl.ə.ri/",
-    "level": "B1",
-    "lists": [],
-    "definition": "A fixed amount of money that an employee is paid regularly.",
-    "translation": "Maaş",
-    "example": "She received a higher salary in her new job.",
-    "exampleTranslation": "Yeni işinde daha yüksek bir maaş aldı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-employee",
-    "word": "Employee",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ɪmˈplɔɪ.iː/",
-    "level": "B1",
-    "lists": [],
-    "definition": "A person who works for a company or another person.",
-    "translation": "Çalışan / İşçi",
-    "example": "The company has more than two hundred employees.",
-    "exampleTranslation": "Şirketin iki yüzden fazla çalışanı var.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-career",
-    "word": "Career",
-    "partOfSpeech": "Noun",
-    "phonetic": "/kəˈrɪr/",
-    "level": "B1",
-    "lists": [],
-    "definition": "The series of jobs a person has during their working life.",
-    "translation": "Kariyer",
-    "example": "He started his career as a teacher.",
-    "exampleTranslation": "Kariyerine öğretmen olarak başladı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-interview",
-    "word": "Interview",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈɪn.tər.vjuː/",
-    "level": "B1",
-    "lists": [],
-    "definition": "A formal meeting where someone is asked questions, such as for a job.",
-    "translation": "Mülakat / Görüşme",
-    "example": "She has a job interview tomorrow morning.",
-    "exampleTranslation": "Yarın sabah bir iş mülakatı var.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-degree",
-    "word": "Degree",
-    "partOfSpeech": "Noun",
-    "phonetic": "/dɪˈgriː/",
-    "level": "B1",
-    "lists": [],
-    "definition": "A qualification given by a university after a course of study.",
-    "translation": "Diploma / Derece",
-    "example": "He has a degree in computer science.",
-    "exampleTranslation": "Bilgisayar bilimlerinde bir diploması var.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-research",
-    "word": "Research",
-    "partOfSpeech": "Noun",
-    "phonetic": "/rɪˈsɜːrtʃ/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Careful study of a subject to discover new information.",
-    "translation": "Araştırma",
-    "example": "The team is doing research on climate change.",
-    "exampleTranslation": "Ekip iklim değişikliği üzerine araştırma yapıyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-evidence",
-    "word": "Evidence",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈev.ə.dəns/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Facts or information that show whether something is true.",
-    "translation": "Kanıt",
-    "example": "There is no evidence to support this theory.",
-    "exampleTranslation": "Bu teoriyi destekleyecek bir kanıt yok.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-theory",
-    "word": "Theory",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈθɪr.i/",
-    "level": "B1",
-    "lists": [],
-    "definition": "An idea that explains why or how something happens.",
-    "translation": "Teori / Kuram",
-    "example": "Scientists are testing a new theory about the universe.",
-    "exampleTranslation": "Bilim insanları evrenle ilgili yeni bir teoriyi test ediyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-generation",
-    "word": "Generation",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˌdʒen.əˈreɪ.ʃən/",
-    "level": "B1",
-    "lists": [],
-    "definition": "All the people who were born around the same time.",
-    "translation": "Nesil / Kuşak",
-    "example": "The younger generation uses technology very differently.",
-    "exampleTranslation": "Genç nesil teknolojiyi çok farklı kullanıyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-personality",
-    "word": "Personality",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˌpɜːr.səˈnæl.ə.ti/",
-    "level": "B1",
-    "lists": [],
-    "definition": "The particular combination of qualities that makes a person who they are.",
-    "translation": "Kişilik",
-    "example": "She has a warm and friendly personality.",
-    "exampleTranslation": "Sıcak ve arkadaş canlısı bir kişiliği var.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-emotion",
-    "word": "Emotion",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ɪˈmoʊ.ʃən/",
-    "level": "B1",
-    "lists": [],
-    "definition": "A strong feeling, such as love, fear, or anger.",
-    "translation": "Duygu",
-    "example": "It's normal to feel a lot of emotion at a wedding.",
-    "exampleTranslation": "Bir düğünde çok fazla duygu hissetmek normaldir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-memory",
-    "word": "Memory",
-    "partOfSpeech": "Noun",
-    "phonetic": "/ˈmem.ə.ri/",
-    "level": "B1",
-    "lists": [],
-    "definition": "The ability to remember things, or something you remember.",
-    "translation": "Hafıza / Anı",
-    "example": "I have a happy memory of that summer.",
-    "exampleTranslation": "O yazdan mutlu bir anım var.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-technology",
-    "word": "Technology",
-    "partOfSpeech": "Noun",
-    "phonetic": "/tekˈnɑː.lə.dʒi/",
-    "level": "B1",
-    "lists": [],
-    "definition": "The use of science and machines to solve practical problems.",
-    "translation": "Teknoloji",
-    "example": "New technology has changed the way we work.",
-    "exampleTranslation": "Yeni teknoloji çalışma şeklimizi değiştirdi.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-analyze",
-    "word": "Analyze",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ˈæn.əl.aɪz/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To study something carefully in order to understand it.",
-    "translation": "Analiz etmek",
-    "example": "The scientists analyzed the data from the experiment.",
-    "exampleTranslation": "Bilim insanları deneyden elde edilen verileri analiz etti.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-examine",
-    "word": "Examine",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ɪgˈzæm.ɪn/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To look at something carefully in order to understand it.",
-    "translation": "İncelemek / Muayene etmek",
-    "example": "The doctor examined the patient carefully.",
-    "exampleTranslation": "Doktor hastayı dikkatlice muayene etti.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-investigate",
-    "word": "Investigate",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ɪnˈves.tə.geɪt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To carefully study or examine the facts about an event or problem.",
-    "translation": "Araştırmak / Soruşturmak",
-    "example": "The police are investigating the accident.",
-    "exampleTranslation": "Polis kazayı araştırıyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-identify",
-    "word": "Identify",
-    "partOfSpeech": "Verb",
-    "phonetic": "/aɪˈden.tə.faɪ/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To recognize or be able to say who or what someone or something is.",
-    "translation": "Tanımlamak / Tespit etmek",
-    "example": "It's important to identify the problem before finding a solution.",
-    "exampleTranslation": "Çözüm bulmadan önce sorunu tespit etmek önemlidir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-determine",
-    "word": "Determine",
-    "partOfSpeech": "Verb",
-    "phonetic": "/dɪˈtɜːr.mɪn/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To find out or decide something exactly.",
-    "translation": "Belirlemek",
-    "example": "The test results will determine the next step.",
-    "exampleTranslation": "Test sonuçları bir sonraki adımı belirleyecek.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-establish",
-    "word": "Establish",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ɪˈstæb.lɪʃ/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To start something, such as a company or organization, that will continue.",
-    "translation": "Kurmak / Oluşturmak",
-    "example": "The company was established over fifty years ago.",
-    "exampleTranslation": "Şirket elli yılı aşkın bir süre önce kuruldu.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-maintain",
-    "word": "Maintain",
-    "partOfSpeech": "Verb",
-    "phonetic": "/meɪnˈteɪn/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To keep something at the same level or in the same condition.",
-    "translation": "Sürdürmek / Korumak",
-    "example": "It's important to maintain a healthy diet.",
-    "exampleTranslation": "Sağlıklı bir beslenme düzenini sürdürmek önemlidir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-contribute",
-    "word": "Contribute",
-    "partOfSpeech": "Verb",
-    "phonetic": "/kənˈtrɪb.juːt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To give money, help, or ideas to something shared with others.",
-    "translation": "Katkıda bulunmak",
-    "example": "Everyone in the team contributed some good ideas.",
-    "exampleTranslation": "Takımdaki herkes bazı iyi fikirlerle katkıda bulundu.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-participate",
-    "word": "Participate",
-    "partOfSpeech": "Verb",
-    "phonetic": "/pɑːrˈtɪs.ə.peɪt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To take part in an activity or event.",
-    "translation": "Katılmak",
-    "example": "All students are encouraged to participate in the discussion.",
-    "exampleTranslation": "Tüm öğrenciler tartışmaya katılmaya teşvik edilir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-communicate",
-    "word": "Communicate",
-    "partOfSpeech": "Verb",
-    "phonetic": "/kəˈmjuː.nə.keɪt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To share information, ideas, or feelings with someone.",
-    "translation": "İletişim kurmak",
-    "example": "It's important to communicate clearly with your team.",
-    "exampleTranslation": "Ekibinizle net bir şekilde iletişim kurmak önemlidir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-express",
-    "word": "Express",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ɪkˈspres/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To show your feelings, thoughts, or opinions through words or actions.",
-    "translation": "İfade etmek",
-    "example": "She found it hard to express her feelings.",
-    "exampleTranslation": "Duygularını ifade etmeyi zor buldu.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-demonstrate",
-    "word": "Demonstrate",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ˈdem.ən.streɪt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To show clearly that something is true, or to show how something works.",
-    "translation": "Göstermek / Kanıtlamak",
-    "example": "The results demonstrate that the new method works well.",
-    "exampleTranslation": "Sonuçlar yeni yöntemin iyi çalıştığını gösteriyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-indicate",
-    "word": "Indicate",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ˈɪn.dɪ.keɪt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To show or point out that something is true or exists.",
-    "translation": "Belirtmek / İşaret etmek",
-    "example": "Studies indicate that people are sleeping less than before.",
-    "exampleTranslation": "Çalışmalar insanların eskisinden daha az uyuduğunu gösteriyor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-assume",
-    "word": "Assume",
-    "partOfSpeech": "Verb",
-    "phonetic": "/əˈsuːm/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To think that something is true without checking or proving it.",
-    "translation": "Varsaymak",
-    "example": "I assumed you had already left, so I didn't call.",
-    "exampleTranslation": "Çoktan gittiğini varsaydım, o yüzden aramadım.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-predict",
-    "word": "Predict",
-    "partOfSpeech": "Verb",
-    "phonetic": "/prɪˈdɪkt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To say that something will happen in the future.",
-    "translation": "Tahmin etmek",
-    "example": "It's difficult to predict the weather next month.",
-    "exampleTranslation": "Gelecek ayki hava durumunu tahmin etmek zor.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-estimate",
-    "word": "Estimate",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ˈes.tə.meɪt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To guess the cost, size, or value of something.",
-    "translation": "Tahmin etmek (hesaplamak)",
-    "example": "The mechanic estimated the repair would cost two hundred dollars.",
-    "exampleTranslation": "Tamirci onarımın iki yüz dolara mal olacağını tahmin etti.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-measure",
-    "word": "Measure",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ˈmeʒ.ər/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To find the size, length, or amount of something.",
-    "translation": "Ölçmek",
-    "example": "Can you measure the width of this table?",
-    "exampleTranslation": "Bu masanın genişliğini ölçebilir misin?",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-evaluate",
-    "word": "Evaluate",
-    "partOfSpeech": "Verb",
-    "phonetic": "/ɪˈvæl.ju.eɪt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To judge the value or quality of something after careful thought.",
-    "translation": "Değerlendirmek",
-    "example": "Teachers evaluate students' progress every semester.",
-    "exampleTranslation": "Öğretmenler her dönem öğrencilerin gelişimini değerlendirir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-reliable",
-    "word": "Reliable",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/rɪˈlaɪ.ə.bəl/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Able to be trusted to do what is expected.",
-    "translation": "Güvenilir",
-    "example": "She is a reliable friend who always keeps her promises.",
-    "exampleTranslation": "Her zaman sözünü tutan güvenilir bir arkadaş.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-accurate",
-    "word": "Accurate",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈæk.jə.rət/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Correct and exact, without any mistakes.",
-    "translation": "Doğru / Kesin",
-    "example": "Please make sure the information is accurate before sending it.",
-    "exampleTranslation": "Göndermeden önce bilginin doğru olduğundan emin olun.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-efficient",
-    "word": "Efficient",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ɪˈfɪʃ.ənt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Working well without wasting time or energy.",
-    "translation": "Verimli",
-    "example": "The new system is much more efficient than the old one.",
-    "exampleTranslation": "Yeni sistem eskisinden çok daha verimli.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-consistent",
-    "word": "Consistent",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/kənˈsɪs.tənt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Always behaving or happening in the same way.",
-    "translation": "Tutarlı",
-    "example": "It's important to be consistent when training a dog.",
-    "exampleTranslation": "Bir köpeği eğitirken tutarlı olmak önemlidir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-flexible",
-    "word": "Flexible",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈflek.sə.bəl/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Able to change or be changed easily to suit new conditions.",
-    "translation": "Esnek",
-    "example": "My work hours are quite flexible these days.",
-    "exampleTranslation": "Bu günlerde çalışma saatlerim oldukça esnek.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-stable",
-    "word": "Stable",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈsteɪ.bəl/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Firm and steady; not likely to change suddenly.",
-    "translation": "İstikrarlı / Kararlı",
-    "example": "The company's finances are stable this year.",
-    "exampleTranslation": "Şirketin mali durumu bu yıl istikrarlı.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-stressful",
-    "word": "Stressful",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/ˈstres.fəl/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Causing worry or mental pressure.",
-    "translation": "Stresli",
-    "example": "Moving to a new house can be very stressful.",
-    "exampleTranslation": "Yeni bir eve taşınmak çok stresli olabilir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-rewarding",
-    "word": "Rewarding",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/rɪˈwɔːr.dɪŋ/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Giving satisfaction or a sense of achievement.",
-    "translation": "Tatmin edici / Ödüllendirici",
-    "example": "Teaching can be a very rewarding job.",
-    "exampleTranslation": "Öğretmenlik çok tatmin edici bir iş olabilir.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-significant",
-    "word": "Significant",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/sɪgˈnɪf.ɪ.kənt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Important or large enough to be noticed.",
-    "translation": "Önemli / Kayda değer",
-    "example": "There has been a significant increase in prices.",
-    "exampleTranslation": "Fiyatlarda önemli bir artış oldu.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-sufficient",
-    "word": "Sufficient",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/səˈfɪʃ.ənt/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Enough for a particular purpose.",
-    "translation": "Yeterli",
-    "example": "We don't have sufficient time to finish this today.",
-    "exampleTranslation": "Bunu bugün bitirmek için yeterli zamanımız yok.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-appropriate",
-    "word": "Appropriate",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/əˈproʊ.pri.ət/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Suitable or correct for a particular situation.",
-    "translation": "Uygun",
-    "example": "Please wear appropriate clothes for the interview.",
-    "exampleTranslation": "Lütfen mülakat için uygun kıyafetler giyin.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-fair",
-    "word": "Fair",
-    "partOfSpeech": "Adjective",
-    "phonetic": "/fer/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Treating people equally and in a way that is right and reasonable.",
-    "translation": "Adil",
-    "example": "It's not fair that he got paid more for the same work.",
-    "exampleTranslation": "Aynı iş için onun daha fazla ödeme alması adil değil.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-extremely",
-    "word": "Extremely",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ɪkˈstriːm.li/",
-    "level": "B1",
-    "lists": [],
-    "definition": "To a very great degree.",
-    "translation": "Son derece / Aşırı",
-    "example": "The exam was extremely difficult this year.",
-    "exampleTranslation": "Sınav bu yıl son derece zordu.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-completely",
-    "word": "Completely",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/kəmˈpliːt.li/",
-    "level": "B1",
-    "lists": [],
-    "definition": "In every way; totally.",
-    "translation": "Tamamen",
-    "example": "I completely forgot about our meeting today.",
-    "exampleTranslation": "Bugünkü toplantımızı tamamen unuttum.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-exactly",
-    "word": "Exactly",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ɪgˈzækt.li/",
-    "level": "B1",
-    "lists": [],
-    "definition": "In a very accurate or precise way.",
-    "translation": "Tam olarak",
-    "example": "I don't know exactly what time the train leaves.",
-    "exampleTranslation": "Trenin tam olarak saat kaçta kalktığını bilmiyorum.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-nearly",
-    "word": "Nearly",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ˈnɪr.li/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Almost, but not completely.",
-    "translation": "Neredeyse",
-    "example": "It's nearly midnight; we should go home.",
-    "exampleTranslation": "Neredeyse gece yarısı; eve gitmeliyiz.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
-    "id": "w-constantly",
-    "word": "Constantly",
-    "partOfSpeech": "Adverb",
-    "phonetic": "/ˈkɑːn.stənt.li/",
-    "level": "B1",
-    "lists": [],
-    "definition": "Happening all the time or very often.",
-    "translation": "Sürekli",
-    "example": "The phone was ringing constantly all morning.",
-    "exampleTranslation": "Telefon tüm sabah sürekli çalıyordu.",
-    "synonyms": [],
-    "mastery": 0
-  },
-  {
     "id": "w-abandon",
     "word": "Abandon",
     "partOfSpeech": "Verb",
@@ -2393,6 +275,20 @@ export const WORDS_B1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-accept",
+    "word": "Accept",
+    "partOfSpeech": "Verb",
+    "phonetic": "/əkˈsept/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To agree to take or receive something.",
+    "translation": "Kabul etmek",
+    "example": "She accepted the job offer yesterday.",
+    "exampleTranslation": "Dün iş teklifini kabul etti.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-acceptance",
     "word": "Acceptance",
     "partOfSpeech": "Noun",
@@ -2506,15 +402,19 @@ export const WORDS_B1: Word[] = [
     "id": "w-accomplish",
     "word": "Accomplish",
     "partOfSpeech": "Verb",
-    "phonetic": "/əˈkɑːm.plɪʃ/",
+    "phonetic": "/əˈkʌm.plɪʃ/",
     "level": "B1",
-    "lists": [],
-    "definition": "To successfully finish or achieve something.",
-    "translation": "Başarmak",
-    "example": "The team accomplished all its goals this year.",
-    "exampleTranslation": "Takım bu yıl tüm hedeflerini başardı.",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To achieve or complete successfully.",
+    "translation": "Başarmak, tamamlamak",
+    "example": "The team accomplished its goal ahead of schedule.",
+    "exampleTranslation": "Ekip hedefine zamanından önce ulaştı.",
     "synonyms": [
-      "Achieve"
+      "Achieve",
+      "achieve",
+      "complete"
     ],
     "mastery": 0
   },
@@ -2559,6 +459,25 @@ export const WORDS_B1: Word[] = [
     "exampleTranslation": "Bilim insanı ölçümlerin doğruluğunu iki kez kontrol etti.",
     "synonyms": [
       "Precision"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-accurate",
+    "word": "Accurate",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈæk.jə.rət/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Correct in all details; exact.",
+    "translation": "Doğru, kesin",
+    "example": "The report gives an accurate account of the events.",
+    "exampleTranslation": "Rapor, olayların doğru bir anlatımını sunuyor.",
+    "synonyms": [
+      "correct",
+      "precise"
     ],
     "mastery": 0
   },
@@ -2624,6 +543,41 @@ export const WORDS_B1: Word[] = [
     "synonyms": [
       "Hurt"
     ],
+    "mastery": 0
+  },
+  {
+    "id": "w-achieve",
+    "word": "Achieve",
+    "partOfSpeech": "Verb",
+    "phonetic": "/əˈtʃiːv/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2",
+      "ielts-1000"
+    ],
+    "definition": "To successfully bring about a desired result; to accomplish.",
+    "translation": "Başarmak",
+    "example": "She achieved top marks in every subject.",
+    "exampleTranslation": "Her derste en yüksek notları aldı.",
+    "synonyms": [
+      "accomplish",
+      "attain"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-achievement",
+    "word": "Achievement",
+    "partOfSpeech": "Noun",
+    "phonetic": "/əˈtʃiːv.mənt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Something that you have succeeded in doing, especially through hard work.",
+    "translation": "Başarı",
+    "example": "Winning the competition was a great achievement for the team.",
+    "exampleTranslation": "Yarışmayı kazanmak takım için büyük bir başarıydı.",
+    "synonyms": [],
     "mastery": 0
   },
   {
@@ -2829,6 +783,20 @@ export const WORDS_B1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-admit",
+    "word": "Admit",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ədˈmɪt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To agree, often unwillingly, that something is true.",
+    "translation": "Kabul etmek (itiraf etmek)",
+    "example": "He admitted that he had made a mistake.",
+    "exampleTranslation": "Bir hata yaptığını kabul etti.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-adopt",
     "word": "Adopt",
     "partOfSpeech": "Verb",
@@ -2873,6 +841,20 @@ export const WORDS_B1: Word[] = [
     "synonyms": [
       "Progress"
     ],
+    "mastery": 0
+  },
+  {
+    "id": "w-advantage",
+    "word": "Advantage",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ədˈvæn.tɪdʒ/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Something that helps you or gives you a better chance of success.",
+    "translation": "Avantaj",
+    "example": "Speaking two languages is a big advantage at work.",
+    "exampleTranslation": "İki dil konuşmak iş yerinde büyük bir avantaj.",
+    "synonyms": [],
     "mastery": 0
   },
   {
@@ -2956,13 +938,19 @@ export const WORDS_B1: Word[] = [
     "partOfSpeech": "Verb",
     "phonetic": "/əˈfekt/",
     "level": "B1",
-    "lists": [],
-    "definition": "To have an influence on someone or something; to cause a change.",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2",
+      "cause-effect-verbs"
+    ],
+    "definition": "To have an influence on or produce a change in something.",
     "translation": "Etkilemek",
-    "example": "The bad weather affected our travel plans.",
-    "exampleTranslation": "Kötü hava seyahat planlarımızı etkiledi.",
+    "example": "The drought has affected crop production across the region.",
+    "exampleTranslation": "Kuraklık, bölgedeki ürün üretimini etkiledi.",
     "synonyms": [
-      "Influence"
+      "Influence",
+      "influence",
+      "impact"
     ],
     "mastery": 0
   },
@@ -3065,15 +1053,19 @@ export const WORDS_B1: Word[] = [
     "id": "w-aggressive",
     "word": "Aggressive",
     "partOfSpeech": "Adjective",
-    "phonetic": "/əˈgre.sɪv/",
+    "phonetic": "/əˈgres.ɪv/",
     "level": "B1",
-    "lists": [],
-    "definition": "Ready or likely to attack or behave in a forceful, hostile way.",
-    "translation": "Saldırgan",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Ready or likely to attack; forceful; militant.",
+    "translation": "Saldırgan, agresif",
     "example": "The dog became aggressive when strangers approached.",
-    "exampleTranslation": "Yabancılar yaklaştığında köpek saldırganlaştı.",
+    "exampleTranslation": "Köpek yabancılar yaklaştığında saldırganlaştı.",
     "synonyms": [
-      "Hostile"
+      "Hostile",
+      "militant",
+      "hostile"
     ],
     "mastery": 0
   },
@@ -3125,16 +1117,20 @@ export const WORDS_B1: Word[] = [
     "id": "w-aid",
     "word": "Aid",
     "partOfSpeech": "Noun",
-    "phonetic": "/ˈeɪd/",
+    "phonetic": "/eɪd/",
     "level": "B1",
-    "lists": [],
-    "definition": "Help, especially money, food, or equipment given to people in need.",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Help, typically of a practical nature.",
     "translation": "Yardım",
-    "example": "The country sent aid to the flood victims.",
-    "exampleTranslation": "Ülke sel mağdurlarına yardım gönderdi.",
+    "example": "The country received financial aid after the earthquake.",
+    "exampleTranslation": "Ülke depremden sonra mali yardım aldı.",
     "synonyms": [
       "Assistance",
-      "Help"
+      "Help",
+      "help",
+      "assistance"
     ],
     "mastery": 0
   },
@@ -3289,17 +1285,36 @@ export const WORDS_B1: Word[] = [
     "id": "w-alternative",
     "word": "Alternative",
     "partOfSpeech": "Noun",
-    "phonetic": "/ɔːlˈtɜːr.nə.tɪv/",
+    "phonetic": "/ɔːlˈtɜː.nə.tɪv/",
     "level": "B1",
-    "lists": [],
-    "definition": "Something you can choose instead of something else.",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3"
+    ],
+    "definition": "One of two or more available possibilities.",
     "translation": "Alternatif, seçenek",
     "example": "Cycling is a healthy alternative to driving.",
-    "exampleTranslation": "Bisiklete binmek araba kullanmaya sağlıklı bir alternatiftir.",
+    "exampleTranslation": "Bisiklete binmek, araba kullanmaya sağlıklı bir alternatiftir.",
     "synonyms": [
       "Option",
-      "Choice"
+      "Choice",
+      "option",
+      "substitute"
     ],
+    "mastery": 0
+  },
+  {
+    "id": "w-although",
+    "word": "Although",
+    "partOfSpeech": "Conjunction",
+    "phonetic": "/ɔːlˈðoʊ/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Used to introduce a statement that contrasts with the main idea.",
+    "translation": "Rağmen / -e karşın",
+    "example": "Although it was raining, we went for a walk.",
+    "exampleTranslation": "Yağmur yağmasına rağmen yürüyüşe çıktık.",
+    "synonyms": [],
     "mastery": 0
   },
   {
@@ -3316,6 +1331,25 @@ export const WORDS_B1: Word[] = [
     "synonyms": [
       "Completely",
       "Entirely"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-amateur",
+    "word": "Amateur",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈæm.ə.tər/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "A person who engages in a pursuit without being a professional; a beginner.",
+    "translation": "Amatör, acemi",
+    "example": "Despite being an amateur, she played remarkably well.",
+    "exampleTranslation": "Amatör olmasına rağmen dikkat çekici derecede iyi oynadı.",
+    "synonyms": [
+      "beginner",
+      "novice"
     ],
     "mastery": 0
   },
@@ -3355,14 +1389,19 @@ export const WORDS_B1: Word[] = [
     "id": "w-ambitious",
     "word": "Ambitious",
     "partOfSpeech": "Adjective",
-    "phonetic": "/æmˈbɪ.ʃəs/",
+    "phonetic": "/æmˈbɪʃ.əs/",
     "level": "B1",
-    "lists": [],
-    "definition": "Having a strong desire to be successful or achieve something.",
-    "translation": "Hırslı",
-    "example": "She's very ambitious and wants to start her own company.",
-    "exampleTranslation": "Çok hırslı ve kendi şirketini kurmak istiyor.",
-    "synonyms": [],
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Having a strong desire for success or achievement; aspiring.",
+    "translation": "Hırslı, iddialı",
+    "example": "She is an ambitious young lawyer.",
+    "exampleTranslation": "Hırslı genç bir avukat.",
+    "synonyms": [
+      "aspiring",
+      "driven"
+    ],
     "mastery": 0
   },
   {
@@ -3422,6 +1461,20 @@ export const WORDS_B1: Word[] = [
     "translation": "Analiz, çözümleme",
     "example": "The report gives a full analysis of the company's sales.",
     "exampleTranslation": "Rapor şirketin satışlarının tam bir analizini veriyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-analyze",
+    "word": "Analyze",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈæn.əl.aɪz/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To study something carefully in order to understand it.",
+    "translation": "Analiz etmek",
+    "example": "The scientists analyzed the data from the experiment.",
+    "exampleTranslation": "Bilim insanları deneyden elde edilen verileri analiz etti.",
     "synonyms": [],
     "mastery": 0
   },
@@ -3693,16 +1746,20 @@ export const WORDS_B1: Word[] = [
     "id": "w-apparent",
     "word": "Apparent",
     "partOfSpeech": "Adjective",
-    "phonetic": "/əˈpe.rənt/",
+    "phonetic": "/əˈpær.ənt/",
     "level": "B1",
-    "lists": [],
-    "definition": "Clearly seen or understood; obvious.",
-    "translation": "Belli, açık",
-    "example": "It was apparent that she was upset.",
-    "exampleTranslation": "Üzgün olduğu belliydi.",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Clearly visible or understood; obvious.",
+    "translation": "Açık, görünür",
+    "example": "It was apparent that she had been crying.",
+    "exampleTranslation": "Ağladığı açıktı.",
     "synonyms": [
       "Evident",
-      "Obvious"
+      "Obvious",
+      "obvious",
+      "evident"
     ],
     "mastery": 0
   },
@@ -3814,13 +1871,38 @@ export const WORDS_B1: Word[] = [
     "partOfSpeech": "Verb",
     "phonetic": "/əˈproʊtʃ/",
     "level": "B1",
-    "lists": [],
-    "definition": "To move closer to someone or something.",
-    "translation": "Yaklaşmak",
-    "example": "The train slowly approached the station.",
-    "exampleTranslation": "Tren yavaşça istasyona yaklaştı.",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "To deal with a problem or situation in a particular way.",
+    "translation": "Yaklaşmak; bir konuyu ele almak",
+    "example": "The teacher approached the topic from a historical perspective.",
+    "exampleTranslation": "Öğretmen konuya tarihsel bir perspektiften yaklaştı.",
     "synonyms": [
-      "Near"
+      "Near",
+      "tackle",
+      "address"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-appropriate",
+    "word": "Appropriate",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/əˈprəʊ.pri.ət/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2"
+    ],
+    "definition": "Suitable or proper in the circumstances.",
+    "translation": "Uygun, yerinde",
+    "example": "It is not appropriate to discuss salaries in public.",
+    "exampleTranslation": "Maaşları herkesin içinde tartışmak uygun değildir.",
+    "synonyms": [
+      "suitable",
+      "fitting"
     ],
     "mastery": 0
   },
@@ -3844,13 +1926,17 @@ export const WORDS_B1: Word[] = [
     "partOfSpeech": "Verb",
     "phonetic": "/əˈpruːv/",
     "level": "B1",
-    "lists": [],
-    "definition": "To officially agree to or accept something.",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To officially agree to or accept something as satisfactory; to endorse.",
     "translation": "Onaylamak",
-    "example": "The committee approved the new budget.",
-    "exampleTranslation": "Komite yeni bütçeyi onayladı.",
+    "example": "The board approved the new budget yesterday.",
+    "exampleTranslation": "Yönetim kurulu dün yeni bütçeyi onayladı.",
     "synonyms": [
-      "Sanction"
+      "Sanction",
+      "endorse",
+      "sanction"
     ],
     "mastery": 0
   },
@@ -3884,6 +1970,20 @@ export const WORDS_B1: Word[] = [
     "synonyms": [
       "Designer"
     ],
+    "mastery": 0
+  },
+  {
+    "id": "w-argue",
+    "word": "Argue",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈɑːr.gjuː/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To speak angrily with someone because you disagree.",
+    "translation": "Tartışmak / Kavga etmek",
+    "example": "The brothers often argue about small things.",
+    "exampleTranslation": "Kardeşler sık sık küçük şeyler için tartışır.",
+    "synonyms": [],
     "mastery": 0
   },
   {
@@ -4041,6 +2141,26 @@ export const WORDS_B1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-as-a-result",
+    "word": "as a result",
+    "partOfSpeech": "Phrase",
+    "phonetic": "/æz ə rɪˈzʌlt/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "transition-result"
+    ],
+    "definition": "Because of a particular event or situation; consequently.",
+    "translation": "Sonuç olarak",
+    "example": "The company cut costs; as a result, profits improved.",
+    "exampleTranslation": "Şirket maliyetleri düşürdü; sonuç olarak kârlar arttı.",
+    "synonyms": [
+      "consequently",
+      "therefore"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-ashamed",
     "word": "Ashamed",
     "partOfSpeech": "Adjective",
@@ -4132,13 +2252,18 @@ export const WORDS_B1: Word[] = [
     "partOfSpeech": "Verb",
     "phonetic": "/əˈsɪst/",
     "level": "B1",
-    "lists": [],
-    "definition": "To help someone do something.",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2"
+    ],
+    "definition": "To help someone do a task.",
     "translation": "Yardım etmek",
-    "example": "A nurse assisted the doctor during the operation.",
-    "exampleTranslation": "Ameliyat sırasında bir hemşire doktora yardım etti.",
+    "example": "Volunteers assisted the elderly residents with their shopping.",
+    "exampleTranslation": "Gönüllüler yaşlı sakinlere alışverişlerinde yardım etti.",
     "synonyms": [
-      "Help"
+      "Help",
+      "help",
+      "aid"
     ],
     "mastery": 0
   },
@@ -4186,6 +2311,58 @@ export const WORDS_B1: Word[] = [
     "example": "I always associate that song with summer.",
     "exampleTranslation": "O şarkıyı her zaman yazla ilişkilendiririm.",
     "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-association",
+    "word": "Association",
+    "partOfSpeech": "Noun",
+    "phonetic": "/əˌsəʊ.siˈeɪ.ʃən/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "A group of people organised for a joint purpose; an organisation.",
+    "translation": "Dernek, birlik",
+    "example": "She is a member of the local business association.",
+    "exampleTranslation": "Yerel işletme derneğinin bir üyesi.",
+    "synonyms": [
+      "organization",
+      "society"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-assume",
+    "word": "Assume",
+    "partOfSpeech": "Verb",
+    "phonetic": "/əˈsuːm/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To think that something is true without checking or proving it.",
+    "translation": "Varsaymak",
+    "example": "I assumed you had already left, so I didn't call.",
+    "exampleTranslation": "Çoktan gittiğini varsaydım, o yüzden aramadım.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-assure",
+    "word": "Assure",
+    "partOfSpeech": "Verb",
+    "phonetic": "/əˈʃʊər/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To tell someone something confidently to remove doubt; to guarantee.",
+    "translation": "Temin etmek, güvence vermek",
+    "example": "The manager assured us that the issue would be resolved.",
+    "exampleTranslation": "Yönetici sorunun çözüleceğine dair bize güvence verdi.",
+    "synonyms": [
+      "guarantee",
+      "reassure"
+    ],
     "mastery": 0
   },
   {
@@ -4335,6 +2512,20 @@ export const WORDS_B1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-attitude",
+    "word": "Attitude",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈæt.ə.tuːd/",
+    "level": "B1",
+    "lists": [],
+    "definition": "The way someone thinks or feels about something, shown in their behavior.",
+    "translation": "Tutum / Tavır",
+    "example": "She has a very positive attitude toward her work.",
+    "exampleTranslation": "İşine karşı çok olumlu bir tutumu var.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-attract",
     "word": "Attract",
     "partOfSpeech": "Verb",
@@ -4393,6 +2584,20 @@ export const WORDS_B1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-available",
+    "word": "Available",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/əˈveɪ.lə.bəl/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Able to be used or obtained; free to do something.",
+    "translation": "Mevcut / Müsait",
+    "example": "Is this seat available, or is someone sitting here?",
+    "exampleTranslation": "Bu koltuk müsait mi, yoksa burada biri mi oturuyor?",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-avenue",
     "word": "Avenue",
     "partOfSpeech": "Noun",
@@ -4403,6 +2608,20 @@ export const WORDS_B1: Word[] = [
     "translation": "Cadde",
     "example": "Their shop is located on Fifth Avenue.",
     "exampleTranslation": "Dükkanları Beşinci Cadde'de bulunuyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-avoid",
+    "word": "Avoid",
+    "partOfSpeech": "Verb",
+    "phonetic": "/əˈvɔɪd/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To stay away from something or someone, or to prevent something from happening.",
+    "translation": "Kaçınmak",
+    "example": "Try to avoid busy roads during rush hour.",
+    "exampleTranslation": "Yoğun saatlerde kalabalık yollardan kaçınmaya çalış.",
     "synonyms": [],
     "mastery": 0
   },
@@ -4420,6 +2639,20 @@ export const WORDS_B1: Word[] = [
     "synonyms": [
       "Prize"
     ],
+    "mastery": 0
+  },
+  {
+    "id": "w-aware",
+    "word": "Aware",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/əˈwer/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Knowing that something exists or is happening.",
+    "translation": "Farkında",
+    "example": "Are you aware of the new rules at work?",
+    "exampleTranslation": "İşteki yeni kurallardan haberdar mısın?",
+    "synonyms": [],
     "mastery": 0
   },
   {
@@ -4458,14 +2691,19 @@ export const WORDS_B1: Word[] = [
     "id": "w-awkward",
     "word": "Awkward",
     "partOfSpeech": "Adjective",
-    "phonetic": "/ˈɑː.kwərd/",
+    "phonetic": "/ˈɔːk.wəd/",
     "level": "B1",
-    "lists": [],
-    "definition": "Causing embarrassment or difficulty; uncomfortable.",
-    "translation": "Tuhaf, garip (rahatsız edici)",
-    "example": "There was an awkward silence after his joke.",
-    "exampleTranslation": "Şakasından sonra garip bir sessizlik oldu.",
-    "synonyms": [],
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Causing difficulty; embarrassing; clumsy.",
+    "translation": "Beceriksiz, garip, sıkıntılı",
+    "example": "There was an awkward silence after his joke fell flat.",
+    "exampleTranslation": "Şakası tutmadıktan sonra garip bir sessizlik oldu.",
+    "synonyms": [
+      "clumsy",
+      "uncomfortable"
+    ],
     "mastery": 0
   },
   {
@@ -4553,6 +2791,25 @@ export const WORDS_B1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-backside",
+    "word": "Backside",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈbæk.saɪd/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "The buttocks; the rear part of something.",
+    "translation": "Arka, kıç",
+    "example": "He landed hard on his backside after slipping on the ice.",
+    "exampleTranslation": "Buzda kayarak sertçe kıçının üzerine düştü.",
+    "synonyms": [
+      "behind",
+      "bottom"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-bacon",
     "word": "Bacon",
     "partOfSpeech": "Noun",
@@ -4636,6 +2893,25 @@ export const WORDS_B1: Word[] = [
     "example": "He started going bald in his thirties.",
     "exampleTranslation": "Otuzlu yaşlarında kel olmaya başladı.",
     "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-ban",
+    "word": "Ban",
+    "partOfSpeech": "Verb",
+    "phonetic": "/bæn/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To officially or legally prohibit something; to forbid.",
+    "translation": "Yasaklamak",
+    "example": "The city banned plastic bags last year.",
+    "exampleTranslation": "Şehir geçen yıl plastik torbaları yasakladı.",
+    "synonyms": [
+      "forbid",
+      "prohibit"
+    ],
     "mastery": 0
   },
   {
@@ -4984,6 +3260,20 @@ export const WORDS_B1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-behavior",
+    "word": "Behavior",
+    "partOfSpeech": "Noun",
+    "phonetic": "/bɪˈheɪv.jər/",
+    "level": "B1",
+    "lists": [],
+    "definition": "The way a person or animal acts or behaves.",
+    "translation": "Davranış",
+    "example": "The teacher praised the students' good behavior.",
+    "exampleTranslation": "Öğretmen öğrencilerin iyi davranışlarını övdü.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-belief",
     "word": "Belief",
     "partOfSpeech": "Noun",
@@ -4995,6 +3285,25 @@ export const WORDS_B1: Word[] = [
     "example": "It is her belief that hard work always pays off.",
     "exampleTranslation": "Onun inancına göre sıkı çalışma her zaman karşılığını verir.",
     "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-believable",
+    "word": "Believable",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/bɪˈliː.və.bəl/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Able to be believed; plausible.",
+    "translation": "İnanılabilir, ikna edici",
+    "example": "The witness gave a believable account of the event.",
+    "exampleTranslation": "Tanık, olayla ilgili ikna edici bir anlatım yaptı.",
+    "synonyms": [
+      "plausible",
+      "credible"
+    ],
     "mastery": 0
   },
   {
@@ -5010,6 +3319,25 @@ export const WORDS_B1: Word[] = [
     "exampleTranslation": "Kitabı sevgili eşine ithaf etti.",
     "synonyms": [
       "Dear"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-bendy",
+    "word": "Bendy",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈben.di/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Able to bend easily; flexible.",
+    "translation": "Esnek, bükülebilir",
+    "example": "The toy is made from bendy rubber.",
+    "exampleTranslation": "Oyuncak esnek lastikten yapılmıştır.",
+    "synonyms": [
+      "flexible",
+      "pliable"
     ],
     "mastery": 0
   },
@@ -5857,6 +4185,44 @@ export const WORDS_B1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-bring-back",
+    "word": "Bring back",
+    "partOfSpeech": "Phrase",
+    "phonetic": "/brɪŋ bæk/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To reintroduce something that existed before, or to return something to a place.",
+    "translation": "Geri getirmek, yeniden getirmek",
+    "example": "The government decided to bring back the old exam system.",
+    "exampleTranslation": "Hükümet eski sınav sistemini geri getirmeye karar verdi.",
+    "synonyms": [
+      "reintroduce",
+      "restore"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-bring-up",
+    "word": "Bring up",
+    "partOfSpeech": "Phrase",
+    "phonetic": "/brɪŋ ʌp/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To raise a child; to mention a topic.",
+    "translation": "Büyütmek, yetiştirmek; konuyu açmak",
+    "example": "Her grandparents brought her up after her parents passed away.",
+    "exampleTranslation": "Ebeveynleri vefat ettikten sonra büyükanne ve büyükbabası onu büyüttü.",
+    "synonyms": [
+      "raise",
+      "rear"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-broad",
     "word": "Broad",
     "partOfSpeech": "Adjective",
@@ -5929,6 +4295,24 @@ export const WORDS_B1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-brow",
+    "word": "Brow",
+    "partOfSpeech": "Noun",
+    "phonetic": "/braʊ/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "The forehead; the ridge above the eye.",
+    "translation": "Alın, kaş",
+    "example": "Beads of sweat formed on his brow.",
+    "exampleTranslation": "Alnında ter damlaları oluştu.",
+    "synonyms": [
+      "forehead"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-bubble",
     "word": "Bubble",
     "partOfSpeech": "Noun",
@@ -5956,6 +4340,20 @@ export const WORDS_B1: Word[] = [
     "synonyms": [
       "Friend"
     ],
+    "mastery": 0
+  },
+  {
+    "id": "w-budget",
+    "word": "Budget",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈbʌdʒ.ɪt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "A plan for how much money you will spend and save.",
+    "translation": "Bütçe",
+    "example": "We need to plan our budget for next month.",
+    "exampleTranslation": "Gelecek ay için bütçemizi planlamamız gerekiyor.",
+    "synonyms": [],
     "mastery": 0
   },
   {
@@ -6012,6 +4410,25 @@ export const WORDS_B1: Word[] = [
     "example": "A news bulletin interrupted the TV program.",
     "exampleTranslation": "Bir haber bülteni TV programını kesti.",
     "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-bum",
+    "word": "Bum",
+    "partOfSpeech": "Noun",
+    "phonetic": "/bʌm/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "The buttocks (informal); a homeless or idle person.",
+    "translation": "Popo, kıç (argo)",
+    "example": "He slipped and landed right on his bum.",
+    "exampleTranslation": "Kaydı ve tam kıçının üzerine düştü.",
+    "synonyms": [
+      "backside",
+      "bottom"
+    ],
     "mastery": 0
   },
   {
@@ -6509,6 +4926,20 @@ export const WORDS_B1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-career",
+    "word": "Career",
+    "partOfSpeech": "Noun",
+    "phonetic": "/kəˈrɪr/",
+    "level": "B1",
+    "lists": [],
+    "definition": "The series of jobs a person has during their working life.",
+    "translation": "Kariyer",
+    "example": "He started his career as a teacher.",
+    "exampleTranslation": "Kariyerine öğretmen olarak başladı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-careless",
     "word": "Careless",
     "partOfSpeech": "Adjective",
@@ -6612,15 +5043,20 @@ export const WORDS_B1: Word[] = [
     "id": "w-category",
     "word": "Category",
     "partOfSpeech": "Noun",
-    "phonetic": "/ˈkæ.təˌgɔː.riː/",
+    "phonetic": "/ˈkæt.ə.gər.i/",
     "level": "B1",
-    "lists": [],
-    "definition": "A group of things that share similar characteristics.",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2"
+    ],
+    "definition": "A class or division of things regarded as having particular shared characteristics.",
     "translation": "Kategori",
-    "example": "The books are organized by category on the shelves.",
-    "exampleTranslation": "Kitaplar raflarda kategoriye göre düzenlenmiş.",
+    "example": "Books are organised into categories by genre.",
+    "exampleTranslation": "Kitaplar türe göre kategorilere ayrılmıştır.",
     "synonyms": [
-      "Class"
+      "Class",
+      "class",
+      "group"
     ],
     "mastery": 0
   },
@@ -6739,6 +5175,20 @@ export const WORDS_B1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-certain",
+    "word": "Certain",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈsɜːr.tən/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Sure or definite about something.",
+    "translation": "Kesin / Emin",
+    "example": "I am certain that I locked the door.",
+    "exampleTranslation": "Kapıyı kilitlediğimden eminim.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
     "id": "w-certainty",
     "word": "Certainty",
     "partOfSpeech": "Noun",
@@ -6749,6 +5199,20 @@ export const WORDS_B1: Word[] = [
     "translation": "Kesinlik",
     "example": "No one can predict the future with total certainty.",
     "exampleTranslation": "Hiç kimse geleceği tam bir kesinlikle tahmin edemez.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-challenge",
+    "word": "Challenge",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈtʃæl.ɪndʒ/",
+    "level": "B1",
+    "lists": [],
+    "definition": "A new or difficult task that tests someone's ability.",
+    "translation": "Zorluk / Meydan okuma",
+    "example": "Learning to drive was a real challenge for him.",
+    "exampleTranslation": "Araba kullanmayı öğrenmek onun için gerçek bir zorluktu.",
     "synonyms": [],
     "mastery": 0
   },
@@ -7040,6 +5504,24 @@ export const WORDS_B1: Word[] = [
     "mastery": 0
   },
   {
+    "id": "w-chorus",
+    "word": "Chorus",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈkɔː.rəs/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "The part of a song that is repeated after each verse; a refrain.",
+    "translation": "Nakarat, koro",
+    "example": "Everyone sang along to the chorus.",
+    "exampleTranslation": "Herkes nakarata eşlik ederek şarkı söyledi.",
+    "synonyms": [
+      "refrain"
+    ],
+    "mastery": 0
+  },
+  {
     "id": "w-christian",
     "word": "Christian",
     "partOfSpeech": "Adjective",
@@ -7253,6 +5735,5238 @@ export const WORDS_B1: Word[] = [
     "example": "The region has a warm, dry climate all year round.",
     "exampleTranslation": "Bölge yıl boyunca sıcak ve kurak bir iklime sahip.",
     "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-collapse",
+    "word": "Collapse",
+    "partOfSpeech": "Verb",
+    "phonetic": "/kəˈlæps/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To fall down or in suddenly, after breaking apart; to break down.",
+    "translation": "Çökmek, yıkılmak",
+    "example": "The old bridge collapsed under the weight of the truck.",
+    "exampleTranslation": "Eski köprü kamyonun ağırlığı altında çöktü.",
+    "synonyms": [
+      "break down",
+      "cave in"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-common",
+    "word": "Common",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈkɑː.mən/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Happening or existing often; not rare.",
+    "translation": "Yaygın / Ortak",
+    "example": "It's common for people to feel nervous before an exam.",
+    "exampleTranslation": "İnsanların sınavdan önce gergin hissetmesi yaygındır.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-communicate",
+    "word": "Communicate",
+    "partOfSpeech": "Verb",
+    "phonetic": "/kəˈmjuː.nə.keɪt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To share information, ideas, or feelings with someone.",
+    "translation": "İletişim kurmak",
+    "example": "It's important to communicate clearly with your team.",
+    "exampleTranslation": "Ekibinizle net bir şekilde iletişim kurmak önemlidir.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-community",
+    "word": "Community",
+    "partOfSpeech": "Noun",
+    "phonetic": "/kəˈmjuː.nə.ti/",
+    "level": "B1",
+    "lists": [],
+    "definition": "A group of people who live in the same area or share something in common.",
+    "translation": "Topluluk",
+    "example": "Everyone in the community helped after the storm.",
+    "exampleTranslation": "Fırtınadan sonra topluluktaki herkes yardım etti.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-compare",
+    "word": "Compare",
+    "partOfSpeech": "Verb",
+    "phonetic": "/kəmˈper/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To look at two or more things to see how they are similar or different.",
+    "translation": "Karşılaştırmak",
+    "example": "Let's compare the prices before we buy anything.",
+    "exampleTranslation": "Bir şey almadan önce fiyatları karşılaştıralım.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-completely",
+    "word": "Completely",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/kəmˈpliːt.li/",
+    "level": "B1",
+    "lists": [],
+    "definition": "In every way; totally.",
+    "translation": "Tamamen",
+    "example": "I completely forgot about our meeting today.",
+    "exampleTranslation": "Bugünkü toplantımızı tamamen unuttum.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-complex",
+    "word": "Complex",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈkɑːm.pleks/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Made of many parts; difficult to understand.",
+    "translation": "Karmaşık",
+    "example": "The instructions were too complex for me to follow.",
+    "exampleTranslation": "Talimatlar takip etmem için çok karmaşıktı.",
+    "synonyms": [
+      "Complicated"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-condition",
+    "word": "Condition",
+    "partOfSpeech": "Noun",
+    "phonetic": "/kənˈdɪʃ.ən/",
+    "level": "B1",
+    "lists": [],
+    "definition": "The physical state that something or someone is in.",
+    "translation": "Durum / Koşul",
+    "example": "The old car is still in good condition.",
+    "exampleTranslation": "Eski araba hâlâ iyi durumda.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-confident",
+    "word": "Confident",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈkɑːn.fə.dənt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Feeling sure about your own abilities or about something being true.",
+    "translation": "Kendinden emin / Özgüvenli",
+    "example": "She felt confident before the job interview.",
+    "exampleTranslation": "İş görüşmesinden önce kendinden emindi.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-conflict",
+    "word": "Conflict",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈkɒn.flɪkt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "A serious disagreement or clash.",
+    "translation": "Çatışma, anlaşmazlık",
+    "example": "There was a conflict of interest in the deal.",
+    "exampleTranslation": "Anlaşmada bir çıkar çatışması vardı.",
+    "synonyms": [
+      "clash",
+      "dispute"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-confused",
+    "word": "Confused",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/kənˈfjuːzd/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Unable to think clearly or understand something.",
+    "translation": "Kafası karışmış",
+    "example": "I'm a bit confused about the instructions.",
+    "exampleTranslation": "Talimatlar konusunda biraz kafam karıştı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-conscious",
+    "word": "Conscious",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈkɒn.ʃəs/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Aware of and responding to one's surroundings; awake.",
+    "translation": "Bilinçli, farkında",
+    "example": "She was fully conscious throughout the procedure.",
+    "exampleTranslation": "İşlem boyunca tamamen bilinçliydi.",
+    "synonyms": [
+      "aware",
+      "awake"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-considerate",
+    "word": "Considerate",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/kənˈsɪd.ər.ət/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Careful not to inconvenience or harm others; thoughtful.",
+    "translation": "Düşünceli, saygılı",
+    "example": "It was very considerate of you to call ahead.",
+    "exampleTranslation": "Önceden aramanız çok düşünceliceydi.",
+    "synonyms": [
+      "thoughtful",
+      "caring"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-consist",
+    "word": "Consist",
+    "partOfSpeech": "Verb",
+    "phonetic": "/kənˈsɪst/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "To be made up or formed of something.",
+    "translation": "Oluşmak, ibaret olmak",
+    "example": "The committee consists of ten members.",
+    "exampleTranslation": "Komite on üyeden oluşuyor.",
+    "synonyms": [
+      "comprise",
+      "be composed of"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-consistent",
+    "word": "Consistent",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/kənˈsɪs.tənt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Always behaving or happening in the same way.",
+    "translation": "Tutarlı",
+    "example": "It's important to be consistent when training a dog.",
+    "exampleTranslation": "Bir köpeği eğitirken tutarlı olmak önemlidir.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-constant",
+    "word": "Constant",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈkɒn.stənt/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3",
+      "ielts-1000"
+    ],
+    "definition": "Occurring continuously; unchanging; fixed.",
+    "translation": "Sabit, sürekli",
+    "example": "The temperature in the greenhouse stays constant.",
+    "exampleTranslation": "Serada sıcaklık sabit kalır.",
+    "synonyms": [
+      "continuous",
+      "steady",
+      "fixed"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-constantly",
+    "word": "Constantly",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈkɒn.stənt.li/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Continuously; always occurring.",
+    "translation": "Sürekli, devamlı",
+    "example": "The baby cries constantly at night.",
+    "exampleTranslation": "Bebek gece sürekli ağlıyor.",
+    "synonyms": [
+      "always",
+      "continuously"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-consult",
+    "word": "Consult",
+    "partOfSpeech": "Verb",
+    "phonetic": "/kənˈsʌlt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To seek information or advice from a person, book, or source.",
+    "translation": "Danışmak, başvurmak",
+    "example": "You should consult a doctor before starting the diet.",
+    "exampleTranslation": "Diyete başlamadan önce bir doktora danışmalısınız.",
+    "synonyms": [
+      "refer to",
+      "seek advice from"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-contented",
+    "word": "Contented",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/kənˈten.tɪd/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Happy or satisfied with one's situation.",
+    "translation": "Memnun, hoşnut",
+    "example": "She seemed contented with her simple life in the village.",
+    "exampleTranslation": "Köydeki sade hayatından memnun görünüyordu.",
+    "synonyms": [
+      "satisfied",
+      "content"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-continuous",
+    "word": "Continuous",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/kənˈtɪn.ju.əs/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Forming an unbroken whole; without interruption; continual.",
+    "translation": "Sürekli, kesintisiz",
+    "example": "The factory operates on a continuous production line.",
+    "exampleTranslation": "Fabrika kesintisiz bir üretim hattında çalışıyor.",
+    "synonyms": [
+      "continual",
+      "uninterrupted"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-contribute",
+    "word": "Contribute",
+    "partOfSpeech": "Verb",
+    "phonetic": "/kənˈtrɪb.juːt/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3",
+      "cause-effect-verbs"
+    ],
+    "definition": "To give something, especially money or help, in order to achieve a shared goal.",
+    "translation": "Katkıda bulunmak",
+    "example": "Everyone in the team contributed ideas for the project.",
+    "exampleTranslation": "Ekipteki herkes proje için fikirlerle katkıda bulundu.",
+    "synonyms": [
+      "give",
+      "add to"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-convince",
+    "word": "Convince",
+    "partOfSpeech": "Verb",
+    "phonetic": "/kənˈvɪns/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To make someone believe that something is true.",
+    "translation": "İkna etmek",
+    "example": "She convinced her parents to let her travel alone.",
+    "exampleTranslation": "Ailesini tek başına seyahat etmesine izin vermeleri için ikna etti.",
+    "synonyms": [
+      "Persuade"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-cope",
+    "word": "Cope",
+    "partOfSpeech": "Verb",
+    "phonetic": "/kəʊp/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To deal effectively with something difficult; to manage.",
+    "translation": "Baş etmek, üstesinden gelmek",
+    "example": "It's hard to cope with such a heavy workload.",
+    "exampleTranslation": "Bu kadar ağır bir iş yüküyle baş etmek zor.",
+    "synonyms": [
+      "manage",
+      "handle"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-core",
+    "word": "Core",
+    "partOfSpeech": "Noun",
+    "phonetic": "/kɔːr/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3"
+    ],
+    "definition": "The central or most important part of something.",
+    "translation": "Çekirdek, öz",
+    "example": "Honesty is at the core of a good relationship.",
+    "exampleTranslation": "Dürüstlük, iyi bir ilişkinin özündedir.",
+    "synonyms": [
+      "centre",
+      "heart"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-credit",
+    "word": "Credit",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈkred.ɪt/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2"
+    ],
+    "definition": "Public acknowledgement for an achievement; an arrangement to pay later.",
+    "translation": "Kredi; itibar, pay",
+    "example": "She deserves credit for organising the whole event.",
+    "exampleTranslation": "Tüm etkinliği organize ettiği için takdiri hak ediyor.",
+    "synonyms": [
+      "recognition",
+      "acknowledgement"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-cube",
+    "word": "Cube",
+    "partOfSpeech": "Noun",
+    "phonetic": "/kjuːb/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "A solid object with six equal square faces; a die.",
+    "translation": "Küp, zar",
+    "example": "Add two cubes of sugar to your coffee.",
+    "exampleTranslation": "Kahvene iki küp şeker ekle.",
+    "synonyms": [
+      "dice",
+      "block"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-culture",
+    "word": "Culture",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈkʌl.tʃər/",
+    "level": "B1",
+    "lists": [],
+    "definition": "The customs, arts, and way of life of a particular group of people.",
+    "translation": "Kültür",
+    "example": "I enjoy learning about different cultures when I travel.",
+    "exampleTranslation": "Seyahat ederken farklı kültürler hakkında bilgi edinmekten hoşlanırım.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-curious",
+    "word": "Curious",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈkjʊr.i.əs/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Wanting to know or learn about something.",
+    "translation": "Meraklı",
+    "example": "The children were curious about the old house.",
+    "exampleTranslation": "Çocuklar eski ev hakkında meraklıydı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-daring",
+    "word": "Daring",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈdeə.rɪŋ/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Adventurous or bold; willing to take risks.",
+    "translation": "Cesur, gözü pek",
+    "example": "The pilot made a daring rescue in bad weather.",
+    "exampleTranslation": "Pilot kötü havada cesur bir kurtarma yaptı.",
+    "synonyms": [
+      "bold",
+      "courageous"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-dash",
+    "word": "Dash",
+    "partOfSpeech": "Verb",
+    "phonetic": "/dæʃ/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To run or move quickly; to sprint.",
+    "translation": "Koşmak, fırlamak",
+    "example": "She dashed to the station to catch the last train.",
+    "exampleTranslation": "Son treni yakalamak için istasyona koştu.",
+    "synonyms": [
+      "sprint",
+      "rush"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-data",
+    "word": "Data",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈdeɪ.tə/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "Facts and statistics collected for reference or analysis.",
+    "translation": "Veri",
+    "example": "The survey collected data from over a thousand participants.",
+    "exampleTranslation": "Anket, binden fazla katılımcıdan veri topladı.",
+    "synonyms": [
+      "information",
+      "figures"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-decision",
+    "word": "Decision",
+    "partOfSpeech": "Noun",
+    "phonetic": "/dɪˈsɪʒ.ən/",
+    "level": "B1",
+    "lists": [],
+    "definition": "A choice that you make after thinking about it.",
+    "translation": "Karar",
+    "example": "It was a difficult decision to change jobs.",
+    "exampleTranslation": "İş değiştirmek zor bir karardı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-decrease",
+    "word": "Decrease",
+    "partOfSpeech": "Verb",
+    "phonetic": "/dɪˈkriːs/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To become smaller in amount or number, or to make something smaller.",
+    "translation": "Azaltmak / Azalmak",
+    "example": "The number of students has decreased this year.",
+    "exampleTranslation": "Öğrenci sayısı bu yıl azaldı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-define",
+    "word": "Define",
+    "partOfSpeech": "Verb",
+    "phonetic": "/dɪˈfaɪn/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "To state the exact meaning of a word or the nature of something.",
+    "translation": "Tanımlamak",
+    "example": "The report clearly defines the project's main objectives.",
+    "exampleTranslation": "Rapor, projenin ana hedeflerini açıkça tanımlıyor.",
+    "synonyms": [
+      "specify",
+      "explain"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-degree",
+    "word": "Degree",
+    "partOfSpeech": "Noun",
+    "phonetic": "/dɪˈgriː/",
+    "level": "B1",
+    "lists": [],
+    "definition": "A qualification given by a university after a course of study.",
+    "translation": "Diploma / Derece",
+    "example": "He has a degree in computer science.",
+    "exampleTranslation": "Bilgisayar bilimlerinde bir diploması var.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-deliberately",
+    "word": "Deliberately",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/dɪˈlɪb.ər.ət.li/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "In a way that is done consciously and intentionally.",
+    "translation": "Kasıtlı olarak, bilerek",
+    "example": "He deliberately left the door unlocked for her.",
+    "exampleTranslation": "Onun için kapıyı bilerek kilitsiz bıraktı.",
+    "synonyms": [
+      "intentionally",
+      "on purpose"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-delicate",
+    "word": "Delicate",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈdel.ɪ.kət/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Easily broken or damaged; fragile; requiring careful handling.",
+    "translation": "Narin, kırılgan, hassas",
+    "example": "The vase is very delicate, so handle it with care.",
+    "exampleTranslation": "Vazo çok narin, bu yüzden dikkatli tutun.",
+    "synonyms": [
+      "fragile",
+      "sensitive"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-demonstrate",
+    "word": "Demonstrate",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈdem.ən.streɪt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To publicly protest or march; to clearly show something.",
+    "translation": "Gösteri yapmak; göstermek",
+    "example": "Thousands gathered to demonstrate against the new law.",
+    "exampleTranslation": "Binlerce kişi yeni yasayı protesto etmek için gösteri yaptı.",
+    "synonyms": [
+      "protest",
+      "show"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-deny",
+    "word": "Deny",
+    "partOfSpeech": "Verb",
+    "phonetic": "/dɪˈnaɪ/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To say that something is not true.",
+    "translation": "İnkar etmek / Reddetmek",
+    "example": "She denied breaking the window.",
+    "exampleTranslation": "Pencereyi kırdığını inkar etti.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-depend",
+    "word": "Depend",
+    "partOfSpeech": "Verb",
+    "phonetic": "/dɪˈpend/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To need someone or something in order to exist or succeed.",
+    "translation": "Bağlı olmak / Güvenmek",
+    "example": "Our plans depend on the weather tomorrow.",
+    "exampleTranslation": "Planlarımız yarınki hava durumuna bağlı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-describe",
+    "word": "Describe",
+    "partOfSpeech": "Verb",
+    "phonetic": "/dɪˈskraɪb/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To say what someone or something is like.",
+    "translation": "Tanımlamak / Betimlemek",
+    "example": "Can you describe the man you saw?",
+    "exampleTranslation": "Gördüğün adamı tanımlayabilir misin?",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-deserted",
+    "word": "Deserted",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/dɪˈzɜː.tɪd/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Empty of people; abandoned.",
+    "translation": "Terkedilmiş, ıssız",
+    "example": "The streets were deserted at three in the morning.",
+    "exampleTranslation": "Sokaklar sabah saat üçte ıssızdı.",
+    "synonyms": [
+      "abandoned",
+      "empty"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-determine",
+    "word": "Determine",
+    "partOfSpeech": "Verb",
+    "phonetic": "/dɪˈtɜːr.mɪn/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To find out or decide something exactly.",
+    "translation": "Belirlemek",
+    "example": "The test results will determine the next step.",
+    "exampleTranslation": "Test sonuçları bir sonraki adımı belirleyecek.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-develop",
+    "word": "Develop",
+    "partOfSpeech": "Verb",
+    "phonetic": "/dɪˈvel.əp/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To grow or change into a more advanced state.",
+    "translation": "Geliştirmek / Gelişmek",
+    "example": "The company is developing a new product.",
+    "exampleTranslation": "Şirket yeni bir ürün geliştiriyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-disadvantage",
+    "word": "Disadvantage",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˌdɪs.ədˈvæn.tɪdʒ/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Something that causes difficulty or makes success less likely.",
+    "translation": "Dezavantaj",
+    "example": "One disadvantage of the job is the long hours.",
+    "exampleTranslation": "İşin bir dezavantajı uzun çalışma saatleri.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-disappointed",
+    "word": "Disappointed",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˌdɪs.əˈpɔɪn.tɪd/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Feeling sad because something was not as good as you hoped.",
+    "translation": "Hayal kırıklığına uğramış",
+    "example": "She was disappointed with her exam results.",
+    "exampleTranslation": "Sınav sonuçlarından dolayı hayal kırıklığına uğradı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-disaster",
+    "word": "Disaster",
+    "partOfSpeech": "Noun",
+    "phonetic": "/dɪˈzɑː.stər/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "A sudden event causing great damage; a catastrophe.",
+    "translation": "Felaket, afet",
+    "example": "The flood was the worst natural disaster in the region's history.",
+    "exampleTranslation": "Sel, bölge tarihindeki en kötü doğal afetti.",
+    "synonyms": [
+      "catastrophe",
+      "calamity"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-discover",
+    "word": "Discover",
+    "partOfSpeech": "Verb",
+    "phonetic": "/dɪˈskʌv.ər/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To find something that was not known before.",
+    "translation": "Keşfetmek",
+    "example": "Scientists discovered a new type of fish in the ocean.",
+    "exampleTranslation": "Bilim insanları okyanusta yeni bir balık türü keşfetti.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-discuss",
+    "word": "Discuss",
+    "partOfSpeech": "Verb",
+    "phonetic": "/dɪˈskʌs/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To talk about something with other people.",
+    "translation": "Tartışmak / Görüşmek",
+    "example": "We need to discuss the schedule for next week.",
+    "exampleTranslation": "Gelecek haftanın programını görüşmemiz gerekiyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-document",
+    "word": "Document",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈdɒk.jə.mənt/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3"
+    ],
+    "definition": "A piece of written, printed, or electronic material that provides information.",
+    "translation": "Belge, doküman",
+    "example": "Please sign the document and return it by Friday.",
+    "exampleTranslation": "Lütfen belgeyi imzalayıp cuma gününe kadar geri gönderin.",
+    "synonyms": [
+      "record",
+      "paper"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-dreadful",
+    "word": "Dreadful",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈdred.fəl/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Extremely bad or unpleasant; terrible.",
+    "translation": "Korkunç, berbat",
+    "example": "We had a dreadful experience with the airline.",
+    "exampleTranslation": "Havayoluyla korkunç bir deneyim yaşadık.",
+    "synonyms": [
+      "terrible",
+      "awful"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-due-to",
+    "word": "due to",
+    "partOfSpeech": "Phrase",
+    "phonetic": "/djuː tuː/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "transition-cause"
+    ],
+    "definition": "Caused by; because of.",
+    "translation": "Nedeniyle, yüzünden",
+    "example": "The match was cancelled due to heavy rain.",
+    "exampleTranslation": "Maç, şiddetli yağmur nedeniyle iptal edildi.",
+    "synonyms": [
+      "owing to",
+      "because of"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-dull",
+    "word": "Dull",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/dʌl/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Not sharp or bright; boring or uninteresting.",
+    "translation": "Kesici olmayan, sıkıcı, donuk",
+    "example": "The lecture was so dull that half the class fell asleep.",
+    "exampleTranslation": "Ders o kadar sıkıcıydı ki sınıfın yarısı uyuyakaldı.",
+    "synonyms": [
+      "blunt",
+      "boring"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-eager",
+    "word": "Eager",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈiː.gər/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Strongly wanting to do or have something; keen.",
+    "translation": "İstekli, hevesli",
+    "example": "She was eager to start her new job.",
+    "exampleTranslation": "Yeni işine başlamak için hevesliydi.",
+    "synonyms": [
+      "keen",
+      "enthusiastic"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-economy",
+    "word": "Economy",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ɪˈkɒn.ə.mi/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "The wealth and resources of a country or region.",
+    "translation": "Ekonomi",
+    "example": "The country's economy grew by three percent last year.",
+    "exampleTranslation": "Ülkenin ekonomisi geçen yıl yüzde üç büyüdü.",
+    "synonyms": [
+      "financial system"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-education",
+    "word": "Education",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˌedʒ.uˈkeɪ.ʃən/",
+    "level": "B1",
+    "lists": [],
+    "definition": "The process of teaching or learning, especially in a school.",
+    "translation": "Eğitim",
+    "example": "A good education can open many doors in life.",
+    "exampleTranslation": "İyi bir eğitim hayatta birçok kapı açabilir.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-effect",
+    "word": "Effect",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ɪˈfekt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "A change that happens because of an event, action, or situation.",
+    "translation": "Etki",
+    "example": "Too much sugar can have a bad effect on your health.",
+    "exampleTranslation": "Çok fazla şeker sağlığın üzerinde kötü bir etki yapabilir.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-effective",
+    "word": "Effective",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ɪˈfek.tɪv/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Producing the result that you want.",
+    "translation": "Etkili",
+    "example": "This is a very effective way to learn vocabulary.",
+    "exampleTranslation": "Bu, kelime öğrenmek için çok etkili bir yol.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-efficient",
+    "word": "Efficient",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ɪˈfɪʃ.ənt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Working well without wasting time or energy.",
+    "translation": "Verimli",
+    "example": "The new system is much more efficient than the old one.",
+    "exampleTranslation": "Yeni sistem eskisinden çok daha verimli.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-element",
+    "word": "Element",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈel.ɪ.mənt/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2"
+    ],
+    "definition": "A part or component of something larger.",
+    "translation": "Öğe, unsur",
+    "example": "Trust is a key element of any relationship.",
+    "exampleTranslation": "Güven, her ilişkinin temel bir unsurudur.",
+    "synonyms": [
+      "component",
+      "factor"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-embarrassed",
+    "word": "Embarrassed",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ɪmˈber.əst/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Feeling shy, ashamed, or uncomfortable.",
+    "translation": "Utanmış / Mahcup",
+    "example": "He felt embarrassed when he forgot her name.",
+    "exampleTranslation": "Adını unuttuğunda utandı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-emotion",
+    "word": "Emotion",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ɪˈmoʊ.ʃən/",
+    "level": "B1",
+    "lists": [],
+    "definition": "A strong feeling, such as love, fear, or anger.",
+    "translation": "Duygu",
+    "example": "It's normal to feel a lot of emotion at a wedding.",
+    "exampleTranslation": "Bir düğünde çok fazla duygu hissetmek normaldir.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-emphasize",
+    "word": "Emphasize",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈem.fə.saɪz/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To give special importance to something; to stress.",
+    "translation": "Vurgulamak",
+    "example": "The coach emphasized the importance of teamwork.",
+    "exampleTranslation": "Antrenör takım çalışmasının önemini vurguladı.",
+    "synonyms": [
+      "stress",
+      "highlight"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-employee",
+    "word": "Employee",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ɪmˈplɔɪ.iː/",
+    "level": "B1",
+    "lists": [],
+    "definition": "A person who works for a company or another person.",
+    "translation": "Çalışan / İşçi",
+    "example": "The company has more than two hundred employees.",
+    "exampleTranslation": "Şirketin iki yüzden fazla çalışanı var.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-encounter",
+    "word": "Encounter",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪnˈkaʊn.tər/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To unexpectedly experience or be faced with something; to come across.",
+    "translation": "Karşılaşmak",
+    "example": "We encountered several problems during the renovation.",
+    "exampleTranslation": "Tadilat sırasında birkaç sorunla karşılaştık.",
+    "synonyms": [
+      "come across",
+      "face"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-encourage",
+    "word": "Encourage",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪnˈkɜːr.ɪdʒ/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To give someone confidence or hope to do something.",
+    "translation": "Cesaretlendirmek / Teşvik etmek",
+    "example": "Her teacher encouraged her to keep writing.",
+    "exampleTranslation": "Öğretmeni onu yazmaya devam etmesi için teşvik etti.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-enormous",
+    "word": "Enormous",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ɪˈnɔː.məs/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Very large in size, quantity, or extent; huge.",
+    "translation": "Devasa, muazzam",
+    "example": "The company made an enormous profit last year.",
+    "exampleTranslation": "Şirket geçen yıl devasa bir kâr elde etti.",
+    "synonyms": [
+      "huge",
+      "immense"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-enquire",
+    "word": "Enquire",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪnˈkwaɪər/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To ask for information; to investigate.",
+    "translation": "Soruşturmak, sormak",
+    "example": "She called to enquire about the job vacancy.",
+    "exampleTranslation": "İş ilanı hakkında bilgi almak için aradı.",
+    "synonyms": [
+      "investigate",
+      "ask"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-ensure",
+    "word": "Ensure",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪnˈʃʊər/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3"
+    ],
+    "definition": "To make certain that something happens or is the case.",
+    "translation": "Sağlamak, garanti etmek",
+    "example": "Please ensure all doors are locked before leaving.",
+    "exampleTranslation": "Lütfen ayrılmadan önce tüm kapıların kilitli olduğundan emin olun.",
+    "synonyms": [
+      "guarantee",
+      "make certain"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-environment",
+    "word": "Environment",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ɪnˈvaɪ.rən.mənt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "The natural world, or the conditions that surround a person or place.",
+    "translation": "Çevre",
+    "example": "We should all try to protect the environment.",
+    "exampleTranslation": "Hepimiz çevreyi korumaya çalışmalıyız.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-essential",
+    "word": "Essential",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ɪˈsen.ʃəl/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Absolutely necessary; fundamental.",
+    "translation": "Gerekli, temel",
+    "example": "Clean water is essential for good health.",
+    "exampleTranslation": "Temiz su iyi sağlık için gereklidir.",
+    "synonyms": [
+      "fundamental",
+      "vital"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-establish",
+    "word": "Establish",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪˈstæb.lɪʃ/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To start something, such as a company or organization, that will continue.",
+    "translation": "Kurmak / Oluşturmak",
+    "example": "The company was established over fifty years ago.",
+    "exampleTranslation": "Şirket elli yılı aşkın bir süre önce kuruldu.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-estimate",
+    "word": "Estimate",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈes.tə.meɪt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To guess the cost, size, or value of something.",
+    "translation": "Tahmin etmek (hesaplamak)",
+    "example": "The mechanic estimated the repair would cost two hundred dollars.",
+    "exampleTranslation": "Tamirci onarımın iki yüz dolara mal olacağını tahmin etti.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-evaluate",
+    "word": "Evaluate",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪˈvæl.ju.eɪt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To judge the value or quality of something after careful thought.",
+    "translation": "Değerlendirmek",
+    "example": "Teachers evaluate students' progress every semester.",
+    "exampleTranslation": "Öğretmenler her dönem öğrencilerin gelişimini değerlendirir.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-eventually",
+    "word": "Eventually",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ɪˈven.tʃu.ə.li/",
+    "level": "B1",
+    "lists": [],
+    "definition": "In the end, especially after a long time or delay.",
+    "translation": "Sonunda / Nihayetinde",
+    "example": "We got lost, but we eventually found the hotel.",
+    "exampleTranslation": "Kayboduk ama sonunda oteli bulduk.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-evidence",
+    "word": "Evidence",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈev.ə.dəns/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Facts or information that show whether something is true.",
+    "translation": "Kanıt",
+    "example": "There is no evidence to support this theory.",
+    "exampleTranslation": "Bu teoriyi destekleyecek bir kanıt yok.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-exactly",
+    "word": "Exactly",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ɪgˈzækt.li/",
+    "level": "B1",
+    "lists": [],
+    "definition": "In a very accurate or precise way.",
+    "translation": "Tam olarak",
+    "example": "I don't know exactly what time the train leaves.",
+    "exampleTranslation": "Trenin tam olarak saat kaçta kalktığını bilmiyorum.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-exaggerate",
+    "word": "Exaggerate",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪgˈzædʒ.ə.reɪt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To represent something as being larger, better, or worse than it is; to magnify.",
+    "translation": "Abartmak",
+    "example": "He tends to exaggerate how difficult his job is.",
+    "exampleTranslation": "İşinin ne kadar zor olduğunu abartma eğilimindedir.",
+    "synonyms": [
+      "magnify",
+      "overstate"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-examine",
+    "word": "Examine",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪgˈzæm.ɪn/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To look at something carefully in order to understand it.",
+    "translation": "İncelemek / Muayene etmek",
+    "example": "The doctor examined the patient carefully.",
+    "exampleTranslation": "Doktor hastayı dikkatlice muayene etti.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-experience",
+    "word": "Experience",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ɪkˈspɪr.i.əns/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Knowledge or skill gained from doing something, or an event that happens to you.",
+    "translation": "Deneyim / Tecrübe",
+    "example": "She has a lot of experience working with children.",
+    "exampleTranslation": "Çocuklarla çalışma konusunda çok deneyimi var.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-explode",
+    "word": "Explode",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪkˈspləʊd/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To burst suddenly and violently; to blow up.",
+    "translation": "Patlamak",
+    "example": "The old boiler exploded, damaging the entire kitchen.",
+    "exampleTranslation": "Eski kombi patladı ve tüm mutfağa zarar verdi.",
+    "synonyms": [
+      "blow up",
+      "detonate"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-express",
+    "word": "Express",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪkˈspres/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To show your feelings, thoughts, or opinions through words or actions.",
+    "translation": "İfade etmek",
+    "example": "She found it hard to express her feelings.",
+    "exampleTranslation": "Duygularını ifade etmeyi zor buldu.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-extremely",
+    "word": "Extremely",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ɪkˈstriːm.li/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To a very great degree.",
+    "translation": "Son derece / Aşırı",
+    "example": "The exam was extremely difficult this year.",
+    "exampleTranslation": "Sınav bu yıl son derece zordu.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-factor",
+    "word": "Factor",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈfæk.tər/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "A circumstance or influence that contributes to a result.",
+    "translation": "Faktör, etken",
+    "example": "Diet is an important factor in maintaining good health.",
+    "exampleTranslation": "Beslenme, iyi sağlığı korumada önemli bir faktördür.",
+    "synonyms": [
+      "element",
+      "cause"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-fail",
+    "word": "Fail",
+    "partOfSpeech": "Verb",
+    "phonetic": "/feɪl/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To not succeed in doing something.",
+    "translation": "Başarısız olmak",
+    "example": "He failed his driving test the first time.",
+    "exampleTranslation": "İlk seferinde ehliyet sınavında başarısız oldu.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-fair",
+    "word": "Fair",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/fer/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Treating people equally and in a way that is right and reasonable.",
+    "translation": "Adil",
+    "example": "It's not fair that he got paid more for the same work.",
+    "exampleTranslation": "Aynı iş için onun daha fazla ödeme alması adil değil.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-familiar",
+    "word": "Familiar",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/fəˈmɪl.jər/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Well known to you; easy to recognize.",
+    "translation": "Tanıdık / Aşina",
+    "example": "This street looks familiar to me.",
+    "exampleTranslation": "Bu sokak bana tanıdık geliyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-flexible",
+    "word": "Flexible",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈflek.sə.bəl/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Able to change or be changed easily to suit new conditions.",
+    "translation": "Esnek",
+    "example": "My work hours are quite flexible these days.",
+    "exampleTranslation": "Bu günlerde çalışma saatlerim oldukça esnek.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-focus",
+    "word": "Focus",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈfəʊ.kəs/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2"
+    ],
+    "definition": "To pay particular attention to something.",
+    "translation": "Odaklanmak",
+    "example": "The report focuses on the economic effects of the policy.",
+    "exampleTranslation": "Rapor, politikanın ekonomik etkilerine odaklanıyor.",
+    "synonyms": [
+      "concentrate",
+      "centre"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-for-instance",
+    "word": "for instance",
+    "partOfSpeech": "Phrase",
+    "phonetic": "/fɔːr ˈɪn.stəns/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "transition-example"
+    ],
+    "definition": "Used to introduce an example.",
+    "translation": "Örneğin",
+    "example": "Some cities, for instance Amsterdam, are very bike-friendly.",
+    "exampleTranslation": "Amsterdam gibi bazı şehirler bisiklet dostudur.",
+    "synonyms": [
+      "for example",
+      "such as"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-for-that-reason",
+    "word": "for that reason",
+    "partOfSpeech": "Phrase",
+    "phonetic": "/fɔːr ðæt ˈriː.zən/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "transition-result"
+    ],
+    "definition": "Because of this; therefore.",
+    "translation": "Bu nedenle",
+    "example": "The road is icy; for that reason, drivers should slow down.",
+    "exampleTranslation": "Yol buzlu; bu nedenle sürücüler yavaşlamalı.",
+    "synonyms": [
+      "therefore",
+      "as a result"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-formerly",
+    "word": "Formerly",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈfɔː.mə.li/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "In the past; previously.",
+    "translation": "Eskiden, önceden",
+    "example": "The building was formerly a train station.",
+    "exampleTranslation": "Bina eskiden bir tren istasyonuydu.",
+    "synonyms": [
+      "previously",
+      "before"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-fortunate",
+    "word": "Fortunate",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈfɔː.tʃən.ət/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Having good luck; lucky.",
+    "translation": "Şanslı, talihli",
+    "example": "We were fortunate to find a table without a reservation.",
+    "exampleTranslation": "Rezervasyonsuz bir masa bulduğumuz için şanslıydık.",
+    "synonyms": [
+      "lucky",
+      "favoured"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-fragrance",
+    "word": "Fragrance",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈfreɪ.grəns/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "A pleasant, sweet smell; perfume.",
+    "translation": "Koku, parfüm",
+    "example": "The garden was filled with the fragrance of roses.",
+    "exampleTranslation": "Bahçe güllerin kokusuyla doluydu.",
+    "synonyms": [
+      "perfume",
+      "scent"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-french-dressing",
+    "word": "French dressing",
+    "partOfSpeech": "Noun",
+    "phonetic": "/frentʃ ˈdres.ɪŋ/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "A salad dressing made from oil, vinegar, and seasoning; vinaigrette.",
+    "translation": "Fransız sosu (vinaigrette)",
+    "example": "She poured French dressing over the fresh salad.",
+    "exampleTranslation": "Taze salatanın üzerine Fransız sosu döktü.",
+    "synonyms": [
+      "vinaigrette"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-function",
+    "word": "Function",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈfʌŋk.ʃən/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1",
+      "ielts-1000"
+    ],
+    "definition": "To work or operate in a proper or particular way.",
+    "translation": "İşlemek, çalışmak, faaliyet göstermek",
+    "example": "The old radio still functions perfectly.",
+    "exampleTranslation": "Eski radyo hala mükemmel çalışıyor.",
+    "synonyms": [
+      "purpose",
+      "role",
+      "operate",
+      "work"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-fund",
+    "word": "Fund",
+    "partOfSpeech": "Noun",
+    "phonetic": "/fʌnd/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3"
+    ],
+    "definition": "A sum of money saved or made available for a particular purpose.",
+    "translation": "Fon, para kaynağı",
+    "example": "The charity set up a fund to help disaster victims.",
+    "exampleTranslation": "Hayır kurumu, afet mağdurlarına yardım etmek için bir fon kurdu.",
+    "synonyms": [
+      "money",
+      "reserve"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-gay",
+    "word": "Gay",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/geɪ/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Homosexual; attracted to people of the same sex.",
+    "translation": "Eşcinsel",
+    "example": "He came out as gay to his family last year.",
+    "exampleTranslation": "Geçen yıl ailesine eşcinsel olduğunu açıkladı.",
+    "synonyms": [
+      "homosexual"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-general",
+    "word": "General",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈdʒen.ər.əl/",
+    "level": "B1",
+    "lists": [],
+    "definition": "True or relevant in most situations; not specific.",
+    "translation": "Genel",
+    "example": "In general, people here are very friendly.",
+    "exampleTranslation": "Genel olarak, buradaki insanlar çok arkadaş canlısı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-generation",
+    "word": "Generation",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˌdʒen.əˈreɪ.ʃən/",
+    "level": "B1",
+    "lists": [],
+    "definition": "All the people who were born around the same time.",
+    "translation": "Nesil / Kuşak",
+    "example": "The younger generation uses technology very differently.",
+    "exampleTranslation": "Genç nesil teknolojiyi çok farklı kullanıyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-glitter",
+    "word": "Glitter",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈglɪt.ər/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To shine with a bright, shimmering light; to sparkle.",
+    "translation": "Parıldamak",
+    "example": "The lake glittered in the afternoon sun.",
+    "exampleTranslation": "Göl öğleden sonra güneşinde parıldıyordu.",
+    "synonyms": [
+      "sparkle",
+      "shine"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-goal",
+    "word": "Goal",
+    "partOfSpeech": "Noun",
+    "phonetic": "/goʊl/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Something that you hope to achieve in the future.",
+    "translation": "Hedef",
+    "example": "Her goal is to become a doctor one day.",
+    "exampleTranslation": "Hedefi bir gün doktor olmak.",
+    "synonyms": [
+      "Aim"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-government",
+    "word": "Government",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈgʌv.ər.mənt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "The group of people who officially control a country.",
+    "translation": "Hükümet",
+    "example": "The government announced new plans for education.",
+    "exampleTranslation": "Hükümet eğitimle ilgili yeni planlar açıkladı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-gradual",
+    "word": "Gradual",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈgræd.ju.əl/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "change-quantity-words"
+    ],
+    "definition": "Taking place slowly or by degrees.",
+    "translation": "Kademeli, aşamalı",
+    "example": "There has been a gradual improvement in her health.",
+    "exampleTranslation": "Sağlığında kademeli bir iyileşme oldu.",
+    "synonyms": [
+      "slow",
+      "steady"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-gradually",
+    "word": "Gradually",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈgrædʒ.u.ə.li/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Slowly, over a period of time.",
+    "translation": "Yavaş yavaş / Kademeli olarak",
+    "example": "The weather gradually got warmer during spring.",
+    "exampleTranslation": "İlkbahar boyunca hava yavaş yavaş ısındı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-gut",
+    "word": "Gut",
+    "partOfSpeech": "Noun",
+    "phonetic": "/gʌt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "The stomach or belly; the intestine.",
+    "translation": "Bağırsak, iç organ",
+    "example": "The doctor examined his gut for signs of infection.",
+    "exampleTranslation": "Doktor enfeksiyon belirtileri için bağırsağını inceledi.",
+    "synonyms": [
+      "intestine",
+      "stomach"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-hand-out",
+    "word": "Hand out",
+    "partOfSpeech": "Phrase",
+    "phonetic": "/hænd aʊt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To distribute something to a number of people.",
+    "translation": "Dağıtmak",
+    "example": "Volunteers handed out water bottles to the runners.",
+    "exampleTranslation": "Gönüllüler koşuculara su şişeleri dağıttı.",
+    "synonyms": [
+      "distribute",
+      "give out"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-hint",
+    "word": "Hint",
+    "partOfSpeech": "Noun",
+    "phonetic": "/hɪnt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "A slight or indirect indication or suggestion.",
+    "translation": "İma, ipucu",
+    "example": "She gave him a hint about the surprise party.",
+    "exampleTranslation": "Ona sürpriz parti hakkında bir ipucu verdi.",
+    "synonyms": [
+      "trace",
+      "clue"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-humble",
+    "word": "Humble",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈhʌm.bəl/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Having a modest or low estimate of one's own importance.",
+    "translation": "Alçakgönüllü, mütevazı",
+    "example": "Despite his success, he remained humble.",
+    "exampleTranslation": "Başarısına rağmen mütevazı kaldı.",
+    "synonyms": [
+      "modest",
+      "unassuming"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-identical",
+    "word": "Identical",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/aɪˈden.tɪ.kəl/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Exactly alike; a precise duplicate.",
+    "translation": "Aynı, özdeş",
+    "example": "The twins wore identical outfits to the party.",
+    "exampleTranslation": "İkizler partiye aynı kıyafetleri giydi.",
+    "synonyms": [
+      "duplicate",
+      "matching"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-identify",
+    "word": "Identify",
+    "partOfSpeech": "Verb",
+    "phonetic": "/aɪˈden.tə.faɪ/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To recognize or be able to say who or what someone or something is.",
+    "translation": "Tanımlamak / Tespit etmek",
+    "example": "It's important to identify the problem before finding a solution.",
+    "exampleTranslation": "Çözüm bulmadan önce sorunu tespit etmek önemlidir.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-idle",
+    "word": "Idle",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈaɪ.dəl/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Not working or being used; lazy.",
+    "translation": "Tembel, işsiz, atıl",
+    "example": "The machines stood idle for weeks after the factory closed.",
+    "exampleTranslation": "Fabrika kapandıktan sonra makineler haftalarca atıl kaldı.",
+    "synonyms": [
+      "lazy",
+      "inactive"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-ignorant",
+    "word": "Ignorant",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈɪg.nər.ənt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Lacking knowledge or awareness in general or about a specific thing.",
+    "translation": "Cahil, bilgisiz",
+    "example": "He was completely ignorant of the new regulations.",
+    "exampleTranslation": "Yeni yönetmeliklerden tamamen habersizdi.",
+    "synonyms": [
+      "unaware",
+      "uninformed"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-ignore",
+    "word": "Ignore",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪgˈnɔːr/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To pay no attention to someone or something.",
+    "translation": "Görmezden gelmek",
+    "example": "It's rude to ignore someone when they are talking to you.",
+    "exampleTranslation": "Biri seninle konuşurken onu görmezden gelmek kabalıktır.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-imitate",
+    "word": "Imitate",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈɪm.ɪ.teɪt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To copy the behaviour, appearance, or actions of someone; to mimic.",
+    "translation": "Taklit etmek",
+    "example": "Children often imitate their parents' behaviour.",
+    "exampleTranslation": "Çocuklar genellikle ebeveynlerinin davranışlarını taklit eder.",
+    "synonyms": [
+      "mimic",
+      "copy"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-immature",
+    "word": "Immature",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˌɪm.əˈtʃʊər/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Not fully developed; behaving in a childish way; inexperienced.",
+    "translation": "Olgunlaşmamış, toy",
+    "example": "His immature behaviour surprised his colleagues.",
+    "exampleTranslation": "Toy davranışları meslektaşlarını şaşırttı.",
+    "synonyms": [
+      "inexperienced",
+      "childish"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-immediate",
+    "word": "Immediate",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ɪˈmiː.di.ət/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Occurring or done at once; instant.",
+    "translation": "Anlık, acil, ani",
+    "example": "The company issued an immediate response to the complaint.",
+    "exampleTranslation": "Şirket şikayete anında bir yanıt verdi.",
+    "synonyms": [
+      "instant",
+      "prompt"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-immediately",
+    "word": "Immediately",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ɪˈmiː.di.ət.li/",
+    "level": "B1",
+    "lists": [],
+    "definition": "At once; without any delay.",
+    "translation": "Hemen / Derhal",
+    "example": "Please call me immediately if there is a problem.",
+    "exampleTranslation": "Bir sorun olursa lütfen hemen beni ara.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-impatient",
+    "word": "Impatient",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ɪmˈpeɪ.ʃənt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Wanting something to happen soon; unwilling to wait; eager.",
+    "translation": "Sabırsız, hevesli",
+    "example": "The children were impatient to open their presents.",
+    "exampleTranslation": "Çocuklar hediyelerini açmak için sabırsızlanıyordu.",
+    "synonyms": [
+      "eager",
+      "restless"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-improve",
+    "word": "Improve",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪmˈpruːv/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To make something better, or to become better.",
+    "translation": "Geliştirmek / İyileştirmek",
+    "example": "He wants to improve his English before the trip.",
+    "exampleTranslation": "Geziden önce İngilizcesini geliştirmek istiyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-in-the-meantime",
+    "word": "In the meantime",
+    "partOfSpeech": "Phrase",
+    "phonetic": "/ɪn ðə ˈmiːn.taɪm/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "In the period of time between two events; meanwhile.",
+    "translation": "Bu arada, o esnada",
+    "example": "Dinner will be ready soon; in the meantime, please take a seat.",
+    "exampleTranslation": "Yemek yakında hazır olacak; bu arada lütfen oturun.",
+    "synonyms": [
+      "meanwhile"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-including",
+    "word": "Including",
+    "partOfSpeech": "Preposition",
+    "phonetic": "/ɪnˈkluː.dɪŋ/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "transition-example"
+    ],
+    "definition": "Containing or comprising as part of a whole; as an example.",
+    "translation": "Dahil olmak üzere, dahil",
+    "example": "The price includes everything, including breakfast and transport.",
+    "exampleTranslation": "Fiyata kahvaltı ve ulaşım dahil her şey dahildir.",
+    "synonyms": [
+      "among others",
+      "as well as"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-income",
+    "word": "Income",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈɪŋ.kʌm/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "Money received regularly for work or through investments.",
+    "translation": "Gelir",
+    "example": "Her monthly income has doubled since she changed jobs.",
+    "exampleTranslation": "İş değiştirdiğinden beri aylık geliri iki katına çıktı.",
+    "synonyms": [
+      "earnings",
+      "revenue"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-increase",
+    "word": "Increase",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪnˈkriːs/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To become larger in amount or number, or to make something larger.",
+    "translation": "Artırmak / Artmak",
+    "example": "Prices have increased a lot this year.",
+    "exampleTranslation": "Fiyatlar bu yıl çok arttı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-indeed",
+    "word": "Indeed",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ɪnˈdiːd/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "transition-emphasis"
+    ],
+    "definition": "Used to emphasise a statement or confirm something previously suggested.",
+    "translation": "Gerçekten, hatta",
+    "example": "The results were good; indeed, they exceeded expectations.",
+    "exampleTranslation": "Sonuçlar iyiydi; hatta beklentileri aştı.",
+    "synonyms": [
+      "in fact",
+      "truly"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-independent",
+    "word": "Independent",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˌɪn.dɪˈpen.dənt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Free from outside control; not depending on another for livelihood.",
+    "translation": "Bağımsız",
+    "example": "She became financially independent after finding a good job.",
+    "exampleTranslation": "İyi bir iş bulduktan sonra finansal olarak bağımsız hale geldi.",
+    "synonyms": [
+      "autonomous",
+      "self-reliant"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-indicate",
+    "word": "Indicate",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈɪn.dɪ.keɪt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To show or point out that something is true or exists.",
+    "translation": "Belirtmek / İşaret etmek",
+    "example": "Studies indicate that people are sleeping less than before.",
+    "exampleTranslation": "Çalışmalar insanların eskisinden daha az uyuduğunu gösteriyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-individual",
+    "word": "Individual",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˌɪn.dɪˈvɪdʒ.u.əl/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "A single human being as distinct from a group.",
+    "translation": "Birey",
+    "example": "Every individual has the right to freedom of speech.",
+    "exampleTranslation": "Her birey ifade özgürlüğü hakkına sahiptir.",
+    "synonyms": [
+      "person"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-infect",
+    "word": "Infect",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪnˈfekt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To contaminate with a disease-causing organism.",
+    "translation": "Bulaştırmak, enfekte etmek",
+    "example": "The wound became infected because it wasn't cleaned properly.",
+    "exampleTranslation": "Yara düzgün temizlenmediği için enfekte oldu.",
+    "synonyms": [
+      "contaminate",
+      "taint"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-injure",
+    "word": "Injure",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈɪn.dʒər/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2"
+    ],
+    "definition": "To harm or cause physical damage to someone or something.",
+    "translation": "Yaralamak",
+    "example": "Two workers were injured in the accident.",
+    "exampleTranslation": "Kazada iki işçi yaralandı.",
+    "synonyms": [
+      "hurt",
+      "wound"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-inspect",
+    "word": "Inspect",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪnˈspekt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To look at something closely, typically to check its quality; to examine.",
+    "translation": "Denetlemek, incelemek",
+    "example": "Officials inspected the factory for safety violations.",
+    "exampleTranslation": "Yetkililer fabrikayı güvenlik ihlalleri için denetledi.",
+    "synonyms": [
+      "examine",
+      "check"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-instance",
+    "word": "Instance",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈɪn.stəns/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3"
+    ],
+    "definition": "An example or single occurrence of something.",
+    "translation": "Örnek, durum",
+    "example": "This is a rare instance of the two companies cooperating.",
+    "exampleTranslation": "Bu, iki şirketin işbirliği yaptığı nadir bir örnek.",
+    "synonyms": [
+      "example",
+      "case"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-instead",
+    "word": "Instead",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ɪnˈsted/",
+    "level": "B1",
+    "lists": [],
+    "definition": "In place of something or someone else.",
+    "translation": "Onun yerine",
+    "example": "I don't have tea, so I'll have coffee instead.",
+    "exampleTranslation": "Çayım yok, o yüzden onun yerine kahve içeceğim.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-intend",
+    "word": "Intend",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪnˈtend/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To have a plan or purpose in mind; to mean to do something.",
+    "translation": "Niyetlenmek, amaçlamak",
+    "example": "She intends to study abroad next year.",
+    "exampleTranslation": "Gelecek yıl yurt dışında okumayı amaçlıyor.",
+    "synonyms": [
+      "mean",
+      "plan"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-interact",
+    "word": "Interact",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˌɪn.tərˈækt/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3"
+    ],
+    "definition": "To communicate with or react to each other.",
+    "translation": "Etkileşimde bulunmak",
+    "example": "The app lets users interact with each other in real time.",
+    "exampleTranslation": "Uygulama, kullanıcıların gerçek zamanlı olarak etkileşime girmesine olanak tanır.",
+    "synonyms": [
+      "communicate",
+      "engage"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-internal",
+    "word": "Internal",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ɪnˈtɜː.nəl/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Existing or situated within; inner.",
+    "translation": "İç, dahili",
+    "example": "The company has an internal review process for complaints.",
+    "exampleTranslation": "Şirketin şikayetler için dahili bir inceleme süreci var.",
+    "synonyms": [
+      "inner",
+      "interior"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-interview",
+    "word": "Interview",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈɪn.tər.vjuː/",
+    "level": "B1",
+    "lists": [],
+    "definition": "A formal meeting where someone is asked questions, such as for a job.",
+    "translation": "Mülakat / Görüşme",
+    "example": "She has a job interview tomorrow morning.",
+    "exampleTranslation": "Yarın sabah bir iş mülakatı var.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-invest",
+    "word": "Invest",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪnˈvest/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2"
+    ],
+    "definition": "To put money into something in the hope of making a profit.",
+    "translation": "Yatırım yapmak",
+    "example": "The company plans to invest heavily in renewable energy.",
+    "exampleTranslation": "Şirket yenilenebilir enerjiye ciddi yatırım yapmayı planlıyor.",
+    "synonyms": [
+      "fund",
+      "put money into"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-investigate",
+    "word": "Investigate",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪnˈves.tɪ.geɪt/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "analysis-verbs"
+    ],
+    "definition": "To carry out research or a systematic inquiry into something.",
+    "translation": "Araştırmak, soruşturmak",
+    "example": "Police are investigating the cause of the fire.",
+    "exampleTranslation": "Polis, yangının nedenini araştırıyor.",
+    "synonyms": [
+      "examine",
+      "probe"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-involve",
+    "word": "Involve",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ɪnˈvɒlv/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1",
+      "ielts-1000"
+    ],
+    "definition": "To include as a necessary part or result; to entail.",
+    "translation": "İçermek, dahil etmek, gerektirmek",
+    "example": "The plan involves a significant amount of risk.",
+    "exampleTranslation": "Plan, önemli ölçüde risk içeriyor.",
+    "synonyms": [
+      "entail",
+      "include"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-issue",
+    "word": "Issue",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈɪʃ.uː/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "An important topic for debate, or a problem.",
+    "translation": "Konu, sorun",
+    "example": "Climate change is a major issue facing the world today.",
+    "exampleTranslation": "İklim değişikliği bugün dünyanın karşı karşıya olduğu önemli bir sorun.",
+    "synonyms": [
+      "matter",
+      "problem"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-in-addition",
+    "word": "in addition",
+    "partOfSpeech": "Phrase",
+    "phonetic": "/ɪn əˈdɪʃ.ən/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "transition-addition"
+    ],
+    "definition": "Used to introduce a further point; also.",
+    "translation": "Ayrıca, buna ek olarak",
+    "example": "In addition, the report highlights several risks.",
+    "exampleTranslation": "Buna ek olarak, rapor birkaç riski vurguluyor.",
+    "synonyms": [
+      "additionally",
+      "furthermore"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-in-conclusion",
+    "word": "in conclusion",
+    "partOfSpeech": "Phrase",
+    "phonetic": "/ɪn kənˈkluː.ʒən/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "transition-conclusion"
+    ],
+    "definition": "Used to introduce a final summarising statement.",
+    "translation": "Sonuç olarak",
+    "example": "In conclusion, the evidence strongly supports the new policy.",
+    "exampleTranslation": "Sonuç olarak, kanıtlar yeni politikayı güçlü bir şekilde destekliyor.",
+    "synonyms": [
+      "to conclude",
+      "finally"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-in-fact",
+    "word": "in fact",
+    "partOfSpeech": "Phrase",
+    "phonetic": "/ɪn fækt/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "transition-emphasis"
+    ],
+    "definition": "Used to emphasise or confirm a statement, often adding more detail.",
+    "translation": "Aslında, hatta",
+    "example": "The plan worked; in fact, it exceeded all expectations.",
+    "exampleTranslation": "Plan işe yaradı; hatta tüm beklentileri aştı.",
+    "synonyms": [
+      "indeed",
+      "actually"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-in-particular",
+    "word": "in particular",
+    "partOfSpeech": "Phrase",
+    "phonetic": "/ɪn pəˈtɪk.jə.lər/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "transition-emphasis"
+    ],
+    "definition": "Especially; specifically.",
+    "translation": "Özellikle",
+    "example": "The exhibition, in particular the sculpture room, impressed visitors.",
+    "exampleTranslation": "Sergi, özellikle heykel odası, ziyaretçileri etkiledi.",
+    "synonyms": [
+      "especially",
+      "particularly"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-journal",
+    "word": "Journal",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈdʒɜː.nəl/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2"
+    ],
+    "definition": "A newspaper or magazine, especially one dealing with a specialist subject.",
+    "translation": "Dergi, günlük",
+    "example": "Her article was published in a leading medical journal.",
+    "exampleTranslation": "Makalesi önde gelen bir tıp dergisinde yayımlandı.",
+    "synonyms": [
+      "periodical",
+      "publication"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-lacking",
+    "word": "Lacking",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈlæk.ɪŋ/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Absent or deficient; missing.",
+    "translation": "Eksik, yoksun",
+    "example": "The plan is lacking in detail.",
+    "exampleTranslation": "Planda ayrıntı eksikliği var.",
+    "synonyms": [
+      "missing",
+      "deficient"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-layer",
+    "word": "Layer",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈleɪ.ər/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3"
+    ],
+    "definition": "A sheet or thickness of material covering a surface.",
+    "translation": "Katman",
+    "example": "The cake has three layers of chocolate sponge.",
+    "exampleTranslation": "Pastanın üç katman çikolatalı pandispanyası var.",
+    "synonyms": [
+      "level",
+      "coat"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-leading",
+    "word": "Leading",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈliː.dɪŋ/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Most important or in first position; main.",
+    "translation": "Önde gelen, başlıca",
+    "example": "She is one of the leading experts in the field.",
+    "exampleTranslation": "Alandaki önde gelen uzmanlardan biridir.",
+    "synonyms": [
+      "main",
+      "foremost"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-legal",
+    "word": "Legal",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈliː.gəl/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "Relating to the law or permitted by law.",
+    "translation": "Yasal, hukuki",
+    "example": "Smoking in restaurants is no longer legal here.",
+    "exampleTranslation": "Restoranlarda sigara içmek artık burada yasal değil.",
+    "synonyms": [
+      "lawful",
+      "legitimate"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-locate",
+    "word": "Locate",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ləʊˈkeɪt/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3"
+    ],
+    "definition": "To discover the exact position of something; to situate in a particular place.",
+    "translation": "Yerini bulmak, konumlandırmak",
+    "example": "Rescuers managed to locate the missing hikers by nightfall.",
+    "exampleTranslation": "Kurtarıcılar kayıp yürüyüşçüleri hava kararana kadar bulmayı başardı.",
+    "synonyms": [
+      "find",
+      "situate"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-loveable",
+    "word": "Loveable",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈlʌv.ə.bəl/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Inspiring or deserving love or affection; endearing.",
+    "translation": "Sevimli, sevilesi",
+    "example": "The puppy has a loveable, playful character.",
+    "exampleTranslation": "Yavru köpeğin sevimli, oyuncu bir karakteri var.",
+    "synonyms": [
+      "endearing",
+      "adorable"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-maintain",
+    "word": "Maintain",
+    "partOfSpeech": "Verb",
+    "phonetic": "/meɪnˈteɪn/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2",
+      "ielts-1000"
+    ],
+    "definition": "To keep something in good condition; to preserve.",
+    "translation": "Sürdürmek, korumak",
+    "example": "It's important to maintain a positive attitude.",
+    "exampleTranslation": "Olumlu bir tutumu sürdürmek önemlidir.",
+    "synonyms": [
+      "keep up",
+      "preserve"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-major",
+    "word": "Major",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈmeɪ.dʒər/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "Important, serious, or significant.",
+    "translation": "Büyük, önemli",
+    "example": "Traffic is a major problem in this city.",
+    "exampleTranslation": "Trafik bu şehirde büyük bir sorun.",
+    "synonyms": [
+      "significant",
+      "principal"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-manage",
+    "word": "Manage",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈmæn.ɪdʒ/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To succeed in doing something difficult, or to be in charge of something.",
+    "translation": "Yönetmek / Başarabilmek",
+    "example": "She manages a small team at work.",
+    "exampleTranslation": "İşte küçük bir ekibi yönetiyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-manmade",
+    "word": "Manmade",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈmæn.meɪd/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Made by people; not natural; artificial.",
+    "translation": "İnsan yapımı, yapay",
+    "example": "The lake is entirely manmade.",
+    "exampleTranslation": "Göl tamamen insan yapımıdır.",
+    "synonyms": [
+      "artificial",
+      "synthetic"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-matters",
+    "word": "Matters",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈmæt.əz/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Subjects or situations under consideration; things.",
+    "translation": "Meseleler, konular",
+    "example": "We need to discuss several matters before the deadline.",
+    "exampleTranslation": "Son tarihten önce birkaç konuyu görüşmemiz gerekiyor.",
+    "synonyms": [
+      "things",
+      "issues"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-meanwhile",
+    "word": "Meanwhile",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈmiːn.waɪl/",
+    "level": "B1",
+    "lists": [],
+    "definition": "During the same time, or until something happens.",
+    "translation": "Bu arada",
+    "example": "I'll cook dinner; meanwhile, you can set the table.",
+    "exampleTranslation": "Ben akşam yemeğini pişireyim; bu arada sen masayı hazırlayabilirsin.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-measure",
+    "word": "Measure",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈmeʒ.ər/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To find the size, length, or amount of something.",
+    "translation": "Ölçmek",
+    "example": "Can you measure the width of this table?",
+    "exampleTranslation": "Bu masanın genişliğini ölçebilir misin?",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-memory",
+    "word": "Memory",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈmem.ə.ri/",
+    "level": "B1",
+    "lists": [],
+    "definition": "The ability to remember things, or something you remember.",
+    "translation": "Hafıza / Anı",
+    "example": "I have a happy memory of that summer.",
+    "exampleTranslation": "O yazdan mutlu bir anım var.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-mend",
+    "word": "Mend",
+    "partOfSpeech": "Verb",
+    "phonetic": "/mend/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To repair something that is broken or damaged.",
+    "translation": "Onarmak, tamir etmek",
+    "example": "He spent the afternoon mending the fence.",
+    "exampleTranslation": "Öğleden sonrayı çiti onarmakla geçirdi.",
+    "synonyms": [
+      "repair",
+      "fix"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-method",
+    "word": "Method",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈmeθ.əd/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "A particular procedure for accomplishing something.",
+    "translation": "Yöntem",
+    "example": "Teachers are trying new methods to engage students.",
+    "exampleTranslation": "Öğretmenler öğrencileri meşgul etmek için yeni yöntemler deniyor.",
+    "synonyms": [
+      "Way",
+      "technique",
+      "approach"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-migrant",
+    "word": "Migrant",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈmaɪ.grənt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "A person who moves from one place to another, especially to find work.",
+    "translation": "Göçmen",
+    "example": "The farm employs seasonal migrant workers.",
+    "exampleTranslation": "Çiftlik mevsimlik göçmen işçiler çalıştırıyor.",
+    "synonyms": [
+      "drifter",
+      "wanderer"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-mild",
+    "word": "Mild",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/maɪld/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Not severe, harsh, or extreme; gentle in temperament.",
+    "translation": "Hafif, ılıman, yumuşak",
+    "example": "We had a mild winter this year.",
+    "exampleTranslation": "Bu yıl ılıman bir kış geçirdik.",
+    "synonyms": [
+      "gentle",
+      "moderate"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-minor",
+    "word": "Minor",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈmaɪ.nər/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3",
+      "ielts-1000"
+    ],
+    "definition": "Lesser in importance, seriousness, or size.",
+    "translation": "Küçük, önemsiz",
+    "example": "It's just a minor issue that we can fix quickly.",
+    "exampleTranslation": "Bu sadece hızlıca düzeltebileceğimiz küçük bir sorun.",
+    "synonyms": [
+      "small",
+      "slight",
+      "lesser"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-miserable",
+    "word": "Miserable",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈmɪz.ər.ə.bəl/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Very unhappy or uncomfortable; depressing.",
+    "translation": "Perişan, sefil, kasvetli",
+    "example": "The weather was miserable throughout our trip.",
+    "exampleTranslation": "Gezimiz boyunca hava kasvetliydi.",
+    "synonyms": [
+      "depressing",
+      "wretched"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-misery",
+    "word": "Misery",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈmɪz.ər.i/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "A state of great unhappiness or suffering; distress.",
+    "translation": "Sefalet, ıstırap",
+    "example": "The war brought years of misery to the region.",
+    "exampleTranslation": "Savaş bölgeye yıllarca süren sefalet getirdi.",
+    "synonyms": [
+      "distress",
+      "suffering"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-moderate",
+    "word": "Moderate",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈmɒd.ər.ət/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Average in amount, intensity, or degree; not extreme; lenient.",
+    "translation": "Ilımlı, orta",
+    "example": "The politician holds fairly moderate views.",
+    "exampleTranslation": "Politikacı oldukça ılımlı görüşlere sahip.",
+    "synonyms": [
+      "lenient",
+      "reasonable"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-moderately",
+    "word": "Moderately",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈmɒd.ər.ət.li/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To a moderate extent; fairly; reasonably.",
+    "translation": "Orta düzeyde, makul ölçüde",
+    "example": "The restaurant was moderately busy on a weekday evening.",
+    "exampleTranslation": "Restoran, hafta içi akşamı orta düzeyde kalabalıktı.",
+    "synonyms": [
+      "reasonably",
+      "fairly"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-moral",
+    "word": "Moral",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈmɒr.əl/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Concerned with the principles of right and wrong behaviour; ethical.",
+    "translation": "Ahlaki, etik",
+    "example": "The story teaches an important moral lesson.",
+    "exampleTranslation": "Hikaye önemli bir ahlaki ders veriyor.",
+    "synonyms": [
+      "ethical",
+      "virtuous"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-murderer",
+    "word": "Murderer",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈmɜː.dər.ər/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "A person who commits murder; an assassin.",
+    "translation": "Katil",
+    "example": "The police finally caught the murderer.",
+    "exampleTranslation": "Polis sonunda katili yakaladı.",
+    "synonyms": [
+      "assassin",
+      "killer"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-mysterious",
+    "word": "Mysterious",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/mɪˈstɪə.ri.əs/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Difficult or impossible to understand or explain; strange.",
+    "translation": "Gizemli",
+    "example": "The old house has a mysterious atmosphere at night.",
+    "exampleTranslation": "Eski ev geceleri gizemli bir atmosfere sahip.",
+    "synonyms": [
+      "occult",
+      "puzzling"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-native",
+    "word": "Native",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈneɪ.tɪv/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "A person born in a particular place; a local.",
+    "translation": "Yerli, o bölgeden olan kişi",
+    "example": "As a native of the city, she knew all the best spots.",
+    "exampleTranslation": "Şehrin yerlisi olarak en iyi yerleri biliyordu.",
+    "synonyms": [
+      "local",
+      "inhabitant"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-near",
+    "word": "Near",
+    "partOfSpeech": "Verb",
+    "phonetic": "/nɪər/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To approach or come close to.",
+    "translation": "Yaklaşmak",
+    "example": "The ship neared the harbour just before sunset.",
+    "exampleTranslation": "Gemi gün batımından hemen önce limana yaklaştı.",
+    "synonyms": [
+      "approach",
+      "come close to"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-nearly",
+    "word": "Nearly",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈnɪr.li/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Almost, but not completely.",
+    "translation": "Neredeyse",
+    "example": "It's nearly midnight; we should go home.",
+    "exampleTranslation": "Neredeyse gece yarısı; eve gitmeliyiz.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-necessary",
+    "word": "Necessary",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈnes.ə.ser.i/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Needed in order to achieve something.",
+    "translation": "Gerekli",
+    "example": "It's necessary to book a table in advance.",
+    "exampleTranslation": "Önceden masa ayırtmak gerekli.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-neutral",
+    "word": "Neutral",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈnjuː.trəl/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Not supporting either side in a conflict; impartial.",
+    "translation": "Tarafsız",
+    "example": "Switzerland remained neutral during the war.",
+    "exampleTranslation": "İsviçre savaş sırasında tarafsız kaldı.",
+    "synonyms": [
+      "impartial",
+      "unbiased"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-non-stop",
+    "word": "Non-stop",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˌnɒnˈstɒp/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Continuing without a pause or break.",
+    "translation": "Aralıksız, durmadan",
+    "example": "They talked non-stop for three hours.",
+    "exampleTranslation": "Üç saat boyunca aralıksız konuştular.",
+    "synonyms": [
+      "continuous",
+      "constant"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-notice",
+    "word": "Notice",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈnoʊ.tɪs/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To see or become aware of something.",
+    "translation": "Fark etmek",
+    "example": "I noticed a new café on my way to work.",
+    "exampleTranslation": "İşe giderken yeni bir kafe fark ettim.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-notify",
+    "word": "Notify",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈnəʊ.tɪ.faɪ/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To inform someone of something, typically in a formal way.",
+    "translation": "Bilgilendirmek, haber vermek",
+    "example": "Please notify us if your address changes.",
+    "exampleTranslation": "Adresiniz değişirse lütfen bize bildirin.",
+    "synonyms": [
+      "inform",
+      "advise"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-obvious",
+    "word": "Obvious",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈɑːb.vi.əs/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Easy to see or understand; very clear.",
+    "translation": "Belirgin / Açık",
+    "example": "It was obvious that she was tired.",
+    "exampleTranslation": "Yorgun olduğu çok belliydi.",
+    "synonyms": [
+      "Clear"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-occur",
+    "word": "Occur",
+    "partOfSpeech": "Verb",
+    "phonetic": "/əˈkɜːr/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "To happen or take place.",
+    "translation": "Meydana gelmek, olmak",
+    "example": "The accident occurred late at night.",
+    "exampleTranslation": "Kaza gece geç saatlerde meydana geldi.",
+    "synonyms": [
+      "happen",
+      "take place"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-off-season",
+    "word": "Off-season",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈɒf.siː.zən/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "The period when a place is least visited or an activity least practised.",
+    "translation": "Ölü sezon, düşük sezon",
+    "example": "Prices are much lower during the off-season.",
+    "exampleTranslation": "Fiyatlar ölü sezonda çok daha düşüktür.",
+    "synonyms": [
+      "low season"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-on-the-other-hand",
+    "word": "on the other hand",
+    "partOfSpeech": "Phrase",
+    "phonetic": "/ɒn ðə ˈʌð.ər hænd/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "transition-contrast"
+    ],
+    "definition": "Used to introduce a contrasting point of view.",
+    "translation": "Öte yandan",
+    "example": "Renting is flexible; on the other hand, buying builds equity.",
+    "exampleTranslation": "Kiralamak esnektir; öte yandan satın almak öz sermaye oluşturur.",
+    "synonyms": [
+      "conversely",
+      "in contrast"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-operate",
+    "word": "Operate",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈɒp.ər.eɪt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To work or function; to control the working of a machine or process.",
+    "translation": "Çalışmak, işletmek",
+    "example": "The factory operates around the clock.",
+    "exampleTranslation": "Fabrika gece gündüz çalışıyor.",
+    "synonyms": [
+      "function",
+      "run"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-opinion",
+    "word": "Opinion",
+    "partOfSpeech": "Noun",
+    "phonetic": "/əˈpɪn.jən/",
+    "level": "B1",
+    "lists": [],
+    "definition": "A person's thoughts or feelings about something, rather than a fact.",
+    "translation": "Görüş / Fikir",
+    "example": "In my opinion, this is the best restaurant in town.",
+    "exampleTranslation": "Bence bu, şehirdeki en iyi restoran.",
+    "synonyms": [
+      "View"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-opportunity",
+    "word": "Opportunity",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˌɑː.pərˈtuː.nə.ti/",
+    "level": "B1",
+    "lists": [],
+    "definition": "A chance to do something, especially something good.",
+    "translation": "Fırsat",
+    "example": "Studying abroad was a great opportunity for her.",
+    "exampleTranslation": "Yurt dışında okumak onun için harika bir fırsattı.",
+    "synonyms": [
+      "Chance"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-organic",
+    "word": "Organic",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ɔːˈgæn.ɪk/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Relating to living matter; produced without synthetic chemicals; biological.",
+    "translation": "Organik",
+    "example": "They only buy organic vegetables from the local market.",
+    "exampleTranslation": "Yerel pazardan sadece organik sebze alıyorlar.",
+    "synonyms": [
+      "biological",
+      "natural"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-ornament",
+    "word": "Ornament",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈɔː.nə.mənt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "An object used to decorate a room or a person; a decoration.",
+    "translation": "Süs, süs eşyası",
+    "example": "They hung ornaments on the Christmas tree.",
+    "exampleTranslation": "Noel ağacına süs eşyaları astılar.",
+    "synonyms": [
+      "decoration",
+      "adornment"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-otherwise",
+    "word": "Otherwise",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈʌð.ər.waɪz/",
+    "level": "B1",
+    "lists": [],
+    "definition": "If not; under other circumstances.",
+    "translation": "Aksi takdirde / Yoksa",
+    "example": "Hurry up, otherwise we'll miss the train.",
+    "exampleTranslation": "Acele et, yoksa treni kaçıracağız.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-overall",
+    "word": "Overall",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˌəʊ.vərˈɔːl/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "transition-conclusion"
+    ],
+    "definition": "Taking everything into account; in general.",
+    "translation": "Genel olarak",
+    "example": "Overall, the trip was a great success.",
+    "exampleTranslation": "Genel olarak, gezi büyük bir başarıydı.",
+    "synonyms": [
+      "in general",
+      "on the whole"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-overseas",
+    "word": "Overseas",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˌəʊ.vəˈsiːz/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "In or to a foreign country, especially one across the sea; abroad.",
+    "translation": "Denizaşırı, yurt dışında",
+    "example": "He moved overseas to study engineering.",
+    "exampleTranslation": "Mühendislik okumak için yurt dışına taşındı.",
+    "synonyms": [
+      "abroad",
+      "internationally"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-participate",
+    "word": "Participate",
+    "partOfSpeech": "Verb",
+    "phonetic": "/pɑːˈtɪs.ɪ.peɪt/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2"
+    ],
+    "definition": "To take part in an activity or event.",
+    "translation": "Katılmak",
+    "example": "All students are encouraged to participate in the discussion.",
+    "exampleTranslation": "Tüm öğrenciler tartışmaya katılmaya teşvik edilir.",
+    "synonyms": [
+      "take part",
+      "join in"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-particular",
+    "word": "Particular",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/pəˈtɪk.jə.lər/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Used to single out an individual member of a group; specific.",
+    "translation": "Belirli, özel",
+    "example": "This particular model is no longer in production.",
+    "exampleTranslation": "Bu belirli model artık üretilmiyor.",
+    "synonyms": [
+      "specific",
+      "certain"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-particularly",
+    "word": "Particularly",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/pəˈtɪk.jə.lə.li/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "transition-example"
+    ],
+    "definition": "To a higher degree than is usual or average; especially.",
+    "translation": "Özellikle",
+    "example": "The exam was particularly difficult this year.",
+    "exampleTranslation": "Sınav bu yıl özellikle zordu.",
+    "synonyms": [
+      "especially",
+      "notably"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-personality",
+    "word": "Personality",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˌpɜːr.səˈnæl.ə.ti/",
+    "level": "B1",
+    "lists": [],
+    "definition": "The particular combination of qualities that makes a person who they are.",
+    "translation": "Kişilik",
+    "example": "She has a warm and friendly personality.",
+    "exampleTranslation": "Sıcak ve arkadaş canlısı bir kişiliği var.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-pocket-book",
+    "word": "Pocket book",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈpɒk.ɪt bʊk/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "A small notebook that fits in a pocket.",
+    "translation": "Cep defteri",
+    "example": "She jotted the address down in her pocket book.",
+    "exampleTranslation": "Adresi cep defterine not aldı.",
+    "synonyms": [
+      "notebook"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-policy",
+    "word": "Policy",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈpɒl.ə.si/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "A course of action adopted by a government, business, or institution.",
+    "translation": "Politika, ilke",
+    "example": "The company changed its return policy last month.",
+    "exampleTranslation": "Şirket geçen ay iade politikasını değiştirdi.",
+    "synonyms": [
+      "strategy",
+      "guideline"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-population",
+    "word": "Population",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˌpɑː.pjəˈleɪ.ʃən/",
+    "level": "B1",
+    "lists": [],
+    "definition": "The number of people who live in a place.",
+    "translation": "Nüfus",
+    "example": "The population of the city has grown a lot.",
+    "exampleTranslation": "Şehrin nüfusu çok arttı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-possible",
+    "word": "Possible",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈpɑː.sə.bəl/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Able to happen, exist, or be done.",
+    "translation": "Mümkün",
+    "example": "Is it possible to change my flight to an earlier time?",
+    "exampleTranslation": "Uçuşumu daha erken bir saate değiştirmem mümkün mü?",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-practically",
+    "word": "Practically",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈpræk.tɪ.kli/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Almost; virtually; in a practical way.",
+    "translation": "Neredeyse, pratik olarak",
+    "example": "The theatre was practically empty on a Monday night.",
+    "exampleTranslation": "Tiyatro pazartesi akşamı neredeyse boştu.",
+    "synonyms": [
+      "virtually",
+      "almost"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-praise",
+    "word": "Praise",
+    "partOfSpeech": "Noun",
+    "phonetic": "/preɪz/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "The expression of approval or admiration; a compliment.",
+    "translation": "Övgü",
+    "example": "The teacher gave the student praise for his effort.",
+    "exampleTranslation": "Öğretmen, öğrenciye çabası için övgüde bulundu.",
+    "synonyms": [
+      "compliment",
+      "commendation"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-predict",
+    "word": "Predict",
+    "partOfSpeech": "Verb",
+    "phonetic": "/prɪˈdɪkt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To say that something will happen in the future.",
+    "translation": "Tahmin etmek",
+    "example": "It's difficult to predict the weather next month.",
+    "exampleTranslation": "Gelecek ayki hava durumunu tahmin etmek zor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-prevent",
+    "word": "Prevent",
+    "partOfSpeech": "Verb",
+    "phonetic": "/prɪˈvent/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To stop something from happening.",
+    "translation": "Önlemek",
+    "example": "Regular exercise can help prevent illness.",
+    "exampleTranslation": "Düzenli egzersiz hastalığı önlemeye yardımcı olabilir.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-previously",
+    "word": "Previously",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈpriː.vi.əs.li/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "transition-sequence"
+    ],
+    "definition": "At a previous or earlier time.",
+    "translation": "Daha önce, önceden",
+    "example": "The building was previously used as a warehouse.",
+    "exampleTranslation": "Bina daha önce depo olarak kullanılıyordu.",
+    "synonyms": [
+      "formerly",
+      "before"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-primary",
+    "word": "Primary",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈpraɪ.mə.ri/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2"
+    ],
+    "definition": "Of chief importance; first in order or rank.",
+    "translation": "Birincil, asıl",
+    "example": "Our primary concern is the safety of our staff.",
+    "exampleTranslation": "Birincil endişemiz personelimizin güvenliğidir.",
+    "synonyms": [
+      "main",
+      "principal"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-priority",
+    "word": "Priority",
+    "partOfSpeech": "Noun",
+    "phonetic": "/praɪˈɒr.ə.ti/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "A thing regarded as more important than others; precedence.",
+    "translation": "Öncelik",
+    "example": "Safety is our number one priority.",
+    "exampleTranslation": "Güvenlik bizim bir numaralı önceliğimizdir.",
+    "synonyms": [
+      "precedence",
+      "importance"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-process",
+    "word": "Process",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈprəʊ.ses/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "A series of actions taken to achieve a particular result.",
+    "translation": "Süreç",
+    "example": "Learning a language is a gradual process.",
+    "exampleTranslation": "Bir dil öğrenmek kademeli bir süreçtir.",
+    "synonyms": [
+      "procedure",
+      "method"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-produce",
+    "word": "Produce",
+    "partOfSpeech": "Verb",
+    "phonetic": "/prəˈduːs/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To make or grow something.",
+    "translation": "Üretmek",
+    "example": "This factory produces thousands of cars every year.",
+    "exampleTranslation": "Bu fabrika her yıl binlerce araba üretiyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-protect",
+    "word": "Protect",
+    "partOfSpeech": "Verb",
+    "phonetic": "/prəˈtekt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To keep someone or something safe from harm.",
+    "translation": "Korumak",
+    "example": "Parents want to protect their children from danger.",
+    "exampleTranslation": "Ebeveynler çocuklarını tehlikeden korumak ister.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-proud",
+    "word": "Proud",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/praʊd/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Feeling pleased about something you or someone else has achieved.",
+    "translation": "Gururlu",
+    "example": "My parents are very proud of my achievements.",
+    "exampleTranslation": "Ailem başarılarımla çok gurur duyuyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-provide",
+    "word": "Provide",
+    "partOfSpeech": "Verb",
+    "phonetic": "/prəˈvaɪd/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To give someone something that they need.",
+    "translation": "Sağlamak",
+    "example": "The hotel provides free breakfast for guests.",
+    "exampleTranslation": "Otel misafirlere ücretsiz kahvaltı sağlıyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-publish",
+    "word": "Publish",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈpʌb.lɪʃ/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3"
+    ],
+    "definition": "To prepare and issue a book, journal, or other material for public sale or distribution.",
+    "translation": "Yayımlamak",
+    "example": "The results were published in a scientific journal.",
+    "exampleTranslation": "Sonuçlar bilimsel bir dergide yayımlandı.",
+    "synonyms": [
+      "release",
+      "print"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-purchase",
+    "word": "Purchase",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈpɜː.tʃəs/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2"
+    ],
+    "definition": "To buy something.",
+    "translation": "Satın almak",
+    "example": "The museum purchased the painting for a record price.",
+    "exampleTranslation": "Müze tabloyu rekor bir fiyata satın aldı.",
+    "synonyms": [
+      "buy",
+      "acquire"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-purpose",
+    "word": "Purpose",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈpɜːr.pəs/",
+    "level": "B1",
+    "lists": [],
+    "definition": "The reason why something is done or exists.",
+    "translation": "Amaç",
+    "example": "The purpose of the meeting is to discuss the new project.",
+    "exampleTranslation": "Toplantının amacı yeni projeyi görüşmek.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-put-back",
+    "word": "Put back",
+    "partOfSpeech": "Phrase",
+    "phonetic": "/pʊt bæk/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To postpone or delay an event to a later time.",
+    "translation": "Ertelemek",
+    "example": "The meeting was put back to next Friday.",
+    "exampleTranslation": "Toplantı gelecek cumaya ertelendi.",
+    "synonyms": [
+      "postpone",
+      "delay"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-range",
+    "word": "Range",
+    "partOfSpeech": "Noun",
+    "phonetic": "/reɪndʒ/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2"
+    ],
+    "definition": "A set of different things of the same general type; the limits of variation.",
+    "translation": "Aralık, çeşit",
+    "example": "The shop sells a wide range of products.",
+    "exampleTranslation": "Mağaza çok çeşitli ürünler satıyor.",
+    "synonyms": [
+      "variety",
+      "spectrum"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-rare",
+    "word": "Rare",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/rer/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Not happening or existing often; uncommon.",
+    "translation": "Nadir",
+    "example": "Snow is quite rare in this part of the country.",
+    "exampleTranslation": "Ülkenin bu bölgesinde kar oldukça nadirdir.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-react",
+    "word": "React",
+    "partOfSpeech": "Verb",
+    "phonetic": "/riˈækt/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3"
+    ],
+    "definition": "To respond or behave in a particular way as a result of something.",
+    "translation": "Tepki vermek",
+    "example": "Investors reacted quickly to the news.",
+    "exampleTranslation": "Yatırımcılar habere hızla tepki verdi.",
+    "synonyms": [
+      "respond",
+      "act"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-realize",
+    "word": "Realize",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈriː.ə.laɪz/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To become aware of or understand something.",
+    "translation": "Fark etmek / Anlamak",
+    "example": "I didn't realize how late it was.",
+    "exampleTranslation": "Saatin bu kadar geç olduğunu fark etmemiştim.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-recently",
+    "word": "Recently",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈriː.sənt.li/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Not long ago.",
+    "translation": "Son zamanlarda / Yakın zamanda",
+    "example": "I saw her recently at the supermarket.",
+    "exampleTranslation": "Onu yakın zamanda süpermarkette gördüm.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-recognize",
+    "word": "Recognize",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈrek.əg.naɪz/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To know someone or something because you have seen them before.",
+    "translation": "Tanımak",
+    "example": "I almost didn't recognize you with your new haircut.",
+    "exampleTranslation": "Yeni saç kesiminle seni neredeyse tanıyamayacaktım.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-recommend",
+    "word": "Recommend",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˌrek.əˈmend/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To say that something is good or suitable.",
+    "translation": "Tavsiye etmek",
+    "example": "Can you recommend a good restaurant nearby?",
+    "exampleTranslation": "Yakınlarda iyi bir restoran tavsiye edebilir misin?",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-reduce",
+    "word": "Reduce",
+    "partOfSpeech": "Verb",
+    "phonetic": "/rɪˈduːs/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To make something smaller or less in amount.",
+    "translation": "Azaltmak",
+    "example": "We are trying to reduce our costs this year.",
+    "exampleTranslation": "Bu yıl maliyetlerimizi azaltmaya çalışıyoruz.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-refuse",
+    "word": "Refuse",
+    "partOfSpeech": "Verb",
+    "phonetic": "/rɪˈfjuːz/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To say that you will not do or accept something.",
+    "translation": "Reddetmek",
+    "example": "He refused to answer the question.",
+    "exampleTranslation": "Soruyu cevaplamayı reddetti.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-register",
+    "word": "Register",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈredʒ.ɪ.stər/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3"
+    ],
+    "definition": "To enter one's name officially on a list; to record formally.",
+    "translation": "Kaydolmak, kaydetmek",
+    "example": "Students must register for the course by Friday.",
+    "exampleTranslation": "Öğrenciler cuma gününe kadar derse kaydolmalıdır.",
+    "synonyms": [
+      "enrol",
+      "record"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-relationship",
+    "word": "Relationship",
+    "partOfSpeech": "Noun",
+    "phonetic": "/rɪˈleɪ.ʃən.ʃɪp/",
+    "level": "B1",
+    "lists": [],
+    "definition": "The way in which two or more people or things are connected.",
+    "translation": "İlişki",
+    "example": "They have a close relationship with their neighbors.",
+    "exampleTranslation": "Komşularıyla yakın bir ilişkileri var.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-reliable",
+    "word": "Reliable",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/rɪˈlaɪ.ə.bəl/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Consistently good in quality or performance; dependable.",
+    "translation": "Güvenilir",
+    "example": "This car has proven to be very reliable over the years.",
+    "exampleTranslation": "Bu araba yıllar içinde çok güvenilir olduğunu kanıtladı.",
+    "synonyms": [
+      "dependable",
+      "trustworthy"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-rely",
+    "word": "Rely",
+    "partOfSpeech": "Verb",
+    "phonetic": "/rɪˈlaɪ/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3"
+    ],
+    "definition": "To depend on someone or something with full trust.",
+    "translation": "Güvenmek, dayanmak",
+    "example": "Small businesses often rely on local customers.",
+    "exampleTranslation": "Küçük işletmeler genellikle yerel müşterilere güvenir.",
+    "synonyms": [
+      "depend",
+      "count on"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-remainder",
+    "word": "Remainder",
+    "partOfSpeech": "Noun",
+    "phonetic": "/rɪˈmeɪn.dər/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "The part of something that is left when the rest has gone or been used; the rest.",
+    "translation": "Geriye kalan, kalan kısım",
+    "example": "She spent the remainder of the afternoon reading.",
+    "exampleTranslation": "Öğleden sonranın geri kalanını okuyarak geçirdi.",
+    "synonyms": [
+      "the rest",
+      "remnant"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-remark",
+    "word": "Remark",
+    "partOfSpeech": "Noun",
+    "phonetic": "/rɪˈmɑːk/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "A written or spoken comment.",
+    "translation": "Yorum, söz",
+    "example": "He made a sarcastic remark about her cooking.",
+    "exampleTranslation": "Yemek pişirmesiyle ilgili alaycı bir yorum yaptı.",
+    "synonyms": [
+      "comment",
+      "observation"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-remote",
+    "word": "Remote",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/rɪˈməʊt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Far away in distance; isolated.",
+    "translation": "Uzak, tenha, izole",
+    "example": "They live in a remote village in the mountains.",
+    "exampleTranslation": "Dağlardaki tenha bir köyde yaşıyorlar.",
+    "synonyms": [
+      "isolated",
+      "far-off"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-replace",
+    "word": "Replace",
+    "partOfSpeech": "Verb",
+    "phonetic": "/rɪˈpleɪs/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To put a new or different thing in the place of another.",
+    "translation": "Değiştirmek (yenisiyle)",
+    "example": "We need to replace the old computer soon.",
+    "exampleTranslation": "Eski bilgisayarı yakında değiştirmemiz gerekiyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-require",
+    "word": "Require",
+    "partOfSpeech": "Verb",
+    "phonetic": "/rɪˈkwaɪər/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "To need something for a particular purpose.",
+    "translation": "Gerektirmek, ihtiyaç duymak",
+    "example": "This task requires patience and attention to detail.",
+    "exampleTranslation": "Bu görev sabır ve detaylara dikkat gerektiriyor.",
+    "synonyms": [
+      "need",
+      "demand"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-research",
+    "word": "Research",
+    "partOfSpeech": "Noun",
+    "phonetic": "/rɪˈsɜːtʃ/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "Careful study of a subject to discover new facts or information.",
+    "translation": "Araştırma",
+    "example": "The university received a grant to fund cancer research.",
+    "exampleTranslation": "Üniversite, kanser araştırmasını finanse etmek için bir hibe aldı.",
+    "synonyms": [
+      "investigation",
+      "study"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-resource",
+    "word": "Resource",
+    "partOfSpeech": "Noun",
+    "phonetic": "/rɪˈzɔːs/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2"
+    ],
+    "definition": "A stock or supply of materials or assets that can be drawn on.",
+    "translation": "Kaynak",
+    "example": "Water is a precious natural resource.",
+    "exampleTranslation": "Su değerli bir doğal kaynaktır.",
+    "synonyms": [
+      "asset",
+      "supply"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-respond",
+    "word": "Respond",
+    "partOfSpeech": "Verb",
+    "phonetic": "/rɪˈspɒnd/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1",
+      "ielts-1000"
+    ],
+    "definition": "To say something in reply; to reply.",
+    "translation": "Yanıtlamak, cevap vermek",
+    "example": "She quickly responded to my email.",
+    "exampleTranslation": "E-postama hızlıca yanıt verdi.",
+    "synonyms": [
+      "reply",
+      "react",
+      "answer"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-responsibility",
+    "word": "Responsibility",
+    "partOfSpeech": "Noun",
+    "phonetic": "/rɪˌspɑːn.səˈbɪl.ə.ti/",
+    "level": "B1",
+    "lists": [],
+    "definition": "A duty to deal with or take care of something.",
+    "translation": "Sorumluluk",
+    "example": "Taking care of the dog is my daughter's responsibility.",
+    "exampleTranslation": "Köpeğe bakmak kızımın sorumluluğu.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-result",
+    "word": "Result",
+    "partOfSpeech": "Noun",
+    "phonetic": "/rɪˈzʌlt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Something that happens or exists because of something else.",
+    "translation": "Sonuç",
+    "example": "She was happy with the results of the exam.",
+    "exampleTranslation": "Sınavın sonuçlarından memnun kaldı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-rewarding",
+    "word": "Rewarding",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/rɪˈwɔːr.dɪŋ/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Giving satisfaction or a sense of achievement.",
+    "translation": "Tatmin edici / Ödüllendirici",
+    "example": "Teaching can be a very rewarding job.",
+    "exampleTranslation": "Öğretmenlik çok tatmin edici bir iş olabilir.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-salary",
+    "word": "Salary",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈsæl.ə.ri/",
+    "level": "B1",
+    "lists": [],
+    "definition": "A fixed amount of money that an employee is paid regularly.",
+    "translation": "Maaş",
+    "example": "She received a higher salary in her new job.",
+    "exampleTranslation": "Yeni işinde daha yüksek bir maaş aldı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-secure",
+    "word": "Secure",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/sɪˈkjʊər/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2"
+    ],
+    "definition": "Fixed firmly; free from danger or risk.",
+    "translation": "Güvenli, sağlam",
+    "example": "Make sure the ladder is secure before climbing it.",
+    "exampleTranslation": "Merdivene tırmanmadan önce sağlam olduğundan emin olun.",
+    "synonyms": [
+      "safe",
+      "protected"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-seek",
+    "word": "Seek",
+    "partOfSpeech": "Verb",
+    "phonetic": "/siːk/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2"
+    ],
+    "definition": "To attempt to find or obtain something.",
+    "translation": "Aramak, talep etmek",
+    "example": "The company is seeking new investors.",
+    "exampleTranslation": "Şirket yeni yatırımcılar arıyor.",
+    "synonyms": [
+      "look for",
+      "pursue"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-select",
+    "word": "Select",
+    "partOfSpeech": "Verb",
+    "phonetic": "/sɪˈlekt/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2",
+      "ielts-1000"
+    ],
+    "definition": "To carefully choose from a range of possibilities.",
+    "translation": "Seçmek",
+    "example": "Please select a language before continuing.",
+    "exampleTranslation": "Devam etmeden önce lütfen bir dil seçin.",
+    "synonyms": [
+      "choose",
+      "pick"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-selection",
+    "word": "Selection",
+    "partOfSpeech": "Noun",
+    "phonetic": "/sɪˈlek.ʃən/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "The action of carefully choosing; a range of choices.",
+    "translation": "Seçim, seçki",
+    "example": "The store offers a wide selection of cheeses.",
+    "exampleTranslation": "Mağaza geniş bir peynir seçkisi sunuyor.",
+    "synonyms": [
+      "choice",
+      "range"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-shift",
+    "word": "Shift",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ʃɪft/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3"
+    ],
+    "definition": "A change in position, direction, or emphasis; a period of work.",
+    "translation": "Değişim, kayma; vardiya",
+    "example": "There has been a shift in public opinion on the issue.",
+    "exampleTranslation": "Konu hakkındaki kamuoyu görüşünde bir değişim oldu.",
+    "synonyms": [
+      "change",
+      "move"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-significant",
+    "word": "Significant",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/sɪgˈnɪf.ɪ.kənt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Important or large enough to be noticed.",
+    "translation": "Önemli / Kayda değer",
+    "example": "There has been a significant increase in prices.",
+    "exampleTranslation": "Fiyatlarda önemli bir artış oldu.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-similarly",
+    "word": "Similarly",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈsɪm.ɪ.lə.li/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "transition-addition"
+    ],
+    "definition": "In a similar way; likewise.",
+    "translation": "Benzer şekilde",
+    "example": "Similarly, other studies have found comparable results.",
+    "exampleTranslation": "Benzer şekilde, diğer çalışmalar da benzer sonuçlar buldu.",
+    "synonyms": [
+      "likewise",
+      "in the same way"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-sincere",
+    "word": "Sincere",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/sɪnˈsɪər/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Free from pretence or deceit; honest.",
+    "translation": "Samimi, içten",
+    "example": "Please accept my sincere apologies for the delay.",
+    "exampleTranslation": "Gecikme için lütfen içten özürlerimi kabul edin.",
+    "synonyms": [
+      "honest",
+      "genuine"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-situation",
+    "word": "Situation",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˌsɪtʃ.uˈeɪ.ʃən/",
+    "level": "B1",
+    "lists": [],
+    "definition": "The set of things that are happening at a particular time and place.",
+    "translation": "Durum",
+    "example": "We need a plan for this difficult situation.",
+    "exampleTranslation": "Bu zor durum için bir plana ihtiyacımız var.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-skill",
+    "word": "Skill",
+    "partOfSpeech": "Noun",
+    "phonetic": "/skɪl/",
+    "level": "B1",
+    "lists": [],
+    "definition": "The ability to do something well, usually gained through training.",
+    "translation": "Beceri / Yetenek",
+    "example": "Cooking is a useful skill to have.",
+    "exampleTranslation": "Yemek pişirmek sahip olunması faydalı bir beceri.",
+    "synonyms": [
+      "Ability"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-skull",
+    "word": "Skull",
+    "partOfSpeech": "Noun",
+    "phonetic": "/skʌl/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "The bony framework of the head that encloses the brain.",
+    "translation": "Kafatası",
+    "example": "The X-ray showed no fracture in the skull.",
+    "exampleTranslation": "Röntgen kafatasında herhangi bir kırık göstermedi.",
+    "synonyms": [
+      "cranium"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-society",
+    "word": "Society",
+    "partOfSpeech": "Noun",
+    "phonetic": "/səˈsaɪ.ə.ti/",
+    "level": "B1",
+    "lists": [],
+    "definition": "All the people who live in a particular country or area, considered together.",
+    "translation": "Toplum",
+    "example": "Technology has changed modern society a lot.",
+    "exampleTranslation": "Teknoloji modern toplumu çok değiştirdi.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-source",
+    "word": "Source",
+    "partOfSpeech": "Noun",
+    "phonetic": "/sɔːs/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "The point of origin of something.",
+    "translation": "Kaynak",
+    "example": "Solar power is a renewable source of energy.",
+    "exampleTranslation": "Güneş enerjisi yenilenebilir bir enerji kaynağıdır.",
+    "synonyms": [
+      "origin",
+      "root"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-specific",
+    "word": "Specific",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/spəˈsɪf.ɪk/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1"
+    ],
+    "definition": "Clearly defined or particular; precise.",
+    "translation": "Belirli, özgü",
+    "example": "Please give specific examples to support your argument.",
+    "exampleTranslation": "Lütfen argümanınızı desteklemek için belirli örnekler verin.",
+    "synonyms": [
+      "particular",
+      "precise"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-stable",
+    "word": "Stable",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈsteɪ.bəl/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Not likely to change or fail; steady.",
+    "translation": "İstikrarlı, sabit",
+    "example": "The patient's condition is now stable.",
+    "exampleTranslation": "Hastanın durumu şu anda istikrarlı.",
+    "synonyms": [
+      "steady",
+      "secure"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-steady",
+    "word": "Steady",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈsted.i/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Firmly fixed or supported; regular; not changing.",
+    "translation": "Sabit, düzenli, istikrarlı",
+    "example": "The company has shown steady growth over the past decade.",
+    "exampleTranslation": "Şirket son on yılda istikrarlı bir büyüme gösterdi.",
+    "synonyms": [
+      "regular",
+      "stable"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-stressful",
+    "word": "Stressful",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈstres.fəl/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Causing worry or mental pressure.",
+    "translation": "Stresli",
+    "example": "Moving to a new house can be very stressful.",
+    "exampleTranslation": "Yeni bir eve taşınmak çok stresli olabilir.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-succeed",
+    "word": "Succeed",
+    "partOfSpeech": "Verb",
+    "phonetic": "/səkˈsiːd/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To achieve what you were trying to do.",
+    "translation": "Başarmak / Başarılı olmak",
+    "example": "She succeeded in passing all her exams.",
+    "exampleTranslation": "Tüm sınavlarını geçmeyi başardı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-successful",
+    "word": "Successful",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/səkˈses.fəl/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Having achieved a desired result or aim.",
+    "translation": "Başarılı",
+    "example": "She is a successful businesswoman with her own company.",
+    "exampleTranslation": "Kendi şirketi olan başarılı bir iş kadını.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-sufficient",
+    "word": "Sufficient",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/səˈfɪʃ.ənt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Enough for a particular purpose.",
+    "translation": "Yeterli",
+    "example": "We don't have sufficient time to finish this today.",
+    "exampleTranslation": "Bunu bugün bitirmek için yeterli zamanımız yok.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-suggest",
+    "word": "Suggest",
+    "partOfSpeech": "Verb",
+    "phonetic": "/səgˈdʒest/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To offer an idea or plan for someone to consider.",
+    "translation": "Önermek",
+    "example": "I suggest we leave early to avoid traffic.",
+    "exampleTranslation": "Trafikten kaçınmak için erken çıkmayı öneriyorum.",
+    "synonyms": [
+      "Propose"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-sundown",
+    "word": "Sundown",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈsʌn.daʊn/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "The time when the sun sets; sunset.",
+    "translation": "Gün batımı",
+    "example": "The market closes at sundown.",
+    "exampleTranslation": "Pazar gün batımında kapanır.",
+    "synonyms": [
+      "sunset",
+      "dusk"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-support",
+    "word": "Support",
+    "partOfSpeech": "Verb",
+    "phonetic": "/səˈpɔːrt/",
+    "level": "B1",
+    "lists": [],
+    "definition": "To help or encourage someone or something.",
+    "translation": "Desteklemek",
+    "example": "My family has always supported my decisions.",
+    "exampleTranslation": "Ailem her zaman kararlarımı destekledi.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-surroundings",
+    "word": "Surroundings",
+    "partOfSpeech": "Noun",
+    "phonetic": "/səˈraʊn.dɪŋz/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "The conditions or area around a person or thing; environment.",
+    "translation": "Çevre, ortam",
+    "example": "The hotel is set in beautiful natural surroundings.",
+    "exampleTranslation": "Otel güzel bir doğal çevrede yer alıyor.",
+    "synonyms": [
+      "environment",
+      "setting"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-survey",
+    "word": "Survey",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈsɜː.veɪ/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2"
+    ],
+    "definition": "A method of gathering information by asking people questions.",
+    "translation": "Anket, araştırma",
+    "example": "The survey shows that most customers are satisfied.",
+    "exampleTranslation": "Anket, çoğu müşterinin memnun olduğunu gösteriyor.",
+    "synonyms": [
+      "poll",
+      "questionnaire"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-survive",
+    "word": "Survive",
+    "partOfSpeech": "Verb",
+    "phonetic": "/səˈvaɪv/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To continue to live or exist, especially after a difficult event; to outlive.",
+    "translation": "Hayatta kalmak, atlatmak",
+    "example": "Very few buildings survived the earthquake.",
+    "exampleTranslation": "Depremi çok az bina atlattı.",
+    "synonyms": [
+      "outlive",
+      "endure"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-technical",
+    "word": "Technical",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈtek.nɪ.kəl/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3"
+    ],
+    "definition": "Relating to the practical use of machinery, science, or a specialised subject.",
+    "translation": "Teknik",
+    "example": "The manual is full of technical jargon.",
+    "exampleTranslation": "Kılavuz teknik jargonla dolu.",
+    "synonyms": [
+      "specialised",
+      "mechanical"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-technique",
+    "word": "Technique",
+    "partOfSpeech": "Noun",
+    "phonetic": "/tekˈniːk/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3"
+    ],
+    "definition": "A way of carrying out a particular task, especially one requiring skill.",
+    "translation": "Teknik, yöntem",
+    "example": "The chef demonstrated a new technique for making pastry.",
+    "exampleTranslation": "Şef, hamur işi yapmak için yeni bir teknik gösterdi.",
+    "synonyms": [
+      "method",
+      "approach"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-technology",
+    "word": "Technology",
+    "partOfSpeech": "Noun",
+    "phonetic": "/tekˈnɑː.lə.dʒi/",
+    "level": "B1",
+    "lists": [],
+    "definition": "The use of science and machines to solve practical problems.",
+    "translation": "Teknoloji",
+    "example": "New technology has changed the way we work.",
+    "exampleTranslation": "Yeni teknoloji çalışma şeklimizi değiştirdi.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-temper",
+    "word": "Temper",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈtem.pər/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "A person's state of mind in terms of calmness or anger; a tendency to become angry.",
+    "translation": "Mizaç, öfke, huy",
+    "example": "He lost his temper after waiting an hour in traffic.",
+    "exampleTranslation": "Trafikte bir saat bekledikten sonra sinirlendi.",
+    "synonyms": [
+      "mood",
+      "disposition"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-theory",
+    "word": "Theory",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈθɪr.i/",
+    "level": "B1",
+    "lists": [],
+    "definition": "An idea that explains why or how something happens.",
+    "translation": "Teori / Kuram",
+    "example": "Scientists are testing a new theory about the universe.",
+    "exampleTranslation": "Bilim insanları evrenle ilgili yeni bir teoriyi test ediyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-therefore",
+    "word": "Therefore",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ˈðeə.fɔːr/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "transition-result"
+    ],
+    "definition": "For that reason; consequently.",
+    "translation": "Bu nedenle, dolayısıyla",
+    "example": "The store was closed; therefore, we shopped online instead.",
+    "exampleTranslation": "Mağaza kapalıydı; bu nedenle bunun yerine çevrimiçi alışveriş yaptık.",
+    "synonyms": [
+      "thus",
+      "consequently"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-this-means-that",
+    "word": "this means that",
+    "partOfSpeech": "Phrase",
+    "phonetic": "/ðɪs miːnz ðæt/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "transition-result"
+    ],
+    "definition": "Used to introduce the consequence or implication of something.",
+    "translation": "Bu şu anlama gelir ki",
+    "example": "Demand has fallen; this means that prices may drop soon.",
+    "exampleTranslation": "Talep düştü; bu, fiyatların yakında düşebileceği anlamına geliyor.",
+    "synonyms": [
+      "as a result",
+      "consequently"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-tradition",
+    "word": "Tradition",
+    "partOfSpeech": "Noun",
+    "phonetic": "/trəˈdɪʃ.ən/",
+    "level": "B1",
+    "lists": [],
+    "definition": "A custom or belief that has existed for a long time and is passed down.",
+    "translation": "Gelenek",
+    "example": "It's a family tradition to eat together on Sundays.",
+    "exampleTranslation": "Pazar günleri birlikte yemek yemek bir aile geleneğidir.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-transfer",
+    "word": "Transfer",
+    "partOfSpeech": "Verb",
+    "phonetic": "/trænsˈfɜːr/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-2"
+    ],
+    "definition": "To move something or someone from one place to another.",
+    "translation": "Transfer etmek, aktarmak",
+    "example": "She transferred the funds to her savings account.",
+    "exampleTranslation": "Parayı tasarruf hesabına transfer etti.",
+    "synonyms": [
+      "move",
+      "convey"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-transform",
+    "word": "Transform",
+    "partOfSpeech": "Verb",
+    "phonetic": "/trænsˈfɔːm/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To change markedly in form or appearance; to convert.",
+    "translation": "Dönüştürmek",
+    "example": "The renovation transformed the old warehouse into modern flats.",
+    "exampleTranslation": "Tadilat, eski depoyu modern dairelere dönüştürdü.",
+    "synonyms": [
+      "convert",
+      "change"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-typical",
+    "word": "Typical",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈtɪp.ɪ.kəl/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Showing the usual qualities of a particular type of thing.",
+    "translation": "Tipik",
+    "example": "A typical day for me starts at seven in the morning.",
+    "exampleTranslation": "Benim için tipik bir gün sabah yedide başlar.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-uncommon",
+    "word": "Uncommon",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ʌnˈkɒm.ən/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Not common; unusual.",
+    "translation": "Nadir, sıradışı",
+    "example": "It's uncommon to see snow here in April.",
+    "exampleTranslation": "Nisan'da burada kar görmek nadirdir.",
+    "synonyms": [
+      "unusual",
+      "rare"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-uncooked",
+    "word": "Uncooked",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ʌnˈkʊkt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Not cooked; raw.",
+    "translation": "Çiğ, pişmemiş",
+    "example": "The salad contains uncooked vegetables only.",
+    "exampleTranslation": "Salata sadece çiğ sebzeler içeriyor.",
+    "synonyms": [
+      "raw"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-understandable",
+    "word": "Understandable",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˌʌn.dəˈstæn.də.bəl/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Able to be understood; comprehensible.",
+    "translation": "Anlaşılabilir",
+    "example": "Her anger at the decision is completely understandable.",
+    "exampleTranslation": "Karara duyduğu öfke tamamen anlaşılabilir.",
+    "synonyms": [
+      "comprehensible",
+      "reasonable"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-unfortunate",
+    "word": "Unfortunate",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ʌnˈfɔː.tʃən.ət/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Having bad luck; unlucky.",
+    "translation": "Talihsiz, şanssız",
+    "example": "It was unfortunate that she missed the flight.",
+    "exampleTranslation": "Uçağı kaçırması talihsiz bir durumdu.",
+    "synonyms": [
+      "unlucky",
+      "regrettable"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-unfortunately",
+    "word": "Unfortunately",
+    "partOfSpeech": "Adverb",
+    "phonetic": "/ʌnˈfɔːr.tʃə.nət.li/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Used to say that something is disappointing or unlucky.",
+    "translation": "Ne yazık ki",
+    "example": "Unfortunately, the concert was cancelled.",
+    "exampleTranslation": "Ne yazık ki konser iptal edildi.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-unhurt",
+    "word": "Unhurt",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ʌnˈhɜːt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Not physically injured.",
+    "translation": "Yaralanmamış",
+    "example": "Miraculously, all the passengers walked away unhurt.",
+    "exampleTranslation": "Mucizevi bir şekilde tüm yolcular yaralanmadan kurtuldu.",
+    "synonyms": [
+      "unharmed",
+      "uninjured"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-uninjured",
+    "word": "Uninjured",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ʌnˈɪn.dʒəd/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Not hurt or injured.",
+    "translation": "Yaralanmamış",
+    "example": "Both drivers walked away uninjured from the crash.",
+    "exampleTranslation": "Her iki sürücü de kazadan yaralanmadan kurtuldu.",
+    "synonyms": [
+      "unhurt",
+      "unharmed"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-untrue",
+    "word": "Untrue",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ʌnˈtruː/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Not in accordance with fact; false; disloyal.",
+    "translation": "Yanlış, sadakatsiz",
+    "example": "The rumours about the merger turned out to be untrue.",
+    "exampleTranslation": "Birleşmeyle ilgili söylentilerin doğru olmadığı ortaya çıktı.",
+    "synonyms": [
+      "unfaithful",
+      "false"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-unusual",
+    "word": "Unusual",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ʌnˈjuː.ʒu.əl/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Not common or ordinary; different from what is expected.",
+    "translation": "Alışılmadık",
+    "example": "It's unusual for him to be late.",
+    "exampleTranslation": "Onun geç kalması alışılmadık bir şey.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-useful",
+    "word": "Useful",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈjuːs.fəl/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Helpful for doing something, or having practical value.",
+    "translation": "Faydalı / Kullanışlı",
+    "example": "This app is really useful for learning new words.",
+    "exampleTranslation": "Bu uygulama yeni kelimeler öğrenmek için gerçekten faydalı.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-vacancy",
+    "word": "Vacancy",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈveɪ.kən.si/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "An unoccupied position or place; emptiness.",
+    "translation": "Boşluk, boş kadro",
+    "example": "The hotel had one vacancy left for the weekend.",
+    "exampleTranslation": "Otelde hafta sonu için bir boş oda kalmıştı.",
+    "synonyms": [
+      "emptiness",
+      "opening"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-vacant",
+    "word": "Vacant",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈveɪ.kənt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Not occupied; empty.",
+    "translation": "Boş, sahipsiz",
+    "example": "There are three vacant apartments in the building.",
+    "exampleTranslation": "Binada üç boş daire var.",
+    "synonyms": [
+      "empty",
+      "unoccupied"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-vague",
+    "word": "Vague",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/veɪg/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Of uncertain, indefinite, or unclear character; not clearly expressed.",
+    "translation": "Belirsiz, muğlak",
+    "example": "His explanation was too vague to be helpful.",
+    "exampleTranslation": "Açıklaması yardımcı olamayacak kadar belirsizdi.",
+    "synonyms": [
+      "indistinct",
+      "unclear"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-valueless",
+    "word": "Valueless",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈvæl.juː.ləs/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Having no value or worth.",
+    "translation": "Değersiz",
+    "example": "The old coins turned out to be valueless.",
+    "exampleTranslation": "Eski paraların değersiz olduğu ortaya çıktı.",
+    "synonyms": [
+      "worthless",
+      "useless"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-various",
+    "word": "Various",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/ˈver.i.əs/",
+    "level": "B1",
+    "lists": [],
+    "definition": "Several different types of something.",
+    "translation": "Çeşitli",
+    "example": "The shop sells various kinds of bread.",
+    "exampleTranslation": "Dükkan çeşitli ekmek türleri satıyor.",
+    "synonyms": [],
+    "mastery": 0
+  },
+  {
+    "id": "w-vary",
+    "word": "Vary",
+    "partOfSpeech": "Verb",
+    "phonetic": "/ˈveə.ri/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-1",
+      "ielts-1000"
+    ],
+    "definition": "To differ in size, amount, or degree; to change.",
+    "translation": "Değişmek, farklılık göstermek",
+    "example": "Opinions on the matter vary widely among experts.",
+    "exampleTranslation": "Konu hakkındaki görüşler uzmanlar arasında büyük ölçüde farklılık gösteriyor.",
+    "synonyms": [
+      "differ",
+      "fluctuate"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-vast",
+    "word": "Vast",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/vɑːst/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Of very great extent or quantity; immense; huge.",
+    "translation": "Engin, muazzam",
+    "example": "The desert stretches over a vast area.",
+    "exampleTranslation": "Çöl engin bir alana yayılıyor.",
+    "synonyms": [
+      "huge",
+      "immense"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-vibrate",
+    "word": "Vibrate",
+    "partOfSpeech": "Verb",
+    "phonetic": "/vaɪˈbreɪt/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "To move back and forth or side to side rapidly; to tremble.",
+    "translation": "Titremek, titreşmek",
+    "example": "The phone vibrates when a message arrives.",
+    "exampleTranslation": "Bir mesaj geldiğinde telefon titrer.",
+    "synonyms": [
+      "tremble",
+      "shake"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-volume",
+    "word": "Volume",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈvɒl.juːm/",
+    "level": "B1",
+    "lists": [
+      "toefl-300",
+      "awl-sublist-3"
+    ],
+    "definition": "The amount of space occupied by a substance; the amount or quantity of something.",
+    "translation": "Hacim, miktar",
+    "example": "The volume of traffic increases sharply during rush hour.",
+    "exampleTranslation": "Trafik hacmi yoğun saatlerde keskin bir şekilde artar.",
+    "synonyms": [
+      "quantity",
+      "amount"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-well-mannered",
+    "word": "Well mannered",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/wel ˈmæn.əd/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Having polite and socially acceptable behaviour.",
+    "translation": "Terbiyeli, görgülü",
+    "example": "Their children are always well mannered at the dinner table.",
+    "exampleTranslation": "Çocukları yemek masasında her zaman terbiyeli davranır.",
+    "synonyms": [
+      "polite",
+      "courteous"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-winery",
+    "word": "Winery",
+    "partOfSpeech": "Noun",
+    "phonetic": "/ˈwaɪ.nər.i/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "A place where wine is made; a vineyard estate.",
+    "translation": "Şaraphane, bağ evi",
+    "example": "We visited a local winery during our trip to Tuscany.",
+    "exampleTranslation": "Toskana gezimiz sırasında yerel bir şaraphaneyi ziyaret ettik.",
+    "synonyms": [
+      "vineyard"
+    ],
+    "mastery": 0
+  },
+  {
+    "id": "w-worn",
+    "word": "Worn",
+    "partOfSpeech": "Adjective",
+    "phonetic": "/wɔːn/",
+    "level": "B1",
+    "lists": [
+      "ielts-1000"
+    ],
+    "definition": "Damaged or thin because of long use; old and tired-looking.",
+    "translation": "Yıpranmış, eskimiş",
+    "example": "The carpet was worn and needed replacing.",
+    "exampleTranslation": "Halı yıpranmıştı ve değiştirilmesi gerekiyordu.",
+    "synonyms": [
+      "old",
+      "shabby"
+    ],
     "mastery": 0
   }
 ];

@@ -3,12 +3,12 @@ import { WORDS_A1 } from './wordsA1';
 import { WORDS_A2 } from './wordsA2';
 import { WORDS_B1 } from './wordsB1';
 import { WORDS_B2 } from './wordsB2';
-import { WORDS_C1_C2 } from './wordsC1C2';
+import { WORDS_C1, WORDS_C2, WORDS_C1_C2 } from './wordsC1C2';
 import expandedData from '../expandedVocabulary.json';
 
-export { WORDS_A1, WORDS_A2, WORDS_B1, WORDS_B2, WORDS_C1_C2 };
+export { WORDS_A1, WORDS_A2, WORDS_B1, WORDS_B2, WORDS_C1, WORDS_C2, WORDS_C1_C2 };
 
-// 1.567 kelimelik tam kapsamlı veritabanı
+// 4.600 kelimelik tam kapsamlı master veritabanı
 export const VOCABULARY_DATABASE: Word[] = (expandedData && expandedData.length > 0)
   ? (expandedData as Word[])
   : [
