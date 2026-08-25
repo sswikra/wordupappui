@@ -71,7 +71,7 @@ export default function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   // Auth State
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [isAuthOpen, setIsAuthOpen] = useState(true);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
 
   // Navigation State
   const [currentTab, setCurrentTab] = useState<TabType>('home');
@@ -98,30 +98,11 @@ export default function App() {
   useEffect(() => {
     async function loadData() {
       try {
-        const isCleanVersion = await StorageService.KEYS ? await StorageService.getOtherLists() : null;
         let savedWords = await StorageService.getWords();
         let savedLists = await StorageService.getUserLists();
         let savedOtherLists = await StorageService.getOtherLists();
         let savedProfile = await StorageService.getProfile();
         let savedSettings = await StorageService.getSettings();
-
-        // 1. Eski mock verileri temizleme ve sürüm kontrolü
-        // Eğer Favoriler listesinde eski mock mastery (85) varsa veya temizleme yapılmamışsa sıfırla
-        const hasLegacyMockLists = savedLists.some(
-          (l) => (l.id === 'favorites' && (l.mastery === 85 || (l.words && l.words.length > 0 && !l.words[0].id)))
-        );
-
-        if (hasLegacyMockLists) {
-          savedLists = getCleanUserLists();
-          savedProfile = getCleanUserProfile();
-          savedWords = getCleanVocabularyDatabase();
-          savedSettings = getCleanAppSettings();
-
-          await StorageService.saveUserLists(savedLists);
-          await StorageService.saveProfile(savedProfile);
-          await StorageService.saveWords(savedWords);
-          await StorageService.saveSettings(savedSettings);
-        }
 
         if (savedWords) setWords(deduplicateWords(savedWords));
         if (savedLists) setUserLists(savedLists);
@@ -130,7 +111,6 @@ export default function App() {
         const initialProf = savedProfile || INITIAL_USER_PROFILE;
         const initialSett = savedSettings || INITIAL_APP_SETTINGS;
 
-        // Günlük sıfırlama ve seri kontrolü
         const { updatedProfile, updatedSettings, hasChanged } = checkDailyReset(
           initialProf,
           initialSett
@@ -156,40 +136,37 @@ export default function App() {
   useEffect(() => {
     const handleAppStateChange = (nextAppState: string) => {
       if (nextAppState === 'active') {
-        setProfile((prevProfile) => {
-          setSettings((prevSettings) => {
-            const { updatedProfile, updatedSettings, hasChanged } = checkDailyReset(
-              prevProfile,
-              prevSettings
-            );
-            if (hasChanged) {
-              StorageService.saveProfile(updatedProfile);
-              StorageService.saveSettings(updatedSettings);
-              const activeUser = currentUser || AuthService.getCurrentUser();
-              if (activeUser) {
-                FirebaseService.saveUserProfile(activeUser.uid, updatedProfile);
-                FirebaseService.saveAppSettings(activeUser.uid, updatedSettings);
-              }
-            }
-            return updatedSettings;
-          });
-          const { updatedProfile } = checkDailyReset(prevProfile, settings);
-          return updatedProfile;
-        });
+        const { updatedProfile, updatedSettings, hasChanged } = checkDailyReset(
+          profile,
+          settings
+        );
+        if (hasChanged) {
+          setProfile(updatedProfile);
+          setSettings(updatedSettings);
+          StorageService.saveProfile(updatedProfile);
+          StorageService.saveSettings(updatedSettings);
+          const activeUser = currentUser || AuthService.getCurrentUser();
+          if (activeUser) {
+            FirebaseService.saveUserProfile(activeUser.uid, updatedProfile);
+            FirebaseService.saveAppSettings(activeUser.uid, updatedSettings);
+          }
+        }
       }
     };
 
     const sub = AppState.addEventListener('change', handleAppStateChange);
     return () => sub.remove();
-  }, [currentUser, settings]);
+  }, [currentUser, profile, settings]);
 
   // Firebase Auth Listener & Firestore Data Sync
   useEffect(() => {
     const unsubscribe = AuthService.onAuthStateChanged(async (user) => {
       setCurrentUser(user);
 
-      if (user) {
-        console.log('👤 Giriş yapan kullanıcı:', user.email || user.uid);
+      if (user && !user.isAnonymous) {
+        console.log('👤 Kalıcı hesapla giriş yapıldı:', user.email || user.displayName || user.uid);
+        setIsAuthOpen(false);
+
         try {
           // Firestore'dan kullanıcının verilerini çek
           const cloudWords = await FirebaseService.getUserWords(user.uid);
@@ -197,30 +174,23 @@ export default function App() {
           const cloudProfile = await FirebaseService.getUserProfile(user.uid);
           const cloudSettings = await FirebaseService.getAppSettings(user.uid);
 
-          const isAnon = user.isAnonymous;
           const defaultAvatar = AVATAR_OPTIONS.male;
-
           const emailName = user.email ? user.email.split('@')[0] : 'Kelime Öğrencisi';
-          const calculatedName = isAnon
-            ? 'Misafir Öğrenci'
-            : (user.displayName || (emailName.charAt(0).toUpperCase() + emailName.slice(1)));
+          const calculatedName = user.displayName || (emailName.charAt(0).toUpperCase() + emailName.slice(1));
 
           // 1. KELİMELER (Words)
           let wordsToUse: Word[];
           if (cloudWords && cloudWords.length > 0) {
             wordsToUse = deduplicateWords(cloudWords);
           } else {
-            // Yeni kullanıcı veya yeni misafir: Temiz başlangıç kelimeleri
             wordsToUse = getCleanVocabularyDatabase();
-            await FirebaseService.saveUserWords(user.uid, wordsToUse);
           }
           setWords(wordsToUse);
           await StorageService.saveWords(wordsToUse);
 
-          // 2. LİSTELER (User Lists - Favoriler, Tekrar Gözden Geçir, Zorlandığım Kelimeler)
+          // 2. LİSTELER (User Lists)
           let listsToUse: WordList[];
           if (cloudLists && cloudLists.length > 0) {
-            // Firestore'daki listelerin kelime sayıları ve verilerini temiz normalize et
             listsToUse = cloudLists.map((cl) => ({
               ...cl,
               count: cl.words ? cl.words.length : cl.count || 0,
@@ -228,25 +198,19 @@ export default function App() {
               words: cl.words ? deduplicateWords(cl.words) : [],
             }));
           } else {
-            // Yeni kullanıcı veya yeni misafir: Sıfırlanmış boş listeler (count: 0, mastery: 0, words: [])
             listsToUse = getCleanUserLists();
-            await FirebaseService.saveUserLists(user.uid, listsToUse);
           }
           setUserLists(listsToUse);
           await StorageService.saveUserLists(listsToUse);
 
-          // 3. PROFİL (Profile - Aktivite, Öğrenilen Kelimeler, Oynanan Oyunlar, Seri)
+          // 3. PROFİL (Profile)
           let profileToUse: UserProfile;
           if (cloudProfile) {
-            const currentProfileName = (cloudProfile.name === 'Alex' || cloudProfile.name === 'Alex Morgan')
-              ? calculatedName
-              : (cloudProfile.name || calculatedName);
-
             profileToUse = {
               ...INITIAL_USER_PROFILE,
               ...cloudProfile,
-              name: currentProfileName,
-              role: isAnon ? 'Misafir Hesap' : 'Kelime Kaşifi',
+              name: cloudProfile.name || calculatedName,
+              role: 'Kelime Kaşifi',
               avatarUrl: cloudProfile.avatarUrl || user.photoURL || defaultAvatar,
               gender: cloudProfile.gender || 'male',
               wordsLearned: typeof cloudProfile.wordsLearned === 'number' ? cloudProfile.wordsLearned : 0,
@@ -262,29 +226,19 @@ export default function App() {
                 : INITIAL_USER_PROFILE.badges,
             };
           } else {
-            // Yeni kullanıcı kaydı / ilk kez giriş: Tamamen sıfırlanmış temiz profil
             profileToUse = getCleanUserProfile(
               calculatedName,
-              isAnon ? 'Misafir Hesap' : 'Kelime Kaşifi',
+              'Kelime Kaşifi',
               user.email || undefined,
               user.photoURL || defaultAvatar
             );
           }
 
           // 4. AYARLAR (Settings)
-          let settingsToUse: AppSettings;
-          if (cloudSettings) {
-            settingsToUse = {
-              ...cloudSettings,
-              email: isAnon ? 'misafir@wordmem.app' : (user.email || cloudSettings.email),
-            };
-          } else {
-            settingsToUse = getCleanAppSettings(
-              isAnon ? 'misafir@wordmem.app' : (user.email || '')
-            );
-          }
+          let settingsToUse: AppSettings = cloudSettings
+            ? { ...cloudSettings, email: user.email || cloudSettings.email }
+            : getCleanAppSettings(user.email || '');
 
-          // Gün sıfırlaması & seri doğrulaması yap
           const { updatedProfile, updatedSettings } = checkDailyReset(
             profileToUse,
             settingsToUse
@@ -296,33 +250,13 @@ export default function App() {
           await StorageService.saveSettings(updatedSettings);
           await FirebaseService.saveUserProfile(user.uid, updatedProfile);
           await FirebaseService.saveAppSettings(user.uid, updatedSettings);
-
-          // Giriş yapmışsa giriş ekranını kapat
-          if (!isAnon) {
-            setIsAuthOpen(false);
-          }
         } catch (e) {
           console.warn('Firestore veri yükleme hatası:', e);
         }
       } else {
-        // Kullanıcı giriş yapmamışsa / oturum kapalıysa temiz misafir durumuna sıfırla
-        const cleanProf = getCleanUserProfile();
-        const cleanSett = getCleanAppSettings();
-        const cleanLists = getCleanUserLists();
-        const cleanWords = getCleanVocabularyDatabase();
-
-        setProfile(cleanProf);
-        setSettings(cleanSett);
-        setUserLists(cleanLists);
-        setWords(cleanWords);
-
-        StorageService.saveProfile(cleanProf);
-        StorageService.saveSettings(cleanSett);
-        StorageService.saveUserLists(cleanLists);
-        StorageService.saveWords(cleanWords);
-
+        // Oturum açılmamış veya anonim misafir durumunda giriş ekranını göster
+        console.log('👤 Oturum açık değil / Misafir durumu (Giriş ekranı açılıyor)');
         setIsAuthOpen(true);
-        console.log('👤 Oturum açık değil (Giriş ekranı gösteriliyor ve veriler sıfırlandı)');
       }
     });
 
@@ -357,6 +291,10 @@ export default function App() {
   // Android Hardware Back Button Handling
   useEffect(() => {
     const onBackPress = () => {
+      if (isAuthOpen) {
+        setIsAuthOpen(false);
+        return true;
+      }
       if (selectedWord) {
         setSelectedWord(null);
         return true;
@@ -395,6 +333,7 @@ export default function App() {
     const subscription = BackHandler.addEventListener('hardwareBackPress', onBackPress);
     return () => subscription.remove();
   }, [
+    isAuthOpen,
     selectedWord,
     selectedList,
     isSearchOpen,
@@ -1040,6 +979,7 @@ export default function App() {
         <AuthModal
           isOpen={isAuthOpen}
           onClose={() => setIsAuthOpen(false)}
+          onLoginSuccess={() => setIsAuthOpen(false)}
           darkMode={settings.darkMode}
         />
       </SafeAreaView>
