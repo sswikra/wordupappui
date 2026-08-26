@@ -8,12 +8,10 @@
 
 - 🌟 **Günün Kelimesi**: Her gün yeni bir kelime, CEFR seviyesi (A1-C2), sözcük türü, Türkçe anlamı, örnek cümleler ve yerel sesli telaffuz.
 - 🔍 **Kapsamlı Arama & Filtreleme**: İngilizce ve Türkçe kelimeler içinde anlık arama, CEFR seviyelerine (A1, A2, B1, B2, C1, C2) ve favorilere göre filtreleme.
-- 🎮 **5 İnteraktif Mini Oyun**:
+- 🎮 **3 İnteraktif Mini Oyun**:
   1. **Kelime Tahmini (Word Guess / Wordle)**: 6 denemede 5 harfli kelimeyi bulma, renk kodlu geribildirim ve sanal klavye.
-  2. **Kare Bulmaca (Crossword)**: 5x5 interaktif bulmaca ızgarası, yatay ve dikey ipuçları.
-  3. **Kelime Eşleştirme (Word Match)**: Zaman karşı 5 İngilizce-Türkçe kelime çiftini eşleştirme.
-  4. **Harf Karıştırma (Scramble)**: Karışık harfleri doğru sıraya dizerek kelimeyi tamamlama.
-  5. **Adam Asmaca (Hangman)**: Can sistemi, görsel çizim ve harf tahminleri.
+  2. **Kelime Eşleştirme (Word Match)**: Zamana karşı 5 İngilizce-Türkçe kelime çiftini eşleştirme.
+  3. **Harf Karıştırma (Scramble)**: Karışık harfleri doğru sıraya dizerek kelimeyi tamamlama.
 - 🗂️ **Kelime Listeleri & Kartlarla Çalış (Flashcards)**:
   - Özel kelime listeleri oluşturma (renk ve simge seçimi).
   - Hazır seçilmiş listeler (*Oxford 3000, TOEFL & IELTS, İş İngilizcesi, Seyahat*).
@@ -87,7 +85,7 @@ npx eas build -p android --profile production
     │   └── haptics.ts           # expo-haptics titreşim desteği
     └── components/
         ├── common/              # Ortak bileşenler (Header, BottomNav)
-        ├── games/               # 5 mini oyun ve skor tablosu
+        ├── games/               # 3 mini oyun ve skor tablosu
         ├── modals/              # Arama, kelime detay, flashcard, liste ve drawer modalları
         └── views/               # Ana Sayfa, Oyunlar, Listeler, Profil, Ayarlar görünümleri
 ```

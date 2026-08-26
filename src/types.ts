@@ -99,15 +99,5 @@ export interface AppSettings {
   lastDailyGoalDate?: string; // 'YYYY-MM-DD'
 }
 
-export type GameId = 'guess' | 'crosswords' | 'match' | 'scramble' | 'hangman';
+export type GameId = 'guess' | 'match' | 'scramble';
 
-export interface CrosswordPuzzle {
-  id: string;
-  title: string;
-  size: number;
-  grid: string[][];
-  clues: {
-    across: { number: number; row: number; col: number; clue: string; answer: string }[];
-    down: { number: number; row: number; col: number; clue: string; answer: string }[];
-  };
-}

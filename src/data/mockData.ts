@@ -13,10 +13,8 @@ import {
 import { OTHER_CURATED_LISTS, INITIAL_USER_LISTS, getCleanUserLists } from './curatedLists';
 import {
   GUESS_WORDS_POOL,
-  CROSSWORD_PUZZLES,
   MATCH_PAIRS_POOL,
   SCRAMBLE_WORDS,
-  HANGMAN_WORDS,
 } from './gameData';
 
 // Re-export all modular data sets for seamless backward compatibility
@@ -34,10 +32,8 @@ export {
   INITIAL_USER_LISTS,
   getCleanUserLists,
   GUESS_WORDS_POOL,
-  CROSSWORD_PUZZLES,
   MATCH_PAIRS_POOL,
   SCRAMBLE_WORDS,
-  HANGMAN_WORDS,
 };
 
 // Initial Word of the Day (Luminous)

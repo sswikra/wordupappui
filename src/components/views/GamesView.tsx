@@ -6,13 +6,11 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
-import { Play, Grid, LayoutGrid, Link2, Shuffle, User, Trophy, LucideIcon } from 'lucide-react-native';
+import { Play, LayoutGrid, Link2, Shuffle, Trophy, LucideIcon } from 'lucide-react-native';
 import { GameId } from '../../types';
 import { WordGuessGame } from '../games/WordGuessGame';
-import { CrosswordGame } from '../games/CrosswordGame';
 import { WordMatchGame } from '../games/WordMatchGame';
 import { ScrambleGame } from '../games/ScrambleGame';
-import { HangmanGame } from '../games/HangmanGame';
 import { StorageService } from '../../utils/storage';
 import { HapticsService } from '../../utils/haptics';
 import { Colors, getTheme } from '../../theme/colors';
@@ -32,10 +30,8 @@ export const GamesView: React.FC<GamesViewProps> = ({
   const [activeGame, setActiveGame] = useState<GameId | null>(null);
   const [highScores, setHighScores] = useState<Record<GameId, number>>({
     guess: 0,
-    crosswords: 0,
     match: 0,
     scramble: 0,
-    hangman: 0,
   });
 
   useEffect(() => {
@@ -46,11 +42,9 @@ export const GamesView: React.FC<GamesViewProps> = ({
 
   const loadHighScores = async () => {
     const guess = await StorageService.getHighScore('guess');
-    const crosswords = await StorageService.getHighScore('crossword');
     const match = await StorageService.getHighScore('match');
     const scramble = await StorageService.getHighScore('scramble');
-    const hangman = await StorageService.getHighScore('hangman');
-    setHighScores({ guess, crosswords, match, scramble, hangman });
+    setHighScores({ guess, match, scramble });
   };
 
   useEffect(() => {
@@ -71,17 +65,11 @@ export const GamesView: React.FC<GamesViewProps> = ({
   if (activeGame === 'guess') {
     return <WordGuessGame onBack={handleExitGame} onGameComplete={handleGameFinish} darkMode={darkMode} />;
   }
-  if (activeGame === 'crosswords') {
-    return <CrosswordGame onBack={handleExitGame} onGameComplete={handleGameFinish} darkMode={darkMode} />;
-  }
   if (activeGame === 'match') {
     return <WordMatchGame onBack={handleExitGame} onGameComplete={handleGameFinish} darkMode={darkMode} />;
   }
   if (activeGame === 'scramble') {
     return <ScrambleGame onBack={handleExitGame} onGameComplete={handleGameFinish} darkMode={darkMode} />;
-  }
-  if (activeGame === 'hangman') {
-    return <HangmanGame onBack={handleExitGame} onGameComplete={handleGameFinish} darkMode={darkMode} />;
   }
 
   const gamesList: {
@@ -97,12 +85,6 @@ export const GamesView: React.FC<GamesViewProps> = ({
       icon: LayoutGrid,
     },
     {
-      id: 'crosswords',
-      title: 'Kare Bulmaca',
-      description: 'İpuçlarıyla boşlukları doldurun.',
-      icon: Grid,
-    },
-    {
       id: 'match',
       title: 'Kelime Eşleştirme',
       description: 'Kelimeleri doğru anlamlarıyla eşleştirin.',
@@ -113,12 +95,6 @@ export const GamesView: React.FC<GamesViewProps> = ({
       title: 'Harf Karıştırma',
       description: 'Karışık harflerden kelimeleri bulun.',
       icon: Shuffle,
-    },
-    {
-      id: 'hangman',
-      title: 'Adam Asmaca',
-      description: 'Harfleri tahmin ederek adamı kurtarın.',
-      icon: User,
     },
   ];
 

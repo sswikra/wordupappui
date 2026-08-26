@@ -39,52 +39,7 @@ export const GUESS_WORDS_POOL = [
   { word: 'WORLD', tr: 'Dünya / Alem', hint: 'The earth, together with all of its countries and peoples' },
 ];
 
-// 2. Kare Bulmaca (Crossword Puzzles) - 5x5 Izgara Setleri
-export const CROSSWORD_PUZZLES = [
-  {
-    id: 'p1',
-    size: 5,
-    title: 'Günün Bulmacası #1 (Işık & Doğa)',
-    grid: [
-      ['G', 'L', 'O', 'W', '■'],
-      ['■', 'U', '■', 'O', '■'],
-      ['M', 'M', 'O', 'R', 'E'],
-      ['■', 'I', '■', 'D', '■'],
-      ['S', 'N', 'O', 'W', '■'],
-    ],
-    acrossClues: [
-      { num: 1, text: 'Shine with a steady radiant light (Parıldamak)', answer: 'GLOW', row: 0, col: 0 },
-      { num: 3, text: 'A greater or additional amount (Daha fazla)', answer: 'MORE', row: 2, col: 1 },
-      { num: 4, text: 'Atmospheric water vapor frozen into ice crystals (Kar)', answer: 'SNOW', row: 4, col: 0 },
-    ],
-    downClues: [
-      { num: 1, text: 'Prefix relating to light, as in luminous (Işık / Luminous kökü)', answer: 'LUMIN', row: 0, col: 1 },
-      { num: 2, text: 'A single distinct meaningful element of speech (Kelime)', answer: 'WORD', row: 0, col: 3 },
-    ],
-  },
-  {
-    id: 'p2',
-    size: 5,
-    title: 'Günün Bulmacası #2 (Zihin & Bilgi)',
-    grid: [
-      ['B', 'R', 'A', 'I', 'N'],
-      ['■', 'E', '■', 'D', '■'],
-      ['L', 'A', 'M', 'E', 'N'],
-      ['■', 'D', '■', 'A', '■'],
-      ['S', 'Y', 'N', 'C', '■'],
-    ],
-    acrossClues: [
-      { num: 1, text: 'The organ inside human skull used for thinking (Beyin)', answer: 'BRAIN', row: 0, col: 0 },
-      { num: 3, text: 'Synchronized shorthand or unit (Eşzamanlı)', answer: 'SYNC', row: 4, col: 0 },
-    ],
-    downClues: [
-      { num: 1, text: 'To look at and comprehend the meaning of written words (Okumak / Ready kökü)', answer: 'READ', row: 0, col: 1 },
-      { num: 2, text: 'A thought or suggestion as to a possible course of action (Fikir)', answer: 'IDEA', row: 0, col: 3 },
-    ],
-  },
-];
-
-// 3. Kelime Eşleştirme (Word Match) - EN-TR Kelime Çiftleri Havuzu
+// 2. Kelime Eşleştirme (Word Match) - EN-TR Kelime Çiftleri Havuzu
 export const MATCH_PAIRS_POOL = [
   // A1-A2
   { en: 'Ability', tr: 'Yetenek' },
@@ -157,7 +112,7 @@ export const MATCH_PAIRS_POOL = [
   { en: 'Zealous', tr: 'Şevkli / Gayretli' },
 ];
 
-// 4. Harf Karıştırma (Scramble Game)
+// 3. Harf Karıştırma (Scramble Game)
 export const SCRAMBLE_WORDS = [
   { word: 'LUMINOUS', scramble: 'SLNIUMOU', tr: 'Aydınlık', hint: 'Giving off light; glowing in the dark' },
   { word: 'GLIMMER', scramble: 'MMERLGI', tr: 'Parıltı', hint: 'A faint or unsteady light; subtle shine' },
@@ -174,22 +129,4 @@ export const SCRAMBLE_WORDS = [
   { word: 'METICULOUS', scramble: 'USOCTUMELI', tr: 'Titiz', hint: 'Showing great attention to detail and precision' },
   { word: 'AMBITION', scramble: 'ITMIBNOA', tr: 'Hırs / Amaç', hint: 'Strong desire and drive to achieve a great goal' },
   { word: 'CHALLENGE', scramble: 'GEELLNAHC', tr: 'Meydan okuma', hint: 'A demanding task that tests your ability' },
-];
-
-// 5. Adam Asmaca (Hangman Game)
-export const HANGMAN_WORDS = [
-  { word: 'SERENDIPITY', category: 'Felsefe & Kavramlar', tr: 'Mutlu Tesadüf', hint: 'Finding something wonderful without looking for it' },
-  { word: 'LUMINOUS', category: 'Sıfatlar', tr: 'Aydınlık / Parlayan', hint: 'Full of light or shining brightly in the dark' },
-  { word: 'METICULOUS', category: 'Kişilik Özellikleri', tr: 'Titiz / Dikkatli', hint: 'Extremely careful with tiny details' },
-  { word: 'BENEVOLENT', category: 'Erdemler', tr: 'Hayırsever', hint: 'Kindhearted, generous, and caring' },
-  { word: 'PRAGMATIC', category: 'Düşünce Biçimi', tr: 'Gerçekçi / Uygulamacı', hint: 'Dealing with things sensibly based on practical reality' },
-  { word: 'UBIQUITOUS', category: 'Gözlem', tr: 'Her yerde bulunan', hint: 'Present or found everywhere at the same time' },
-  { word: 'EPHEMERAL', category: 'Zaman & Doğa', tr: 'Geçici / Fani', hint: 'Lasting for only a very brief moment of time' },
-  { word: 'RESILIENCE', category: 'Psikoloji', tr: 'Dayanıklılık', hint: 'The mental toughness to bounce back from adversity' },
-  { word: 'ADVOCATE', category: 'Toplum & Hukuk', tr: 'Savunmak', hint: 'To publicly support and champion a noble cause' },
-  { word: 'INTEGRATE', category: 'Teknoloji', tr: 'Bütünleştirmek', hint: 'To combine parts into a unified working system' },
-  { word: 'VULNERABLE', category: 'Duygular', tr: 'Savunmasız', hint: 'Open to being hurt or affected emotionally or physically' },
-  { word: 'SUSTAINABLE', category: 'Çevre & Gelecek', tr: 'Sürdürülebilir', hint: 'Able to continue over time without harming nature' },
-  { word: 'PERSPECTIVE', category: 'Düşünce', tr: 'Bakış Açısı', hint: 'A particular angle or way of seeing situations' },
-  { word: 'COLLABORATE', category: 'İş Dünyası', tr: 'İş Birliği Yapmak', hint: 'Working together with teammates to produce something' },
 ];
