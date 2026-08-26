@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Search, X, Volume2, Heart, ArrowRight } from 'lucide-react';
 import { Word } from '../types';
 import { playPronunciation } from '../utils/speech';
@@ -25,7 +25,15 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   const [query, setQuery] = useState('');
   const [levelFilter, setLevelFilter] = useState<string>('ALL');
 
+  useEffect(() => {
+    if (!isOpen) {
+      setQuery('');
+      setLevelFilter('ALL');
+    }
+  }, [isOpen]);
+
   const filteredWords = useMemo(() => {
+    if (!query.trim()) return [];
     return searchWords(words, query, { levelFilter });
   }, [words, query, levelFilter]);
 
@@ -101,7 +109,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 
           {/* Results List */}
           <div className="flex-1 overflow-y-auto p-4 space-y-2.5">
-            {filteredWords.length === 0 ? (
+            {!query.trim() ? null : filteredWords.length === 0 ? (
               <div className="text-center py-12 text-slate-500 dark:text-slate-400">
                 <p className="text-sm font-bold">Eşleşen kelime bulunamadı</p>
                 <p className="text-xs mt-1 font-medium">"Luminous", "Melody", "Aydınlık" gibi kelimeleri aramayı deneyin...</p>

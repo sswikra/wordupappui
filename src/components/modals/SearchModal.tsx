@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import {
   View,
   Text,
@@ -140,7 +140,17 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   const theme = getTheme(darkMode);
   const [query, setQuery] = useState('');
 
+  // Reset query when modal closes
+  useEffect(() => {
+    if (!isOpen) {
+      setQuery('');
+    }
+  }, [isOpen]);
+
   const filteredWords = useMemo(() => {
+    if (!query.trim()) {
+      return [];
+    }
     return searchWords(words, query);
   }, [words, query]);
 
@@ -260,11 +270,13 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           </View>
 
           {/* Results Count */}
-          <View style={styles.countRow}>
-            <Text style={[styles.countText, { color: theme.textMuted }]}>
-              {filteredWords.length} kelime bulundu
-            </Text>
-          </View>
+          {query.trim() ? (
+            <View style={styles.countRow}>
+              <Text style={[styles.countText, { color: theme.textMuted }]}>
+                {filteredWords.length} kelime bulundu
+              </Text>
+            </View>
+          ) : null}
 
           {/* Words List */}
           <FlatList
