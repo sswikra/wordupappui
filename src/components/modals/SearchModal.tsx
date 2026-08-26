@@ -9,7 +9,6 @@ import {
   StyleSheet,
   ScrollView,
   FlatList,
-  Dimensions,
   Platform,
   KeyboardAvoidingView,
   Keyboard,
@@ -19,6 +18,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { BlurView } from 'expo-blur';
 import { Search, X, Volume2, Heart, SearchX, Plus, ArrowRight, Sparkles } from 'lucide-react-native';
 import { Word } from '../../types';
+import { VOCABULARY_DATABASE } from '../../data/vocabulary';
 import { playPronunciation } from '../../utils/speech';
 import { HapticsService } from '../../utils/haptics';
 import { Colors, getTheme } from '../../theme/colors';
@@ -33,8 +33,6 @@ interface SearchModalProps {
   onOpenAddWord?: () => void;
   darkMode?: boolean;
 }
-
-const { height } = Dimensions.get('window');
 
 const FILTER_OPTIONS = ['TÜMÜ', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'FAVORİLER'];
 
@@ -188,12 +186,35 @@ export const SearchModal: React.FC<SearchModalProps> = ({
     }
   }, [isOpen]);
 
-  const filteredWords = useMemo(() => {
-    if (!query.trim()) {
-      return [];
+  // Her zaman tüm kelime haznesini garantiye al
+  const allAvailableWords = useMemo(() => {
+    if (words && words.length >= VOCABULARY_DATABASE.length) {
+      return words;
     }
-    return searchWords(words, query, { levelFilter });
-  }, [words, query, levelFilter]);
+    const customWords = (words || []).filter(
+      (w) => w && !VOCABULARY_DATABASE.some((v) => v.id === w.id)
+    );
+    const overridesMap = new Map((words || []).map((w) => [w.id, w]));
+    const merged = VOCABULARY_DATABASE.map((w) => {
+      const over = overridesMap.get(w.id);
+      return over ? { ...w, ...over } : w;
+    });
+    return [...customWords, ...merged];
+  }, [words]);
+
+  const filteredWords = useMemo(() => {
+    const cleanQ = query.trim();
+    if (!cleanQ) {
+      if (levelFilter === 'FAVORITES') {
+        return allAvailableWords.filter((w) => !!w.isFavorite);
+      }
+      if (levelFilter !== 'ALL') {
+        return allAvailableWords.filter((w) => w.level === levelFilter).slice(0, 40);
+      }
+      return allAvailableWords.slice(0, 25);
+    }
+    return searchWords(allAvailableWords, cleanQ, { levelFilter });
+  }, [allAvailableWords, query, levelFilter]);
 
   // Live online translation fallback if no local words match
   useEffect(() => {
@@ -269,7 +290,30 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   const keyExtractor = useCallback((item: Word) => item.id, []);
 
   const renderEmptyState = useCallback(() => {
-    if (!query.trim()) return null;
+    const cleanQ = query.trim();
+    if (!cleanQ) {
+      if (levelFilter === 'FAVORITES') {
+        return (
+          <View style={styles.emptyState}>
+            <View
+              style={[
+                styles.emptyIconCircle,
+                { backgroundColor: darkMode ? '#334155' : '#fee2e2' },
+              ]}
+            >
+              <Heart size={26} color="#ef4444" />
+            </View>
+            <Text style={[styles.emptyTitle, { color: darkMode ? '#f8fafc' : '#0f172a' }]}>
+              Henüz Favori Kelimeniz Yok
+            </Text>
+            <Text style={[styles.emptySubtitle, { color: darkMode ? '#94a3b8' : '#64748b' }]}>
+              Kelimelerin yanındaki kalp ikonuna tıklayarak favorilerinize ekleyebilirsiniz.
+            </Text>
+          </View>
+        );
+      }
+      return null;
+    }
 
     return (
       <View style={styles.emptyState}>
@@ -277,11 +321,19 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           <View style={styles.translatingBox}>
             <ActivityIndicator size="small" color={Colors.primary} />
             <Text style={[styles.translatingText, { color: darkMode ? '#94a3b8' : '#64748b' }]}>
-              Çeviri aranıyor...
+              Canlı çeviri aranıyor...
             </Text>
           </View>
         ) : onlineResult ? (
-          <View style={[styles.onlineResultCard, { backgroundColor: darkMode ? '#1e293b' : '#f0fdf4', borderColor: darkMode ? '#334155' : '#86efac' }]}>
+          <View
+            style={[
+              styles.onlineResultCard,
+              {
+                backgroundColor: darkMode ? '#1e293b' : '#f0fdf4',
+                borderColor: darkMode ? '#334155' : '#86efac',
+              },
+            ]}
+          >
             <View style={styles.onlineHeaderRow}>
               <Sparkles size={16} color={Colors.accentOrange} />
               <Text style={[styles.onlineLabel, { color: Colors.accentOrange }]}>
@@ -317,20 +369,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             >
               <SearchX size={30} color={darkMode ? '#94a3b8' : '#64748b'} />
             </View>
-            <Text
-              style={[
-                styles.emptyTitle,
-                { color: darkMode ? '#f8fafc' : '#0f172a' },
-              ]}
-            >
+            <Text style={[styles.emptyTitle, { color: darkMode ? '#f8fafc' : '#0f172a' }]}>
               Sonuç Bulunamadı
             </Text>
-            <Text
-              style={[
-                styles.emptySubtitle,
-                { color: darkMode ? '#94a3b8' : '#64748b' },
-              ]}
-            >
+            <Text style={[styles.emptySubtitle, { color: darkMode ? '#94a3b8' : '#64748b' }]}>
               "{query}" ile eşleşen kelime veritabanında bulunamadı.
             </Text>
             {onOpenAddWord && (
@@ -351,7 +393,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         )}
       </View>
     );
-  }, [query, isTranslating, onlineResult, darkMode, onOpenAddWord, onClose]);
+  }, [query, levelFilter, isTranslating, onlineResult, darkMode, onOpenAddWord, onClose]);
 
   const renderWordItem = useCallback(
     ({ item }: { item: Word }) => (
@@ -376,6 +418,15 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   if (!isOpen) return null;
 
   const hasQuery = query.trim().length > 0;
+
+  // Header etiket metni
+  const headerLabel = hasQuery
+    ? `${filteredWords.length} kelime bulundu`
+    : levelFilter === 'FAVORITES'
+    ? 'Favori Kelimelerim'
+    : levelFilter !== 'ALL'
+    ? `${levelFilter} Seviyesi Kelimeleri`
+    : 'Önerilen Kelimeler';
 
   return (
     <Modal
@@ -410,13 +461,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         />
 
         {/* 3. Foreground Safe Layout */}
-        <SafeAreaView style={styles.safeArea} pointerEvents="box-none">
+        <SafeAreaView style={styles.safeArea}>
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-            style={[
-              styles.container,
-              hasQuery ? styles.containerActive : styles.containerCentered,
-            ]}
+            style={styles.container}
           >
             {/* Search Bar Capsule */}
             <View
@@ -491,108 +539,109 @@ export const SearchModal: React.FC<SearchModalProps> = ({
               </TouchableOpacity>
             </View>
 
-            {/* Results Floating Card (Only when query is present) */}
-            {hasQuery && (
-              <View
-                style={[
-                  styles.resultsCard,
-                  {
-                    backgroundColor: darkMode ? 'rgba(30, 41, 59, 0.98)' : 'rgba(255, 255, 255, 0.98)',
-                    borderColor: darkMode ? 'rgba(255, 255, 255, 0.12)' : 'rgba(226, 237, 242, 0.9)',
-                  },
-                ]}
-              >
-                {/* Result count & level chips */}
-                <View style={styles.resultsHeader}>
-                  <View
+            {/* Main Floating Results & Filter Card */}
+            <View
+              style={[
+                styles.resultsCard,
+                {
+                  backgroundColor: darkMode
+                    ? 'rgba(30, 41, 59, 0.98)'
+                    : 'rgba(255, 255, 255, 0.98)',
+                  borderColor: darkMode
+                    ? 'rgba(255, 255, 255, 0.12)'
+                    : 'rgba(226, 237, 242, 0.9)',
+                },
+              ]}
+            >
+              {/* Result count & Level Filter Chips */}
+              <View style={styles.resultsHeader}>
+                <View
+                  style={[
+                    styles.countBadge,
+                    { backgroundColor: darkMode ? '#334155' : '#e5eff3' },
+                  ]}
+                >
+                  <Text
                     style={[
-                      styles.countBadge,
-                      { backgroundColor: darkMode ? '#334155' : '#e5eff3' },
+                      styles.countText,
+                      {
+                        color: darkMode
+                          ? Colors.primaryAccent
+                          : Colors.primary,
+                      },
                     ]}
                   >
-                    <Text
-                      style={[
-                        styles.countText,
-                        {
-                          color: darkMode
-                            ? Colors.primaryAccent
-                            : Colors.primary,
-                        },
-                      ]}
-                    >
-                      {filteredWords.length} kelime bulundu
-                    </Text>
-                  </View>
+                    {headerLabel}
+                  </Text>
+                </View>
 
-                  <ScrollView
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    contentContainerStyle={styles.filterScroll}
-                  >
-                    {FILTER_OPTIONS.map((filter) => {
-                      const filterKey =
-                        filter === 'TÜMÜ'
-                          ? 'ALL'
-                          : filter === 'FAVORİLER'
-                          ? 'FAVORITES'
-                          : filter;
-                      const isActive = levelFilter === filterKey;
-                      return (
-                        <TouchableOpacity
-                          key={filter}
-                          onPress={() => {
-                            HapticsService.selection();
-                            setLevelFilter(filterKey);
-                          }}
+                <ScrollView
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={styles.filterScroll}
+                >
+                  {FILTER_OPTIONS.map((filter) => {
+                    const filterKey =
+                      filter === 'TÜMÜ'
+                        ? 'ALL'
+                        : filter === 'FAVORİLER'
+                        ? 'FAVORITES'
+                        : filter;
+                    const isActive = levelFilter === filterKey;
+                    return (
+                      <TouchableOpacity
+                        key={filter}
+                        onPress={() => {
+                          HapticsService.selection();
+                          setLevelFilter(filterKey);
+                        }}
+                        style={[
+                          styles.filterChip,
+                          {
+                            backgroundColor: isActive
+                              ? Colors.primary
+                              : darkMode
+                              ? '#334155'
+                              : '#f1f5f9',
+                          },
+                        ]}
+                      >
+                        <Text
                           style={[
-                            styles.filterChip,
+                            styles.filterChipText,
                             {
-                              backgroundColor: isActive
-                                ? Colors.primary
+                              color: isActive
+                                ? '#ffffff'
                                 : darkMode
-                                ? '#334155'
-                                : '#f1f5f9',
+                                ? '#cbd5e1'
+                                : '#475569',
+                              fontWeight: isActive ? '800' : '600',
                             },
                           ]}
                         >
-                          <Text
-                            style={[
-                              styles.filterChipText,
-                              {
-                                color: isActive
-                                  ? '#ffffff'
-                                  : darkMode
-                                  ? '#cbd5e1'
-                                  : '#475569',
-                                fontWeight: isActive ? '800' : '600',
-                              },
-                            ]}
-                          >
-                            {filter === 'FAVORİLER' ? '❤️ Favoriler' : filter}
-                          </Text>
-                        </TouchableOpacity>
-                      );
-                    })}
-                  </ScrollView>
-                </View>
-
-                {/* Words FlatList */}
-                <FlatList
-                  data={filteredWords}
-                  keyExtractor={keyExtractor}
-                  renderItem={renderWordItem}
-                  ListEmptyComponent={renderEmptyState}
-                  showsVerticalScrollIndicator={false}
-                  contentContainerStyle={styles.resultsList}
-                  initialNumToRender={10}
-                  maxToRenderPerBatch={8}
-                  windowSize={5}
-                  updateCellsBatchingPeriod={50}
-                  removeClippedSubviews={Platform.OS === 'android'}
-                  keyboardShouldPersistTaps="always"
-                />
+                          {filter === 'FAVORİLER' ? '❤️ Favoriler' : filter}
+                        </Text>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </ScrollView>
               </View>
-            )}
+
+              {/* Words FlatList */}
+              <FlatList
+                data={filteredWords}
+                keyExtractor={keyExtractor}
+                renderItem={renderWordItem}
+                ListEmptyComponent={renderEmptyState}
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={styles.resultsList}
+                initialNumToRender={12}
+                maxToRenderPerBatch={10}
+                windowSize={7}
+                updateCellsBatchingPeriod={40}
+                keyboardShouldPersistTaps="handled"
+              />
+            </View>
           </KeyboardAvoidingView>
         </SafeAreaView>
       </View>
@@ -608,20 +657,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
+    flex: 1,
     width: '100%',
-    maxWidth: 440,
+    maxWidth: 480,
     alignSelf: 'center',
     paddingHorizontal: 16,
-  },
-  containerCentered: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  containerActive: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    paddingTop: Platform.OS === 'ios' ? 8 : 16,
+    paddingTop: Platform.OS === 'ios' ? 8 : 14,
+    paddingBottom: 16,
   },
   searchCapsule: {
     flexDirection: 'row',
@@ -633,10 +675,10 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 8,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.15,
-    shadowRadius: 12,
-    elevation: 8,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.12,
+    shadowRadius: 10,
+    elevation: 6,
   },
   searchIcon: {
     marginRight: 10,
@@ -662,28 +704,29 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: 12,
     flex: 1,
-    maxHeight: height * 0.62,
     borderRadius: 24,
     borderWidth: 1,
     overflow: 'hidden',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.15,
-    shadowRadius: 14,
-    elevation: 8,
+    shadowOpacity: 0.12,
+    shadowRadius: 12,
+    elevation: 6,
   },
   resultsHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 12,
-    paddingTop: 10,
-    paddingBottom: 8,
+    paddingHorizontal: 14,
+    paddingTop: 12,
+    paddingBottom: 10,
     gap: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(150, 150, 150, 0.1)',
   },
   countBadge: {
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 12,
   },
   countText: {
     fontSize: 11,
@@ -694,18 +737,17 @@ const styles = StyleSheet.create({
     paddingRight: 8,
   },
   filterChip: {
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 5,
+    borderRadius: 14,
   },
   filterChipText: {
-    fontSize: 10.5,
+    fontSize: 11,
   },
   resultsList: {
     padding: 12,
-    paddingTop: 4,
     gap: 8,
-    paddingBottom: 24,
+    paddingBottom: 32,
   },
   wordItemCard: {
     flexDirection: 'row',
@@ -780,7 +822,7 @@ const styles = StyleSheet.create({
   emptyState: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 24,
+    paddingVertical: 32,
     paddingHorizontal: 16,
   },
   emptyInner: {
@@ -788,12 +830,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   emptyIconCircle: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
+    width: 54,
+    height: 54,
+    borderRadius: 27,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 8,
+    marginBottom: 10,
   },
   emptyTitle: {
     fontSize: 15,
@@ -806,7 +848,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     textAlign: 'center',
     lineHeight: 16,
-    marginBottom: 12,
+    marginBottom: 14,
   },
   translatingBox: {
     flexDirection: 'row',

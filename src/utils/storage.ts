@@ -43,6 +43,39 @@ interface WordsStoragePayload {
 export const StorageService = {
   KEYS,
 
+  // Yerleşik 4.600 kelimelik veritabanını özel kelimeler ve kullanıcı değişiklikleriyle güvenli birleştirir
+  mergeWithBuiltIn(inputWords: Word[] = []): Word[] {
+    if (!inputWords || inputWords.length === 0) {
+      return VOCABULARY_DATABASE;
+    }
+
+    const inputMap = new Map<string, Word>();
+    const customWords: Word[] = [];
+
+    for (const w of inputWords) {
+      if (!w || !w.id) continue;
+      if (builtInWordsMap.has(w.id)) {
+        inputMap.set(w.id, w);
+      } else {
+        customWords.push(w);
+      }
+    }
+
+    const mergedBuiltIn = VOCABULARY_DATABASE.map((w) => {
+      const override = inputMap.get(w.id);
+      return override ? { ...w, ...override } : w;
+    });
+
+    const seen = new Set<string>();
+    const result: Word[] = [];
+    for (const w of [...customWords, ...mergedBuiltIn]) {
+      if (!w || !w.id || seen.has(w.id)) continue;
+      seen.add(w.id);
+      result.push(w);
+    }
+    return result;
+  },
+
   // Load words (Hafif delta ve özel kelime formatı ile yükler)
   async getWords(): Promise<Word[]> {
     try {
@@ -58,7 +91,8 @@ export const StorageService = {
           return override ? { ...w, ...override } : w;
         });
 
-        return [...customWords, ...mergedBuiltIn];
+        const fullList = [...customWords, ...mergedBuiltIn];
+        return this.mergeWithBuiltIn(fullList);
       }
 
       // 2. Eski format varsa (CursorWindow hatası vermeden okunabilirse) yeni formata dönüştür
@@ -66,10 +100,11 @@ export const StorageService = {
       if (legacyData) {
         const legacyWords = JSON.parse(legacyData);
         if (Array.isArray(legacyWords) && legacyWords.length > 0) {
+          const fullList = this.mergeWithBuiltIn(legacyWords);
           // Yeni hafif formata kaydet ve eskiyi sil
-          await this.saveWords(legacyWords);
+          await this.saveWords(fullList);
           await AsyncStorage.removeItem(KEYS.WORDS_LEGACY).catch(() => {});
-          return legacyWords;
+          return fullList;
         }
       }
     } catch (e) {

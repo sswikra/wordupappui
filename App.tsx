@@ -107,7 +107,7 @@ export default function App() {
         let savedProfile = await StorageService.getProfile();
         let savedSettings = await StorageService.getSettings();
 
-        if (savedWords) setWords(deduplicateWords(savedWords));
+        if (savedWords) setWords(deduplicateWords(StorageService.mergeWithBuiltIn(savedWords)));
         if (savedLists) setUserLists(savedLists);
         if (savedOtherLists) setOtherLists(savedOtherLists);
 
@@ -184,7 +184,7 @@ export default function App() {
           // 1. KELİMELER (Words)
           let wordsToUse: Word[];
           if (cloudWords && cloudWords.length > 0) {
-            wordsToUse = deduplicateWords(cloudWords);
+            wordsToUse = StorageService.mergeWithBuiltIn(cloudWords);
           } else {
             wordsToUse = getCleanVocabularyDatabase();
           }
@@ -952,7 +952,7 @@ export default function App() {
       const cloudLists = await FirebaseService.getGlobalCuratedLists();
 
       if (cloudWords && cloudWords.length > 0) {
-        const merged = deduplicateWords([...cloudWords, ...words]);
+        const merged = StorageService.mergeWithBuiltIn([...cloudWords, ...words]);
         setWords(merged);
         await StorageService.saveWords(merged);
         if (cloudLists && cloudLists.length > 0) {
