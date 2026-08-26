@@ -548,6 +548,101 @@ export default function App() {
     });
   };
 
+  const handleUpdateWordMastery = async (wordId: string, mastery: number) => {
+    const isMastered = mastery >= 100;
+    const now = new Date().toISOString();
+
+    // 1. Update words database
+    let targetWordObj: Word | undefined;
+    const updatedWords = words.map((w) => {
+      if (w.id === wordId) {
+        targetWordObj = { ...w, mastery, lastReviewed: now };
+        return targetWordObj;
+      }
+      return w;
+    });
+    setWords(updatedWords);
+    await StorageService.saveWords(updatedWords);
+
+    // 2. Update userLists
+    const updatedUserLists = userLists.map((list) => {
+      const hasWord = (list.words || []).some((w) => w.id === wordId);
+      if (!hasWord) return list;
+      const newWords = (list.words || []).map((w) =>
+        w.id === wordId ? { ...w, mastery, lastReviewed: now } : w
+      );
+      const learnedCount = newWords.filter((w) => (w.mastery || 0) >= 100).length;
+      const listMastery = newWords.length > 0 ? Math.round((learnedCount / newWords.length) * 100) : 0;
+      return {
+        ...list,
+        words: newWords,
+        mastery: listMastery,
+      };
+    });
+    setUserLists(updatedUserLists);
+    await StorageService.saveUserLists(updatedUserLists);
+
+    // 3. Update otherLists
+    const updatedOtherLists = otherLists.map((list) => {
+      const hasWord = (list.words || []).some((w) => w.id === wordId);
+      if (!hasWord) return list;
+      const newWords = (list.words || []).map((w) =>
+        w.id === wordId ? { ...w, mastery, lastReviewed: now } : w
+      );
+      const learnedCount = newWords.filter((w) => (w.mastery || 0) >= 100).length;
+      const listMastery = newWords.length > 0 ? Math.round((learnedCount / newWords.length) * 100) : 0;
+      return {
+        ...list,
+        words: newWords,
+        mastery: listMastery,
+      };
+    });
+    setOtherLists(updatedOtherLists);
+    await StorageService.saveOtherLists(updatedOtherLists);
+
+    // 4. Update selectedList if open
+    setSelectedList((prev) => {
+      if (!prev) return null;
+      const hasWord = (prev.words || []).some((w) => w.id === wordId);
+      if (!hasWord) return prev;
+      const newWords = (prev.words || []).map((w) =>
+        w.id === wordId ? { ...w, mastery, lastReviewed: now } : w
+      );
+      const learnedCount = newWords.filter((w) => (w.mastery || 0) >= 100).length;
+      const listMastery = newWords.length > 0 ? Math.round((learnedCount / newWords.length) * 100) : 0;
+      return {
+        ...prev,
+        words: newWords,
+        mastery: listMastery,
+      };
+    });
+
+    // 5. Update user activity if marked as learned
+    if (isMastered) {
+      const { updatedProfile, updatedSettings } = recordLearningActivity(profile, settings, 1);
+      setProfile(updatedProfile);
+      setSettings(updatedSettings);
+      await StorageService.saveProfile(updatedProfile);
+      await StorageService.saveSettings(updatedSettings);
+
+      const activeUser = currentUser || AuthService.getCurrentUser();
+      if (activeUser) {
+        await FirebaseService.saveUserProfile(activeUser.uid, updatedProfile);
+        await FirebaseService.saveAppSettings(activeUser.uid, updatedSettings);
+      }
+    }
+
+    // 6. Sync word to Firebase
+    const activeUser = currentUser || AuthService.getCurrentUser();
+    if (activeUser) {
+      const wordToSave = targetWordObj || updatedWords.find((w) => w.id === wordId);
+      if (wordToSave) {
+        FirebaseService.saveUserWord(activeUser.uid, wordToSave);
+      }
+      FirebaseService.saveUserLists(activeUser.uid, updatedUserLists);
+    }
+  };
+
   const handleUpdateListMastery = (listId: string, delta: number) => {
     setUserLists((prev) => {
       const updated = prev.map((list) => {
@@ -574,51 +669,99 @@ export default function App() {
       StorageService.saveOtherLists(updated);
       return updated;
     });
+
+    setSelectedList((prev) => {
+      if (prev && prev.id === listId) {
+        const newMastery = Math.min(100, Math.max(0, prev.mastery + delta));
+        return { ...prev, mastery: newMastery };
+      }
+      return prev;
+    });
   };
 
   const handleClearList = async (listId: string) => {
-    if (listId === 'favorites') {
-      const updatedWords = words.map((w) => (w.isFavorite ? { ...w, isFavorite: false } : w));
-      setWords(updatedWords);
-      StorageService.saveWords(updatedWords);
+    const targetWordIds = new Set<string>();
+
+    if (selectedList && selectedList.id === listId) {
+      selectedList.words.forEach((w) => targetWordIds.add(w.id));
+    }
+    const foundUserList = userLists.find((l) => l.id === listId);
+    if (foundUserList) {
+      (foundUserList.words || []).forEach((w) => targetWordIds.add(w.id));
+    }
+    const foundOtherList = otherLists.find((l) => l.id === listId);
+    if (foundOtherList) {
+      (foundOtherList.words || []).forEach((w) => targetWordIds.add(w.id));
+    }
+
+    const updatedWords = words.map((w) => {
+      let updatedW = { ...w };
+      if (listId === 'favorites' && w.isFavorite) {
+        updatedW.isFavorite = false;
+      }
+      if (w.lists?.includes(listId)) {
+        updatedW.lists = w.lists.filter((l) => l !== listId);
+      }
+      if (targetWordIds.has(w.id)) {
+        updatedW.mastery = 0;
+      }
+      return updatedW;
+    });
+    setWords(updatedWords);
+    await StorageService.saveWords(updatedWords);
+
+    const isUserList = userLists.some((l) => l.id === listId);
+    if (isUserList) {
+      const updatedLists = userLists.map((l) => {
+        if (l.id === listId) {
+          const isSystem = l.id === 'favorites' || l.id === 'review' || l.id === 'struggle';
+          const resetWords = isSystem ? [] : (l.words || []).map((w) => ({ ...w, mastery: 0 }));
+          return {
+            ...l,
+            count: resetWords.length,
+            mastery: 0,
+            words: resetWords,
+          };
+        }
+        return l;
+      });
+
+      setUserLists(updatedLists);
+      await StorageService.saveUserLists(updatedLists);
+
       const activeUser = currentUser || AuthService.getCurrentUser();
       if (activeUser) {
+        FirebaseService.saveUserLists(activeUser.uid, updatedLists);
         FirebaseService.saveUserWords(activeUser.uid, updatedWords);
       }
     }
 
-    const updatedWords = words.map((w) => {
-      if (w.lists?.includes(listId)) {
-        return { ...w, lists: w.lists.filter((l) => l !== listId) };
-      }
-      return w;
-    });
-    setWords(updatedWords);
-    StorageService.saveWords(updatedWords);
-
-    const updatedLists = userLists.map((l) => {
-      if (l.id === listId) {
-        return {
-          ...l,
-          count: 0,
-          mastery: 0,
-          words: [],
-        };
-      }
-      return l;
+    setOtherLists((prev) => {
+      const updated = prev.map((l) => {
+        if (l.id === listId) {
+          const resetWords = (l.words || []).map((w) => ({ ...w, mastery: 0 }));
+          return { ...l, mastery: 0, words: resetWords };
+        }
+        return l;
+      });
+      StorageService.saveOtherLists(updated);
+      return updated;
     });
 
-    setUserLists(updatedLists);
-    await StorageService.saveUserLists(updatedLists);
-
-    const activeUser = currentUser || AuthService.getCurrentUser();
-    if (activeUser) {
-      FirebaseService.saveUserLists(activeUser.uid, updatedLists);
-      FirebaseService.saveUserWords(activeUser.uid, updatedWords);
-    }
+    setSelectedList((prev) => {
+      if (!prev || prev.id !== listId) return prev;
+      const isSystem = prev.id === 'favorites' || prev.id === 'review' || prev.id === 'struggle';
+      const resetWords = isSystem ? [] : (prev.words || []).map((w) => ({ ...w, mastery: 0 }));
+      return {
+        ...prev,
+        count: resetWords.length,
+        mastery: 0,
+        words: resetWords,
+      };
+    });
 
     HapticsService.success();
-    Alert.alert('Liste Sıfırlandı 🎉', 'Listedeki tüm kelimeler temizlendi ve hakimiyet %0 yapıldı.');
+    Alert.alert('Liste Sıfırlandı 🎉', 'Liste hakimiyet oranı ve kelime ilerlemeleri %0 olarak sıfırlandı.');
   };
 
   const handleResetUserLists = async () => {
@@ -884,7 +1027,24 @@ export default function App() {
             <ListsView
               userLists={userLists}
               otherLists={otherLists}
-              onSelectList={(l) => setSelectedList(l)}
+              onSelectList={(l) => {
+                const wordsMap = new Map<string, Word>(words.map((w) => [w.id, w]));
+                const synchronizedWords = (l.words || []).map((w) => {
+                  const latest = wordsMap.get(w.id);
+                  return latest ? { ...w, ...latest } : w;
+                });
+                const learnedCount = synchronizedWords.filter((w) => (w.mastery || 0) >= 100).length;
+                const calculatedMastery =
+                  synchronizedWords.length > 0
+                    ? Math.round((learnedCount / synchronizedWords.length) * 100)
+                    : (l.mastery || 0);
+
+                setSelectedList({
+                  ...l,
+                  words: synchronizedWords,
+                  mastery: calculatedMastery,
+                });
+              }}
               onOpenCreateList={() => setIsCreateListOpen(true)}
               onDeleteList={handleDeleteList}
               onClearList={handleClearList}
@@ -999,6 +1159,7 @@ export default function App() {
           onSelectWord={(w) => setSelectedWord(w)}
           onToggleFavorite={handleToggleFavorite}
           onUpdateListMastery={handleUpdateListMastery}
+          onUpdateWordMastery={handleUpdateWordMastery}
           onDeleteList={handleDeleteList}
           onClearList={handleClearList}
           onWordMastered={handleWordMastered}

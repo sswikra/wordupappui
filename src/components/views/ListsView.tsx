@@ -94,7 +94,25 @@ export const ListsView: React.FC<ListsViewProps> = ({
     HapticsService.light();
     const isSystem = list.id === 'favorites' || list.id === 'review' || list.id === 'struggle';
 
-    if (activeTab === 'my' && isSystem) {
+    if (activeTab === 'other') {
+      Alert.alert(
+        'Hakimiyeti Sıfırla',
+        `"${list.title}" listesindeki ilerleme sıfırlanacak ve hakimiyet %0 yapılacaktır. Emin misiniz?`,
+        [
+          { text: 'Vazgeç', style: 'cancel' },
+          {
+            text: 'Sıfırla',
+            style: 'destructive',
+            onPress: () => {
+              HapticsService.medium();
+              if (onClearList) {
+                onClearList(list.id);
+              }
+            },
+          },
+        ]
+      );
+    } else if (isSystem) {
       Alert.alert(
         'Listeyi Sıfırla',
         `"${list.title}" listesindeki tüm kelimeler temizlenecek ve hakimiyet %0 yapılacaktır. Emin misiniz?`,
@@ -123,7 +141,7 @@ export const ListsView: React.FC<ListsViewProps> = ({
             style: 'destructive',
             onPress: () => {
               HapticsService.medium();
-              onDeleteList(list.id, activeTab === 'other');
+              onDeleteList(list.id, false);
             },
           },
         ]
@@ -268,14 +286,18 @@ export const ListsView: React.FC<ListsViewProps> = ({
                 {/* Mastery & Delete/Clear action */}
                 <View style={styles.actionRow}>
                   <Text style={[styles.masteryText, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
-                    %{list.mastery}
+                    %{Math.round(list.mastery || 0)}
                   </Text>
                   <TouchableOpacity
                     onPress={() => handleListAction(list)}
                     style={styles.deleteBtn}
                     hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                   >
-                    <Trash2 size={16} color={isSystem && activeTab === 'my' ? '#f59e0b' : '#94a3b8'} />
+                    {activeTab === 'other' || isSystem ? (
+                      <RotateCw size={16} color="#f59e0b" />
+                    ) : (
+                      <Trash2 size={16} color="#94a3b8" />
+                    )}
                   </TouchableOpacity>
                 </View>
               </View>
@@ -286,7 +308,7 @@ export const ListsView: React.FC<ListsViewProps> = ({
                   style={[
                     styles.progressBar,
                     {
-                      width: `${list.mastery}%`,
+                      width: `${Math.min(100, Math.max(0, list.mastery || 0))}%`,
                       backgroundColor: darkMode ? Colors.primaryAccent : Colors.primary,
                     },
                   ]}

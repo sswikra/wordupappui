@@ -243,6 +243,71 @@ export default function App() {
     );
   };
 
+  const handleUpdateWordMastery = (wordId: string, mastery: number) => {
+    const isMastered = mastery >= 100;
+    const now = new Date().toISOString();
+
+    setWords((prev) =>
+      prev.map((w) => (w.id === wordId ? { ...w, mastery, lastReviewed: now } : w))
+    );
+
+    setUserLists((prev) =>
+      prev.map((list) => {
+        const hasWord = (list.words || []).some((w) => w.id === wordId);
+        if (!hasWord) return list;
+        const newWords = (list.words || []).map((w) =>
+          w.id === wordId ? { ...w, mastery, lastReviewed: now } : w
+        );
+        const learnedCount = newWords.filter((w) => (w.mastery || 0) >= 100).length;
+        const listMastery = newWords.length > 0 ? Math.round((learnedCount / newWords.length) * 100) : 0;
+        return {
+          ...list,
+          words: newWords,
+          mastery: listMastery,
+        };
+      })
+    );
+
+    setOtherLists((prev) =>
+      prev.map((list) => {
+        const hasWord = (list.words || []).some((w) => w.id === wordId);
+        if (!hasWord) return list;
+        const newWords = (list.words || []).map((w) =>
+          w.id === wordId ? { ...w, mastery, lastReviewed: now } : w
+        );
+        const learnedCount = newWords.filter((w) => (w.mastery || 0) >= 100).length;
+        const listMastery = newWords.length > 0 ? Math.round((learnedCount / newWords.length) * 100) : 0;
+        return {
+          ...list,
+          words: newWords,
+          mastery: listMastery,
+        };
+      })
+    );
+
+    setSelectedList((prev) => {
+      if (!prev) return null;
+      const hasWord = (prev.words || []).some((w) => w.id === wordId);
+      if (!hasWord) return prev;
+      const newWords = (prev.words || []).map((w) =>
+        w.id === wordId ? { ...w, mastery, lastReviewed: now } : w
+      );
+      const learnedCount = newWords.filter((w) => (w.mastery || 0) >= 100).length;
+      const listMastery = newWords.length > 0 ? Math.round((learnedCount / newWords.length) * 100) : 0;
+      return {
+        ...prev,
+        words: newWords,
+        mastery: listMastery,
+      };
+    });
+
+    if (isMastered) {
+      const { updatedProfile, updatedSettings } = recordLearningActivity(profile, settings, 1);
+      setSettings(updatedSettings);
+      setProfile(updatedProfile);
+    }
+  };
+
   const handleUpdateListMastery = (listId: string, delta: number) => {
     setUserLists((prev) =>
       prev.map((list) => {
@@ -253,6 +318,22 @@ export default function App() {
         return list;
       })
     );
+    setOtherLists((prev) =>
+      prev.map((list) => {
+        if (list.id === listId) {
+          const newMastery = Math.min(100, Math.max(0, list.mastery + delta));
+          return { ...list, mastery: newMastery };
+        }
+        return list;
+      })
+    );
+    setSelectedList((prev) => {
+      if (prev && prev.id === listId) {
+        const newMastery = Math.min(100, Math.max(0, prev.mastery + delta));
+        return { ...prev, mastery: newMastery };
+      }
+      return prev;
+    });
   };
 
   const handleIncrementGamesPlayed = () => {
@@ -309,7 +390,24 @@ export default function App() {
             <ListsView
               userLists={userLists}
               otherLists={otherLists}
-              onSelectList={(l) => setSelectedList(l)}
+              onSelectList={(l) => {
+                const wordsMap = new Map<string, Word>(words.map((w) => [w.id, w]));
+                const synchronizedWords = (l.words || []).map((w) => {
+                  const latest = wordsMap.get(w.id);
+                  return latest ? { ...w, ...latest } : w;
+                });
+                const learnedCount = synchronizedWords.filter((w) => (w.mastery || 0) >= 100).length;
+                const calculatedMastery =
+                  synchronizedWords.length > 0
+                    ? Math.round((learnedCount / synchronizedWords.length) * 100)
+                    : (l.mastery || 0);
+
+                setSelectedList({
+                  ...l,
+                  words: synchronizedWords,
+                  mastery: calculatedMastery,
+                });
+              }}
               onOpenCreateList={() => setIsCreateListOpen(true)}
               onDeleteList={handleDeleteList}
               darkMode={settings.darkMode}
@@ -397,6 +495,7 @@ export default function App() {
           onSelectWord={(w) => setSelectedWord(w)}
           onToggleFavorite={handleToggleFavorite}
           onUpdateListMastery={handleUpdateListMastery}
+          onUpdateWordMastery={handleUpdateWordMastery}
           onDeleteList={handleDeleteList}
           darkMode={settings.darkMode}
         />
