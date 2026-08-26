@@ -17,8 +17,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import * as WebBrowser from 'expo-web-browser';
 import * as AuthSession from 'expo-auth-session';
 import Constants, { ExecutionEnvironment } from 'expo-constants';
-import { Cloud, Award, BookOpen, ShieldCheck, Sparkles, X, CheckCircle, ArrowLeft } from 'lucide-react-native';
+import { Cloud, Award, BookOpen, ShieldCheck, Sparkles, X, CheckCircle, ArrowLeft, Target } from 'lucide-react-native';
 import { AuthService } from '../../services/authService';
+import { FirebaseService } from '../../services/firebaseService';
+import { StorageService } from '../../utils/storage';
+import { getCleanAppSettings } from '../../data/mockData';
 import { HapticsService } from '../../utils/haptics';
 import { Colors, getTheme } from '../../theme/colors';
 
@@ -51,6 +54,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     const [authMode, setAuthMode] = useState<'options' | 'email_login' | 'email_register' | 'forgot_password'>('options');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [registerGoal, setRegisterGoal] = useState<number>(10);
 
     // Modal açıldığında form durumunu sıfırla
     useEffect(() => {
@@ -59,6 +63,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             setSuccessMessage(null);
             setLoading(false);
             setAuthMode('options');
+            setRegisterGoal(10);
         }
     }, [isOpen]);
 
@@ -180,7 +185,13 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             setLoading(true);
             setErrorMessage(null);
             HapticsService.medium();
-            await AuthService.registerWithEmail(email, password);
+            const user = await AuthService.registerWithEmail(email, password);
+            if (user) {
+                const initialSettings = getCleanAppSettings(user.email || email);
+                initialSettings.dailyGoal = registerGoal;
+                await StorageService.saveSettings(initialSettings);
+                await FirebaseService.saveAppSettings(user.uid, initialSettings);
+            }
             HapticsService.success();
             if (onLoginSuccess) onLoginSuccess();
             onClose();
@@ -472,6 +483,79 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                                         secureTextEntry
                                     />
 
+                                    {/* Günlük Hedef Seçimi (5-10-15-20) */}
+                                    <View style={[styles.registerGoalCard, { backgroundColor: darkMode ? '#1e293b' : '#f8fafc', borderColor: theme.cardBorder }]}>
+                                        <View style={styles.registerGoalHeader}>
+                                            <View style={styles.registerGoalHeaderLeft}>
+                                                <Target size={16} color={darkMode ? Colors.primaryAccent : Colors.primary} strokeWidth={2.4} />
+                                                <Text style={[styles.registerGoalTitle, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
+                                                    Günlük Kelime Hedefiniz
+                                                </Text>
+                                            </View>
+                                            <View style={[styles.registerGoalBadge, { backgroundColor: darkMode ? 'rgba(123, 169, 131, 0.2)' : '#e2eff2' }]}>
+                                                <Text style={[styles.registerGoalBadgeText, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
+                                                    {registerGoal} Kelime
+                                                </Text>
+                                            </View>
+                                        </View>
+
+                                        <View style={styles.registerGoalGrid}>
+                                            {[
+                                                { val: 5, label: '5', tag: '🌱 Rahat', color: '#10b981' },
+                                                { val: 10, label: '10', tag: '⚡ Standart', color: '#3b82f6' },
+                                                { val: 15, label: '15', tag: '🔥 İddialı', color: '#f97316' },
+                                                { val: 20, label: '20', tag: '🏆 Şampiyon', color: '#eab308' },
+                                            ].map((item) => {
+                                                const isSelected = registerGoal === item.val;
+                                                return (
+                                                    <TouchableOpacity
+                                                        key={item.val}
+                                                        onPress={() => {
+                                                            HapticsService.selection();
+                                                            setRegisterGoal(item.val);
+                                                        }}
+                                                        activeOpacity={0.8}
+                                                        style={[
+                                                            styles.registerGoalBtn,
+                                                            {
+                                                                backgroundColor: isSelected
+                                                                    ? (darkMode ? '#334155' : '#ffffff')
+                                                                    : (darkMode ? '#0f172a' : '#f1f5f9'),
+                                                                borderColor: isSelected
+                                                                    ? item.color
+                                                                    : (darkMode ? '#334155' : '#e2e8f0'),
+                                                                borderWidth: isSelected ? 2 : 1,
+                                                            },
+                                                        ]}
+                                                    >
+                                                        <Text
+                                                            style={[
+                                                                styles.registerGoalBtnNum,
+                                                                {
+                                                                    color: isSelected ? item.color : theme.textPrimary,
+                                                                    fontWeight: isSelected ? '900' : '700',
+                                                                },
+                                                            ]}
+                                                        >
+                                                            {item.label}
+                                                        </Text>
+                                                        <Text
+                                                            style={[
+                                                                styles.registerGoalBtnTag,
+                                                                {
+                                                                    color: isSelected ? item.color : theme.textMuted,
+                                                                    fontWeight: isSelected ? '800' : '600',
+                                                                },
+                                                            ]}
+                                                        >
+                                                            {item.tag}
+                                                        </Text>
+                                                    </TouchableOpacity>
+                                                );
+                                            })}
+                                        </View>
+                                    </View>
+
                                     <TouchableOpacity
                                         style={[styles.primarySubmitButton, { opacity: loading ? 0.7 : 1, backgroundColor: Colors.accentOrange }]}
                                         disabled={loading}
@@ -762,6 +846,54 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
         fontSize: 14,
         fontWeight: '600',
+    },
+    registerGoalCard: {
+        borderRadius: 16,
+        borderWidth: 1,
+        padding: 12,
+        gap: 8,
+    },
+    registerGoalHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    registerGoalHeaderLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6,
+    },
+    registerGoalTitle: {
+        fontSize: 13,
+        fontWeight: '800',
+    },
+    registerGoalBadge: {
+        paddingHorizontal: 8,
+        paddingVertical: 2,
+        borderRadius: 8,
+    },
+    registerGoalBadgeText: {
+        fontSize: 11,
+        fontWeight: '800',
+    },
+    registerGoalGrid: {
+        flexDirection: 'row',
+        gap: 6,
+    },
+    registerGoalBtn: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 8,
+        paddingHorizontal: 4,
+        borderRadius: 12,
+        gap: 2,
+    },
+    registerGoalBtnNum: {
+        fontSize: 15,
+    },
+    registerGoalBtnTag: {
+        fontSize: 9,
     },
     primarySubmitButton: {
         backgroundColor: '#345c43',

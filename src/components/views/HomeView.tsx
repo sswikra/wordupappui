@@ -7,7 +7,7 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
-import { Search, Flame, Volume2, Plus } from 'lucide-react-native';
+import { Search, Flame, Volume2, Plus, Target } from 'lucide-react-native';
 import { Word, AppSettings } from '../../types';
 import { playPronunciation } from '../../utils/speech';
 import { HapticsService } from '../../utils/haptics';
@@ -22,6 +22,7 @@ interface HomeViewProps {
   onOpenAddWord: () => void;
   onSelectWord: (word: Word) => void;
   onViewAllSuggested?: () => void;
+  onOpenDailyGoal?: () => void;
   darkMode?: boolean;
 }
 
@@ -36,6 +37,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
   onOpenAddWord,
   onSelectWord,
   onViewAllSuggested,
+  onOpenDailyGoal,
   darkMode = false,
 }) => {
   const theme = getTheme(darkMode);
@@ -222,11 +224,23 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </View>
 
       {/* 5. Daily Goal Progress Card */}
-      <View style={[styles.goalCard, { backgroundColor: darkMode ? '#1e293b' : '#ffffff', borderColor: theme.cardBorder }]}>
+      <TouchableOpacity
+        activeOpacity={onOpenDailyGoal ? 0.85 : 1}
+        onPress={() => {
+          if (onOpenDailyGoal) {
+            HapticsService.light();
+            onOpenDailyGoal();
+          }
+        }}
+        style={[styles.goalCard, { backgroundColor: darkMode ? '#1e293b' : '#ffffff', borderColor: theme.cardBorder }]}
+      >
         <View style={styles.goalHeader}>
-          <Text style={[styles.goalTitle, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
-            Günlük Hedef
-          </Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+            <Target size={16} color={darkMode ? Colors.primaryAccent : Colors.primary} strokeWidth={2.4} />
+            <Text style={[styles.goalTitle, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
+              Günlük Hedef
+            </Text>
+          </View>
           <View style={[styles.goalBadge, { backgroundColor: darkMode ? 'rgba(245, 158, 11, 0.2)' : '#fdecd2' }]}>
             <Text style={[styles.goalBadgeText, { color: darkMode ? '#fbbf24' : '#87450a' }]}>
               {settings.currentDayWordsCount}/{settings.dailyGoal} Kelime
@@ -246,7 +260,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             ]}
           />
         </View>
-      </View>
+      </TouchableOpacity>
     </ScrollView>
   );
 };

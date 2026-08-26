@@ -56,6 +56,7 @@ import { WordDetailModal } from './src/components/modals/WordDetailModal';
 import { AddWordModal } from './src/components/modals/AddWordModal';
 import { CreateListModal } from './src/components/modals/CreateListModal';
 import { ListDetailModal } from './src/components/modals/ListDetailModal';
+import { DailyGoalModal } from './src/components/modals/DailyGoalModal';
 
 const deduplicateWords = (wordsList: Word[] = []): Word[] => {
   const seen = new Set<string>();
@@ -93,6 +94,8 @@ export default function App() {
   const [isAddWordOpen, setIsAddWordOpen] = useState(false);
   const [isCreateListOpen, setIsCreateListOpen] = useState(false);
   const [selectedList, setSelectedList] = useState<WordList | null>(null);
+  const [isDailyGoalModalOpen, setIsDailyGoalModalOpen] = useState(false);
+  const [isFirstTimeGoal, setIsFirstTimeGoal] = useState(false);
 
   // Load persistent data on initial mount
   useEffect(() => {
@@ -235,6 +238,7 @@ export default function App() {
           }
 
           // 4. AYARLAR (Settings)
+          const isNewUserRegistration = !cloudSettings;
           let settingsToUse: AppSettings = cloudSettings
             ? { ...cloudSettings, email: user.email || cloudSettings.email }
             : getCleanAppSettings(user.email || '');
@@ -250,6 +254,12 @@ export default function App() {
           await StorageService.saveSettings(updatedSettings);
           await FirebaseService.saveUserProfile(user.uid, updatedProfile);
           await FirebaseService.saveAppSettings(user.uid, updatedSettings);
+
+          // İlk kayıt veya bulut ayarı olmayan yeni kullanıcılar için günlük hedef belirleme modalını aç
+          if (isNewUserRegistration) {
+            setIsFirstTimeGoal(true);
+            setIsDailyGoalModalOpen(true);
+          }
         } catch (e) {
           console.warn('Firestore veri yükleme hatası:', e);
         }
@@ -291,6 +301,12 @@ export default function App() {
   // Android Hardware Back Button Handling
   useEffect(() => {
     const onBackPress = () => {
+      if (isDailyGoalModalOpen) {
+        if (!isFirstTimeGoal) {
+          setIsDailyGoalModalOpen(false);
+        }
+        return true;
+      }
       if (isAuthOpen) {
         setIsAuthOpen(false);
         return true;
@@ -333,6 +349,8 @@ export default function App() {
     const subscription = BackHandler.addEventListener('hardwareBackPress', onBackPress);
     return () => subscription.remove();
   }, [
+    isDailyGoalModalOpen,
+    isFirstTimeGoal,
     isAuthOpen,
     selectedWord,
     selectedList,
@@ -779,6 +797,12 @@ export default function App() {
     });
   };
 
+  const handleUpdateDailyGoal = (newGoal: number) => {
+    handleUpdateSettings({ dailyGoal: newGoal });
+    setIsDailyGoalModalOpen(false);
+    setIsFirstTimeGoal(false);
+  };
+
   const handleSyncGlobalVocabulary = async () => {
     try {
       const cloudWords = await FirebaseService.getGlobalVocabulary();
@@ -840,6 +864,10 @@ export default function App() {
               onOpenSearch={() => setIsSearchOpen(true)}
               onOpenAddWord={() => setIsAddWordOpen(true)}
               onSelectWord={(w) => setSelectedWord(w)}
+              onOpenDailyGoal={() => {
+                setIsFirstTimeGoal(false);
+                setIsDailyGoalModalOpen(true);
+              }}
               darkMode={settings.darkMode}
             />
           )}
@@ -981,6 +1009,18 @@ export default function App() {
           onClose={() => setIsAuthOpen(false)}
           onLoginSuccess={() => setIsAuthOpen(false)}
           darkMode={settings.darkMode}
+        />
+
+        <DailyGoalModal
+          isOpen={isDailyGoalModalOpen}
+          currentGoal={settings.dailyGoal}
+          onSaveGoal={handleUpdateDailyGoal}
+          onClose={() => {
+            setIsDailyGoalModalOpen(false);
+            setIsFirstTimeGoal(false);
+          }}
+          darkMode={settings.darkMode}
+          isFirstTime={isFirstTimeGoal}
         />
       </SafeAreaView>
     </SafeAreaProvider>

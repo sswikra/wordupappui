@@ -23,11 +23,13 @@ import {
   RotateCw,
   BookOpen,
   Trash2,
+  Target,
 } from 'lucide-react-native';
 import { User } from 'firebase/auth';
 import { AppSettings } from '../../types';
 import { HapticsService } from '../../utils/haptics';
 import { Colors, getTheme } from '../../theme/colors';
+import { DailyGoalModal } from '../modals/DailyGoalModal';
 
 interface SettingsViewProps {
   settings: AppSettings;
@@ -57,6 +59,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   const theme = getTheme(darkMode);
   const [showLangModal, setShowLangModal] = useState(false);
   const [showAccountModal, setShowAccountModal] = useState(false);
+  const [showGoalModal, setShowGoalModal] = useState(false);
   const [isSyncing, setIsSyncing] = useState(false);
 
   const handleSyncCloud = async () => {
@@ -302,7 +305,53 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           <ChevronRight size={20} color={darkMode ? Colors.primaryAccent : Colors.primary} />
         </TouchableOpacity>
 
-        {/* 4. Cloud Database Sync */}
+        {/* 4. Daily Word Goal Picker */}
+        <TouchableOpacity
+          onPress={() => {
+            HapticsService.selection();
+            setShowGoalModal(true);
+          }}
+          activeOpacity={0.7}
+          style={[styles.menuItem, { borderBottomColor: theme.cardBorder }]}
+        >
+          <View style={styles.itemLeft}>
+            <View style={[styles.iconWrap, { backgroundColor: darkMode ? 'rgba(123, 169, 131, 0.2)' : '#e2eff2' }]}>
+              <Target size={18} color={darkMode ? Colors.primaryAccent : Colors.primary} strokeWidth={2.2} />
+            </View>
+            <View>
+              <Text style={[styles.itemTitle, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
+                Günlük Kelime Hedefi
+              </Text>
+              <Text style={[styles.itemSub, { color: theme.textMuted }]}>
+                Hedef: {settings.dailyGoal} kelime / gün
+              </Text>
+            </View>
+          </View>
+
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+            <View
+              style={{
+                paddingHorizontal: 8,
+                paddingVertical: 3,
+                borderRadius: 8,
+                backgroundColor: darkMode ? '#334155' : '#e2eff2',
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 12,
+                  fontWeight: '800',
+                  color: darkMode ? Colors.primaryAccent : Colors.primary,
+                }}
+              >
+                {settings.dailyGoal} Kelime
+              </Text>
+            </View>
+            <ChevronRight size={20} color={darkMode ? Colors.primaryAccent : Colors.primary} />
+          </View>
+        </TouchableOpacity>
+
+        {/* 5. Cloud Database Sync */}
         <TouchableOpacity
           onPress={handleSyncCloud}
           disabled={isSyncing}
@@ -573,6 +622,18 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           </View>
         </View>
       </Modal>
+
+      {/* Daily Goal Selection Modal */}
+      <DailyGoalModal
+        isOpen={showGoalModal}
+        currentGoal={settings.dailyGoal}
+        onSaveGoal={(goal) => {
+          onUpdateSettings({ dailyGoal: goal });
+          setShowGoalModal(false);
+        }}
+        onClose={() => setShowGoalModal(false)}
+        darkMode={darkMode}
+      />
     </ScrollView>
   );
 };
