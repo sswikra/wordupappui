@@ -6,12 +6,11 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
-import { Play, LayoutGrid, Link2, Shuffle, Trophy, Target, LucideIcon } from 'lucide-react-native';
+import { Play, LayoutGrid, Link2, Shuffle, LucideIcon } from 'lucide-react-native';
 import { GameId } from '../../types';
 import { WordGuessGame } from '../games/WordGuessGame';
 import { WordMatchGame } from '../games/WordMatchGame';
 import { ScrambleGame } from '../games/ScrambleGame';
-import { StorageService } from '../../utils/storage';
 import { HapticsService } from '../../utils/haptics';
 import { Colors, getTheme } from '../../theme/colors';
 
@@ -28,28 +27,12 @@ export const GamesView: React.FC<GamesViewProps> = ({
 }) => {
   const theme = getTheme(darkMode);
   const [activeGame, setActiveGame] = useState<GameId | null>(null);
-  const [highScores, setHighScores] = useState<Record<GameId, number>>({
-    guess: 0,
-    match: 0,
-    scramble: 0,
-  });
 
   useEffect(() => {
     if (onActiveGameChange) {
       onActiveGameChange(activeGame !== null);
     }
   }, [activeGame, onActiveGameChange]);
-
-  const loadHighScores = async () => {
-    const guess = await StorageService.getHighScore('guess');
-    const match = await StorageService.getHighScore('match');
-    const scramble = await StorageService.getHighScore('scramble');
-    setHighScores({ guess, match, scramble });
-  };
-
-  useEffect(() => {
-    loadHighScores();
-  }, [activeGame]);
 
   const handleGameFinish = (won: boolean) => {
     if (onIncrementGamesPlayed) {
@@ -118,7 +101,6 @@ export const GamesView: React.FC<GamesViewProps> = ({
       <View style={styles.list}>
         {gamesList.map((game) => {
           const Icon = game.icon;
-          const score = highScores[game.id] || 0;
 
           return (
             <View
@@ -131,43 +113,11 @@ export const GamesView: React.FC<GamesViewProps> = ({
                 },
               ]}
             >
-              {/* Card Header: Icon & High Score */}
+              {/* Card Header: Icon */}
               <View style={styles.cardHeader}>
                 <View style={[styles.iconCircle, { backgroundColor: darkMode ? '#334155' : '#d8ebee' }]}>
                   <Icon size={22} color={darkMode ? Colors.primaryAccent : Colors.primary} strokeWidth={2.2} />
                 </View>
-
-                {game.id !== 'guess' ? (
-                  <View
-                    style={[
-                      styles.highScoreBadge,
-                      {
-                        backgroundColor: darkMode ? 'rgba(52, 92, 67, 0.3)' : '#ecfdf5',
-                        borderColor: darkMode ? 'rgba(123, 169, 131, 0.4)' : '#a7f3d0',
-                      },
-                    ]}
-                  >
-                    <Trophy size={13} color={darkMode ? '#86efac' : Colors.primary} strokeWidth={2.4} />
-                    <Text style={[styles.highScoreText, { color: darkMode ? '#86efac' : Colors.primary }]}>
-                      En Yüksek: {score}
-                    </Text>
-                  </View>
-                ) : (
-                  <View
-                    style={[
-                      styles.highScoreBadge,
-                      {
-                        backgroundColor: darkMode ? 'rgba(196, 98, 16, 0.15)' : '#fff8f0',
-                        borderColor: darkMode ? 'rgba(196, 98, 16, 0.3)' : '#fed7aa',
-                      },
-                    ]}
-                  >
-                    <Target size={13} color={darkMode ? '#fdba74' : '#c46210'} strokeWidth={2.4} />
-                    <Text style={[styles.highScoreText, { color: darkMode ? '#fdba74' : '#c46210' }]}>
-                      6 Deneme
-                    </Text>
-                  </View>
-                )}
               </View>
 
               {/* Title & Description */}
@@ -237,7 +187,6 @@ const styles = StyleSheet.create({
   cardHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
     marginBottom: 10,
   },
   iconCircle: {
@@ -246,19 +195,6 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  highScoreBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 5,
-    paddingHorizontal: 12,
-    paddingVertical: 5,
-    borderRadius: 14,
-    borderWidth: 1,
-  },
-  highScoreText: {
-    fontSize: 11,
-    fontWeight: '800',
   },
   infoSection: {
     marginBottom: 14,
