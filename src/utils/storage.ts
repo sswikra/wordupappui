@@ -211,7 +211,9 @@ export const StorageService = {
     try {
       const data = await AsyncStorage.getItem(KEYS.SETTINGS);
       if (data) {
-        return JSON.parse(data);
+        const parsed = JSON.parse(data);
+        const { subscription, ...rest } = parsed;
+        return { ...INITIAL_APP_SETTINGS, ...rest };
       }
     } catch (e) {
       console.warn('Failed to load settings', e);

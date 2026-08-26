@@ -92,7 +92,6 @@ export interface AppSettings {
   notifications: boolean;
   languageDirection: 'EN_TR' | 'TR_EN' | 'EN_ES' | 'EN_DE' | 'EN_FR';
   email: string;
-  subscription: 'Free' | 'Pro Member' | 'Lifetime';
   soundEnabled: boolean;
   dailyGoal: number;
   currentDayWordsCount: number;

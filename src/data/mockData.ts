@@ -120,7 +120,6 @@ export const getCleanAppSettings = (email?: string): AppSettings => ({
   notifications: true,
   languageDirection: 'EN_TR',
   email: email || '',
-  subscription: 'Free',
   soundEnabled: true,
   dailyGoal: 20,
   currentDayWordsCount: 0,

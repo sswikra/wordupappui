@@ -603,11 +603,6 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
               </View>
 
               <View style={[styles.accountBox, { backgroundColor: darkMode ? '#334155' : '#f8fafc' }]}>
-                <Text style={styles.accountLabel}>Abonelik Planı</Text>
-                <Text style={[styles.accountValue, { color: '#10b981' }]}>{settings.subscription} (Aktif)</Text>
-              </View>
-
-              <View style={[styles.accountBox, { backgroundColor: darkMode ? '#334155' : '#f8fafc' }]}>
                 <Text style={styles.accountLabel}>Günlük Hedef</Text>
                 <Text style={[styles.accountValue, { color: theme.textPrimary }]}>{settings.dailyGoal} Kelime / Gün</Text>
               </View>

@@ -583,9 +583,10 @@ export const FirebaseService = {
     try {
       if (!userId || !settings) return;
       const cleanSettings = sanitize(settings);
+      const { subscription, ...settingsToSave } = cleanSettings as any;
       const settingsRef = doc(db, 'users', userId, 'settings', 'preferences');
       await setDoc(settingsRef, {
-        ...cleanSettings,
+        ...settingsToSave,
         updatedAt: new Date().toISOString(),
       });
       console.log('🔥 [Firestore] Ayarlar /users/{userId}/settings/preferences dokümanına kaydedildi.');
@@ -600,7 +601,9 @@ export const FirebaseService = {
       const settingsRef = doc(db, 'users', userId, 'settings', 'preferences');
       const snap = await getDoc(settingsRef);
       if (snap.exists()) {
-        return snap.data() as AppSettings;
+        const data = snap.data();
+        const { subscription, ...rest } = data as any;
+        return rest as AppSettings;
       }
     } catch (error) {
       console.error('❌ [Firestore] getAppSettings hatası:', error);
