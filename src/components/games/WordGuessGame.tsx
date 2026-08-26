@@ -1,19 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
   ScrollView,
-  Alert,
   Dimensions,
 } from 'react-native';
-import { ArrowLeft, RotateCcw, HelpCircle, Delete } from 'lucide-react-native';
+import {
+  ArrowLeft,
+  RotateCcw,
+  HelpCircle,
+  Delete,
+  Volume2,
+  CheckCircle2,
+  XCircle,
+  Target,
+  ArrowRight,
+} from 'lucide-react-native';
 import { GUESS_WORDS_POOL } from '../../data/mockData';
 import { playPronunciation } from '../../utils/speech';
 import { HapticsService } from '../../utils/haptics';
-import { StorageService } from '../../utils/storage';
-import { GameScoreBoard } from './GameScoreBoard';
+import { isValid5LetterWord } from '../../utils/wordValidation';
 import { Colors, getTheme } from '../../theme/colors';
 
 interface WordGuessGameProps {
@@ -42,15 +50,7 @@ export const WordGuessGame: React.FC<WordGuessGameProps> = ({
   const [showHint, setShowHint] = useState(false);
   const [message, setMessage] = useState('');
 
-  // Score
-  const [score, setScore] = useState(0);
-  const [highScore, setHighScore] = useState(0);
-
   const maxAttempts = 6;
-
-  useEffect(() => {
-    StorageService.getHighScore('guess').then(setHighScore);
-  }, []);
 
   const handleKeyPress = (letter: string) => {
     if (isGameOver) return;
@@ -75,6 +75,13 @@ export const WordGuessGame: React.FC<WordGuessGameProps> = ({
       return;
     }
 
+    if (!isValid5LetterWord(currentGuess)) {
+      HapticsService.error();
+      setMessage('Anlamlı bir kelime giriniz');
+      setTimeout(() => setMessage(''), 1800);
+      return;
+    }
+
     const nextGuesses = [...guesses, currentGuess];
     setGuesses(nextGuesses);
     setCurrentGuess('');
@@ -83,20 +90,12 @@ export const WordGuessGame: React.FC<WordGuessGameProps> = ({
       HapticsService.success();
       setHasWon(true);
       setIsGameOver(true);
-      const pointsWon = Math.max(20, (7 - nextGuesses.length) * 20);
-      const newScore = score + pointsWon;
-      setScore(newScore);
-
-      if (newScore > highScore) {
-        setHighScore(newScore);
-        StorageService.saveHighScore('guess', newScore);
-      }
-
       playPronunciation(solution);
       if (onGameComplete) onGameComplete(true);
     } else if (nextGuesses.length >= maxAttempts) {
       HapticsService.error();
       setIsGameOver(true);
+      setHasWon(false);
       if (onGameComplete) onGameComplete(false);
     } else {
       HapticsService.medium();
@@ -187,12 +186,110 @@ export const WordGuessGame: React.FC<WordGuessGameProps> = ({
         </View>
       </View>
 
-      {/* Score Board */}
-      <GameScoreBoard currentScore={score} highScore={highScore} darkMode={darkMode} />
+      {/* Attempt Status Bar (Replaces old Score Board) */}
+      <View
+        style={[
+          styles.attemptCard,
+          {
+            backgroundColor: darkMode ? '#1e293b' : '#f8fafc',
+            borderColor: theme.cardBorder,
+          },
+        ]}
+      >
+        <View style={styles.attemptInfo}>
+          <View
+            style={[
+              styles.attemptIconCircle,
+              {
+                backgroundColor: isGameOver
+                  ? hasWon
+                    ? darkMode
+                      ? 'rgba(16, 185, 129, 0.2)'
+                      : '#d1fae5'
+                    : darkMode
+                    ? 'rgba(239, 68, 68, 0.2)'
+                    : '#fee2e2'
+                  : darkMode
+                  ? 'rgba(196, 98, 16, 0.2)'
+                  : '#fff8f0',
+              },
+            ]}
+          >
+            {isGameOver ? (
+              hasWon ? (
+                <CheckCircle2 size={18} color="#10b981" strokeWidth={2.4} />
+              ) : (
+                <XCircle size={18} color="#ef4444" strokeWidth={2.4} />
+              )
+            ) : (
+              <Target size={18} color={darkMode ? '#fbbf24' : '#c46210'} strokeWidth={2.4} />
+            )}
+          </View>
+          <View style={styles.attemptTextContainer}>
+            <Text style={[styles.attemptTitle, { color: theme.textPrimary }]}>
+              {isGameOver
+                ? hasWon
+                  ? `${guesses.length}. Tahminde Bulundu! 🎉`
+                  : '6 Tahminde Bulunamadı'
+                : `Tahmin: ${Math.min(guesses.length + 1, maxAttempts)} / ${maxAttempts}`}
+            </Text>
+            <Text style={[styles.attemptSub, { color: theme.textSecondary }]}>
+              {isGameOver
+                ? hasWon
+                  ? 'Tebrikler, kelimeyi başarıyla çözdünüz!'
+                  : 'Doğru cevap aşağıda gösterildi'
+                : `${maxAttempts - guesses.length} tahmin hakkınız kaldı`}
+            </Text>
+          </View>
+        </View>
+
+        {/* 6 Step Progress Pills */}
+        <View style={styles.stepPills}>
+          {Array(maxAttempts)
+            .fill(null)
+            .map((_, i) => {
+              const isGuessed = i < guesses.length;
+              const isCurrent = i === guesses.length && !isGameOver;
+              const isSuccessStep = isGameOver && hasWon && i === guesses.length - 1;
+
+              return (
+                <View
+                  key={i}
+                  style={[
+                    styles.stepPill,
+                    {
+                      backgroundColor: isSuccessStep
+                        ? '#10b981'
+                        : isGuessed
+                        ? darkMode
+                          ? '#475569'
+                          : '#94a3b8'
+                        : isCurrent
+                        ? darkMode
+                          ? Colors.primaryAccent
+                          : Colors.primary
+                        : darkMode
+                        ? '#334155'
+                        : '#e2e8f0',
+                    },
+                  ]}
+                />
+              );
+            })}
+        </View>
+      </View>
 
       {/* Hint Banner */}
       {showHint && (
-        <View style={[styles.hintCard, { backgroundColor: darkMode ? '#1e293b' : '#fffbeb', borderColor: '#fde68a' }]}>
+        <View
+          style={[
+            styles.hintCard,
+            {
+              backgroundColor: darkMode ? '#1e293b' : '#fffbeb',
+              borderColor: '#fde68a',
+            },
+          ]}
+        >
           <Text style={[styles.hintTitle, { color: '#b45309' }]}>💡 İpucu:</Text>
           <Text style={[styles.hintText, { color: darkMode ? '#fcd34d' : '#92400e' }]}>
             {target.hint} ({target.tr})
@@ -284,28 +381,142 @@ export const WordGuessGame: React.FC<WordGuessGameProps> = ({
           })}
       </View>
 
-      {/* Game Result Banner */}
+      {/* Game Result Card */}
       {isGameOver && (
         <View
           style={[
             styles.resultCard,
             {
-              backgroundColor: hasWon ? '#ecfdf5' : '#fff1f2',
-              borderColor: hasWon ? '#6ee7b7' : '#fecdd3',
+              backgroundColor: hasWon
+                ? darkMode
+                  ? 'rgba(6, 78, 59, 0.6)'
+                  : '#ecfdf5'
+                : darkMode
+                ? 'rgba(136, 19, 55, 0.6)'
+                : '#fff1f2',
+              borderColor: hasWon
+                ? darkMode
+                  ? '#059669'
+                  : '#a7f3d0'
+                : darkMode
+                ? '#be123c'
+                : '#fecdd3',
             },
           ]}
         >
-          <Text style={[styles.resultTitle, { color: hasWon ? '#065f46' : '#9f1239' }]}>
-            {hasWon ? '🎉 Tebrikler, Doğru Bildiniz!' : '😔 Deneme Hakkınız Bitti!'}
+          <Text
+            style={[
+              styles.resultTitle,
+              {
+                color: hasWon
+                  ? darkMode
+                    ? '#6ee7b7'
+                    : '#065f46'
+                  : darkMode
+                  ? '#fda4af'
+                  : '#9f1239',
+              },
+            ]}
+          >
+            {hasWon
+              ? `🎉 Harika! ${guesses.length}. Tahminde Buldunuz!`
+              : '😔 6 Tahminde Bulunamadı!'}
           </Text>
-          <Text style={[styles.resultSub, { color: hasWon ? '#047857' : '#be123c' }]}>
-            Doğru Kelime: <Text style={{ fontWeight: '900' }}>{solution}</Text> ({target.tr})
-          </Text>
+
+          <View style={styles.solutionContainer}>
+            <Text
+              style={[
+                styles.solutionLabel,
+                {
+                  color: hasWon
+                    ? darkMode
+                      ? '#a7f3d0'
+                      : '#047857'
+                    : darkMode
+                    ? '#fecdd3'
+                    : '#be123c',
+                },
+              ]}
+            >
+              {hasWon ? 'Doğru Kelime:' : 'Doğru Cevap:'}
+            </Text>
+            <View style={styles.solutionWordRow}>
+              <Text
+                style={[
+                  styles.solutionWord,
+                  {
+                    color: hasWon
+                      ? darkMode
+                        ? '#ffffff'
+                        : '#064e3b'
+                      : darkMode
+                      ? '#ffffff'
+                        : '#881337',
+                  },
+                ]}
+              >
+                {solution}
+              </Text>
+              <TouchableOpacity
+                onPress={() => playPronunciation(solution)}
+                style={[
+                  styles.audioBtn,
+                  {
+                    backgroundColor: hasWon
+                      ? darkMode
+                        ? 'rgba(255, 255, 255, 0.15)'
+                        : '#d1fae5'
+                      : darkMode
+                      ? 'rgba(255, 255, 255, 0.15)'
+                      : '#fee2e2',
+                  },
+                ]}
+                activeOpacity={0.7}
+              >
+                <Volume2
+                  size={16}
+                  color={
+                    hasWon
+                      ? darkMode
+                        ? '#ffffff'
+                        : '#047857'
+                      : darkMode
+                      ? '#ffffff'
+                      : '#be123c'
+                  }
+                />
+              </TouchableOpacity>
+            </View>
+            <Text
+              style={[
+                styles.solutionTranslation,
+                {
+                  color: hasWon
+                    ? darkMode
+                      ? '#a7f3d0'
+                      : '#047857'
+                    : darkMode
+                    ? '#fecdd3'
+                    : '#be123c',
+                },
+              ]}
+            >
+              {target.tr}
+            </Text>
+          </View>
+
           <TouchableOpacity
             onPress={resetGame}
-            style={[styles.nextBtn, { backgroundColor: hasWon ? '#10b981' : '#e11d48' }]}
+            style={[
+              styles.nextBtn,
+              {
+                backgroundColor: hasWon ? '#10b981' : '#e11d48',
+              },
+            ]}
+            activeOpacity={0.85}
           >
             <Text style={styles.nextBtnText}>Sıradaki Kelimeye Geç</Text>
+            <ArrowRight size={16} color="#ffffff" strokeWidth={2.4} />
           </TouchableOpacity>
         </View>
       )}
@@ -415,6 +626,46 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  attemptCard: {
+    marginVertical: 10,
+    padding: 12,
+    borderRadius: 18,
+    borderWidth: 1,
+    gap: 10,
+  },
+  attemptInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  attemptIconCircle: {
+    width: 38,
+    height: 38,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  attemptTextContainer: {
+    flex: 1,
+  },
+  attemptTitle: {
+    fontSize: 14,
+    fontWeight: '800',
+  },
+  attemptSub: {
+    fontSize: 11,
+    fontWeight: '600',
+    marginTop: 1,
+  },
+  stepPills: {
+    flexDirection: 'row',
+    gap: 6,
+  },
+  stepPill: {
+    flex: 1,
+    height: 5,
+    borderRadius: 3,
+  },
   hintCard: {
     padding: 12,
     borderRadius: 16,
@@ -470,24 +721,59 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     marginVertical: 12,
+    gap: 12,
   },
   resultTitle: {
-    fontSize: 15,
-    fontWeight: '800',
-    marginBottom: 4,
+    fontSize: 16,
+    fontWeight: '900',
+    textAlign: 'center',
   },
-  resultSub: {
-    fontSize: 13,
-    marginBottom: 12,
+  solutionContainer: {
+    alignItems: 'center',
+    gap: 4,
+  },
+  solutionLabel: {
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  solutionWordRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  solutionWord: {
+    fontSize: 24,
+    fontWeight: '900',
+    letterSpacing: 2,
+  },
+  audioBtn: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  solutionTranslation: {
+    fontSize: 14,
+    fontWeight: '700',
   },
   nextBtn: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 22,
+    borderRadius: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
+    shadowRadius: 4,
+    elevation: 3,
   },
   nextBtnText: {
     color: '#ffffff',
-    fontSize: 12,
+    fontSize: 13,
     fontWeight: '800',
   },
   keyboard: {

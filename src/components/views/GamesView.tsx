@@ -6,7 +6,7 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
-import { Play, LayoutGrid, Link2, Shuffle, Trophy, LucideIcon } from 'lucide-react-native';
+import { Play, LayoutGrid, Link2, Shuffle, Trophy, Target, LucideIcon } from 'lucide-react-native';
 import { GameId } from '../../types';
 import { WordGuessGame } from '../games/WordGuessGame';
 import { WordMatchGame } from '../games/WordMatchGame';
@@ -137,20 +137,37 @@ export const GamesView: React.FC<GamesViewProps> = ({
                   <Icon size={22} color={darkMode ? Colors.primaryAccent : Colors.primary} strokeWidth={2.2} />
                 </View>
 
-                <View
-                  style={[
-                    styles.highScoreBadge,
-                    {
-                      backgroundColor: darkMode ? 'rgba(52, 92, 67, 0.3)' : '#ecfdf5',
-                      borderColor: darkMode ? 'rgba(123, 169, 131, 0.4)' : '#a7f3d0',
-                    },
-                  ]}
-                >
-                  <Trophy size={13} color={darkMode ? '#86efac' : Colors.primary} strokeWidth={2.4} />
-                  <Text style={[styles.highScoreText, { color: darkMode ? '#86efac' : Colors.primary }]}>
-                    En Yüksek: {score}
-                  </Text>
-                </View>
+                {game.id !== 'guess' ? (
+                  <View
+                    style={[
+                      styles.highScoreBadge,
+                      {
+                        backgroundColor: darkMode ? 'rgba(52, 92, 67, 0.3)' : '#ecfdf5',
+                        borderColor: darkMode ? 'rgba(123, 169, 131, 0.4)' : '#a7f3d0',
+                      },
+                    ]}
+                  >
+                    <Trophy size={13} color={darkMode ? '#86efac' : Colors.primary} strokeWidth={2.4} />
+                    <Text style={[styles.highScoreText, { color: darkMode ? '#86efac' : Colors.primary }]}>
+                      En Yüksek: {score}
+                    </Text>
+                  </View>
+                ) : (
+                  <View
+                    style={[
+                      styles.highScoreBadge,
+                      {
+                        backgroundColor: darkMode ? 'rgba(196, 98, 16, 0.15)' : '#fff8f0',
+                        borderColor: darkMode ? 'rgba(196, 98, 16, 0.3)' : '#fed7aa',
+                      },
+                    ]}
+                  >
+                    <Target size={13} color={darkMode ? '#fdba74' : '#c46210'} strokeWidth={2.4} />
+                    <Text style={[styles.highScoreText, { color: darkMode ? '#fdba74' : '#c46210' }]}>
+                      6 Deneme
+                    </Text>
+                  </View>
+                )}
               </View>
 
               {/* Title & Description */}
