@@ -962,6 +962,7 @@ export default function App() {
           words={words}
           onSelectWord={(w) => setSelectedWord(w)}
           onToggleFavorite={handleToggleFavorite}
+          onOpenAddWord={() => setIsAddWordOpen(true)}
           darkMode={settings.darkMode}
         />
 
