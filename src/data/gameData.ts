@@ -1,7 +1,27 @@
-// Mini Oyun Veri Havuzları
+// Mini Oyun Veri Havuzları ve Rastgele Kelime Üreteçleri
+import expandedData from './expandedVocabulary.json';
+import validWordsList from './validGuessWords.json';
+
+export interface GuessWordItem {
+  word: string;
+  tr: string;
+  hint: string;
+}
+
+export interface MatchPairItem {
+  en: string;
+  tr: string;
+}
+
+export interface ScrambleWordItem {
+  word: string;
+  scramble?: string;
+  tr: string;
+  hint: string;
+}
 
 // 1. Kelime Tahmini (Word Guess / Wordle) - 5 Harfli Kelime Havuzu
-export const GUESS_WORDS_POOL = [
+const CURATED_GUESS_WORDS: GuessWordItem[] = [
   { word: 'LIGHT', tr: 'Işık / Hafif', hint: 'Illumination or not heavy in weight' },
   { word: 'BRAIN', tr: 'Beyin', hint: 'The central organ inside the skull' },
   { word: 'GRACE', tr: 'Zarafet / İncelik', hint: 'Elegance, beauty of movement or polite goodwill' },
@@ -39,8 +59,53 @@ export const GUESS_WORDS_POOL = [
   { word: 'WORLD', tr: 'Dünya / Alem', hint: 'The earth, together with all of its countries and peoples' },
 ];
 
+const buildGuessWordsPool = (): GuessWordItem[] => {
+  const validSet = new Set(validWordsList as string[]);
+  const map = new Map<string, GuessWordItem>();
+
+  CURATED_GUESS_WORDS.forEach((item) => {
+    const w = item.word.trim().toUpperCase();
+    if (w.length === 5 && validSet.has(w)) {
+      map.set(w, { word: w, tr: item.tr, hint: item.hint });
+    }
+  });
+
+  ((expandedData as any[]) || []).forEach((item) => {
+    if (!item || !item.word) return;
+    const w = item.word.trim().toUpperCase();
+    if (w.length === 5 && /^[A-Z]{5}$/.test(w) && validSet.has(w)) {
+      if (!map.has(w)) {
+        map.set(w, {
+          word: w,
+          tr: item.translation || item.definition || '5 harfli İngilizce kelime',
+          hint: item.definition || item.translation || 'A 5-letter English word',
+        });
+      }
+    }
+  });
+
+  return Array.from(map.values());
+};
+
+export const GUESS_WORDS_POOL: GuessWordItem[] = buildGuessWordsPool();
+
+/**
+ * Kelime tahmini oyunu için daha önce oynanmamış rastgele bir kelime seçer.
+ */
+export const getRandomGuessWord = (excludeWords: string[] = []): GuessWordItem => {
+  const excludeSet = new Set(excludeWords.map((w) => w.trim().toUpperCase()));
+  let available = GUESS_WORDS_POOL.filter((item) => !excludeSet.has(item.word.toUpperCase()));
+
+  if (available.length === 0) {
+    available = GUESS_WORDS_POOL;
+  }
+
+  const randomIndex = Math.floor(Math.random() * available.length);
+  return available[randomIndex] || GUESS_WORDS_POOL[0];
+};
+
 // 2. Kelime Eşleştirme (Word Match) - EN-TR Kelime Çiftleri Havuzu
-export const MATCH_PAIRS_POOL = [
+const CURATED_MATCH_PAIRS: MatchPairItem[] = [
   // A1-A2
   { en: 'Ability', tr: 'Yetenek' },
   { en: 'Achieve', tr: 'Başarmak' },
@@ -112,8 +177,32 @@ export const MATCH_PAIRS_POOL = [
   { en: 'Zealous', tr: 'Şevkli / Gayretli' },
 ];
 
+const buildMatchPairsPool = (): MatchPairItem[] => {
+  const map = new Map<string, MatchPairItem>();
+  CURATED_MATCH_PAIRS.forEach((p) => {
+    map.set(p.en.toLowerCase(), { en: p.en, tr: p.tr });
+  });
+
+  ((expandedData as any[]) || []).forEach((item) => {
+    if (!item || !item.word || !item.translation) return;
+    const en = item.word.trim();
+    if (/^[A-Za-z]+$/.test(en) && en.length >= 3 && en.length <= 14) {
+      if (!map.has(en.toLowerCase())) {
+        const firstMeaning = item.translation.split(/[,/]/)[0].trim();
+        if (firstMeaning && firstMeaning.length <= 25) {
+          map.set(en.toLowerCase(), { en, tr: firstMeaning });
+        }
+      }
+    }
+  });
+
+  return Array.from(map.values());
+};
+
+export const MATCH_PAIRS_POOL: MatchPairItem[] = buildMatchPairsPool();
+
 // 3. Harf Karıştırma (Scramble Game)
-export const SCRAMBLE_WORDS = [
+const CURATED_SCRAMBLE_WORDS: ScrambleWordItem[] = [
   { word: 'LUMINOUS', scramble: 'SLNIUMOU', tr: 'Aydınlık', hint: 'Giving off light; glowing in the dark' },
   { word: 'GLIMMER', scramble: 'MMERLGI', tr: 'Parıltı', hint: 'A faint or unsteady light; subtle shine' },
   { word: 'ETHEREAL', scramble: 'AHEETREL', tr: 'Ruhani', hint: 'Extremely delicate, heavenly, and light' },
@@ -130,3 +219,50 @@ export const SCRAMBLE_WORDS = [
   { word: 'AMBITION', scramble: 'ITMIBNOA', tr: 'Hırs / Amaç', hint: 'Strong desire and drive to achieve a great goal' },
   { word: 'CHALLENGE', scramble: 'GEELLNAHC', tr: 'Meydan okuma', hint: 'A demanding task that tests your ability' },
 ];
+
+const buildScrambleWordsPool = (): ScrambleWordItem[] => {
+  const map = new Map<string, ScrambleWordItem>();
+
+  CURATED_SCRAMBLE_WORDS.forEach((item) => {
+    const w = item.word.trim().toUpperCase();
+    map.set(w, {
+      word: w,
+      scramble: item.scramble,
+      tr: item.tr,
+      hint: item.hint,
+    });
+  });
+
+  ((expandedData as any[]) || []).forEach((item) => {
+    if (!item || !item.word) return;
+    const w = item.word.trim().toUpperCase();
+    if (w.length >= 4 && w.length <= 8 && /^[A-Z]+$/.test(w)) {
+      if (!map.has(w)) {
+        map.set(w, {
+          word: w,
+          tr: item.translation || 'İngilizce kelime',
+          hint: item.definition || item.translation || 'An English word',
+        });
+      }
+    }
+  });
+
+  return Array.from(map.values());
+};
+
+export const SCRAMBLE_WORDS: ScrambleWordItem[] = buildScrambleWordsPool();
+
+/**
+ * Harf karıştırma oyunu için rastgele kelime seçer.
+ */
+export const getRandomScrambleWord = (excludeWords: string[] = []): ScrambleWordItem => {
+  const excludeSet = new Set(excludeWords.map((w) => w.trim().toUpperCase()));
+  let available = SCRAMBLE_WORDS.filter((item) => !excludeSet.has(item.word.toUpperCase()));
+
+  if (available.length === 0) {
+    available = SCRAMBLE_WORDS;
+  }
+
+  const randomIndex = Math.floor(Math.random() * available.length);
+  return available[randomIndex] || SCRAMBLE_WORDS[0];
+};

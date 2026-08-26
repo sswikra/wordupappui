@@ -26,6 +26,8 @@ const KEYS = {
   HIGHSCORE_MATCH: '@wordmem_highscore_match',
   HIGHSCORE_SCRAMBLE: '@wordmem_highscore_scramble',
   HIGHSCORE_HANGMAN: '@wordmem_highscore_hangman',
+  PLAYED_GUESS_WORDS: '@wordmem_played_guess_words',
+  PLAYED_SCRAMBLE_WORDS: '@wordmem_played_scramble_words',
 };
 
 // Hızlı arama için yerleşik kelime haritası
@@ -289,6 +291,64 @@ export const StorageService = {
       await AsyncStorage.setItem(key, score.toString());
     } catch (e) {
       console.warn('Failed to save highscore', e);
+    }
+  },
+
+  // Played Game Words History (Tekrarsız oyun deneyimi için)
+  async getPlayedGuessWords(): Promise<string[]> {
+    try {
+      const data = await AsyncStorage.getItem(KEYS.PLAYED_GUESS_WORDS);
+      return data ? JSON.parse(data) : [];
+    } catch {
+      return [];
+    }
+  },
+
+  async savePlayedGuessWord(word: string): Promise<void> {
+    try {
+      if (!word) return;
+      const upper = word.trim().toUpperCase();
+      const played = await this.getPlayedGuessWords();
+      if (!played.includes(upper)) {
+        played.push(upper);
+        // Çok aşırı büyümemesi için son 1000 kelimeyi tut
+        const trimmed = played.length > 1000 ? played.slice(played.length - 1000) : played;
+        await AsyncStorage.setItem(KEYS.PLAYED_GUESS_WORDS, JSON.stringify(trimmed));
+      }
+    } catch (e) {
+      console.warn('Failed to save played guess word', e);
+    }
+  },
+
+  async clearPlayedGuessWords(): Promise<void> {
+    try {
+      await AsyncStorage.removeItem(KEYS.PLAYED_GUESS_WORDS);
+    } catch (e) {
+      console.warn('Failed to clear played guess words', e);
+    }
+  },
+
+  async getPlayedScrambleWords(): Promise<string[]> {
+    try {
+      const data = await AsyncStorage.getItem(KEYS.PLAYED_SCRAMBLE_WORDS);
+      return data ? JSON.parse(data) : [];
+    } catch {
+      return [];
+    }
+  },
+
+  async savePlayedScrambleWord(word: string): Promise<void> {
+    try {
+      if (!word) return;
+      const upper = word.trim().toUpperCase();
+      const played = await this.getPlayedScrambleWords();
+      if (!played.includes(upper)) {
+        played.push(upper);
+        const trimmed = played.length > 2000 ? played.slice(played.length - 2000) : played;
+        await AsyncStorage.setItem(KEYS.PLAYED_SCRAMBLE_WORDS, JSON.stringify(trimmed));
+      }
+    } catch (e) {
+      console.warn('Failed to save played scramble word', e);
     }
   },
 };

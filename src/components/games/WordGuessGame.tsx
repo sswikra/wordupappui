@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -18,9 +18,10 @@ import {
   Target,
   ArrowRight,
 } from 'lucide-react-native';
-import { GUESS_WORDS_POOL } from '../../data/mockData';
+import { getRandomGuessWord, GuessWordItem } from '../../data/mockData';
 import { playPronunciation } from '../../utils/speech';
 import { HapticsService } from '../../utils/haptics';
+import { StorageService } from '../../utils/storage';
 import { isValid5LetterWord } from '../../utils/wordValidation';
 import { Colors, getTheme } from '../../theme/colors';
 
@@ -39,8 +40,7 @@ export const WordGuessGame: React.FC<WordGuessGameProps> = ({
   darkMode = false,
 }) => {
   const theme = getTheme(darkMode);
-  const [targetIndex, setTargetIndex] = useState(0);
-  const target = GUESS_WORDS_POOL[targetIndex];
+  const [target, setTarget] = useState<GuessWordItem>(() => getRandomGuessWord());
   const solution = target.word.toUpperCase(); // 5 letters
 
   const [guesses, setGuesses] = useState<string[]>([]);
@@ -51,6 +51,16 @@ export const WordGuessGame: React.FC<WordGuessGameProps> = ({
   const [message, setMessage] = useState('');
 
   const maxAttempts = 6;
+
+  // Oyun ilk açıldığında daha önce oynanmamış taze bir kelime gelmesini güvenceye al
+  useEffect(() => {
+    StorageService.getPlayedGuessWords().then((played) => {
+      if (played && played.length > 0 && played.includes(target.word.toUpperCase())) {
+        const freshWord = getRandomGuessWord(played);
+        setTarget(freshWord);
+      }
+    });
+  }, []);
 
   const handleKeyPress = (letter: string) => {
     if (isGameOver) return;
@@ -91,21 +101,24 @@ export const WordGuessGame: React.FC<WordGuessGameProps> = ({
       setHasWon(true);
       setIsGameOver(true);
       playPronunciation(solution);
+      StorageService.savePlayedGuessWord(solution);
       if (onGameComplete) onGameComplete(true);
     } else if (nextGuesses.length >= maxAttempts) {
       HapticsService.error();
       setIsGameOver(true);
       setHasWon(false);
+      StorageService.savePlayedGuessWord(solution);
       if (onGameComplete) onGameComplete(false);
     } else {
       HapticsService.medium();
     }
   };
 
-  const resetGame = () => {
+  const resetGame = async () => {
     HapticsService.selection();
-    const nextIdx = (targetIndex + 1) % GUESS_WORDS_POOL.length;
-    setTargetIndex(nextIdx);
+    const played = await StorageService.getPlayedGuessWords();
+    const nextWord = getRandomGuessWord([...played, solution]);
+    setTarget(nextWord);
     setGuesses([]);
     setCurrentGuess('');
     setIsGameOver(false);

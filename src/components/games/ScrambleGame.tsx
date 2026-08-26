@@ -8,7 +8,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { ArrowLeft, RotateCcw, Sparkles, HelpCircle, Check, ArrowRight } from 'lucide-react-native';
-import { SCRAMBLE_WORDS } from '../../data/mockData';
+import { getRandomScrambleWord, ScrambleWordItem } from '../../data/mockData';
 import { playPronunciation } from '../../utils/speech';
 import { HapticsService } from '../../utils/haptics';
 import { StorageService } from '../../utils/storage';
@@ -44,8 +44,7 @@ export const ScrambleGame: React.FC<ScrambleGameProps> = ({
   darkMode = false,
 }) => {
   const theme = getTheme(darkMode);
-  const [index, setIndex] = useState(0);
-  const current = SCRAMBLE_WORDS[index];
+  const [current, setCurrent] = useState<ScrambleWordItem>(() => getRandomScrambleWord());
 
   const [availableLetters, setAvailableLetters] = useState<string[]>(() =>
     getScrambledLetters(current.word, current.scramble)
@@ -61,6 +60,14 @@ export const ScrambleGame: React.FC<ScrambleGameProps> = ({
 
   useEffect(() => {
     StorageService.getHighScore('scramble').then(setHighScore);
+    // Açılışta daha önce oynanmamış taze bir kelime seç
+    StorageService.getPlayedScrambleWords().then((played) => {
+      if (played && played.length > 0 && played.includes(current.word.toUpperCase())) {
+        const freshWord = getRandomScrambleWord(played);
+        setCurrent(freshWord);
+        setAvailableLetters(getScrambledLetters(freshWord.word, freshWord.scramble));
+      }
+    });
   }, []);
 
   const handlePickLetter = (letterIndex: number) => {
@@ -107,6 +114,7 @@ export const ScrambleGame: React.FC<ScrambleGameProps> = ({
       }
 
       playPronunciation(current.word);
+      StorageService.savePlayedScrambleWord(current.word);
       if (onGameComplete) onGameComplete(true);
     } else {
       HapticsService.error();
@@ -115,11 +123,11 @@ export const ScrambleGame: React.FC<ScrambleGameProps> = ({
     }
   };
 
-  const nextWord = () => {
+  const nextWord = async () => {
     HapticsService.selection();
-    const nextIdx = (index + 1) % SCRAMBLE_WORDS.length;
-    const nextItem = SCRAMBLE_WORDS[nextIdx];
-    setIndex(nextIdx);
+    const played = await StorageService.getPlayedScrambleWords();
+    const nextItem = getRandomScrambleWord([...played, current.word]);
+    setCurrent(nextItem);
     setAvailableLetters(getScrambledLetters(nextItem.word, nextItem.scramble));
     setUserLetters([]);
     setIsCorrect(false);

@@ -15,6 +15,11 @@ import {
   GUESS_WORDS_POOL,
   MATCH_PAIRS_POOL,
   SCRAMBLE_WORDS,
+  getRandomGuessWord,
+  getRandomScrambleWord,
+  GuessWordItem,
+  MatchPairItem,
+  ScrambleWordItem,
 } from './gameData';
 
 // Re-export all modular data sets for seamless backward compatibility
@@ -34,6 +39,11 @@ export {
   GUESS_WORDS_POOL,
   MATCH_PAIRS_POOL,
   SCRAMBLE_WORDS,
+  getRandomGuessWord,
+  getRandomScrambleWord,
+  GuessWordItem,
+  MatchPairItem,
+  ScrambleWordItem,
 };
 
 // Initial Word of the Day (Luminous)
