@@ -1,11 +1,17 @@
 node_modules/
 .expo/
-android/
 ios/
-build/
 dist/
 coverage/
 .DS_Store
 *.log
 .env*
 !.env.example
+
+# Android build outputs & local cache
+android/.gradle/
+android/app/build/
+android/build/
+android/.idea/
+android/*.iml
+android/app/*.iml

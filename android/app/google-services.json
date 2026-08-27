@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "612159107867",
+    "project_id": "wordmem-16dd9",
+    "storage_bucket": "wordmem-16dd9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:612159107867:android:22e8433f9e6f9c7fe2d9be",
+        "android_client_info": {
+          "package_name": "com.wordmem.vocabulary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "612159107867-iq4g4akh8e3kmd8uuakh6tsj0a0srdan.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wordmem.vocabulary",
+            "certificate_hash": "35593545f61ebc4bca29a66f839d0e7ccb0cdec8"
+          }
+        },
+        {
+          "client_id": "612159107867-8vm5n6foo16d6mjchvppmeqdqkk0j6c6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrt93ey2v4160YHjBVkMW_qWWkeHkWeTs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "612159107867-8vm5n6foo16d6mjchvppmeqdqkk0j6c6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
