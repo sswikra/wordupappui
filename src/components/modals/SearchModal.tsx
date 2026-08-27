@@ -15,7 +15,6 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { BlurView } from 'expo-blur';
 import { Search, X, Volume2, Heart, SearchX, Plus, ArrowRight, Sparkles } from 'lucide-react-native';
 import { Word } from '../../types';
 import { VOCABULARY_DATABASE } from '../../data/vocabulary';
@@ -252,8 +251,12 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   const handleSelectWord = useCallback(
     (item: Word) => {
       HapticsService.selection();
-      onSelectWord(item);
+      Keyboard.dismiss();
       onClose();
+      // Android'de modal çakışmasını önlemek için güvenli geçiş
+      setTimeout(() => {
+        onSelectWord(item);
+      }, Platform.OS === 'android' ? 60 : 0);
     },
     [onSelectWord, onClose]
   );
@@ -436,35 +439,32 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       onRequestClose={onClose}
       statusBarTranslucent
     >
-      <View style={styles.modalRoot}>
-        {/* 1. Frosted Glass Blur Background */}
-        <BlurView
-          intensity={Platform.OS === 'ios' ? 75 : 90}
-          tint={darkMode ? 'dark' : 'light'}
+      <View
+        style={[
+          styles.modalRoot,
+          {
+            backgroundColor: darkMode
+              ? 'rgba(15, 23, 42, 0.88)'
+              : 'rgba(235, 243, 248, 0.88)',
+          },
+        ]}
+      >
+        {/* Absolute Backdrop Touchable */}
+        <TouchableOpacity
           style={StyleSheet.absoluteFill}
-        />
-
-        {/* 2. Absolute Backdrop - Touching outside triggers dismiss & close */}
-        <Pressable
-          style={[
-            StyleSheet.absoluteFill,
-            {
-              backgroundColor: darkMode
-                ? 'rgba(15, 23, 42, 0.72)'
-                : 'rgba(235, 243, 248, 0.68)',
-            },
-          ]}
+          activeOpacity={1}
           onPress={() => {
             Keyboard.dismiss();
             onClose();
           }}
         />
 
-        {/* 3. Foreground Safe Layout */}
-        <SafeAreaView style={styles.safeArea}>
+        {/* Foreground Safe Layout */}
+        <SafeAreaView style={styles.safeArea} pointerEvents="box-none">
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : undefined}
             style={styles.container}
+            pointerEvents="box-none"
           >
             {/* Search Bar Capsule */}
             <View
@@ -473,21 +473,21 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 {
                   backgroundColor: darkMode ? '#1e293b' : '#ffffff',
                   borderColor: darkMode
-                    ? 'rgba(255, 255, 255, 0.15)'
-                    : 'rgba(52, 92, 67, 0.28)',
+                    ? 'rgba(255, 255, 255, 0.18)'
+                    : 'rgba(52, 92, 67, 0.35)',
                 },
               ]}
             >
               <TouchableOpacity
                 onPress={handleSubmitEditing}
                 activeOpacity={0.7}
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+                style={styles.searchIconBtn}
               >
                 <Search
                   size={20}
                   color={darkMode ? Colors.primaryAccent : Colors.primary}
                   strokeWidth={2.4}
-                  style={styles.searchIcon}
                 />
               </TouchableOpacity>
 
@@ -505,14 +505,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 autoFocus
                 returnKeyType="search"
                 blurOnSubmit={false}
-                clearButtonMode="while-editing"
+                clearButtonMode="never"
               />
 
-              {query ? (
+              {query.length > 0 ? (
                 <TouchableOpacity
                   onPress={() => setQuery('')}
                   style={styles.clearBtn}
-                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
                 >
                   <X size={16} color={darkMode ? '#94a3b8' : '#64748b'} />
                 </TouchableOpacity>
@@ -529,7 +529,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                     backgroundColor: darkMode ? '#334155' : '#f1f5f9',
                   },
                 ]}
-                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
               >
                 <X
                   size={18}
@@ -672,7 +672,7 @@ const styles = StyleSheet.create({
     height: 56,
     borderRadius: 28,
     borderWidth: 1.5,
-    paddingLeft: 16,
+    paddingLeft: 12,
     paddingRight: 8,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
@@ -680,8 +680,10 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 6,
   },
-  searchIcon: {
-    marginRight: 10,
+  searchIconBtn: {
+    padding: 6,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   searchInput: {
     flex: 1,

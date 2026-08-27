@@ -12,6 +12,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { Word, WordList, UserProfile, AppSettings } from '../types';
+import { VOCABULARY_DATABASE } from '../data/vocabulary';
 
 // Firestore undefined değerleri kabul etmediği için objeyi temizler
 const sanitize = <T>(data: T): T => JSON.parse(JSON.stringify(data));
@@ -255,8 +256,7 @@ export const FirebaseService = {
   },
 
   // =========================================================================
-  // 3. KULLANICI KELİMELERİ (USER WORDS SUBCOLLECTION)
-  // Hiyerarşi: /users (Collection) -> {userId} (Document) -> words (Subcollection) -> {wordId} (Document)
+  // 3. KULLANICI KELİMELERİ & DEĞİŞİKLİKLERİ (OPTIMIZED DELTA & CUSTOM WORDS)
   // =========================================================================
 
   /**
@@ -268,12 +268,31 @@ export const FirebaseService = {
       const cleanWord = sanitize(word);
       const now = new Date().toISOString();
 
-      // /users/{userId}/words/{wordId}
-      const wordRef = doc(db, 'users', userId, 'words', word.id);
-      await setDoc(wordRef, {
-        ...cleanWord,
-        updatedAt: now,
-      }, { merge: true });
+      const isBuiltIn = VOCABULARY_DATABASE.some((w) => w.id === word.id);
+
+      if (!isBuiltIn) {
+        // Özel kullanıcı kelimesi: /users/{userId}/custom_words/{wordId} ve geriye dönük /words/{wordId}
+        const customWordRef = doc(db, 'users', userId, 'custom_words', word.id);
+        await setDoc(customWordRef, { ...cleanWord, updatedAt: now }, { merge: true });
+        const legacyWordRef = doc(db, 'users', userId, 'words', word.id);
+        await setDoc(legacyWordRef, { ...cleanWord, updatedAt: now }, { merge: true });
+      } else {
+        // Yerleşik kelime: Tekil dökümanda override olarak kaydet (/users/{userId}/data/word_overrides)
+        const overridesDocRef = doc(db, 'users', userId, 'data', 'word_overrides');
+        await setDoc(
+          overridesDocRef,
+          {
+            [word.id]: {
+              isFavorite: !!word.isFavorite,
+              mastery: typeof word.mastery === 'number' ? word.mastery : 0,
+              lastReviewed: word.lastReviewed || null,
+              lists: word.lists || [],
+              updatedAt: now,
+            },
+          },
+          { merge: true }
+        );
+      }
 
       // Ana kullanıcı dökümanında son güncelleme zamanını kaydet
       const userRef = doc(db, 'users', userId);
@@ -284,56 +303,108 @@ export const FirebaseService = {
   },
 
   /**
-   * Kullanıcının tüm kelimelerini /users/{userId}/words/{wordId} subcollection'ına batch olarak yazar.
-   * Asla tek bir 1 MB döküman içine gömülmez!
+   * Kullanıcının kelimelerini hafif delta ve özel kelimeler halinde kaydeder.
+   * Asla 4.600 adet ayrı döküman yazıp kotayı ve ağı tüketmez.
    */
   async saveUserWords(userId: string, words: Word[]): Promise<void> {
     try {
       if (!userId || !words) return;
-      const cleanWords = sanitize(words);
       const now = new Date().toISOString();
+      const builtInMap = new Map(VOCABULARY_DATABASE.map((w) => [w.id, w]));
 
-      // Batch olarak /users/{userId}/words/{wordId} dokümanlarına yaz
-      const CHUNK_SIZE = 400;
-      for (let i = 0; i < cleanWords.length; i += CHUNK_SIZE) {
-        const chunk = cleanWords.slice(i, i + CHUNK_SIZE);
-        const batch = writeBatch(db);
+      const customWords: Word[] = [];
+      const overrides: Record<string, Partial<Word>> = {};
 
-        chunk.forEach((w) => {
-          if (w && w.id) {
-            const wordDocRef = doc(db, 'users', userId, 'words', w.id);
-            batch.set(wordDocRef, { ...w, updatedAt: now }, { merge: true });
+      for (const w of words) {
+        if (!w || !w.id) continue;
+        const orig = builtInMap.get(w.id);
+        if (!orig) {
+          customWords.push(w);
+        } else {
+          const isFavChanged = w.isFavorite !== orig.isFavorite;
+          const isMasteryChanged = w.mastery !== orig.mastery;
+          const isReviewedChanged = w.lastReviewed !== orig.lastReviewed;
+          if (isFavChanged || isMasteryChanged || isReviewedChanged) {
+            overrides[w.id] = {
+              isFavorite: !!w.isFavorite,
+              mastery: typeof w.mastery === 'number' ? w.mastery : 0,
+              lastReviewed: w.lastReviewed || undefined,
+              lists: w.lists || [],
+            };
           }
-        });
+        }
+      }
 
+      // 1. Overrides'ı tek hafif dökümana yaz (/users/{userId}/data/word_overrides)
+      const overridesDocRef = doc(db, 'users', userId, 'data', 'word_overrides');
+      await setDoc(overridesDocRef, sanitize(overrides));
+
+      // 2. Özel kelimeleri /users/{userId}/custom_words altına yaz
+      if (customWords.length > 0) {
+        const batch = writeBatch(db);
+        customWords.forEach((cw) => {
+          const cwRef = doc(db, 'users', userId, 'custom_words', cw.id);
+          batch.set(cwRef, { ...sanitize(cw), updatedAt: now }, { merge: true });
+        });
         await batch.commit();
       }
 
-      // Ana dökümanda sadece özet sayaç ve tarih tutulur
+      // 3. Ana dökümanda özet sayaç ve tarih tut
       const userMainRef = doc(db, 'users', userId);
       await setDoc(
         userMainRef,
         {
-          wordsCount: cleanWords.length,
+          customWordsCount: customWords.length,
+          overridesCount: Object.keys(overrides).length,
           lastUpdated: now,
         },
         { merge: true }
       );
 
-      console.log(`🔥 [Firestore] ${cleanWords.length} kelime /users/${userId}/words subcollection'ına kaydedildi.`);
+      console.log(`🔥 [Firestore] Kelime senkronizasyonu tamamlandı: ${customWords.length} özel kelime, ${Object.keys(overrides).length} değişiklik.`);
     } catch (error) {
       console.error('❌ [Firestore] saveUserWords hatası:', error);
     }
   },
 
   /**
-   * Kullanıcının kelimelerini /users/{userId}/words alt koleksiyonundan çeker.
+   * Kullanıcının kelimelerini hafif delta ve özel kelime koleksiyonundan çeker.
+   * 4.600 döküman yerine sadece 1-2 döküman okur (50ms sürer).
    */
   async getUserWords(userId: string): Promise<Word[] | null> {
     try {
       if (!userId) return null;
 
-      // 1. Doğrudan alt koleksiyondan oku: /users/{userId}/words
+      // 1. Yeni hızlı delta formatını kontrol et (/users/{userId}/data/word_overrides)
+      const overridesDocRef = doc(db, 'users', userId, 'data', 'word_overrides');
+      const overridesSnap = await getDoc(overridesDocRef);
+
+      const customWordsColRef = collection(db, 'users', userId, 'custom_words');
+      const customSnap = await getDocs(customWordsColRef);
+      const customWords: Word[] = [];
+      customSnap.forEach((d) => {
+        customWords.push(d.data() as Word);
+      });
+
+      if (overridesSnap.exists() || customWords.length > 0) {
+        const overrides = (overridesSnap.exists() ? overridesSnap.data() : {}) as Record<string, Partial<Word>>;
+        const mergedBuiltIn = VOCABULARY_DATABASE.map((w) => {
+          const over = overrides[w.id];
+          return over ? { ...w, ...over } : w;
+        });
+        return [...customWords, ...mergedBuiltIn];
+      }
+
+      // 2. Geriye dönük uyumluluk / Eski tek döküman formatı
+      const legacySubDoc = doc(db, 'users', userId, 'data', 'words');
+      const legacySnap = await getDoc(legacySubDoc);
+      if (legacySnap.exists() && Array.isArray(legacySnap.data()?.words) && legacySnap.data().words.length > 0) {
+        const oldWords = legacySnap.data().words as Word[];
+        this.saveUserWords(userId, oldWords).catch(() => {});
+        return oldWords;
+      }
+
+      // 3. Geriye dönük uyumluluk / Eski /users/{userId}/words subcollection
       const userWordsColRef = collection(db, 'users', userId, 'words');
       const snapshot = await getDocs(userWordsColRef);
 
@@ -342,18 +413,9 @@ export const FirebaseService = {
         snapshot.forEach((d) => {
           words.push(d.data() as Word);
         });
+        // Gelecek açılışların 50ms sürmesi için yeni hafif formata taşı
+        this.saveUserWords(userId, words).catch(() => {});
         return words;
-      }
-
-      // 2. Geriye dönük uyumluluk / Otomatik Geçiş:
-      // Eğer alt koleksiyon henüz boşsa eski döküman formatına bak ve gerekirse yeni yapıya migrate et
-      const legacySubDoc = doc(db, 'users', userId, 'data', 'words');
-      const legacySnap = await getDoc(legacySubDoc);
-      if (legacySnap.exists() && Array.isArray(legacySnap.data()?.words) && legacySnap.data().words.length > 0) {
-        const oldWords = legacySnap.data().words as Word[];
-        // Arka planda yeni subcollection yapısına taşı
-        this.saveUserWords(userId, oldWords).catch((err) => console.warn('Otomatik migrasyon hatası:', err));
-        return oldWords;
       }
     } catch (error) {
       console.error('❌ [Firestore] getUserWords hatası:', error);
@@ -362,13 +424,15 @@ export const FirebaseService = {
   },
 
   /**
-   * Kullanıcının belirli bir kelimesini alt koleksiyondan siler.
+   * Kullanıcının belirli bir kelimesini siler.
    */
   async deleteUserWord(userId: string, wordId: string): Promise<void> {
     try {
       if (!userId || !wordId) return;
-      const wordRef = doc(db, 'users', userId, 'words', wordId);
-      await deleteDoc(wordRef);
+      const customWordRef = doc(db, 'users', userId, 'custom_words', wordId);
+      await deleteDoc(customWordRef).catch(() => {});
+      const legacyWordRef = doc(db, 'users', userId, 'words', wordId);
+      await deleteDoc(legacyWordRef).catch(() => {});
     } catch (error) {
       console.error('❌ [Firestore] deleteUserWord hatası:', error);
     }

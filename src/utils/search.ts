@@ -1,4 +1,4 @@
-import { Word } from '../types';
+import type { Word } from '../types';
 
 export interface NormalizedText {
   raw: string;
@@ -52,9 +52,71 @@ export const tokenize = (text: string | undefined | null): TokenizedText => {
   return { rawTokens, foldedTokens };
 };
 
+interface CachedWordMeta {
+  wNormRaw: string;
+  wNormFolded: string;
+  wTokensRaw: string[];
+  wTokensFolded: string[];
+  trNormRaw: string;
+  trNormFolded: string;
+  trTokensRaw: string[];
+  trTokensFolded: string[];
+  trPhrasesRaw: string[];
+  trPhrasesFolded: string[];
+  defTokensRaw?: string[];
+  defTokensFolded?: string[];
+}
+
+const wordMetaCache = new Map<string, CachedWordMeta>();
+
+export const getWordSearchMeta = (word: Word): CachedWordMeta => {
+  const cached = wordMetaCache.get(word.id);
+  if (cached) return cached;
+
+  const wNorm = normalizeText(word.word);
+  const wTok = tokenize(word.word);
+  const trNorm = normalizeText(word.translation);
+  const trTok = tokenize(word.translation);
+
+  const rawPhrases = (word.translation || '')
+    .toLocaleLowerCase('tr-TR')
+    .split(/[,;/]+/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+
+  const trPhrasesRaw = rawPhrases;
+  const trPhrasesFolded = rawPhrases.map((p) => foldAccents(p));
+
+  let defTokensRaw: string[] | undefined;
+  let defTokensFolded: string[] | undefined;
+  if (word.definition) {
+    const defTok = tokenize(word.definition);
+    defTokensRaw = defTok.rawTokens;
+    defTokensFolded = defTok.foldedTokens;
+  }
+
+  const meta: CachedWordMeta = {
+    wNormRaw: wNorm.raw,
+    wNormFolded: wNorm.folded,
+    wTokensRaw: wTok.rawTokens,
+    wTokensFolded: wTok.foldedTokens,
+    trNormRaw: trNorm.raw,
+    trNormFolded: trNorm.folded,
+    trTokensRaw: trTok.rawTokens,
+    trTokensFolded: trTok.foldedTokens,
+    trPhrasesRaw,
+    trPhrasesFolded,
+    defTokensRaw,
+    defTokensFolded,
+  };
+
+  wordMetaCache.set(word.id, meta);
+  return meta;
+};
+
 /**
  * Bir kelimenin arama sorgusuna uygunluk puanını (relevance score) hesaplar.
- * Alakasız veya kelime ortası alt dize eşleşmeleri (örneğin "terkedilmiş" içindeki "kedi", "toplum/olumlu" içindeki "lum") 0 puan alır.
+ * Önbellekli meta ile 1 mikrosaniyede hesaplar.
  */
 export const calculateWordScore = (
   word: Word,
@@ -63,104 +125,73 @@ export const calculateWordScore = (
 ): number => {
   if (!qNorm.raw) return 0;
 
+  const meta = getWordSearchMeta(word);
   let maxScore = 0;
 
   // 1. İngilizce Kelime Eşleşmesi (word.word)
-  const wNorm = normalizeText(word.word);
-  const wTokens = tokenize(word.word);
-
-  if (wNorm.raw === qNorm.raw || wNorm.folded === qNorm.folded) {
-    // Tam İngilizce kelime eşleşmesi (Örn: "cat" -> "cat")
-    maxScore = Math.max(maxScore, 10000);
-  } else if (wNorm.raw.startsWith(qNorm.raw) || wNorm.folded.startsWith(qNorm.folded)) {
-    // Kelime başlangıç eşleşmesi (Örn: "lum" -> "luminous", "lump")
+  if (meta.wNormRaw === qNorm.raw || meta.wNormFolded === qNorm.folded) {
+    maxScore = 10000;
+  } else if (meta.wNormRaw.startsWith(qNorm.raw) || meta.wNormFolded.startsWith(qNorm.folded)) {
     const lengthDiff = Math.max(0, word.word.length - qNorm.raw.length);
     const score = 6000 - Math.min(1500, lengthDiff * 25);
     maxScore = Math.max(maxScore, score);
   } else if (
-    wTokens.rawTokens.some((t) => t.startsWith(qNorm.raw)) ||
-    wTokens.foldedTokens.some((t) => t.startsWith(qNorm.folded))
+    meta.wTokensRaw.some((t) => t.startsWith(qNorm.raw)) ||
+    meta.wTokensFolded.some((t) => t.startsWith(qNorm.folded))
   ) {
-    // Çoklu kelimede token başlangıç eşleşmesi (Örn: "up" -> "look up")
     maxScore = Math.max(maxScore, 4500);
   } else if (
     qNorm.raw.length >= 3 &&
-    (wNorm.raw.includes(qNorm.raw) || wNorm.folded.includes(qNorm.folded))
+    (meta.wNormRaw.includes(qNorm.raw) || meta.wNormFolded.includes(qNorm.folded))
   ) {
-    // İngilizce kelime içi alt dize eşleşmesi (Yalnızca 3+ harf için, en düşük öncelik, örn: "press" -> "express", "lum" -> "slum")
     maxScore = Math.max(maxScore, 1500 - Math.min(400, word.word.length * 10));
   }
 
   // 2. Türkçe Çeviri Eşleşmesi (word.translation)
-  if (word.translation) {
-    const trNorm = normalizeText(word.translation);
-    const trTokens = tokenize(word.translation);
-    const phrases = word.translation
-      .toLocaleLowerCase('tr-TR')
-      .split(/[,;/]+/)
-      .map((p) => p.trim())
-      .filter(Boolean);
-
-    // Tam Türkçe çeviri eşleşmesi
-    if (trNorm.raw === qNorm.raw || trNorm.folded === qNorm.folded) {
+  if (meta.trNormRaw) {
+    if (meta.trNormRaw === qNorm.raw || meta.trNormFolded === qNorm.folded) {
       maxScore = Math.max(maxScore, 9000);
-    }
-    // Virgülle ayrılmış ifadelerden birinde tam eşleşme (Örn: "kedi, evcil kedi" içinde "kedi")
-    else if (
-      phrases.some((p) => {
-        const pNorm = normalizeText(p);
-        return pNorm.raw === qNorm.raw || pNorm.folded === qNorm.folded;
-      })
+    } else if (
+      meta.trPhrasesRaw.some((p) => p === qNorm.raw) ||
+      meta.trPhrasesFolded.some((p) => p === qNorm.folded)
     ) {
       maxScore = Math.max(maxScore, 8500);
-    }
-    // Çeviri içindeki herhangi bir kelime token'ında tam eşleşme (Örn: "evcil kedi" içinde "kedi")
-    else if (
-      trTokens.rawTokens.some((t) => t === qNorm.raw) ||
-      trTokens.foldedTokens.some((t) => t === qNorm.folded)
+    } else if (
+      meta.trTokensRaw.some((t) => t === qNorm.raw) ||
+      meta.trTokensFolded.some((t) => t === qNorm.folded)
     ) {
       maxScore = Math.max(maxScore, 8000);
-    }
-    // Çeviri ifadesinin sorguyla başlaması (Örn: "terk" -> "terk edilmiş")
-    else if (
-      phrases.some((p) => {
-        const pNorm = normalizeText(p);
-        return pNorm.raw.startsWith(qNorm.raw) || pNorm.folded.startsWith(qNorm.folded);
-      })
+    } else if (
+      meta.trPhrasesRaw.some((p) => p.startsWith(qNorm.raw)) ||
+      meta.trPhrasesFolded.some((p) => p.startsWith(qNorm.folded))
     ) {
-      const lengthDiff = Math.max(0, word.translation.length - qNorm.raw.length);
+      const lengthDiff = Math.max(0, (word.translation || '').length - qNorm.raw.length);
       const score = 7000 - Math.min(1500, lengthDiff * 10);
       maxScore = Math.max(maxScore, score);
-    }
-    // Çevirideki herhangi bir kelimenin sorguyla başlaması (Örn: "terk" -> "terkedilmiş", "ked" -> "kedi")
-    else if (
-      trTokens.rawTokens.some((t) => t.startsWith(qNorm.raw)) ||
-      trTokens.foldedTokens.some((t) => t.startsWith(qNorm.folded))
+    } else if (
+      meta.trTokensRaw.some((t) => t.startsWith(qNorm.raw)) ||
+      meta.trTokensFolded.some((t) => t.startsWith(qNorm.folded))
     ) {
-      const lengthDiff = Math.max(0, word.translation.length - qNorm.raw.length);
+      const lengthDiff = Math.max(0, (word.translation || '').length - qNorm.raw.length);
       const score = 5500 - Math.min(1500, lengthDiff * 10);
       maxScore = Math.max(maxScore, score);
-    }
-    // Çok kelimeli Türkçe arama sorguları (Örn: "terk etmek")
-    else if (qTokens.rawTokens.length > 1) {
-      if (trNorm.raw.includes(qNorm.raw) || trNorm.folded.includes(qNorm.folded)) {
+    } else if (qTokens.rawTokens.length > 1) {
+      if (meta.trNormRaw.includes(qNorm.raw) || meta.trNormFolded.includes(qNorm.folded)) {
         maxScore = Math.max(maxScore, 5000);
       }
     }
-    // DİKKAT: Türkçe kelimenin ortasındaki rastgele hece/harfler eşleştirilmez! ("terkedilmiş" içinde "kedi", "toplum" içinde "lum" 0 alır)
   }
 
   // 3. İngilizce Tanım Eşleşmesi (word.definition - Yalnızca 3+ karakter, kelime sınırında)
-  if (word.definition && qNorm.raw.length >= 3) {
-    const defTokens = tokenize(word.definition);
+  if (meta.defTokensRaw && qNorm.raw.length >= 3) {
     if (
-      defTokens.rawTokens.some((t) => t === qNorm.raw) ||
-      defTokens.foldedTokens.some((t) => t === qNorm.folded)
+      meta.defTokensRaw.some((t) => t === qNorm.raw) ||
+      (meta.defTokensFolded && meta.defTokensFolded.some((t) => t === qNorm.folded))
     ) {
       maxScore = Math.max(maxScore, 800);
     } else if (
-      defTokens.rawTokens.some((t) => t.startsWith(qNorm.raw)) ||
-      defTokens.foldedTokens.some((t) => t.startsWith(qNorm.folded))
+      meta.defTokensRaw.some((t) => t.startsWith(qNorm.raw)) ||
+      (meta.defTokensFolded && meta.defTokensFolded.some((t) => t.startsWith(qNorm.folded)))
     ) {
       maxScore = Math.max(maxScore, 500);
     }

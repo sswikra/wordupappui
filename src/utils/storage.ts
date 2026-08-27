@@ -40,6 +40,18 @@ interface WordsStoragePayload {
   overrides: Record<string, Partial<Word>>;
 }
 
+const areListsEqual = (a?: string[], b?: string[]) => {
+  if (a === b) return true;
+  const lenA = a ? a.length : 0;
+  const lenB = b ? b.length : 0;
+  if (lenA !== lenB) return false;
+  if (lenA === 0) return true;
+  for (let i = 0; i < lenA; i++) {
+    if (a![i] !== b![i]) return false;
+  }
+  return true;
+};
+
 export const StorageService = {
   KEYS,
 
@@ -133,8 +145,7 @@ export const StorageService = {
           const isFavChanged = w.isFavorite !== orig.isFavorite;
           const isMasteryChanged = w.mastery !== orig.mastery;
           const isReviewedChanged = w.lastReviewed !== orig.lastReviewed;
-          const isListsChanged =
-            JSON.stringify(w.lists || []) !== JSON.stringify(orig.lists || []);
+          const isListsChanged = !areListsEqual(w.lists, orig.lists);
 
           if (isFavChanged || isMasteryChanged || isReviewedChanged || isListsChanged) {
             overrides[w.id] = {

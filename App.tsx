@@ -11,6 +11,7 @@ import {
   ActivityIndicator,
   Alert,
   AppState,
+  Platform,
 } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -171,11 +172,13 @@ export default function App() {
         setIsAuthOpen(false);
 
         try {
-          // Firestore'dan kullanıcının verilerini çek
-          const cloudWords = await FirebaseService.getUserWords(user.uid);
-          const cloudLists = await FirebaseService.getUserLists(user.uid);
-          const cloudProfile = await FirebaseService.getUserProfile(user.uid);
-          const cloudSettings = await FirebaseService.getAppSettings(user.uid);
+          // Firestore'dan kullanıcının verilerini paralel ve ultra hızlı çek
+          const [cloudWords, cloudLists, cloudProfile, cloudSettings] = await Promise.all([
+            FirebaseService.getUserWords(user.uid),
+            FirebaseService.getUserLists(user.uid),
+            FirebaseService.getUserProfile(user.uid),
+            FirebaseService.getAppSettings(user.uid),
+          ]);
 
           const defaultAvatar = AVATAR_OPTIONS.male;
           const emailName = user.email ? user.email.split('@')[0] : 'Kelime Öğrencisi';
@@ -189,7 +192,7 @@ export default function App() {
             wordsToUse = getCleanVocabularyDatabase();
           }
           setWords(wordsToUse);
-          await StorageService.saveWords(wordsToUse);
+          StorageService.saveWords(wordsToUse);
 
           // 2. LİSTELER (User Lists)
           let listsToUse: WordList[];
@@ -204,7 +207,7 @@ export default function App() {
             listsToUse = getCleanUserLists();
           }
           setUserLists(listsToUse);
-          await StorageService.saveUserLists(listsToUse);
+          StorageService.saveUserLists(listsToUse);
 
           // 3. PROFİL (Profile)
           let profileToUse: UserProfile;
@@ -250,13 +253,12 @@ export default function App() {
 
           setProfile(updatedProfile);
           setSettings(updatedSettings);
-          await StorageService.saveProfile(updatedProfile);
-          await StorageService.saveSettings(updatedSettings);
-          await FirebaseService.saveUserProfile(user.uid, updatedProfile);
-          await FirebaseService.saveAppSettings(user.uid, updatedSettings);
+          StorageService.saveProfile(updatedProfile);
+          StorageService.saveSettings(updatedSettings);
 
-          // İlk kayıt veya bulut ayarı olmayan yeni kullanıcılar için günlük hedef belirleme modalını aç
           if (isNewUserRegistration) {
+            FirebaseService.saveUserProfile(user.uid, updatedProfile);
+            FirebaseService.saveAppSettings(user.uid, updatedSettings);
             setIsFirstTimeGoal(true);
             setIsDailyGoalModalOpen(true);
           }
@@ -440,11 +442,11 @@ export default function App() {
     await StorageService.saveSettings(updatedSettings);
     await StorageService.saveProfile(updatedProfile);
 
-    // Firebase'e anında ve güvenli kaydet
+    // Firebase'e anında ve hafif kaydet
     const activeUser = currentUser || AuthService.getCurrentUser();
     if (activeUser) {
       console.log('🔥 [Firebase Sync] Yeni kelime buluta kaydediliyor:', newWord.word, '(UID:', activeUser.uid, ')');
-      await FirebaseService.saveUserWords(activeUser.uid, updatedWords);
+      await FirebaseService.saveUserWord(activeUser.uid, newWord);
       if (targetListId) await FirebaseService.saveUserLists(activeUser.uid, updatedLists);
       await FirebaseService.saveUserProfile(activeUser.uid, updatedProfile);
       await FirebaseService.saveAppSettings(activeUser.uid, updatedSettings);
@@ -1120,9 +1122,19 @@ export default function App() {
           isOpen={isSearchOpen}
           onClose={() => setIsSearchOpen(false)}
           words={words}
-          onSelectWord={(w) => setSelectedWord(w)}
+          onSelectWord={(w) => {
+            setIsSearchOpen(false);
+            setTimeout(() => {
+              setSelectedWord(w);
+            }, Platform.OS === 'android' ? 60 : 0);
+          }}
           onToggleFavorite={handleToggleFavorite}
-          onOpenAddWord={() => setIsAddWordOpen(true)}
+          onOpenAddWord={() => {
+            setIsSearchOpen(false);
+            setTimeout(() => {
+              setIsAddWordOpen(true);
+            }, Platform.OS === 'android' ? 60 : 0);
+          }}
           darkMode={settings.darkMode}
         />
 
