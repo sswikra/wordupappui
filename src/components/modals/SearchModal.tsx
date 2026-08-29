@@ -4,8 +4,6 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Pressable,
-  Modal,
   StyleSheet,
   ScrollView,
   FlatList,
@@ -15,7 +13,17 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Search, X, Volume2, Heart, SearchX, Plus, ArrowRight, Sparkles } from 'lucide-react-native';
+import {
+  Search,
+  X,
+  Volume2,
+  Heart,
+  SearchX,
+  Plus,
+  ArrowRight,
+  ArrowLeft,
+  Sparkles,
+} from 'lucide-react-native';
 import { Word } from '../../types';
 import { VOCABULARY_DATABASE } from '../../data/vocabulary';
 import { playPronunciation } from '../../utils/speech';
@@ -175,13 +183,23 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   const [isTranslating, setIsTranslating] = useState(false);
   const inputRef = useRef<TextInput>(null);
 
-  // Reset states when modal closes
+  // Reset states when search is closed
   useEffect(() => {
     if (!isOpen) {
       setQuery('');
       setLevelFilter('ALL');
       setOnlineResult(null);
       setIsTranslating(false);
+    }
+  }, [isOpen]);
+
+  // Focus input whenever opened
+  useEffect(() => {
+    if (isOpen) {
+      const timer = setTimeout(() => {
+        inputRef.current?.focus();
+      }, 80);
+      return () => clearTimeout(timer);
     }
   }, [isOpen]);
 
@@ -253,10 +271,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       HapticsService.selection();
       Keyboard.dismiss();
       onClose();
-      // Android'de modal çakışmasını önlemek için güvenli geçiş
-      setTimeout(() => {
-        onSelectWord(item);
-      }, Platform.OS === 'android' ? 60 : 0);
+      onSelectWord(item);
     },
     [onSelectWord, onClose]
   );
@@ -274,21 +289,83 @@ export const SearchModal: React.FC<SearchModalProps> = ({
     [onToggleFavorite]
   );
 
-  const handleSubmitEditing = useCallback(() => {
+  const handleClose = useCallback(() => {
+    HapticsService.light();
+    Keyboard.dismiss();
+    onClose();
+  }, [onClose]);
+
+  const createEphemeralWord = useCallback((cleanInput: string, transResult: string): Word => {
+    const isTr = /[çğıöşüÇĞİÖŞÜ]/.test(cleanInput) || cleanInput.endsWith('mak') || cleanInput.endsWith('mek');
+    const engWord = isTr ? transResult.trim() : cleanInput.trim();
+    const trWord = isTr ? cleanInput.trim() : transResult.trim();
+    return {
+      id: `online_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
+      word: engWord,
+      phonetic: `/${engWord.toLowerCase()}/`,
+      partOfSpeech: 'Noun',
+      level: 'A1',
+      translation: trWord,
+      definition: `${engWord}: ${trWord}`,
+      example: `Search result for "${cleanInput.trim()}".`,
+      exampleTranslation: `"${cleanInput.trim()}" için arama sonucu.`,
+      mastery: 0,
+    };
+  }, []);
+
+  const handleSubmitEditing = useCallback(async () => {
+    const cleanQ = query.trim();
+    if (!cleanQ) {
+      handleClose();
+      return;
+    }
+
+    // 1. Önce filtrelenmiş yerel kelimelerde tam ya da en iyi eşleşmeyi bul
     if (filteredWords.length > 0) {
-      const cleanQ = query.trim().toLowerCase();
+      const cleanQLower = cleanQ.toLowerCase();
       const exactMatch = filteredWords.find(
         (w) =>
-          w.word.toLowerCase() === cleanQ ||
-          w.translation.toLowerCase() === cleanQ
+          w.word.toLowerCase() === cleanQLower ||
+          (w.translation && w.translation.toLowerCase() === cleanQLower)
       );
       const targetWord = exactMatch || filteredWords[0];
       handleSelectWord(targetWord);
-    } else {
-      HapticsService.light();
-      Keyboard.dismiss();
+      return;
     }
-  }, [filteredWords, query, handleSelectWord]);
+
+    // 2. Çevrimiçi çeviri sonucu varsa doğrudan kelime detayı oluştur ve aç
+    if (onlineResult) {
+      const onlineWord = createEphemeralWord(cleanQ, onlineResult);
+      handleSelectWord(onlineWord);
+      return;
+    }
+
+    // 3. Eğer sonuç henüz gelmediyse hızlı canlı çeviri dene
+    if (cleanQ.length >= 2) {
+      setIsTranslating(true);
+      try {
+        const isTr = /[çğıöşüÇĞİÖŞÜ]/.test(cleanQ) || cleanQ.endsWith('mak') || cleanQ.endsWith('mek');
+        const pair = isTr ? 'tr|en' : 'en|tr';
+        const res = await fetch(
+          `https://api.mymemory.translated.net/get?q=${encodeURIComponent(cleanQ)}&langpair=${pair}`
+        );
+        const data = await res.json();
+        const trans = data?.responseData?.translatedText;
+        if (trans && trans.toLowerCase() !== cleanQ.toLowerCase()) {
+          const onlineWord = createEphemeralWord(cleanQ, trans);
+          handleSelectWord(onlineWord);
+          return;
+        }
+      } catch (e) {
+        // Sessizce geç
+      } finally {
+        setIsTranslating(false);
+      }
+    }
+
+    // Sonuç bulunamadıysa klavyeyi kapat
+    Keyboard.dismiss();
+  }, [filteredWords, query, onlineResult, handleSelectWord, handleClose, createEphemeralWord]);
 
   const keyExtractor = useCallback((item: Word) => item.id, []);
 
@@ -324,11 +401,16 @@ export const SearchModal: React.FC<SearchModalProps> = ({
           <View style={styles.translatingBox}>
             <ActivityIndicator size="small" color={Colors.primary} />
             <Text style={[styles.translatingText, { color: darkMode ? '#94a3b8' : '#64748b' }]}>
-              Canlı çeviri aranıyor...
+              Canlı sözlükte aranıyor...
             </Text>
           </View>
         ) : onlineResult ? (
-          <View
+          <TouchableOpacity
+            activeOpacity={0.88}
+            onPress={() => {
+              const onlineWord = createEphemeralWord(cleanQ, onlineResult);
+              handleSelectWord(onlineWord);
+            }}
             style={[
               styles.onlineResultCard,
               {
@@ -340,7 +422,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             <View style={styles.onlineHeaderRow}>
               <Sparkles size={16} color={Colors.accentOrange} />
               <Text style={[styles.onlineLabel, { color: Colors.accentOrange }]}>
-                Canlı Sözlük Çevirisi
+                Canlı Sözlük Çevirisi (Tıklayıp İncele)
               </Text>
             </View>
             <Text style={[styles.onlineQuery, { color: darkMode ? '#f8fafc' : '#0f172a' }]}>
@@ -349,19 +431,11 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             <Text style={[styles.onlineTrans, { color: darkMode ? Colors.primaryAccent : Colors.primary }]}>
               {onlineResult}
             </Text>
-            {onOpenAddWord && (
-              <TouchableOpacity
-                onPress={() => {
-                  onClose();
-                  onOpenAddWord();
-                }}
-                style={[styles.addCustomBtn, { backgroundColor: Colors.primary }]}
-              >
-                <Plus size={14} color="#ffffff" strokeWidth={2.6} />
-                <Text style={styles.addCustomBtnText}>Kelime Listeme Ekle</Text>
-              </TouchableOpacity>
-            )}
-          </View>
+            <View style={[styles.addCustomBtn, { backgroundColor: Colors.primary }]}>
+              <Plus size={14} color="#ffffff" strokeWidth={2.6} />
+              <Text style={styles.addCustomBtnText}>Kelime Detayını Aç & Ekle</Text>
+            </View>
+          </TouchableOpacity>
         ) : (
           <View style={styles.emptyInner}>
             <View
@@ -396,7 +470,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
         )}
       </View>
     );
-  }, [query, levelFilter, isTranslating, onlineResult, darkMode, onOpenAddWord, onClose]);
+  }, [query, levelFilter, isTranslating, onlineResult, darkMode, onOpenAddWord, onClose, handleSelectWord]);
 
   const renderWordItem = useCallback(
     ({ item }: { item: Word }) => (
@@ -422,7 +496,6 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 
   const hasQuery = query.trim().length > 0;
 
-  // Header etiket metni
   const headerLabel = hasQuery
     ? `${filteredWords.length} kelime bulundu`
     : levelFilter === 'FAVORITES'
@@ -432,41 +505,53 @@ export const SearchModal: React.FC<SearchModalProps> = ({
     : 'Önerilen Kelimeler';
 
   return (
-    <Modal
-      visible={isOpen}
-      transparent
-      animationType="fade"
-      onRequestClose={onClose}
-      statusBarTranslucent
+    <View
+      style={[
+        styles.overlayRoot,
+        {
+          backgroundColor: darkMode
+            ? 'rgba(15, 23, 42, 0.96)'
+            : 'rgba(235, 243, 248, 0.96)',
+        },
+      ]}
     >
-      <View
-        style={[
-          styles.modalRoot,
-          {
-            backgroundColor: darkMode
-              ? 'rgba(15, 23, 42, 0.88)'
-              : 'rgba(235, 243, 248, 0.88)',
-          },
-        ]}
-      >
-        {/* Absolute Backdrop Touchable */}
-        <TouchableOpacity
-          style={StyleSheet.absoluteFill}
-          activeOpacity={1}
-          onPress={() => {
-            Keyboard.dismiss();
-            onClose();
-          }}
-        />
+      {/* Absolute Backdrop Touchable */}
+      <TouchableOpacity
+        style={StyleSheet.absoluteFill}
+        activeOpacity={1}
+        onPress={handleClose}
+      />
 
-        {/* Foreground Safe Layout */}
-        <SafeAreaView style={styles.safeArea} pointerEvents="box-none">
-          <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-            style={styles.container}
-            pointerEvents="box-none"
-          >
-            {/* Search Bar Capsule */}
+      {/* Foreground Safe Content */}
+      <SafeAreaView style={styles.safeArea}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+          style={styles.container}
+        >
+          {/* Header Bar with Back button, Search input, and Close button */}
+          <View style={styles.headerBar}>
+            {/* 1. Back Arrow Button */}
+            <TouchableOpacity
+              onPress={handleClose}
+              activeOpacity={0.7}
+              style={[
+                styles.headerBtn,
+                {
+                  backgroundColor: darkMode ? '#1e293b' : '#ffffff',
+                  borderColor: darkMode ? '#334155' : '#d1e3ec',
+                },
+              ]}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              accessibilityLabel="Geri"
+            >
+              <ArrowLeft
+                size={22}
+                color={darkMode ? '#f8fafc' : '#334155'}
+                strokeWidth={2.4}
+              />
+            </TouchableOpacity>
+
+            {/* 2. Main Search Capsule */}
             <View
               style={[
                 styles.searchCapsule,
@@ -481,11 +566,12 @@ export const SearchModal: React.FC<SearchModalProps> = ({
               <TouchableOpacity
                 onPress={handleSubmitEditing}
                 activeOpacity={0.7}
-                hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                 style={styles.searchIconBtn}
+                accessibilityLabel="Ara"
               >
                 <Search
-                  size={20}
+                  size={19}
                   color={darkMode ? Colors.primaryAccent : Colors.primary}
                   strokeWidth={2.4}
                 />
@@ -510,148 +596,158 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 
               {query.length > 0 ? (
                 <TouchableOpacity
-                  onPress={() => setQuery('')}
-                  style={styles.clearBtn}
-                  hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+                  onPress={() => {
+                    setQuery('');
+                    inputRef.current?.focus();
+                  }}
+                  style={[
+                    styles.clearBtn,
+                    { backgroundColor: darkMode ? '#334155' : '#e2e8f0' },
+                  ]}
+                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  accessibilityLabel="Metni temizle"
                 >
-                  <X size={16} color={darkMode ? '#94a3b8' : '#64748b'} />
+                  <X size={14} color={darkMode ? '#cbd5e1' : '#475569'} strokeWidth={2.6} />
                 </TouchableOpacity>
               ) : null}
-
-              <TouchableOpacity
-                onPress={() => {
-                  Keyboard.dismiss();
-                  onClose();
-                }}
-                style={[
-                  styles.closeBtn,
-                  {
-                    backgroundColor: darkMode ? '#334155' : '#f1f5f9',
-                  },
-                ]}
-                hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-              >
-                <X
-                  size={18}
-                  color={darkMode ? '#f8fafc' : '#334155'}
-                  strokeWidth={2.2}
-                />
-              </TouchableOpacity>
             </View>
 
-            {/* Main Floating Results & Filter Card */}
-            <View
+            {/* 3. Close Button */}
+            <TouchableOpacity
+              onPress={handleClose}
+              activeOpacity={0.7}
               style={[
-                styles.resultsCard,
+                styles.headerBtn,
                 {
-                  backgroundColor: darkMode
-                    ? 'rgba(30, 41, 59, 0.98)'
-                    : 'rgba(255, 255, 255, 0.98)',
-                  borderColor: darkMode
-                    ? 'rgba(255, 255, 255, 0.12)'
-                    : 'rgba(226, 237, 242, 0.9)',
+                  backgroundColor: darkMode ? '#1e293b' : '#ffffff',
+                  borderColor: darkMode ? '#334155' : '#d1e3ec',
                 },
               ]}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              accessibilityLabel="Kapat"
             >
-              {/* Result count & Level Filter Chips */}
-              <View style={styles.resultsHeader}>
-                <View
+              <X
+                size={20}
+                color={darkMode ? '#f8fafc' : '#334155'}
+                strokeWidth={2.4}
+              />
+            </TouchableOpacity>
+          </View>
+
+          {/* Main Floating Results & Filter Card */}
+          <View
+            style={[
+              styles.resultsCard,
+              {
+                backgroundColor: darkMode
+                  ? 'rgba(30, 41, 59, 0.98)'
+                  : 'rgba(255, 255, 255, 0.98)',
+                borderColor: darkMode
+                  ? 'rgba(255, 255, 255, 0.12)'
+                  : 'rgba(226, 237, 242, 0.9)',
+              },
+            ]}
+          >
+            {/* Result count & Level Filter Chips */}
+            <View style={styles.resultsHeader}>
+              <View
+                style={[
+                  styles.countBadge,
+                  { backgroundColor: darkMode ? '#334155' : '#e5eff3' },
+                ]}
+              >
+                <Text
                   style={[
-                    styles.countBadge,
-                    { backgroundColor: darkMode ? '#334155' : '#e5eff3' },
+                    styles.countText,
+                    {
+                      color: darkMode
+                        ? Colors.primaryAccent
+                        : Colors.primary,
+                    },
                   ]}
                 >
-                  <Text
-                    style={[
-                      styles.countText,
-                      {
-                        color: darkMode
-                          ? Colors.primaryAccent
-                          : Colors.primary,
-                      },
-                    ]}
-                  >
-                    {headerLabel}
-                  </Text>
-                </View>
+                  {headerLabel}
+                </Text>
+              </View>
 
-                <ScrollView
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={styles.filterScroll}
-                >
-                  {FILTER_OPTIONS.map((filter) => {
-                    const filterKey =
-                      filter === 'TÜMÜ'
-                        ? 'ALL'
-                        : filter === 'FAVORİLER'
-                        ? 'FAVORITES'
-                        : filter;
-                    const isActive = levelFilter === filterKey;
-                    return (
-                      <TouchableOpacity
-                        key={filter}
-                        onPress={() => {
-                          HapticsService.selection();
-                          setLevelFilter(filterKey);
-                        }}
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={styles.filterScroll}
+              >
+                {FILTER_OPTIONS.map((filter) => {
+                  const filterKey =
+                    filter === 'TÜMÜ'
+                      ? 'ALL'
+                      : filter === 'FAVORİLER'
+                      ? 'FAVORITES'
+                      : filter;
+                  const isActive = levelFilter === filterKey;
+                  return (
+                    <TouchableOpacity
+                      key={filter}
+                      onPress={() => {
+                        HapticsService.selection();
+                        setLevelFilter(filterKey);
+                      }}
+                      style={[
+                        styles.filterChip,
+                        {
+                          backgroundColor: isActive
+                            ? Colors.primary
+                            : darkMode
+                            ? '#334155'
+                            : '#f1f5f9',
+                        },
+                      ]}
+                    >
+                      <Text
                         style={[
-                          styles.filterChip,
+                          styles.filterChipText,
                           {
-                            backgroundColor: isActive
-                              ? Colors.primary
+                            color: isActive
+                              ? '#ffffff'
                               : darkMode
-                              ? '#334155'
-                              : '#f1f5f9',
+                              ? '#cbd5e1'
+                              : '#475569',
+                            fontWeight: isActive ? '800' : '600',
                           },
                         ]}
                       >
-                        <Text
-                          style={[
-                            styles.filterChipText,
-                            {
-                              color: isActive
-                                ? '#ffffff'
-                                : darkMode
-                                ? '#cbd5e1'
-                                : '#475569',
-                              fontWeight: isActive ? '800' : '600',
-                            },
-                          ]}
-                        >
-                          {filter === 'FAVORİLER' ? '❤️ Favoriler' : filter}
-                        </Text>
-                      </TouchableOpacity>
-                    );
-                  })}
-                </ScrollView>
-              </View>
-
-              {/* Words FlatList */}
-              <FlatList
-                data={filteredWords}
-                keyExtractor={keyExtractor}
-                renderItem={renderWordItem}
-                ListEmptyComponent={renderEmptyState}
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={styles.resultsList}
-                initialNumToRender={12}
-                maxToRenderPerBatch={10}
-                windowSize={7}
-                updateCellsBatchingPeriod={40}
-                keyboardShouldPersistTaps="handled"
-              />
+                        {filter === 'FAVORİLER' ? '❤️ Favoriler' : filter}
+                      </Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </ScrollView>
             </View>
-          </KeyboardAvoidingView>
-        </SafeAreaView>
-      </View>
-    </Modal>
+
+            {/* Words FlatList */}
+            <FlatList
+              data={filteredWords}
+              keyExtractor={keyExtractor}
+              renderItem={renderWordItem}
+              ListEmptyComponent={renderEmptyState}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={styles.resultsList}
+              initialNumToRender={14}
+              maxToRenderPerBatch={12}
+              windowSize={7}
+              updateCellsBatchingPeriod={30}
+              keyboardShouldPersistTaps="handled"
+            />
+          </View>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  modalRoot: {
-    flex: 1,
+  overlayRoot: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 9999,
+    elevation: 30,
   },
   safeArea: {
     flex: 1,
@@ -661,24 +757,44 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 480,
     alignSelf: 'center',
-    paddingHorizontal: 16,
-    paddingTop: Platform.OS === 'ios' ? 8 : 14,
-    paddingBottom: 16,
+    paddingHorizontal: 12,
+    paddingTop: Platform.OS === 'android' ? 8 : 4,
+    paddingBottom: 12,
   },
-  searchCapsule: {
+  headerBar: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 8,
     width: '100%',
-    height: 56,
-    borderRadius: 28,
+    marginBottom: 8,
+  },
+  headerBtn: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 3,
+    elevation: 3,
+  },
+  searchCapsule: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 48,
+    borderRadius: 24,
     borderWidth: 1.5,
-    paddingLeft: 12,
+    paddingLeft: 10,
     paddingRight: 8,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.12,
-    shadowRadius: 10,
-    elevation: 6,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    elevation: 3,
   },
   searchIconBtn: {
     padding: 6,
@@ -690,21 +806,18 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '700',
     paddingVertical: 0,
+    paddingHorizontal: 4,
   },
   clearBtn: {
-    padding: 6,
-    marginRight: 4,
-  },
-  closeBtn: {
-    width: 38,
-    height: 38,
-    borderRadius: 19,
+    width: 26,
+    height: 26,
+    borderRadius: 13,
     alignItems: 'center',
     justifyContent: 'center',
+    marginLeft: 2,
   },
   resultsCard: {
     width: '100%',
-    marginTop: 12,
     flex: 1,
     borderRadius: 24,
     borderWidth: 1,
@@ -718,9 +831,9 @@ const styles = StyleSheet.create({
   resultsHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 14,
-    paddingTop: 12,
-    paddingBottom: 10,
+    paddingHorizontal: 12,
+    paddingTop: 10,
+    paddingBottom: 8,
     gap: 8,
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(150, 150, 150, 0.1)',
@@ -917,4 +1030,3 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
 });
-

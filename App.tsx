@@ -1124,16 +1124,12 @@ export default function App() {
           words={words}
           onSelectWord={(w) => {
             setIsSearchOpen(false);
-            setTimeout(() => {
-              setSelectedWord(w);
-            }, Platform.OS === 'android' ? 60 : 0);
+            setSelectedWord(w);
           }}
           onToggleFavorite={handleToggleFavorite}
           onOpenAddWord={() => {
             setIsSearchOpen(false);
-            setTimeout(() => {
-              setIsAddWordOpen(true);
-            }, Platform.OS === 'android' ? 60 : 0);
+            setIsAddWordOpen(true);
           }}
           darkMode={settings.darkMode}
         />
