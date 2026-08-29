@@ -1014,6 +1014,8 @@ export default function App() {
                 setIsDailyGoalModalOpen(true);
               }}
               darkMode={settings.darkMode}
+              words={words}
+              onToggleFavorite={handleToggleFavorite}
             />
           )}
 
