@@ -74,7 +74,7 @@ export const AuthService = {
         try {
             await GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: true });
             const response = await GoogleSignin.signIn();
-            const idToken = response.data?.idToken || (response as any).idToken;
+            const idToken = response?.data?.idToken || (response as any)?.idToken || (response as any)?.data?.user?.idToken;
             if (!idToken) {
                 throw new Error('Google ID Token alınamadı.');
             }
@@ -83,7 +83,7 @@ export const AuthService = {
             return userCredential.user;
         } catch (error: any) {
             console.error('Native Google Giriş Hatası:', error);
-            if (error.code === statusCodes?.SIGN_IN_CANCELLED) {
+            if (error.code === statusCodes?.SIGN_IN_CANCELLED || error.message?.includes('cancelled') || error.code === 'SIGN_IN_CANCELLED') {
                 return null;
             }
             throw error;

@@ -11,9 +11,9 @@ import {
     ActivityIndicator,
     Dimensions,
     Platform,
+    StatusBar,
     KeyboardAvoidingView,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import * as WebBrowser from 'expo-web-browser';
 import * as AuthSession from 'expo-auth-session';
 import Constants, { ExecutionEnvironment } from 'expo-constants';
@@ -109,6 +109,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                         HapticsService.success();
                         if (onLoginSuccess) onLoginSuccess();
                         onClose();
+                        return;
+                    }
+                    if (user === null) {
+                        setLoading(false);
                         return;
                     }
                 } catch (nativeErr: any) {
@@ -245,13 +249,13 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     return (
         <Modal
             visible={isOpen}
-            transparent={false}
+            transparent={true}
             animationType="fade"
             onRequestClose={() => {
                 if (canDismiss) onClose();
             }}
         >
-            <SafeAreaView style={[styles.safeAreaWrapper, { backgroundColor: darkMode ? '#0f172a' : '#ffffff' }]}>
+            <View style={[styles.modalBackdrop, { backgroundColor: darkMode ? '#0f172a' : '#ffffff' }]}>
                 <KeyboardAvoidingView
                     style={{ flex: 1 }}
                     behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -633,14 +637,15 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                         </View>
                     </ScrollView>
                 </KeyboardAvoidingView>
-            </SafeAreaView>
+            </View>
         </Modal>
     );
 };
 
 const styles = StyleSheet.create({
-    safeAreaWrapper: {
+    modalBackdrop: {
         flex: 1,
+        paddingTop: Platform.OS === 'android' ? (StatusBar.currentHeight || 24) + 6 : 44,
     },
     topBar: {
         flexDirection: 'row',
