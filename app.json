@@ -31,12 +31,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "extra": {
-      "eas": {
-        "projectId": "b180b1da-d9b3-4004-8dd2-e0073d317a57"
-      }
-    },
-    "owner": "walkerceng44",
     "plugins": [
       "@react-native-google-signin/google-signin",
       "expo-web-browser"
