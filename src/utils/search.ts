@@ -115,6 +115,21 @@ export const getWordSearchMeta = (word: Word): CachedWordMeta => {
 };
 
 /**
+ * Uygulama açılışında kelime arama önbelleğini arka planda ısıtır.
+ * Böylece kullanıcı ilk harfi yazdığında arama 0 ms gecikmeyle anında sonuç verir.
+ */
+export const warmupSearchCache = (words: Word[]): void => {
+  if (!words || words.length === 0) return;
+  const len = words.length;
+  for (let i = 0; i < len; i++) {
+    const w = words[i];
+    if (w && w.id && !wordMetaCache.has(w.id)) {
+      getWordSearchMeta(w);
+    }
+  }
+};
+
+/**
  * Bir kelimenin arama sorgusuna uygunluk puanını (relevance score) hesaplar.
  * Önbellekli meta ile 1 mikrosaniyede hesaplar.
  */

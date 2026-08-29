@@ -313,59 +313,9 @@ export const SearchModal: React.FC<SearchModalProps> = ({
     };
   }, []);
 
-  const handleSubmitEditing = useCallback(async () => {
-    const cleanQ = query.trim();
-    if (!cleanQ) {
-      handleClose();
-      return;
-    }
-
-    // 1. Önce filtrelenmiş yerel kelimelerde tam ya da en iyi eşleşmeyi bul
-    if (filteredWords.length > 0) {
-      const cleanQLower = cleanQ.toLowerCase();
-      const exactMatch = filteredWords.find(
-        (w) =>
-          w.word.toLowerCase() === cleanQLower ||
-          (w.translation && w.translation.toLowerCase() === cleanQLower)
-      );
-      const targetWord = exactMatch || filteredWords[0];
-      handleSelectWord(targetWord);
-      return;
-    }
-
-    // 2. Çevrimiçi çeviri sonucu varsa doğrudan kelime detayı oluştur ve aç
-    if (onlineResult) {
-      const onlineWord = createEphemeralWord(cleanQ, onlineResult);
-      handleSelectWord(onlineWord);
-      return;
-    }
-
-    // 3. Eğer sonuç henüz gelmediyse hızlı canlı çeviri dene
-    if (cleanQ.length >= 2) {
-      setIsTranslating(true);
-      try {
-        const isTr = /[çğıöşüÇĞİÖŞÜ]/.test(cleanQ) || cleanQ.endsWith('mak') || cleanQ.endsWith('mek');
-        const pair = isTr ? 'tr|en' : 'en|tr';
-        const res = await fetch(
-          `https://api.mymemory.translated.net/get?q=${encodeURIComponent(cleanQ)}&langpair=${pair}`
-        );
-        const data = await res.json();
-        const trans = data?.responseData?.translatedText;
-        if (trans && trans.toLowerCase() !== cleanQ.toLowerCase()) {
-          const onlineWord = createEphemeralWord(cleanQ, trans);
-          handleSelectWord(onlineWord);
-          return;
-        }
-      } catch (e) {
-        // Sessizce geç
-      } finally {
-        setIsTranslating(false);
-      }
-    }
-
-    // Sonuç bulunamadıysa klavyeyi kapat
+  const handleSubmitEditing = useCallback(() => {
     Keyboard.dismiss();
-  }, [filteredWords, query, onlineResult, handleSelectWord, handleClose, createEphemeralWord]);
+  }, []);
 
   const keyExtractor = useCallback((item: Word) => item.id, []);
 

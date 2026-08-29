@@ -38,6 +38,7 @@ import {
   getEmptyWeeklyActivity,
 } from './src/utils/streakManager';
 import { Colors, getTheme } from './src/theme/colors';
+import { warmupSearchCache } from './src/utils/search';
 
 // Common Components
 import { Header } from './src/components/common/Header';
@@ -131,6 +132,9 @@ export default function App() {
         console.warn('Initial storage load failed', e);
       } finally {
         setIsLoaded(true);
+        setTimeout(() => {
+          warmupSearchCache(VOCABULARY_DATABASE);
+        }, 150);
       }
     }
     loadData();

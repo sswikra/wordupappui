@@ -47,6 +47,129 @@ interface HomeViewProps {
 const { width } = Dimensions.get('window');
 const FILTER_OPTIONS = ['TÜMÜ', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'FAVORİLER'];
 
+interface HomeSearchWordItemProps {
+  item: Word;
+  darkMode: boolean;
+  cardBorder: string;
+  onSelectWord: (item: Word) => void;
+  onPronounce: (wordText: string) => void;
+  onToggleFavorite?: (wordId: string) => void;
+}
+
+const HomeSearchWordItem = React.memo<HomeSearchWordItemProps>(
+  ({ item, darkMode, cardBorder, onSelectWord, onPronounce, onToggleFavorite }) => {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          HapticsService.selection();
+          onSelectWord(item);
+        }}
+        activeOpacity={0.75}
+        style={[
+          styles.searchWordCard,
+          {
+            backgroundColor: darkMode ? '#1e293b' : '#ffffff',
+            borderColor: cardBorder,
+          },
+        ]}
+      >
+        <View style={styles.searchWordLeft}>
+          <TouchableOpacity
+            onPress={() => onPronounce(item.word)}
+            style={[
+              styles.searchAudioBtn,
+              { backgroundColor: darkMode ? '#334155' : '#fef3e2' },
+            ]}
+            hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+          >
+            <Volume2 size={16} color={Colors.accentGold} />
+          </TouchableOpacity>
+
+          <View style={styles.searchWordTexts}>
+            <View style={styles.searchWordTitleRow}>
+              <Text
+                style={[
+                  styles.searchWordTitle,
+                  { color: darkMode ? '#fbbf24' : Colors.accentOrange },
+                ]}
+              >
+                {item.word}
+              </Text>
+              {item.partOfSpeech ? (
+                <View
+                  style={[
+                    styles.posTag,
+                    { backgroundColor: darkMode ? '#334155' : '#e0f2fe' },
+                  ]}
+                >
+                  <Text
+                    style={[
+                      styles.posTagText,
+                      { color: darkMode ? '#7dd3fc' : '#0369a1' },
+                    ]}
+                  >
+                    {item.partOfSpeech}
+                  </Text>
+                </View>
+              ) : null}
+              {item.level ? (
+                <View
+                  style={[
+                    styles.levelTag,
+                    { backgroundColor: darkMode ? '#334155' : '#d8ebee' },
+                  ]}
+                >
+                  <Text
+                    style={[
+                      styles.levelTagText,
+                      {
+                        color: darkMode
+                          ? Colors.primaryAccent
+                          : Colors.primaryDark,
+                      },
+                    ]}
+                  >
+                    {item.level}
+                  </Text>
+                </View>
+              ) : null}
+            </View>
+            <Text
+              style={[
+                styles.searchWordTr,
+                { color: darkMode ? Colors.primaryAccent : Colors.primary },
+              ]}
+              numberOfLines={2}
+            >
+              {item.translation}
+            </Text>
+          </View>
+        </View>
+
+        <View style={styles.searchWordActions}>
+          {onToggleFavorite && (
+            <TouchableOpacity
+              onPress={() => {
+                HapticsService.selection();
+                onToggleFavorite(item.id);
+              }}
+              style={styles.favBtn}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            >
+              <Heart
+                size={18}
+                color="#ef4444"
+                fill={item.isFavorite ? '#ef4444' : 'transparent'}
+              />
+            </TouchableOpacity>
+          )}
+          <ArrowRight size={16} color={darkMode ? '#64748b' : '#94a3b8'} />
+        </View>
+      </TouchableOpacity>
+    );
+  }
+);
+
 export const HomeView: React.FC<HomeViewProps> = ({
   wordOfTheDay,
   suggestedWords,
@@ -68,10 +191,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
   const [isTranslating, setIsTranslating] = useState(false);
   const searchInputRef = useRef<TextInput>(null);
 
-  const handlePronounce = (wordText: string) => {
+  const handlePronounce = useCallback((wordText: string) => {
     HapticsService.light();
     playPronunciation(wordText);
-  };
+  }, []);
 
   const dailyProgressPercent = Math.min(
     100,
@@ -151,64 +274,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
     };
   }, []);
 
-  const handleSearchSubmit = useCallback(async () => {
-    const cleanQ = searchQuery.trim();
-    if (!cleanQ) {
-      Keyboard.dismiss();
-      return;
-    }
-
-    // 1. Önce filtrelenmiş yerel kelimelerde tam ya da en iyi eşleşmeyi bul
-    if (filteredWords.length > 0) {
-      const cleanQLower = cleanQ.toLowerCase();
-      const exactMatch = filteredWords.find(
-        (w) =>
-          w.word.toLowerCase() === cleanQLower ||
-          (w.translation && w.translation.toLowerCase() === cleanQLower)
-      );
-      const targetWord = exactMatch || filteredWords[0];
-      HapticsService.selection();
-      Keyboard.dismiss();
-      onSelectWord(targetWord);
-      return;
-    }
-
-    // 2. Çevrimiçi çeviri sonucu varsa doğrudan kelime detayı oluştur ve aç
-    if (onlineResult) {
-      const onlineWord = createEphemeralWord(cleanQ, onlineResult);
-      HapticsService.selection();
-      Keyboard.dismiss();
-      onSelectWord(onlineWord);
-      return;
-    }
-
-    // 3. Eğer sonuç henüz gelmediyse hızlı canlı çeviri dene
-    if (cleanQ.length >= 2) {
-      setIsTranslating(true);
-      try {
-        const isTr = /[çğıöşüÇĞİÖŞÜ]/.test(cleanQ) || cleanQ.endsWith('mak') || cleanQ.endsWith('mek');
-        const pair = isTr ? 'tr|en' : 'en|tr';
-        const res = await fetch(
-          `https://api.mymemory.translated.net/get?q=${encodeURIComponent(cleanQ)}&langpair=${pair}`
-        );
-        const data = await res.json();
-        const trans = data?.responseData?.translatedText;
-        if (trans && trans.toLowerCase() !== cleanQ.toLowerCase()) {
-          const onlineWord = createEphemeralWord(cleanQ, trans);
-          HapticsService.selection();
-          Keyboard.dismiss();
-          onSelectWord(onlineWord);
-          return;
-        }
-      } catch (e) {
-        // sessizce geç
-      } finally {
-        setIsTranslating(false);
-      }
-    }
-
+  const handleSearchSubmit = useCallback(() => {
     Keyboard.dismiss();
-  }, [searchQuery, filteredWords, onlineResult, onSelectWord, createEphemeralWord]);
+  }, []);
 
   const handleClearSearch = useCallback(() => {
     HapticsService.light();
@@ -379,114 +447,15 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* List of matching words */}
           {filteredWords.length > 0 ? (
             filteredWords.slice(0, 30).map((item) => (
-              <TouchableOpacity
+              <HomeSearchWordItem
                 key={item.id}
-                onPress={() => {
-                  HapticsService.selection();
-                  onSelectWord(item);
-                }}
-                activeOpacity={0.75}
-                style={[
-                  styles.searchWordCard,
-                  {
-                    backgroundColor: darkMode ? '#1e293b' : '#ffffff',
-                    borderColor: theme.cardBorder,
-                  },
-                ]}
-              >
-                <View style={styles.searchWordLeft}>
-                  <TouchableOpacity
-                    onPress={() => handlePronounce(item.word)}
-                    style={[
-                      styles.searchAudioBtn,
-                      { backgroundColor: darkMode ? '#334155' : '#fef3e2' },
-                    ]}
-                    hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-                  >
-                    <Volume2 size={16} color={Colors.accentGold} />
-                  </TouchableOpacity>
-
-                  <View style={styles.searchWordTexts}>
-                    <View style={styles.searchWordTitleRow}>
-                      <Text
-                        style={[
-                          styles.searchWordTitle,
-                          { color: darkMode ? '#fbbf24' : Colors.accentOrange },
-                        ]}
-                      >
-                        {item.word}
-                      </Text>
-                      {item.partOfSpeech ? (
-                        <View
-                          style={[
-                            styles.posTag,
-                            { backgroundColor: darkMode ? '#334155' : '#e0f2fe' },
-                          ]}
-                        >
-                          <Text
-                            style={[
-                              styles.posTagText,
-                              { color: darkMode ? '#7dd3fc' : '#0369a1' },
-                            ]}
-                          >
-                            {item.partOfSpeech}
-                          </Text>
-                        </View>
-                      ) : null}
-                      {item.level ? (
-                        <View
-                          style={[
-                            styles.levelTag,
-                            { backgroundColor: darkMode ? '#334155' : '#d8ebee' },
-                          ]}
-                        >
-                          <Text
-                            style={[
-                              styles.levelTagText,
-                              {
-                                color: darkMode
-                                  ? Colors.primaryAccent
-                                  : Colors.primaryDark,
-                              },
-                            ]}
-                          >
-                            {item.level}
-                          </Text>
-                        </View>
-                      ) : null}
-                    </View>
-                    <Text
-                      style={[
-                        styles.searchWordTr,
-                        { color: darkMode ? Colors.primaryAccent : Colors.primary },
-                      ]}
-                      numberOfLines={2}
-                    >
-                      {item.translation}
-                    </Text>
-                  </View>
-                </View>
-
-                <View style={styles.searchWordActions}>
-                  {onToggleFavorite && (
-                    <TouchableOpacity
-                      onPress={() => {
-                        HapticsService.selection();
-                        onToggleFavorite(item.id);
-                      }}
-                      style={styles.favBtn}
-                      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                    >
-                      <Heart
-                        size={18}
-                        color="#ef4444"
-                        fill={item.isFavorite ? '#ef4444' : 'transparent'}
-                      />
-                    </TouchableOpacity>
-                  )}
-                  <ArrowRight size={16} color={darkMode ? '#64748b' : '#94a3b8'} />
-                </View>
-              </TouchableOpacity>
+                item={item}
+                darkMode={darkMode}
+                cardBorder={theme.cardBorder}
+                onSelectWord={onSelectWord}
+                onPronounce={handlePronounce}
+                onToggleFavorite={onToggleFavorite}
+              />
             ))
           ) : isTranslating ? (
             <View style={styles.translatingBox}>
