@@ -3,40 +3,20 @@ import { AuthService } from './src/services/authService';
 import { FirebaseService } from './src/services/firebaseService';
 import { AuthModal } from './src/components/modals/AuthModal';
 import React, { useState, useEffect, useCallback } from 'react';
-import { testFirebaseConnection } from './src/firebaseTest';
 import {
-  View,
-  StyleSheet,
-  BackHandler,
-  ActivityIndicator,
-  Alert,
-  AppState,
-  Platform,
+  View, StyleSheet, BackHandler, ActivityIndicator, Alert, AppState, Platform,
 } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { TabType, Word, WordList, UserProfile, AppSettings } from './src/types';
 import {
-  INITIAL_WORD_OF_THE_DAY,
-  INITIAL_SUGGESTED_WORDS,
-  VOCABULARY_DATABASE,
-  INITIAL_USER_LISTS,
-  OTHER_CURATED_LISTS,
-  INITIAL_USER_PROFILE,
-  INITIAL_APP_SETTINGS,
-  AVATAR_OPTIONS,
-  getCleanUserLists,
-  getCleanUserProfile,
-  getCleanAppSettings,
-  getCleanVocabularyDatabase,
+  INITIAL_WORD_OF_THE_DAY, INITIAL_SUGGESTED_WORDS, VOCABULARY_DATABASE, INITIAL_USER_LISTS,
+  OTHER_CURATED_LISTS, INITIAL_USER_PROFILE, INITIAL_APP_SETTINGS, AVATAR_OPTIONS,
+  getCleanUserLists, getCleanUserProfile, getCleanAppSettings, getCleanVocabularyDatabase,
 } from './src/data/mockData';
 import { StorageService } from './src/utils/storage';
 import { HapticsService } from './src/utils/haptics';
-import {
-  checkDailyReset,
-  recordLearningActivity,
-  getEmptyWeeklyActivity,
-} from './src/utils/streakManager';
+import { checkDailyReset, recordLearningActivity, getEmptyWeeklyActivity, } from './src/utils/streakManager';
 import { Colors, getTheme } from './src/theme/colors';
 import { warmupSearchCache } from './src/utils/search';
 

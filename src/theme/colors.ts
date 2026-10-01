@@ -1,5 +1,5 @@
 export const Colors = {
-  primary: '#345c43', // Brand Forest Olive Green
+  primary: '#345c43',
   primaryLight: '#d8ebee',
   primaryDark: '#1c472a',
   primaryAccent: '#7ba983',

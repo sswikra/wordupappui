@@ -97,7 +97,6 @@ export const checkDailyReset = (
   let updatedSettings = { ...settings };
   let updatedProfile = { ...profile };
 
-  // 1. Günlük Hedef Sıfırlama Kontrolü
   if (updatedSettings.lastDailyGoalDate !== today) {
     updatedSettings = {
       ...updatedSettings,
