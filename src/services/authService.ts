@@ -20,7 +20,6 @@ const GOOGLE_WEB_CLIENT_ID = '612159107867-8vm5n6foo16d6mjchvppmeqdqkk0j6c6.apps
 
 const isExpoGo = Constants.appOwnership === 'expo' || Constants.executionEnvironment === ExecutionEnvironment.StoreClient;
 
-// Native GoogleSignin modülü (Expo Go'da çökmemesi için sadece APK derlemesinde dinamik yüklenir)
 const getNativeGoogleSignin = () => {
     if (Platform.OS === 'web' || isExpoGo) {
         return null;
@@ -196,4 +195,4 @@ export const AuthService = {
                 return error.message || 'İşlem sırasında bir hata oluştu.';
         }
     },
-};
+};

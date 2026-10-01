@@ -55,7 +55,6 @@ const areListsEqual = (a?: string[], b?: string[]) => {
 export const StorageService = {
   KEYS,
 
-  // Yerleşik 4.600 kelimelik veritabanını özel kelimeler ve kullanıcı değişiklikleriyle güvenli birleştirir
   mergeWithBuiltIn(inputWords: Word[] = []): Word[] {
     if (!inputWords || inputWords.length === 0) {
       return VOCABULARY_DATABASE;

@@ -52,7 +52,6 @@ export const WordGuessGame: React.FC<WordGuessGameProps> = ({
 
   const maxAttempts = 6;
 
-  // Oyun ilk açıldığında daha önce oynanmamış taze bir kelime gelmesini güvenceye al
   useEffect(() => {
     StorageService.getPlayedGuessWords().then((played) => {
       if (played && played.length > 0 && played.includes(target.word.toUpperCase())) {
