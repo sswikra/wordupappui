@@ -17,9 +17,9 @@ import {
   SCRAMBLE_WORDS,
   getRandomGuessWord,
   getRandomScrambleWord,
-  GuessWordItem,
-  MatchPairItem,
-  ScrambleWordItem,
+  type GuessWordItem,
+  type MatchPairItem,
+  type ScrambleWordItem,
 } from './gameData';
 
 // Re-export all modular data sets for seamless backward compatibility
